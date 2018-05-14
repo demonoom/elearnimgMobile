@@ -11,9 +11,7 @@ class Home extends React.Component {
         var obj = {
             'method': 'findCourseClass'
         }
-        post(obj).then(res => {
-            return res.json()
-        }).then(json => {
+        post(obj).then(json => {
             console.log(json);
         })
     }

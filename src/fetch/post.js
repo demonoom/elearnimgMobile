@@ -20,6 +20,8 @@ export function post(paramsObj) {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
         body: obj2params(paramsObj)
+    }).then(res => {
+        return res.json()
     });
 
     return result;
