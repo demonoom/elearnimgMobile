@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Route, Switch, Redirect, NavLink} from "react-r
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import * as userInfoActionFormOtherFile from '../actions/userinfo'
-import './App.css'
+import './App.less'
 import Home from '../containers/Home'
 import Detil from '../containers/Detil'
 import User from '../containers/User'

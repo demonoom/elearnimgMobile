@@ -1,16 +1,15 @@
+(node) util.print is deprecated. Use console.log instead.
 .tab {
-    display: flex;
-    height: 30px;
-    line-height: 30px;
-    text-align: center;
+  display: flex;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
 }
-
-.tab > .tab-item {
-    flex: 1;
+.tab .tab-item {
+  flex: 1;
 }
-
-.tab > .tab-item > .nav-link {
-    display: block;
-    color: inherit;
-    text-decoration: none;
+.tab .tab-item .nav-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
 }
