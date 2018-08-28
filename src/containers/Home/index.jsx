@@ -1,6 +1,8 @@
 import React from 'react'
+import {Route} from 'react-router-dom'
 import {post} from "../../fetch/post";
 import Category from '../../components/Category'
+import Detil from '../Detil'
 
 class Home extends React.Component {
     constructor(props, context) {
@@ -39,18 +41,29 @@ class Home extends React.Component {
 
     /**
      * 轮播图被点击返回的数据obj
+     * 这里使用react路由提供的history对象来实现编程路由跳转
      * @param obj
      */
-    categoryOnClick(obj) {
-        console.log(obj);
+    categoryOnClick = (obj) => {
+        let {match} = this.props
+        this.props.history.push({
+            pathname: `${match.url + '/' + obj.courseId}`
+        })
     }
 
     render() {
+
+        let {match} = this.props    //match是路由通过props传递给组件的包含了url、参数等相关信息。
+
         return (
             <div id='home'>
                 <Category
                     categoryArr={this.state.categoryArr}
                     categoryOnClick={this.categoryOnClick}
+                />
+                <Route
+                    path={`${match.url + '/:id'}`}
+                    component={Detil}
                 />
             </div>
         )

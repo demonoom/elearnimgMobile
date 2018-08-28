@@ -5,7 +5,6 @@ import {connect} from 'react-redux'
 import * as userInfoActionFormOtherFile from '../actions/userinfo'
 import './App.less'
 import Home from '../containers/Home'
-import Detil from '../containers/Detil'
 import User from '../containers/User'
 import Mycourse from '../containers/MyCourse'
 import Search from '../containers/Search'
@@ -28,7 +27,6 @@ class App extends Component {
                             <Route path='/home' component={Home}/>
                             <Route path='/mycourse' component={Mycourse}/>
                             <Route path='/user' component={User}/>
-                            <Route path='/detil' component={Detil}/>
                             <Route path='/search' component={Search}/>
                             <Redirect from='/' to='home'/>
                             <Route component={Home}/>

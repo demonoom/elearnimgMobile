@@ -50,7 +50,7 @@ class Category extends React.Component {
                                 return (
                                     <div className="swiper-slide" key={slider.id}>
                                         <a className="slider-nav" onClick={this.toLink(slider)}>
-                                            <img src={slider.image} width="100%" height="100%" alt="推荐"/>
+                                            <img src={slider.image} width="100%" height="100%" alt={slider.courseName}/>
                                         </a>
                                     </div>
                                 );

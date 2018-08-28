@@ -1,4 +1,6 @@
 import React from 'react'
+import './style.less'
+import Header from '../../components/Header'
 
 class Detil extends React.Component {
     constructor(props, context) {
@@ -7,9 +9,13 @@ class Detil extends React.Component {
     }
 
     render() {
+
         return (
-            <div>
-                <h1>Detil</h1>
+            <div id='detil'>
+                <Header
+                    title='详情页'
+                    ref='header'
+                />
             </div>
         )
     }
