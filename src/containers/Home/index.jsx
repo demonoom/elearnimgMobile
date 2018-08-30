@@ -3,6 +3,8 @@ import {Route} from 'react-router-dom'
 import {post} from "../../fetch/post";
 import Category from '../../components/Category'
 import Detil from '../Detil'
+import VideoList from '../../components/VideoList'
+
 
 class Home extends React.Component {
     constructor(props, context) {
@@ -31,7 +33,12 @@ class Home extends React.Component {
                         return (
                             item.number !== '2'
                         )
-                    })
+                    }),
+                    videoArr: json.response.filter((item) => {
+                        return (
+                            item.number !== '1'
+                        )
+                    }),
                 })
             } else {
                 console.log(json.msg);
@@ -61,6 +68,12 @@ class Home extends React.Component {
                     categoryArr={this.state.categoryArr}
                     categoryOnClick={this.categoryOnClick}
                 />
+                <div>
+                    <h4 style={{textAlign: 'center'}}>实景课宣传片</h4>
+                    <VideoList
+                        videoArr={this.state.videoArr}
+                    />
+                </div>
                 <Route
                     path={`${match.url + '/:id'}`}
                     component={Detil}
