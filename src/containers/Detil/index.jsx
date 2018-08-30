@@ -1,7 +1,7 @@
 import React from 'react'
 import './style.less'
 import {CSSTransition} from 'react-transition-group'
-import Header from '../../components/Header'
+import DetilHeader from '../../components/DetilHeader'
 
 class Detil extends React.Component {
     constructor(props, context) {
@@ -24,7 +24,7 @@ class Detil extends React.Component {
                 classNames='translate'
             >
                 <div id='detil'>
-                    <Header
+                    <DetilHeader
                         title='详情页'
                         ref='header'
                     />

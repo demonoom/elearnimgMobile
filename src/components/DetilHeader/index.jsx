@@ -1,7 +1,7 @@
 import React from 'react'
 import './style.less'
 
-class Header extends React.Component {
+class DetilHeader extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.state = {}
@@ -29,4 +29,4 @@ class Header extends React.Component {
     }
 }
 
-export default Header
+export default DetilHeader
