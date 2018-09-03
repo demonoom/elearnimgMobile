@@ -4,7 +4,7 @@ import {post} from "../../fetch/post";
 import Category from '../../components/Category'
 import Detil from '../Detil'
 import VideoList from '../../components/VideoList'
-import {Toast} from 'antd-mobile'
+import {Toast, Tabs, Badge} from 'antd-mobile'
 
 
 class Home extends React.Component {
@@ -63,6 +63,11 @@ class Home extends React.Component {
 
         let {match} = this.props    //match是路由通过props传递给组件的包含了url、参数等相关信息。
 
+        const tabs = [
+            {title: <Badge>实景课堂</Badge>, index: 1},
+            {title: <Badge>常规课</Badge>, index: 2},
+        ];
+
         return (
             <div id='home'>
                 <Category
@@ -75,6 +80,45 @@ class Home extends React.Component {
                         videoArr={this.state.videoArr}
                     />
                 </div>
+
+                <Tabs tabs={tabs}
+                      initialPage={1}
+                      onChange={(tab, index) => {
+                          console.log('onChange', index, tab);
+                      }}
+                      onTabClick={(tab, index) => {
+                          console.log('onTabClick', index, tab);
+                      }}
+                >
+                    <div style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        height: '150px',
+                        backgroundColor: '#fff'
+                    }}>
+                        Content of first tab
+                    </div>
+                    <div style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        height: '150px',
+                        backgroundColor: '#fff'
+                    }}>
+                        Content of second tab
+                    </div>
+                    <div style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        height: '150px',
+                        backgroundColor: '#fff'
+                    }}>
+                        Content of third tab
+                    </div>
+                </Tabs>
+
                 <Route
                     path={`${match.url + '/:id'}`}
                     component={Detil}
