@@ -4,6 +4,7 @@ import {post} from "../../fetch/post";
 import Category from '../../components/Category'
 import Detil from '../Detil'
 import VideoList from '../../components/VideoList'
+import {Toast} from 'antd-mobile'
 
 
 class Home extends React.Component {
@@ -41,7 +42,7 @@ class Home extends React.Component {
                     }),
                 })
             } else {
-                console.log(json.msg);
+                Toast.fail(json.msg, 2)
             }
         })
     }
