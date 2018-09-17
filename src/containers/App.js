@@ -8,6 +8,7 @@ import Home from '../containers/Home'
 import User from '../containers/User'
 import Mycourse from '../containers/MyCourse'
 import Search from '../containers/Search'
+import Detil from '../containers/Detil'
 
 class App extends Component {
 
@@ -28,6 +29,7 @@ class App extends Component {
                             <Route path='/mycourse' component={Mycourse}/>
                             <Route path='/user' component={User}/>
                             <Route path='/search' component={Search}/>
+                            <Route path='/Detil' component={Detil}/>
                             <Redirect from='/' to='home'/>
                             <Route component={Home}/>
                         </Switch>
