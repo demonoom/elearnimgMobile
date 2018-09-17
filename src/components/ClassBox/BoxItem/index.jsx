@@ -12,7 +12,7 @@ class BoxItem extends React.Component {
         const data = this.props.data
         return (
             <div className='item'>
-                <NavLink to='/detil'>
+                <NavLink to={`/detil/${data.id}`}>
                     <img src={data.image} alt="" style={{width: '100%'}}/>
                     <div>{data.courseName}</div>
                 </NavLink>

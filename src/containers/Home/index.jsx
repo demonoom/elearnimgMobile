@@ -1,7 +1,5 @@
 import React from 'react'
-import {Route} from 'react-router-dom'
 import Category from '../../components/Category'
-import Detil from '../Detil'
 import VideoList from '../../components/VideoList'
 import {Toast} from 'antd-mobile'
 import Living from './subpage/Living'
@@ -56,19 +54,13 @@ class Home extends React.Component {
 
     /**
      * 轮播图被点击返回的数据obj
-     * 这里使用react路由提供的history对象来实现编程路由跳转
      * @param obj
      */
     categoryOnClick = (obj) => {
-        let {match} = this.props
-        this.props.history.push({
-            pathname: `${match.url + '/' + obj.courseId}`
-        })
+        return
     }
 
     render() {
-
-        let {match} = this.props    //match是路由通过props传递给组件的包含了url、参数等相关信息。
 
         return (
             <div id='home'>
@@ -86,10 +78,6 @@ class Home extends React.Component {
 
                 <Classroom/>
 
-                <Route
-                    path={`${match.url + '/:id'}`}
-                    component={Detil}
-                />
             </div>
         )
     }

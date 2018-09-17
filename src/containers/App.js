@@ -26,13 +26,13 @@ class App extends Component {
                     </header>
                     <div>
                         <CacheSwitch>
-                            <CacheRoute exact path='/home' component={Home}/>
-                            <CacheRoute exact path='/mycourse' component={Mycourse}/>
-                            <CacheRoute exact path='/user' component={User}/>
-                            <CacheRoute exact path='/search' component={Search}/>
-                            <CacheRoute exact path='/Detil' component={Detil}/>
+                            <CacheRoute path='/home' component={Home}/>
+                            <CacheRoute path='/mycourse' component={Mycourse}/>
+                            <CacheRoute path='/user' component={User}/>
+                            <CacheRoute path='/search' component={Search}/>
+                            <CacheRoute path='/detil/:id' component={Detil}/>
                             <Redirect from='/' to='home'/>
-                            <CacheRoute exact component={Home}/>
+                            <CacheRoute component={Home}/>
                         </CacheSwitch>
                     </div>
                     <div className='tab'>

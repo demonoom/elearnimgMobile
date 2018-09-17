@@ -1,5 +1,6 @@
 import React from 'react'
 import Swiper from 'swiper'
+import {NavLink} from "react-router-dom"
 import "swiper/dist/css/swiper.min.css"
 import './style.less'
 
@@ -49,9 +50,9 @@ class Category extends React.Component {
                             this.state.sliderList.map(slider => {
                                 return (
                                     <div className="swiper-slide" key={slider.id}>
-                                        <a className="slider-nav" onClick={this.toLink(slider)}>
+                                        <NavLink to={`/detil/${slider.id}`} className="slider-nav" onClick={this.toLink(slider)}>
                                             <img src={slider.image} width="100%" height="100%" alt={slider.courseName}/>
-                                        </a>
+                                        </NavLink>
                                     </div>
                                 );
                             })
