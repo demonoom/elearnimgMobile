@@ -15,6 +15,16 @@ class Home extends React.Component {
         this.state = {
             categoryArr: []
         }
+        props.cacheLifecycles.didCache(this.componentDidCache)
+        props.cacheLifecycles.didRecover(this.componentDidRecover)
+    }
+
+    componentDidCache = () => {
+        console.log('List cached被缓存')
+    }
+
+    componentDidRecover = () => {
+        console.log('List recovered被恢复')
     }
 
     componentDidMount() {

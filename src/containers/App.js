@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {BrowserRouter as Router, Route, Switch, Redirect, NavLink} from "react-router-dom"
+import {BrowserRouter as Router, Redirect, NavLink} from "react-router-dom"
+import CacheRoute, {CacheSwitch} from 'react-router-cache-route'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import * as userInfoActionFormOtherFile from '../actions/userinfo'
@@ -24,15 +25,15 @@ class App extends Component {
                         <h2>Header</h2>
                     </header>
                     <div>
-                        <Switch>
-                            <Route path='/home' component={Home}/>
-                            <Route path='/mycourse' component={Mycourse}/>
-                            <Route path='/user' component={User}/>
-                            <Route path='/search' component={Search}/>
-                            <Route path='/Detil' component={Detil}/>
+                        <CacheSwitch>
+                            <CacheRoute exact path='/home' component={Home}/>
+                            <CacheRoute exact path='/mycourse' component={Mycourse}/>
+                            <CacheRoute exact path='/user' component={User}/>
+                            <CacheRoute exact path='/search' component={Search}/>
+                            <CacheRoute exact path='/Detil' component={Detil}/>
                             <Redirect from='/' to='home'/>
-                            <Route component={Home}/>
-                        </Switch>
+                            <CacheRoute exact component={Home}/>
+                        </CacheSwitch>
                     </div>
                     <div className='tab'>
                         <div className='tab-item'>

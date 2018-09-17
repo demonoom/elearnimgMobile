@@ -9,6 +9,16 @@ class Detil extends React.Component {
         this.state = {
             show: false
         }
+        props.cacheLifecycles.didCache(this.componentDidCache)
+        props.cacheLifecycles.didRecover(this.componentDidRecover)
+    }
+
+    componentDidCache = () => {
+        console.log('List cached')
+    }
+
+    componentDidRecover = () => {
+        console.log('List recovered')
     }
 
     componentDidMount() {
