@@ -19,7 +19,10 @@ class DetilHeader extends React.Component {
         return (
             <div id="header">
                 <span className='header-back' onClick={this.handleClick}>
-                    后退
+                    <i className='iconfont icon-houtui1'></i>
+                </span>
+                <span className='header-collect'>
+                    <i className='iconfont icon-shoucang2'></i>
                 </span>
                 <div className='header-title'>
                     {this.props.title}

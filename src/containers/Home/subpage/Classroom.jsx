@@ -30,6 +30,9 @@ class Classroom extends React.Component {
         return (
             <Tabs tabs={tabs}
                   initialPage={0}
+                  swipeable={false}
+                  animated={false}
+                  useOnPan={false}
                   onChange={(tab, index) => {
                       console.log('onChange', index, tab);
                   }}

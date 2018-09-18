@@ -21,20 +21,15 @@ class App extends Component {
         return (
             <Router>
                 <div>
-                    <header>
-                        <h2>Header</h2>
-                    </header>
-                    <div>
-                        <CacheSwitch>
-                            <CacheRoute path='/home' component={Home}/>
-                            <CacheRoute path='/mycourse' component={Mycourse}/>
-                            <CacheRoute path='/user' component={User}/>
-                            <CacheRoute path='/search' component={Search}/>
-                            <CacheRoute path='/detil/:id' component={Detil}/>
-                            <Redirect from='/' to='home'/>
-                            <CacheRoute component={Home}/>
-                        </CacheSwitch>
-                    </div>
+                    <CacheSwitch>
+                        <CacheRoute className='content_window' path='/home' component={Home}/>
+                        <CacheRoute className='content_window' path='/mycourse' component={Mycourse}/>
+                        <CacheRoute className='content_window' path='/user' component={User}/>
+                        <CacheRoute className='content_window' path='/search' component={Search}/>
+                        <CacheRoute className='content_window' path='/detil/:id/:publisherId' component={Detil}/>
+                        <Redirect from='/' to='home'/>
+                        <CacheRoute className='content_window' component={Home}/>
+                    </CacheSwitch>
                     <div className='tab'>
                         <div className='tab-item'>
                             <NavLink className='nav-link' to='/home'>
