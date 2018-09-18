@@ -19,8 +19,6 @@ class CourseTab extends React.Component {
 
         const courseObj = this.props.courseObj
 
-        console.log(courseObj.videos);
-
         return (
             <Tabs tabs={tabs}
                   initialPage={0}
@@ -58,10 +56,21 @@ class CourseTab extends React.Component {
                     </div>
                 </div>
                 <div className='detil-tab-item'>
-                    2
+                    <WhiteSpace/>
+                    {
+                        courseObj.videos.map((v, i) => {
+                            return <div key={i}>
+                                <div>{FormatTime.formatNum(i + 1)}</div>
+                                <div>
+                                    <div>{v.name}</div>
+                                    <div>授课时间：{FormatTime.formatAllTime(v.liveTime)}</div>
+                                </div>
+                            </div>
+                        })
+                    }
                 </div>
                 <div className='detil-tab-item'>
-                    2
+                    <WhiteSpace/>
                 </div>
             </Tabs>
         )

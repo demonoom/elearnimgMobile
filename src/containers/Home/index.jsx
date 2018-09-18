@@ -4,7 +4,9 @@ import VideoList from '../../components/VideoList'
 import {Toast} from 'antd-mobile'
 import Living from './subpage/Living'
 import Classroom from './subpage/Classroom'
+import HomeHeader from '../../components/HomeHeader'
 import {findAdvanceAll} from '../../../src/fetch/home/home'
+import './style.less'
 
 
 class Home extends React.Component {
@@ -64,20 +66,23 @@ class Home extends React.Component {
 
         return (
             <div id='home'>
-                <Category
-                    categoryArr={this.state.categoryArr}
-                    categoryOnClick={this.categoryOnClick}
-                />
+                <HomeHeader/>
 
-                <h4 style={{textAlign: 'center'}}>实景课宣传片</h4>
-                <VideoList
-                    videoArr={this.state.videoArr}
-                />
+                <div className='home_content'>
+                    <Category
+                        categoryArr={this.state.categoryArr}
+                        categoryOnClick={this.categoryOnClick}
+                    />
 
-                <Living/>
+                    <h4 style={{textAlign: 'center'}}>实景课宣传片</h4>
+                    <VideoList
+                        videoArr={this.state.videoArr}
+                    />
 
-                <Classroom/>
+                    <Living/>
 
+                    <Classroom/>
+                </div>
             </div>
         )
     }

@@ -15,5 +15,35 @@ export default {
         var ymdStr = [year, month, date].join('-');
         return ymdStr;
     },
+
+    /**
+     * 时间戳转年月日时分秒，完整时间显示
+     * @param nS
+     * @returns {string}
+     */
+    formatAllTime: function (nS) {
+        var da = new Date(parseInt(nS, 10));
+        var year = da.getFullYear();
+        var month = da.getMonth() + 1;
+        var date = da.getDate();
+        var hour = da.getHours() + ":";
+        var minutes = da.getMinutes() + ":";
+        var sencond = da.getSeconds();
+        var dayStr = [year, month, date].join('-');
+        var dateStr = dayStr + " " + hour + minutes + sencond;
+        return dateStr;
+    },
+
+    /**
+     * 为十以内的数字加个0
+     * @param num
+     * @returns {*}
+     */
+    formatNum: function (num) {
+        if (num < 10) {
+            num = '0' + num
+        }
+        return num
+    }
 }
 

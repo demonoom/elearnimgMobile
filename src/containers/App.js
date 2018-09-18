@@ -25,8 +25,8 @@ class App extends Component {
                         <CacheRoute className='content_window' path='/home' component={Home}/>
                         <CacheRoute className='content_window' path='/mycourse' component={Mycourse}/>
                         <CacheRoute className='content_window' path='/user' component={User}/>
-                        <CacheRoute className='content_window' path='/search' component={Search}/>
-                        <CacheRoute className='content_window' path='/detil/:id/:publisherId' component={Detil}/>
+                        <CacheRoute className='content_window_all' path='/search' component={Search}/>
+                        <CacheRoute className='content_window_all' path='/detil/:id/:publisherId' component={Detil}/>
                         <Redirect from='/' to='home'/>
                         <CacheRoute className='content_window' component={Home}/>
                     </CacheSwitch>

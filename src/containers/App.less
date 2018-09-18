@@ -13,6 +13,10 @@ html, body {
     outline: none;
     color: black;
   }
+
+  .am-whitespace {
+    background-color: #EFF3F7;
+  }
 }
 
 #root {
@@ -22,7 +26,12 @@ html, body {
   }
   .content_window {
     height: calc(~"100% - 30px");
-    overflow-y: scroll;
+    overflow-y: hidden;
+  }
+
+  .content_window_all {
+    height: 100%;
+    overflow-y: hidden;
   }
 
   .tab {

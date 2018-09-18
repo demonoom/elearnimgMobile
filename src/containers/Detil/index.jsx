@@ -52,8 +52,7 @@ class Detil extends React.Component {
                         </div>
                         <div className='detil_content_bottom'>
                             <div className='detil_content_bottom_left'>
-                                <span>¥</span>
-                                <span>{this.state.courseObj.money}</span>
+                                <span>{this.state.courseObj.money === '0.00' ? '免费' : `¥${this.state.courseObj.money}`}</span>
                                 <span>{this.state.courseObj ? this.state.courseObj.buyUids.length : 0}人购买</span>
                             </div>
                             <div className='detil_content_bottom_right'>立即购买</div>
