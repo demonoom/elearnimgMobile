@@ -1,3 +1,55 @@
 .detil-tab-item {
-
+    &.courseDetail{
+      .whiteBg{
+        background-color: #fff;
+        padding: 0 10px;
+      }
+      .title{
+        font-size: 18px;
+        padding-top: 14px;
+      }
+        .topCont{
+          padding: 10px 11px;
+          font-size: 12px;
+          &>div{
+            padding-bottom: 15px;
+            span{
+              padding-left: 20px;
+            }
+            &:last-child{
+              padding-bottom: 0;
+            }
+          }
+        }
+      .teachDec{
+        padding-bottom: 10px;
+        img{
+          width: 35px;
+          height: 35px;
+          border-radius: 50%;
+        }
+        .teach_item{
+          padding-top: 15px;
+          .userName{
+            font-size: 15px;
+            padding-bottom: 7px;
+          }
+          .text{
+            font-size: 12px;
+            line-height: 1.6;
+          }
+        }
+        .right{
+          width: calc(~"100% - 35px");
+          padding-left: 10px;
+        }
+      }
+      .courseDec{
+        padding-bottom: 26px;
+        .text{
+          padding-top: 7px;
+          line-height: 1.6;
+        }
+      }
+    }
 }

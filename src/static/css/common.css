@@ -8,7 +8,7 @@ body * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "微软雅黑", "Times New Roman", Georgia, Serif;
+    font-family: "Microsoft YaHei", "Times New Roman", Georgia, Serif;
 }
 
 input {
@@ -28,3 +28,42 @@ input {
     content: '';
     clear: both;
 }
+
+.text_color{
+    color: #7A809B;
+    font-size: 12px;
+}
+.title_color{
+    color: #2A3350;
+}
+.text_hidden{
+    overflow: hidden;/*超出部分隐藏*/
+    white-space: nowrap;/*不换行*/
+    text-overflow:ellipsis;/*超出部分文字以...显示*/
+}
+.my_flex{
+    display: -webkit-flex; /* Safari */
+    display: flex;
+}
+.line_public{
+    position: relative;
+}
+.line_public::after{
+     content: '';
+     position: absolute;
+     background-color: #EDEFF9;
+     display: block;
+     z-index: 1;
+     top: auto;
+     right: auto;
+     bottom: 0;
+     left: 0;
+     width: 100%;
+     height: 1PX;
+     -webkit-transform-origin: 0 0;
+     -ms-transform-origin: 0 0;
+     transform-origin: 0 0;
+     -webkit-transform: scaleY(0.5);
+     -ms-transform: scaleY(0.5);
+     transform: scaleY(0.5);
+ }

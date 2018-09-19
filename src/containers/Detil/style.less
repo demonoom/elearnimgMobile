@@ -12,6 +12,7 @@
     > img {
       width: 100%;
       height: 200px;
+      display: block;
     }
     .detil-tab {
       height: calc(~"100% - 245px");
@@ -23,13 +24,31 @@
       width: 100%;
       display: flex;
       height: 45px;
+      line-height: 45px;
+      background-color: #fff;
       .detil_content_bottom_left {
-        float: left;
-        flex: 0.6;
+        width: calc(~"100% - 160px");
+        padding-left: 10px;
+        box-sizing: border-box;
+        box-shadow: 0 0px 2px rgba(0,0,0,0.1);
+        .price{
+          color: #4263E2;
+          font-size: 16px;
+          letter-spacing: 1px;
+        }
+        .free{
+          color: #06BC71;
+          font-size: 15px;
+        }
+        .personBuy{
+          float: right;
+          padding-right: 12px;
+        }
+
       }
       .detil_content_bottom_right {
-        background-color: #1b29ff;
-        flex: 0.4;
+        background-color: #3672ED;
+        width: 160px;
         line-height: 45px;
         text-align: center;
         color: #FFFFFF;

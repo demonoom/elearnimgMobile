@@ -26,41 +26,43 @@ class CourseTab extends React.Component {
                   animated={false}
                   useOnPan={false}
             >
-                <div className='detil-tab-item'>
+                <div className='detil-tab-item courseDetail'>
                     <WhiteSpace/>
-                    <div>
-                        <span>好评率:98%</span>
-                        <span>{courseObj.evaluates.length}人评论</span>
-                        <span>授课时间:{FormatTime.formatYMD(courseObj.courseTime)}</span>
-                        <span>课时:{courseObj.videoNum}课时</span>
+                    <div className='topCont text_color'>
+                        <div>好评率：98%  <span>{courseObj.evaluates.length}人评论</span></div>
+                        <div>授课时间：{FormatTime.formatYMD(courseObj.courseTime)}</div>
+                        <div>课时：{courseObj.videoNum}课时</div>
                     </div>
                     <WhiteSpace/>
-                    <div>
-                        <div>老师简介</div>
+                    <div className='whiteBg teachDec'>
+                        <div className='title title_color'>老师简介</div>
                         {
                             courseObj.users.map((v, i) => {
-                                return <div key={i}>
+                                return <div className='teach_item my_flex' key={i}>
                                     <img src={v.avatar} alt=""/>
-                                    <span>{v.userName}</span>
-                                    <span>{v.userContent}</span>
+                                   <div className='right'>
+                                       <div className='userName title_color text_hidden'>{v.userName}</div>
+                                       <div className='text text_color'>{v.userContent}</div>
+                                   </div>
                                 </div>
                             })
                         }
                     </div>
                     <WhiteSpace/>
-                    <div>
-                        <div>课程简介</div>
-                        <div>
+                    <div className='whiteBg courseDec'>
+                        <div className='title title_color'>课程简介</div>
+                        <div className='text text_color'>
                             {courseObj.content || ''}
                         </div>
                     </div>
+                    <WhiteSpace/>
                 </div>
-                <div className='detil-tab-item'>
+                <div className='detil-tab-item courseList'>
                     <WhiteSpace/>
                     {
                         courseObj.videos.map((v, i) => {
-                            return <div key={i}>
-                                <div>{FormatTime.formatNum(i + 1)}</div>
+                            return <div className='my_flex line_public' key={i}>
+                                <div className=''>{FormatTime.formatNum(i + 1)}</div>
                                 <div>
                                     <div>{v.name}</div>
                                     <div>授课时间：{FormatTime.formatAllTime(v.liveTime)}</div>
