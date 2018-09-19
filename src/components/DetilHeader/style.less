@@ -1,31 +1,33 @@
 #header {
-  background-color: #1b29ff;
+  background-color:rgba(0,0,0,0.5);
   position: fixed;
   width: 100%;
-  height: 55px;
-  line-height: 55px;
+  padding: 15px 0;
   color: black;
   text-align: center;
   font-size: 18px;
+  &.blueBg{
+    background-color:#3672ED;
+  }
   .header-back {
     position: absolute;
     left: 20px;
     color: #FFFFFF;
     .iconfont {
-      font-size: 25px;
+      font-size: 21px;
+      font-weight: bold;
     }
   }
   .header-collect {
     position: absolute;
     right: 20px;
     .iconfont {
-      font-size: 25px;
+      font-size: 17px;
       color: #FFFFFF;
     }
   }
   .header-title {
     color: #FFFFFF;
-    margin: 0 40px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
