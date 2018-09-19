@@ -62,14 +62,22 @@ class CourseTab extends React.Component {
                     {
                         courseObj.videos.map((v, i) => {
                             return <div className='my_flex line_public' key={i}>
-                                <div className=''>{FormatTime.formatNum(i + 1)}</div>
-                                <div>
-                                    <div>{v.name}</div>
-                                    <div>授课时间：{FormatTime.formatAllTime(v.liveTime)}</div>
+                                <div className='num text_color'>{FormatTime.formatNum(i + 1)}</div>
+                                <div className='textCont'>
+                                    <div className='title_color'>{v.name}</div>
+                                    <div className='text_color'>
+                                        授课时间：{FormatTime.formatAllTime(v.liveTime)}
+                                        {/*<span className='status text_color'>未开课</span>*/}
+                                        {/*<span className='status icon_record'></span>*/}
+                                        {/*<span className='status icon_live'></span>*/}
+                                        <span className='status icon_playBack'></span>
+
+                                    </div>
                                 </div>
                             </div>
                         })
                     }
+                    <WhiteSpace/>
                 </div>
                 <div className='detil-tab-item'>
                     <WhiteSpace/>
