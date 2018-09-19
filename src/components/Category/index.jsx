@@ -23,6 +23,7 @@ class Category extends React.Component {
                     autoplay: 3000,
                     autoplayDisableOnInteraction: false,
                     pagination: '.swiper-pagination',
+                    paginationType: 'fraction'   //分式
                 });
             }
         });

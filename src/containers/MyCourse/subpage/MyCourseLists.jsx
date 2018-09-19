@@ -8,6 +8,7 @@ class MyCourseLists extends React.Component {
         super(props, context);
         this.state = {
             courseList: false,
+            courseType: 'realLesson',
         }
     }
 
@@ -17,12 +18,18 @@ class MyCourseLists extends React.Component {
         })
     }
 
+    typeOnChange = (courseType) => {
+        this.setState({courseType})
+    }
+
     render() {
         return (
             <div className='my_course_list'>
                 <div className='tabTitle' style={{backgroundColor: 'white'}}>
-                    <span className='active'>实景课堂</span>
-                    <span>常规课堂</span>
+                    <span className={this.state.courseType === 'realLesson' ? 'active' : ''}
+                          onClick={this.typeOnChange.bind(this, 'realLesson')}>实景课堂</span>
+                    <span className={this.state.courseType === 'publicLesson' ? 'active' : ''}
+                          onClick={this.typeOnChange.bind(this, 'publicLesson')}>常规课堂</span>
                 </div>
                 <div className='class_list'>
                     <ClassList

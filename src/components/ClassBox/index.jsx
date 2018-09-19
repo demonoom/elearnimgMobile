@@ -13,7 +13,10 @@ class ClassBox extends React.Component {
         return (
             <div>
                 <div>
-                    精选公开课 热门课程 最新课程 微课
+                    <span>精选公开课</span>
+                    <span>热门课程</span>
+                    <span>最新课程</span>
+                    <span>微课</span>
                 </div>
                 <div className='item_div'>
                     {

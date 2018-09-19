@@ -1,4 +1,6 @@
 import React from 'react'
+import {getMyPurchaseCourseList} from '../../../fetch/my-course/my-course'
+import ClassList from '../../../components/ClassList'
 
 class Living extends React.Component {
     constructor(props, context) {
@@ -6,10 +8,20 @@ class Living extends React.Component {
         this.state = {}
     }
 
+    componentDidMount() {
+        //用我的课程模拟数据
+        getMyPurchaseCourseList(-1, '500001020').then((res) => {
+            this.setState({courseList: res.response.splice(0, 2)})
+        })
+    }
+
     render() {
         return (
             <div>
-                <h1>正在直播</h1>
+                <h4 style={{textAlign: 'center'}}>正在直播</h4>
+                <ClassList
+                    courseList={this.state.courseList}
+                />
             </div>
         )
     }
