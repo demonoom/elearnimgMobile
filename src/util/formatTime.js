@@ -35,6 +35,19 @@ export default {
     },
 
     /**
+     * 时间戳转月日
+     * @param nS
+     * @returns {string}
+     */
+    formatMD: function (nS) {
+        var da = new Date(parseInt(nS, 10));
+        var month = da.getMonth() + 1;
+        var date = da.getDate();
+        var ymdStr = [month, date].join('/');
+        return ymdStr;
+    },
+
+    /**
      * 为十以内的数字加个0
      * @param num
      * @returns {*}
