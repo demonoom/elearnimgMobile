@@ -31,18 +31,21 @@ class App extends Component {
                         <CacheRoute className='content_window' component={Home}/>
                     </CacheSwitch>
                     <div className='tab'>
-                        <div className='tab-item'>
+                        <div className='tab-item tab_course'>
                             <NavLink className='nav-link' to='/home'>
+                                <i></i>
                                 <span>发现课程</span>
                             </NavLink>
                         </div>
-                        <div className='tab-item'>
+                        <div className='tab-item tab_myCurriculum'>
                             <NavLink className='nav-link' to='/mycourse'>
+                                <i></i>
                                 <span>我的课表</span>
                             </NavLink>
                         </div>
-                        <div className='tab-item'>
+                        <div className='tab-item tab_person'>
                             <NavLink className='nav-link' to='/user'>
+                                <i></i>
                                 <span>个人中心</span>
                             </NavLink>
                         </div>
