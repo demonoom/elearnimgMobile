@@ -1,5 +1,6 @@
 import React from 'react'
 import './style.less'
+import {NavLink} from "react-router-dom"
 
 class ListItem extends React.Component {
     constructor(props, context) {
@@ -9,10 +10,10 @@ class ListItem extends React.Component {
 
     render() {
 
-        const itemObj = this.props.itemObj
+        const itemObj = this.props.itemObj;
 
         return (
-            <div className='list_item'>
+            <NavLink to={`/detil/${itemObj.id}/${itemObj.publisher_id}`} className='list_item'>
                 <img src={itemObj.image} alt=""/>
                 <div>
                     <div>{itemObj.courseName}</div>
@@ -25,7 +26,7 @@ class ListItem extends React.Component {
                         }
                     </div>
                 </div>
-            </div>
+            </NavLink>
         )
     }
 }
