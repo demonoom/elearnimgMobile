@@ -1,6 +1,7 @@
 import React from 'react'
 import {getMyPurchaseCourseList} from '../../../fetch/my-course/my-course'
 import ClassList from '../../../components/ClassList'
+import './style.less'
 
 class Living extends React.Component {
     constructor(props, context) {
@@ -18,7 +19,7 @@ class Living extends React.Component {
     render() {
         return (
             <div>
-                <h4 style={{textAlign: 'center'}}>正在直播</h4>
+                <h4 className='title_color same_title' style={{textAlign: 'center'}}>正在直播</h4>
                 <ClassList
                     courseList={this.state.courseList}
                 />

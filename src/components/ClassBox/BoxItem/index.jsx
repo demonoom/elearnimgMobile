@@ -23,6 +23,7 @@ class BoxItem extends React.Component {
                     </div>
                     <div>
                         <img src={data.users[0].avatar} alt=""/>
+                        <span>{data.buyUids.length}人报名</span>
                         <span>{data.users[0].userName}</span>
                         <span>{data.money === '0.00' ? '免费' : `¥${data.money}`}</span>
                     </div>
