@@ -38,7 +38,7 @@ class App extends Component {
                         </div>
                         <div className='tab-item'>
                             <NavLink className='nav-link' to='/mycourse'>
-                                <span>我的课程</span>
+                                <span>我的课表</span>
                             </NavLink>
                         </div>
                         <div className='tab-item'>

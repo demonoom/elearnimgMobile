@@ -1,4 +1,6 @@
 import React from 'react'
+import './style.less'
+import MyCourseLists from './subpage/MyCourseLists'
 
 class MyCourse extends React.Component {
     constructor(props, context) {
@@ -8,8 +10,11 @@ class MyCourse extends React.Component {
 
     render() {
         return (
-            <div>
-                <h1>MyCourse</h1>
+            <div className='myCourse'>
+                <div className='myCourseList_header'>我的课表<i className='iconfont icon-tubiao11'></i></div>
+                <div className='myCourseList_content'>
+                    <MyCourseLists/>
+                </div>
             </div>
         )
     }
