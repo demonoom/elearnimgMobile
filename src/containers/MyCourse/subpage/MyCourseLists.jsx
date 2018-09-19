@@ -20,8 +20,8 @@ class MyCourseLists extends React.Component {
     render() {
         return (
             <div className='my_course_list'>
-                <div style={{backgroundColor: 'white'}}>
-                    <span>实景课堂</span>
+                <div className='tabTitle' style={{backgroundColor: 'white'}}>
+                    <span className='active'>实景课堂</span>
                     <span>常规课堂</span>
                 </div>
                 <div className='class_list'>
