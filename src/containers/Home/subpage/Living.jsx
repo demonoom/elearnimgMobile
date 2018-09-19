@@ -19,7 +19,7 @@ class Living extends React.Component {
     render() {
         return (
             <div>
-                <h4 className='title_color same_title' style={{textAlign: 'center'}}>正在直播</h4>
+                <h4 className='title_color same_title noBottom' style={{textAlign: 'center'}}>正在直播</h4>
                 <ClassList
                     courseList={this.state.courseList}
                 />

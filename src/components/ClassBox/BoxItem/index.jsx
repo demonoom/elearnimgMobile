@@ -14,19 +14,26 @@ class BoxItem extends React.Component {
         return (
             <div className='item'>
                 <NavLink to={`/detil/${data.id}/${data.publisher_id}`}>
-                    <img src={data.image} alt="" style={{width: '100%'}}/>
-                    <div>{data.courseName}</div>
-                    <div>{data.courseType.name}</div>
-                    <div>
-                        <span>{`${FormatTime.formatMD(data.startTime)}-${FormatTime.formatMD(data.endTime)}`}</span>
-                        <span>{data.videos.length}课时</span>
+                    <div className="imgDiv">
+                        <img src={data.image} alt="" style={{width: '100%'}}/>
+                        <span className='sign'>{data.buyUids.length}人报名</span>
                     </div>
-                    <div>
-                        <img src={data.users[0].avatar} alt=""/>
-                        <span>{data.buyUids.length}人报名</span>
-                        <span>{data.users[0].userName}</span>
-                        <span>{data.money === '0.00' ? '免费' : `¥${data.money}`}</span>
+                    <div className="textCont">
+                        <div className='title_color text_hidden'>{data.courseName}</div>
+                        <div className='tag'>{data.courseType.name}</div>
+                        <div className='time line_public'>
+                            <span>{`${FormatTime.formatMD(data.startTime)}-${FormatTime.formatMD(data.endTime)}`}</span>
+                            <span className='courseNum'>{data.videos.length}课时</span>
+                        </div>
+                        <div className="textBottom my_flex">
+                            <img src={data.users[0].avatar} alt=""/>
+                            <span className='text_color text_hidden'>{data.users[0].userName}</span>
+                            {data.money === '1.00' ?
+                                <span className='free'>免费</span> :
+                                <span className='price'>¥ {data.money}</span>}
+                        </div>
                     </div>
+
                 </NavLink>
             </div>
         )
