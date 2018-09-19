@@ -8,10 +8,18 @@ class MyCourse extends React.Component {
         this.state = {}
     }
 
+    /**
+     * 跳转至搜索页面
+     */
+    turnToPage = () => {
+        this.props.history.push('/search');
+    }
+
     render() {
         return (
             <div className='myCourse'>
-                <div className='myCourseList_header title_color'>我的课表<i className='iconfont icon-tubiao11'></i></div>
+                <div className='myCourseList_header title_color'>我的课表<i className='iconfont icon-tubiao11'
+                                                                        onClick={this.turnToPage}></i></div>
                 <div className='myCourseList_content'>
                     <MyCourseLists/>
                 </div>

@@ -1,5 +1,5 @@
 import React from 'react'
-import {Tabs, Badge} from 'antd-mobile'
+import {Tabs, Badge, Icon} from 'antd-mobile'
 import './style.less'
 import {getElearningIndex} from '../../../../src/fetch/home/home'
 import ClassBox from '../../../components/ClassBox'
@@ -44,7 +44,7 @@ class Classroom extends React.Component {
                     {
                         classroomContent.length ? <ClassBox
                             classroomContent={this.state.classroomContent}
-                        /> : '正在加载...'
+                        /> : <Icon type='loading'/>
                     }
                     <div className='item_to_all'>查看全部精选公开实景课 ></div>
                 </div>
