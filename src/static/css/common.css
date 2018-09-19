@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: #f1f1f1;
+    background-color: #F3F6F9;
 }
 
 body * {
@@ -67,3 +67,45 @@ input {
      -ms-transform: scaleY(0.5);
      transform: scaleY(0.5);
  }
+/*tab切换*/
+.am-tabs-default-bar-underline,.am-tabs-default-bar-tab::after{
+    display: none !important;
+}
+.am-tabs-default-bar-tab{
+    height: 40px !important;
+    line-height: 40px!important;
+    font-size: 13px!important;
+}
+.am-tabs-default-bar-tab-active{
+    color: #3672ED!important;
+    font-size: 15px!important;
+}
+.am-tabs-default-bar-tab-active::before{
+    content: '';
+    position: absolute;
+    background-color: #3672ED;
+    display: block;
+    z-index: 1;
+    top: auto;
+    right: 0;
+    bottom: 0;
+    left: 50%;
+    width: 15px;
+    height: 2PX;
+    margin-left: -7.5px;
+    border-radius: 1px;
+}
+.index_tab .am-tabs-default-bar-tab{
+    height: 36px !important;
+    line-height: 36px!important;
+    font-size: 18px!important;
+    color: #7A809B!important;
+    font-weight: bold;
+}
+.index_tab .am-tabs-default-bar-tab-active{
+    color: #3672ED!important;
+    font-size: 18px!important;
+}
+.index_tab .am-tabs-default-bar{
+    background: none!important;
+}

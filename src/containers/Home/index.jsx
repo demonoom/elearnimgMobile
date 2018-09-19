@@ -74,14 +74,16 @@ class Home extends React.Component {
                         categoryOnClick={this.categoryOnClick}
                     />
 
-                    <h4 style={{textAlign: 'center'}}>实景课宣传片</h4>
+                    <h4 className='title_color same_title' style={{textAlign: 'center'}}>实景课宣传片</h4>
                     <VideoList
                         videoArr={this.state.videoArr}
                     />
 
                     <Living/>
 
-                    <Classroom/>
+                   <div className='index_tab'>
+                       <Classroom/>
+                   </div>
                 </div>
             </div>
         )
