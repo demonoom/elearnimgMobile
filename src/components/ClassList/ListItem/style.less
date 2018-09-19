@@ -4,13 +4,45 @@
   height: 100px;
   overflow: hidden;
   background-color: #fff;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
   > img {
     width: 173px;
     height: 100%;
     object-fit: cover;
     -o-object-fit: cover;
   }
-  > div {
+  .rightCont{
     width: calc(~"100% - 173px");
+    padding: 10px;
+    box-sizing: border-box;
+    .title_color{
+        font-size: 14px;
+        margin-bottom: 9px;
+    }
+    .tag{
+      padding: 2px 5px;
+      border: 1px #2C80FF solid;
+      color: #2C80FF;
+      display: inline-block;
+      font-size: 10px;
+      line-height: 1;
+      margin-bottom: 10px;
+      &.orange{
+        border: 1px #EDAB4C solid;
+        color: #EDAB4C;
+      }
+      &.green{
+        border: 1px #328466 solid;
+        color: #328466;
+      }
+    }
+    .name{
+      span{
+        padding-right: 9px;
+        line-height: 1.2;
+      }
+    }
   }
 }

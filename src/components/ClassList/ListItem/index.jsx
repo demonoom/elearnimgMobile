@@ -15,10 +15,10 @@ class ListItem extends React.Component {
         return (
             <NavLink to={`/detil/${itemObj.id}/${itemObj.publisher_id}`} className='list_item'>
                 <img src={itemObj.image} alt=""/>
-                <div>
-                    <div>{itemObj.courseName}</div>
-                    <div>{itemObj.courseType.name}</div>
-                    <div>
+                <div className='rightCont text_color'>
+                    <div className='title_color text_hidden'>{itemObj.courseName}</div>
+                    <div className='tag orange'>{itemObj.courseType.name}</div>
+                    <div className='name text_hidden'>
                         {
                             itemObj.users.map((v, i) => {
                                 return <span key={i}>{v.userName}</span>
