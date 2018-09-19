@@ -11,7 +11,7 @@ class MyCourse extends React.Component {
     render() {
         return (
             <div className='myCourse'>
-                <div className='myCourseList_header'>我的课表<i className='iconfont icon-tubiao11'></i></div>
+                <div className='myCourseList_header title_color'>我的课表<i className='iconfont icon-tubiao11'></i></div>
                 <div className='myCourseList_content'>
                     <MyCourseLists/>
                 </div>
