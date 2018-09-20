@@ -12,6 +12,7 @@ import Search from '../containers/Search'
 import Detil from '../containers/Detil'
 import MyOrder from '../containers/MyOrder'
 import MyCollection from '../containers/MyCollection'
+import MyBalance from '../containers/MyBalance'
 
 class App extends Component {
 
@@ -114,6 +115,19 @@ class App extends Component {
                                         className: '__CacheRoute__wrapper__uncached'
                                     })}/>
                         <CacheRoute className='content_window_all' path='/mycollection' component={MyCollection}
+                                    behavior={cached => (cached ? {
+                                        style: {
+                                            position: 'absolute',
+                                            zIndex: -9999,
+                                            opacity: 0,
+                                            visibility: 'hidden',
+                                            pointerEvents: 'none'
+                                        },
+                                        className: '__CacheRoute__wrapper__cached'
+                                    } : {
+                                        className: '__CacheRoute__wrapper__uncached'
+                                    })}/>
+                        <CacheRoute className='content_window_all' path='/mybalance' component={MyBalance}
                                     behavior={cached => (cached ? {
                                         style: {
                                             position: 'absolute',

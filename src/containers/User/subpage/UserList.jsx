@@ -52,16 +52,18 @@ class UserList extends React.Component {
                     >
                         绑定手机号
                     </Item>
-                    <Item
-                        className='user_list_item overMoney'
-                        thumb={Icon_overMoney}
-                        onClick={() => {
-                        }}
-                        arrow="horizontal"
-                        extra="0.00币"
-                    >
-                        我的余额
-                    </Item>
+                    <NavLink to='/mybalance'>
+                        <Item
+                            className='user_list_item overMoney'
+                            thumb={Icon_overMoney}
+                            onClick={() => {
+                            }}
+                            arrow="horizontal"
+                            extra="0.00币"
+                        >
+                            我的余额
+                        </Item>
+                    </NavLink>
                     <Item
                         className='user_list_item setting'
                         thumb={Icon_setting}
