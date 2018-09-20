@@ -1,5 +1,6 @@
 import React from 'react'
 import './style.less'
+import ClassBox from '../../../components/ClassBox'
 
 class SearchContent extends React.Component {
     constructor(props, context) {
@@ -12,16 +13,30 @@ class SearchContent extends React.Component {
     }
 
     render() {
+        const searchResponse = this.props.searchResponse
+        console.log(searchResponse);
         return (
             <div className='search_content'>
-                <div className='topCont'>
-                    <span>最近搜索</span>
-                    <span>清空搜索记录</span>
-                </div>
-                <div className='searchTagCont'>
-                    {/*SearchContent*/}
-                    <span className='grayTag_deep title_color'>传统节日</span>
-                </div>
+                {searchResponse.length === 0 ? <div className='search_history'>
+                    <div className='topCont'>
+                        <span>最近搜索</span>
+                        <span>清空搜索记录</span>
+                    </div>
+                    <div className='searchTagCont'>
+                        <span className='grayTag_deep title_color'>传统节日</span>
+                    </div>
+                </div> : <div style={{marginTop: '10px'}}>
+                    <div className='tabTitle'>
+                        <span>按热度排序</span>
+                        <span>最新课程</span>
+                    </div>
+                    <div className='search_response'>
+                        <ClassBox
+                            classroomContent={searchResponse}
+                            typeGuoLv={false}
+                        />
+                    </div>
+                </div>}
             </div>
         )
     }
