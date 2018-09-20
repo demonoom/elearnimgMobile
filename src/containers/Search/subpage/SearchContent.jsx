@@ -25,9 +25,10 @@ class SearchContent extends React.Component {
                     <div className='searchTagCont'>
                         <span className='grayTag_deep title_color'>传统节日</span>
                     </div>
-                </div> : <div style={{marginTop: '10px'}}>
-                    <div className='tabTitle'>
-                        <span>按热度排序</span>
+                </div> :
+                    <div style={{height: '100%'}}>
+                    <div className='tabTitle'  style={{paddingTop: '15px'}}>
+                        <span className='active'>按热度排序</span>
                         <span>最新课程</span>
                     </div>
                     <div className='search_response'>

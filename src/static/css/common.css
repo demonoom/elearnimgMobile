@@ -126,6 +126,7 @@ input {
 }
 .tabTitle{
     font-size: 13px;
+    background-color: white;
 }
 .tabTitle span {
     display: inline-block;
@@ -249,6 +250,12 @@ input {
     z-index: 100;
     overflow: hidden;
     background-color: #F3F6F9;
+}
+.p14{
+    padding-top: 14px;
+}
+.whiteBg{
+    background-color: white;
 }
 
 /*页面被缓存时将高度设置为0,解决路由跳转高度变高的问题*/

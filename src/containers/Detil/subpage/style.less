@@ -1,3 +1,4 @@
+@import "../../../containers/App.less";
 .detil-tab-item {
     &.courseDetail{
       .whiteBg{
@@ -5,12 +6,12 @@
         padding: 0 10px;
       }
       .title{
-        font-size: 18px;
+        font-size: @font18;
         padding-top: 14px;
       }
         .topCont{
           padding: 10px 11px;
-          font-size: 12px;
+          font-size: @font12;
           &>div{
             padding-bottom: 15px;
             span{
@@ -35,7 +36,7 @@
             padding-bottom: 7px;
           }
           .text{
-            font-size: 12px;
+            font-size: @font12;
             line-height: 1.6;
           }
         }
@@ -59,13 +60,13 @@
     .num{
       padding-left: 10px;
       width: 30px;
-      font-size: 14px;
+      font-size: @font14;
 
     }
     .textCont{
       width: calc(~"100% - 30px");
       .title_color{
-        font-size: 14px;
+        font-size: @font14;
         padding-bottom: 20px;
       }
     }

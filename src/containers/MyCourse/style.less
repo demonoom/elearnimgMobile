@@ -1,11 +1,11 @@
+@import "../../containers/App.less";
 .myCourse {
   height: 100%;
   .myCourseList_header {
     background-color: #fff;
     text-align: center;
-    height: 44px;
     line-height:44px;
-    font-size: 18px;
+    font-size: @font18;
     padding: 0 20px;
     > i {
       float: right;
@@ -15,7 +15,7 @@
   }
 
   .myCourseList_content {
-    height: calc(~"100% - 44px");
+    height: calc(~"100% - 58px");
     background-color: #F5F6FA;
   }
 }

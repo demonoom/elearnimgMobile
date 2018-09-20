@@ -40,7 +40,8 @@ class Search extends React.Component {
                 timeout={300}
                 classNames='translate'
             >
-                <div id='search'>
+                <div id='search' className='positionBg'>
+                    <div className="p14 whiteBg"></div>
                     <SearchHeader
                         listCourseByKeyWords={this.listCourseByKeyWords}
                     />

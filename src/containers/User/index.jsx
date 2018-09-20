@@ -12,6 +12,7 @@ class User extends React.Component {
         return (
             <div className='user'>
                 <div className='user_header'>
+                    <div className="p14"></div>
                     <div className='leftCont'>
                         <h3 className='title_color text_hidden'>用户名</h3>
                         <div className='idNUm'>id</div>

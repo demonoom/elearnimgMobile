@@ -1,19 +1,22 @@
+@import "../../../containers/App.less";
 .search_content {
-  height: calc(~"100% - 94px");
+  height: calc(~"100% - 58px");
   .topCont {
     padding: 10px 15px;
     overflow: hidden;
-    font-size: 13px;
+    font-size: @font13;
     span:last-child {
       float: right;
     }
   }
   .searchTagCont {
     padding: 0 5px;
+
   }
   .search_response {
-    height: 360px;
+    height: calc(~"100% - 54px");
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+    margin-top: 10px;
   }
 }

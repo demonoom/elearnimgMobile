@@ -1,9 +1,10 @@
+@import "../../../containers/App.less";
 #orderListItem {
   background-color: white;
   padding: 15px 15px 12px;
   margin-bottom: 10px;
   .orderNum{
-    font-size: 14px;
+    font-size: @font14;
     overflow: hidden;
     padding-bottom: 12px;
     .time{
@@ -19,7 +20,7 @@
     overflow: hidden;
     line-height:20px;
     .teacherName{
-      font-size: 12px;
+      font-size: @font12;
       width: calc(~"100% - 60px");
       display: inline-block;
       vertical-align: middle;

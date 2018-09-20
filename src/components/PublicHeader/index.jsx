@@ -25,6 +25,7 @@ class DetilHeader extends React.Component {
     render() {
         return (
             <div id="public_header" className='Bg'>
+                <div className="p14"></div>
                 <span className='header-back' onClick={this.handleClick}>
                     <i className='iconfont icon-houtui'></i>
                 </span>
