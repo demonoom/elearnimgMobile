@@ -1,5 +1,6 @@
 import React from 'react'
 import {CSSTransition} from 'react-transition-group'
+import SearchHeader from '../../components/SearchHeader'
 
 class Search extends React.Component {
     constructor(props, context) {
@@ -21,7 +22,7 @@ class Search extends React.Component {
                 classNames='translate'
             >
                 <div id='search'>
-                    <h1>search</h1>
+                    <SearchHeader/>
                 </div>
             </CSSTransition>
         )

@@ -21,8 +21,10 @@ html, body {
 
 #root {
   height: 100%;
+  overflow: hidden;
   > div {
     height: 100%;
+    overflow: hidden;
   }
   .content_window {
     height: calc(~"100% - 50px");
@@ -92,6 +94,11 @@ html, body {
             background: url("./Home/img/tab_person_active.png") no-repeat;
             background-size: 100%;
           }
+      &.tab_myCurriculum {
+        i {
+          display: inline-block;
+          background: url("./Home/img/tab_course.png") no-repeat;
+          background-size: 36px;
         }
       }
     }
