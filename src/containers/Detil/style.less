@@ -9,12 +9,17 @@
   .detil_content {
     margin-top: 50px;
     height: calc(~"100% - 50px");
-    > img {
+    .imgDiv {
       width: 100%;
       height: 200px;
-      display: block;
-      object-fit:cover;
-      -o-object-fit:cover;
+      position: relative;
+     img{
+       width: 100%;
+       height: 100%;
+       display: block;
+       object-fit:cover;
+       -o-object-fit:cover;
+     }
     }
     .detil-tab {
       height: calc(~"100% - 245px");

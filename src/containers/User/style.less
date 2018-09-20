@@ -3,19 +3,42 @@
   height: 100%;
   .user_header {
     height: 135px;
-    > div {
+    background: url("img/icon_personBg.png") no-repeat;
+    background-size: cover;
+    position: relative;
+    .leftCont {
       position: absolute;
       top: 50px;
       left: 19px;
+      width: calc(~"100% - 130px");
     }
-    > img {
-      width:57px;
-      height: 57px;
-      border: 5px #fff solid;
+    .imgDiv{
       position: absolute;
-      right: 25px;
+      width: 85px;
+      height: 63px;
+      right: 20px;
       top: 40px;
-      border-radius: 50%;
+      img {
+        width: 66px;
+        height: 66px;
+        border: 5px #fff solid;
+        border-radius: 50%;
+      }
+      .rightArrow{
+        display: block;
+        width: 15px;
+        height: 15px;
+        background: url("img/icon_next .png") no-repeat right center;
+        background-size: 7px;
+        position: absolute;
+        right: 0;
+        top:50%;
+        -webkit-transform: translateY(-50%);
+        -moz-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        -o-transform: translateY(-50%);
+        transform: translateY(-50%);
+      }
     }
     .title_color{
       font-size: 20px;
@@ -27,4 +50,5 @@
       margin-top: 4px;
     }
   }
+
 }

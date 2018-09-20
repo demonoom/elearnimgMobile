@@ -43,7 +43,10 @@ class Detil extends React.Component {
                         ref='header'
                     />
                     <div className='detil_content'>
-                        <img src={this.state.courseObj.image} alt=""/>
+                        <div className="imgDiv">
+                            <img src={this.state.courseObj.image} alt=""/>
+                            <div className="imgMask"><i className='iconfont icon-bofang'></i></div>
+                        </div>
                         <div className='detil-tab'>
                             {
                                 this.state.courseObj ?

@@ -1,6 +1,11 @@
 import React from 'react'
 import {List} from 'antd-mobile'
 import './style.less'
+import Icon_order from '../img/icon_person_order.png'
+import Icon_collect from '../img/icon_person_collect.png'
+import Icon_bind from '../img/icon_person_bind.png'
+import Icon_overMoney from '../img/icon_person_overMoney.png'
+import Icon_setting from '../img/icon_person_setting.png'
 
 const Item = List.Item;
 
@@ -15,16 +20,16 @@ class UserList extends React.Component {
             <div className='user_list'>
                 <List>
                     <Item
-                        className='user_list_item'
-                        thumb="https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png"
+                        className='user_list_item order'
+                        thumb={Icon_order}
                         arrow="horizontal"
                         extra="5"
                         onClick={() => {
                         }}
                     >我的订单</Item>
                     <Item
-                        className='user_list_item'
-                        thumb="https://zos.alipayobjects.com/rmsportal/UmbJMbWOejVOpxe.png"
+                        className='user_list_item collect'
+                        thumb={Icon_collect}
                         onClick={() => {
                         }}
                         arrow="horizontal"
@@ -33,8 +38,8 @@ class UserList extends React.Component {
                         我的收藏
                     </Item>
                     <Item
-                        className='user_list_item'
-                        thumb="https://zos.alipayobjects.com/rmsportal/UmbJMbWOejVOpxe.png"
+                        className='user_list_item bind'
+                        thumb={Icon_bind}
                         onClick={() => {
                         }}
                         arrow="horizontal"
@@ -43,8 +48,8 @@ class UserList extends React.Component {
                         绑定手机号
                     </Item>
                     <Item
-                        className='user_list_item'
-                        thumb="https://zos.alipayobjects.com/rmsportal/UmbJMbWOejVOpxe.png"
+                        className='user_list_item overMoney'
+                        thumb={Icon_overMoney}
                         onClick={() => {
                         }}
                         arrow="horizontal"
@@ -53,8 +58,8 @@ class UserList extends React.Component {
                         我的余额
                     </Item>
                     <Item
-                        className='user_list_item'
-                        thumb="https://zos.alipayobjects.com/rmsportal/UmbJMbWOejVOpxe.png"
+                        className='user_list_item setting'
+                        thumb={Icon_setting}
                         onClick={() => {
                         }}
                         arrow="horizontal"

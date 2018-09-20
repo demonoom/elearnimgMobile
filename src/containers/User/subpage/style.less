@@ -1,11 +1,41 @@
 .user_list {
-  padding: 0 6px;
+  padding: 0 10px;
   .user_list_item {
     height: 63px;
     min-height: auto;
+    &.order{
+      img{
+        width: 15px;
+        height: auto;
+      }
+    }
+    &.collect{
+      img{
+        width: 18px;
+        height: auto;
+      }
+    }
+    &.bind{
+      img{
+        width: 13px;
+        height: auto;
+      }
+    }
+    &.overMoney{
+      img{
+        width: 17px;
+        height: auto;
+      }
+    }
+    &.setting{
+      img{
+        width: 18px;
+        height: auto;
+      }
+    }
   }
   .am-list-item{
-    padding-left: 5px;
+    padding-left: 10px;
     &::after{
       content: '';
       position: absolute;
@@ -25,8 +55,11 @@
       -ms-transform: scaleY(0.5);
       transform: scaleY(0.5);
     }
+    &:last-child::after{
+      display: none;
+    }
   }
-  .am-list-line::after,.am-list-body::before{
+  .am-list-line::after,.am-list-body::before,.am-list-body::after{
     display: none !important;
   }
   .am-list-item .am-list-line .am-list-content{
@@ -36,8 +69,16 @@
   .am-list-item .am-list-line .am-list-extra{
     font-size: 14px;
   }
+  .am-list-item .am-list-line{
+    padding-right: 10px;
+  }
   .am-list-item .am-list-line .am-list-arrow{
     background-image: url("../img/icon_next .png");
     background-size: 7px;
+    background-position: 100% 50%;
+  }
+  .am-list-item .am-list-thumb:first-child{
+    width: 30px;
+    margin-right: 0;
   }
 }
