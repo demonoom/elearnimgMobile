@@ -27,7 +27,7 @@ class SearchContent extends React.Component {
                     </div>
                 </div> :
                     <div style={{height: '100%'}}>
-                    <div className='tabTitle'  style={{paddingTop: '15px'}}>
+                    <div className='tabTitle'  style={{paddingTop: '.15rem'}}>
                         <span className='active'>按热度排序</span>
                         <span>最新课程</span>
                     </div>

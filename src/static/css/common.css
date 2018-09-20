@@ -2,6 +2,7 @@ body {
     margin: 0;
     padding: 0;
     background-color: #F3F6F9 !important;
+    font-size:14px !important;
 }
 
 body * {
@@ -82,14 +83,14 @@ input {
 }
 
 .am-tabs-default-bar-tab {
-    height: 40px !important;
-    line-height: 40px !important;
-    font-size: 13px !important;
+    height: .4rem !important;
+    line-height: .4rem !important;
+    font-size: .13rem !important;
 }
 
 .am-tabs-default-bar-tab-active {
     color: #3672ED !important;
-    font-size: 15px !important;
+    font-size: .15rem !important;
 }
 
 .am-tabs-default-bar-tab-active::before {
@@ -102,39 +103,39 @@ input {
     right: 0;
     bottom: 0;
     left: 50%;
-    width: 15px;
+    width: .15rem;
     height: 2PX;
     margin-left: -7.5px;
     border-radius: 1px;
 }
 
 .index_tab .am-tabs-default-bar-tab {
-    height: 36px !important;
-    line-height: 36px !important;
-    font-size: 18px !important;
+    height: .36rem !important;
+    line-height: .36rem !important;
+    font-size: .18rem !important;
     color: #7A809B !important;
     font-weight: bold;
 }
 
 .index_tab .am-tabs-default-bar-tab-active {
     color: #3672ED !important;
-    font-size: 18px !important;
+    font-size: .18rem !important;
 }
 
 .index_tab .am-tabs-default-bar {
     background: none !important;
 }
 .tabTitle{
-    font-size: 13px;
+    font-size: .13rem;
     background-color: white;
 }
 .tabTitle span {
     display: inline-block;
-    padding: 6px 10px 6px;
+    padding: .06rem .1rem .06rem;
 }
 .tabTitle span.active {
     color: #3672ED;
-    font-size: 15px;
+    font-size: .15rem;
     position: relative;
 }
 .tabTitle span.active::after{
@@ -147,18 +148,18 @@ input {
      right: auto;
      bottom: 0;
      left: 50%;
-     width: 15px;
+     width: .15rem;
      height: 2PX;
-     margin-left: -7.5px;
+     margin-left: -.075rem;
      border-radius: 1px;
  }
 
 /*标签*/
 .tag {
-    padding: 2px 5px 0;
+    padding: .02rem .05rem 0;
     border: 1px #2C80FF solid;
     color: #2C80FF;
-    font-size: 10px;
+    font-size: .1rem;
     vertical-align: middle;
     display: inline-block;
 }
@@ -179,17 +180,17 @@ input {
 }
 .grayTag_deep{
     background-color: #D9DFE4;
-    font-size: 12px;
-    padding: 5px 10px;
-    margin: 5px;
+    font-size: .12rem;
+    padding: .05rem .1rem;
+    margin: .05rem;
     display: inline-block;
     line-height: 1.4;
 }
 .grayTag{
     background-color: #F2F2F2;
-    font-size: 12px;
-    padding: 5px 10px;
-    margin: 5px;
+    font-size: .12rem;
+    padding: .05rem .1rem;
+    margin: .05rem;
     display: inline-block;
     line-height: 1.4;
 }
@@ -215,7 +216,7 @@ input {
     position: absolute;
     top:50%;
     left: 50%;
-    font-size: 32px;
+    font-size: .32rem;
     -webkit-transform: translate(-50%,-50%);
     -moz-transform: translate(-50%,-50%);
     -ms-transform: translate(-50%,-50%);
@@ -227,9 +228,9 @@ input {
 .blueBtn{
     background-color: #3672ED;
     color: #fff;
-    line-height: 45px;
-    height: 45px;
-    font-size: 16px;
+    line-height: .45rem;
+    height: .45rem;
+    font-size: .16rem;
     width: 100%;
     display: block;
     text-align: center;
@@ -252,7 +253,7 @@ input {
     background-color: #F3F6F9;
 }
 .p14{
-    padding-top: 14px;
+    padding-top: .14rem;
 }
 .whiteBg{
     background-color: white;

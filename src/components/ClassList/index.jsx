@@ -11,7 +11,7 @@ class ClassList extends React.Component {
     render() {
         const courseList = this.props.courseList
         return (
-            <div style={!courseList ? {textAlign: 'center', paddingTop: '15px'} : {}}>
+            <div style={!courseList ? {textAlign: 'center', paddingTop: '.15rem'} : {}}>
                 {
                     courseList ? courseList.map((v, i) => {
                         return <ListItem key={i} itemObj={v}/>

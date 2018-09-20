@@ -40,7 +40,7 @@ class Classroom extends React.Component {
                       console.log('onTabClick', index, tab);
                   }}
             >
-                <div style={!classroomContent.length ? {textAlign: 'center', paddingTop: '15px'} : {}}>
+                <div style={!classroomContent.length ? {textAlign: 'center', paddingTop: '.15rem'} : {}}>
                     {
                         classroomContent.length ? <ClassBox
                             classroomContent={this.state.classroomContent}

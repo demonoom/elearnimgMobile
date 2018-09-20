@@ -47,7 +47,7 @@ class MyOrder extends React.Component {
                         iconClass=''
                     />
                     <div className='order_content'
-                         style={!myOrderContent.length ? {textAlign: 'center', paddingTop: '75px'} : {}}
+                         style={!myOrderContent.length ? {textAlign: 'center', paddingTop: '.75rem'} : {}}
                     >
                         {
                             myOrderContent.length ? <OrderList
