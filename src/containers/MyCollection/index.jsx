@@ -54,7 +54,7 @@ class MyCollection extends React.Component {
                         iconClass='header-shaixuan'
                     />
                     <div className='collect_content'
-                         style={!myCollectionContent.length ? {textAlign: 'center', paddingTop: '75px'} : {}}>
+                         style={!myCollectionContent.length ? {textAlign: 'center', paddingTop: '.74rem'} : {}}>
                         {
                             myCollectionContent.length ? <ClassBox
                                 classroomContent={myCollectionContent}

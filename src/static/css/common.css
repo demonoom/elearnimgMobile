@@ -235,6 +235,9 @@ input {
     display: block;
     text-align: center;
 }
+.am-button-primary{
+    background-color: #108ee9;
+}
 
 /*收藏*/
 .iconfont.icon-star{
