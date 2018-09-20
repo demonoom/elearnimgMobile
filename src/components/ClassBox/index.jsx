@@ -12,7 +12,7 @@ class ClassBox extends React.Component {
         const classroomContent = this.props.classroomContent;
         return (
             <div>
-                <div className='tabTitle_index'>
+                <div className='tabTitle_index' style={{display: this.props.typeGuoLv ? 'block' : 'none'}}>
                     <span className='active'>精选公开课</span>
                     <span>热门课程</span>
                     <span>最新课程</span>

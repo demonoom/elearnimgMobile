@@ -6,6 +6,7 @@ import Icon_collect from '../img/icon_person_collect.png'
 import Icon_bind from '../img/icon_person_bind.png'
 import Icon_overMoney from '../img/icon_person_overMoney.png'
 import Icon_setting from '../img/icon_person_setting.png'
+import {NavLink} from "react-router-dom"
 
 const Item = List.Item;
 
@@ -19,24 +20,28 @@ class UserList extends React.Component {
         return (
             <div className='user_list'>
                 <List>
-                    <Item
-                        className='user_list_item order'
-                        thumb={Icon_order}
-                        arrow="horizontal"
-                        extra="5"
-                        onClick={() => {
-                        }}
-                    >我的订单</Item>
-                    <Item
-                        className='user_list_item collect'
-                        thumb={Icon_collect}
-                        onClick={() => {
-                        }}
-                        arrow="horizontal"
-                        extra="6"
-                    >
-                        我的收藏
-                    </Item>
+                    <NavLink to='/myorder'>
+                        <Item
+                            className='user_list_item order'
+                            thumb={Icon_order}
+                            arrow="horizontal"
+                            extra="5"
+                            onClick={() => {
+                            }}
+                        >我的订单</Item>
+                    </NavLink>
+                    <NavLink to='/mycollection'>
+                        <Item
+                            className='user_list_item collect'
+                            thumb={Icon_collect}
+                            onClick={() => {
+                            }}
+                            arrow="horizontal"
+                            extra="6"
+                        >
+                            我的收藏
+                        </Item>
+                    </NavLink>
                     <Item
                         className='user_list_item bind'
                         thumb={Icon_bind}
