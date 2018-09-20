@@ -31,7 +31,7 @@ class App extends Component {
                         <CacheRoute className='content_window' component={Home}/>
                     </CacheSwitch>
                     <div className='tab'>
-                        <div className='tab-item tab_course'>
+                        <div className='tab-item tab_course active'>
                             <NavLink className='nav-link' to='/home'>
                                 <i></i>
                                 <span>发现课程</span>

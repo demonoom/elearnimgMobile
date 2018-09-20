@@ -114,9 +114,8 @@ input {
     padding: 2px 5px;
     border: 1px #2C80FF solid;
     color: #2C80FF;
-    display: inline-block;
     font-size: 10px;
-    line-height: 1;
+    vertical-align: middle;
 }
 .tag.orange{
      border: 1px #EDAB4C solid;
