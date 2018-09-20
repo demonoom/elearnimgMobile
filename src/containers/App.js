@@ -13,8 +13,19 @@ import Detil from '../containers/Detil'
 
 class App extends Component {
 
+    constructor(props, context) {
+        super(props, context);
+        this.state = {
+            navWord: 'home'
+        }
+    }
+
     componentDidMount() {
         this.props.userInfoActions.login({ident: '23836'})
+    }
+
+    navOnClick = (word) => {
+        this.setState({navWord: word})
     }
 
     render() {
@@ -102,20 +113,24 @@ class App extends Component {
                         })}/>
                     </CacheSwitch>
                     <div className='tab'>
-                        <div className='tab-item tab_course active'>
-                            <NavLink className='nav-link' to='/home'>
+                        <div
+                            className={this.state.navWord === 'home' ? 'tab-item tab_course active' : 'tab-item tab_course'}>
+                            <NavLink className='nav-link' to='/home' onClick={this.navOnClick.bind(this, 'home')}>
                                 <i></i>
                                 <span>发现课程</span>
                             </NavLink>
                         </div>
-                        <div className='tab-item tab_myCurriculum'>
-                            <NavLink className='nav-link' to='/mycourse'>
+                        <div
+                            className={this.state.navWord === 'mycourse' ? 'tab-item tab_myCurriculum active' : 'tab-item tab_myCurriculum'}>
+                            <NavLink className='nav-link' to='/mycourse'
+                                     onClick={this.navOnClick.bind(this, 'mycourse')}>
                                 <i></i>
                                 <span>我的课表</span>
                             </NavLink>
                         </div>
-                        <div className='tab-item tab_person'>
-                            <NavLink className='nav-link' to='/user'>
+                        <div
+                            className={this.state.navWord === 'user' ? 'tab-item tab_person active' : 'tab-item tab_person'}>
+                            <NavLink className='nav-link' to='/user' onClick={this.navOnClick.bind(this, 'user')}>
                                 <i></i>
                                 <span>个人中心</span>
                             </NavLink>
