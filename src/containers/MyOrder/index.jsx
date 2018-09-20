@@ -38,7 +38,7 @@ class MyOrder extends React.Component {
                 timeout={300}
                 classNames='translate'
             >
-                <div className='my_order'>
+                <div className='my_order positionBg'>
                     <PublicHeader
                         title='我的订单'
                         ref='header'

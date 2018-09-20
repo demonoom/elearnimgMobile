@@ -45,12 +45,12 @@ class MyCollection extends React.Component {
                 timeout={300}
                 classNames='translate'
             >
-                <div className='my_collection'>
+                <div className='my_collection positionBg'>
                     <PublicHeader
                         title='我的收藏'
                         ref='header'
                         iconOnClick={this.iconOnClick}
-                        iconType='icon-shaixuan1'
+                        iconType='icon-shaixuan2'
                         iconClass='header-shaixuan'
                     />
                     <div className='collect_content'

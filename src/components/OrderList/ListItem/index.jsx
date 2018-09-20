@@ -13,20 +13,20 @@ class ListItem extends React.Component {
 
         return (
             <div id="orderListItem">
-                <div>
+                <div className='orderNum line_public'>
                     <span>订单号:{orderObj.id}</span>
-                    <span>{FormatTime.formatYMD(orderObj.createTime)}</span>
+                    <span className='time'>{FormatTime.formatYMD(orderObj.createTime)}</span>
                 </div>
-                <div>{orderObj.course.courseName}</div>
-                <div>
-                    <span>老师:{
+                <div className='title_color text_hidden'>{orderObj.course.courseName}</div>
+                <div className='bottom'>
+                    <span className='teacherName text_hidden'>老师：{
                         orderObj.course.users.map((v, i) => {
                             return <span key={i}>{
                                 v.userName
                             }</span>
                         })
                     }</span>
-                    <span>{orderObj.course.money === '0.00' ? '免费' : orderObj.course.money}</span>
+                    {orderObj.course.money === '0.00' ? <span className='free'>免费</span> : <span className='price'>¥ {orderObj.course.money}</span>}
                 </div>
             </div>
         )

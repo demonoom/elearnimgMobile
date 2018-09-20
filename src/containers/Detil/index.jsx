@@ -53,16 +53,16 @@ class Detil extends React.Component {
                                     <CourseTab courseObj={this.state.courseObj}/> : <Icon type='loading' />
                             }
                         </div>
-                        <div className='detil_content_bottom'>
-                            <div className='detil_content_bottom_left'>
-                                {this.state.courseObj.money === '0.00' ?
-                                    <span className='free'>免费</span> :
-                                    <span className='price'>¥ {this.state.courseObj.money}</span>}
-                                <span
-                                    className='personBuy text_color'>{this.state.courseObj ? this.state.courseObj.buyUids.length : 0}人购买</span>
-                            </div>
-                            <div className='detil_content_bottom_right'>立即购买</div>
+                    </div>
+                    <div className='detil_content_bottom'>
+                        <div className='detil_content_bottom_left'>
+                            {this.state.courseObj.money === '0.00' ?
+                                <span className='free'>免费</span> :
+                                <span className='price'>¥ {this.state.courseObj.money}</span>}
+                            <span
+                                className='personBuy text_color'>{this.state.courseObj ? this.state.courseObj.buyUids.length : 0}人购买</span>
                         </div>
+                        <div className='detil_content_bottom_right'>立即购买</div>
                     </div>
                 </div>
             </CSSTransition>
