@@ -36,11 +36,13 @@ class MyBalance extends React.Component {
                         iconClass='header-jiaoyi'
                     />
                     <div className='balance_content'>
-                        <div>
+                        <div className='account'>
                             <div>账户余额</div>
                             <div>0元</div>
                         </div>
-                        <Button type="primary">充值</Button>
+                        <div className='recharge_btn'>
+                            <Button type="primary">充值</Button>
+                        </div>
                     </div>
                 </div>
             </CSSTransition>
