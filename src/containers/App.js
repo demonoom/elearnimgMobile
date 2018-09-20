@@ -22,13 +22,84 @@ class App extends Component {
             <Router>
                 <div>
                     <CacheSwitch>
-                        <CacheRoute className='content_window' path='/home' component={Home}/>
-                        <CacheRoute className='content_window' path='/mycourse' component={Mycourse}/>
-                        <CacheRoute className='content_window' path='/user' component={User}/>
-                        <CacheRoute className='content_window_all' path='/search' component={Search}/>
-                        <CacheRoute className='content_window_all' path='/detil/:id/:publisherId' component={Detil}/>
+                        <CacheRoute className='content_window' path='/home' component={Home}
+                                    behavior={cached => (cached ? {
+                                        style: {
+                                            position: 'absolute',
+                                            zIndex: -9999,
+                                            opacity: 0,
+                                            visibility: 'hidden',
+                                            pointerEvents: 'none'
+                                        },
+                                        className: '__CacheRoute__wrapper__cached'
+                                    } : {
+                                        className: '__CacheRoute__wrapper__uncached'
+                                    })}/>
+                        <CacheRoute className='content_window' path='/mycourse' component={Mycourse}
+                                    behavior={cached => (cached ? {
+                                        style: {
+                                            position: 'absolute',
+                                            zIndex: -9999,
+                                            opacity: 0,
+                                            visibility: 'hidden',
+                                            pointerEvents: 'none'
+                                        },
+                                        className: '__CacheRoute__wrapper__cached'
+                                    } : {
+                                        className: '__CacheRoute__wrapper__uncached'
+                                    })}/>
+                        <CacheRoute className='content_window' path='/user' component={User}
+                                    behavior={cached => (cached ? {
+                                        style: {
+                                            position: 'absolute',
+                                            zIndex: -9999,
+                                            opacity: 0,
+                                            visibility: 'hidden',
+                                            pointerEvents: 'none'
+                                        },
+                                        className: '__CacheRoute__wrapper__cached'
+                                    } : {
+                                        className: '__CacheRoute__wrapper__uncached'
+                                    })}/>
+                        <CacheRoute className='content_window_all' path='/search' component={Search}
+                                    behavior={cached => (cached ? {
+                                        style: {
+                                            position: 'absolute',
+                                            zIndex: -9999,
+                                            opacity: 0,
+                                            visibility: 'hidden',
+                                            pointerEvents: 'none'
+                                        },
+                                        className: '__CacheRoute__wrapper__cached'
+                                    } : {
+                                        className: '__CacheRoute__wrapper__uncached'
+                                    })}/>
+                        <CacheRoute className='content_window_all' path='/detil/:id/:publisherId' component={Detil}
+                                    behavior={cached => (cached ? {
+                                        style: {
+                                            position: 'absolute',
+                                            zIndex: -9999,
+                                            opacity: 0,
+                                            visibility: 'hidden',
+                                            pointerEvents: 'none'
+                                        },
+                                        className: '__CacheRoute__wrapper__cached'
+                                    } : {
+                                        className: '__CacheRoute__wrapper__uncached'
+                                    })}/>
                         <Redirect from='/' to='home'/>
-                        <CacheRoute className='content_window' component={Home}/>
+                        <CacheRoute className='content_window' component={Home} behavior={cached => (cached ? {
+                            style: {
+                                position: 'absolute',
+                                zIndex: -9999,
+                                opacity: 0,
+                                visibility: 'hidden',
+                                pointerEvents: 'none'
+                            },
+                            className: '__CacheRoute__wrapper__cached'
+                        } : {
+                            className: '__CacheRoute__wrapper__uncached'
+                        })}/>
                     </CacheSwitch>
                     <div className='tab'>
                         <div className='tab-item tab_course'>

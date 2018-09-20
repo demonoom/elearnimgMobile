@@ -29,58 +29,67 @@ input {
     clear: both;
 }
 
-.text_color{
+.text_color {
     color: #7A809B;
     font-size: 12px;
 }
-.title_color{
+
+.title_color {
     color: #2A3350;
 }
-.text_hidden{
-    overflow: hidden;/*超出部分隐藏*/
-    white-space: nowrap;/*不换行*/
-    text-overflow:ellipsis;/*超出部分文字以...显示*/
+
+.text_hidden {
+    overflow: hidden; /*超出部分隐藏*/
+    white-space: nowrap; /*不换行*/
+    text-overflow: ellipsis; /*超出部分文字以...显示*/
 }
-.my_flex{
+
+.my_flex {
     display: -webkit-flex; /* Safari */
     display: flex;
 }
-.line_public{
+
+.line_public {
     position: relative;
 }
-.line_public::after{
-     content: '';
-     position: absolute;
-     background-color: #EDEFF9;
-     display: block;
-     z-index: 1;
-     top: auto;
-     right: auto;
-     bottom: 0;
-     left: 0;
-     width: 100%;
-     height: 1PX;
-     -webkit-transform-origin: 0 0;
-     -ms-transform-origin: 0 0;
-     transform-origin: 0 0;
-     -webkit-transform: scaleY(0.5);
-     -ms-transform: scaleY(0.5);
-     transform: scaleY(0.5);
- }
+
+.line_public::after {
+    content: '';
+    position: absolute;
+    background-color: #EDEFF9;
+    display: block;
+    z-index: 1;
+    top: auto;
+    right: auto;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1PX;
+    -webkit-transform-origin: 0 0;
+    -ms-transform-origin: 0 0;
+    transform-origin: 0 0;
+    -webkit-transform: scaleY(0.5);
+    -ms-transform: scaleY(0.5);
+    transform: scaleY(0.5);
+}
+
 /*tab切换*/
-.am-tabs-default-bar-underline,.am-tabs-default-bar-tab::after{
+.am-tabs-default-bar-underline, .am-tabs-default-bar-tab::after {
     display: none !important;
 }
-.am-tabs-default-bar-tab{
+
+.am-tabs-default-bar-tab {
     height: 40px !important;
-    line-height: 40px!important;
-    font-size: 13px!important;
+    line-height: 40px !important;
+    font-size: 13px !important;
 }
-.am-tabs-default-bar-tab-active{
-    color: #3672ED!important;
-    font-size: 15px!important;
+
+.am-tabs-default-bar-tab-active {
+    color: #3672ED !important;
+    font-size: 15px !important;
 }
-.am-tabs-default-bar-tab-active::before{
+
+.am-tabs-default-bar-tab-active::before {
     content: '';
     position: absolute;
     background-color: #3672ED;
@@ -95,20 +104,24 @@ input {
     margin-left: -7.5px;
     border-radius: 1px;
 }
-.index_tab .am-tabs-default-bar-tab{
+
+.index_tab .am-tabs-default-bar-tab {
     height: 36px !important;
-    line-height: 36px!important;
-    font-size: 18px!important;
-    color: #7A809B!important;
+    line-height: 36px !important;
+    font-size: 18px !important;
+    color: #7A809B !important;
     font-weight: bold;
 }
-.index_tab .am-tabs-default-bar-tab-active{
-    color: #3672ED!important;
-    font-size: 18px!important;
+
+.index_tab .am-tabs-default-bar-tab-active {
+    color: #3672ED !important;
+    font-size: 18px !important;
 }
-.index_tab .am-tabs-default-bar{
-    background: none!important;
+
+.index_tab .am-tabs-default-bar {
+    background: none !important;
 }
+
 /*标签*/
 .tag {
     padding: 2px 5px;
@@ -118,15 +131,23 @@ input {
     font-size: 10px;
     line-height: 1;
 }
-.tag.orange{
-     border: 1px #EDAB4C solid;
-     color: #EDAB4C;
- }
-.tag.green{
-     border: 1px #328466 solid;
-     color: #328466;
- }
-.tag.yellow{
+
+.tag.orange {
+    border: 1px #EDAB4C solid;
+    color: #EDAB4C;
+}
+
+.tag.green {
+    border: 1px #328466 solid;
+    color: #328466;
+}
+
+.tag.yellow {
     border: 1px #D6BE8C solid;
     color: #D6BE8C;
+}
+
+/*页面被缓存时将高度设置为0,解决路由跳转高度变高的问题*/
+.__CacheRoute__wrapper__cached {
+    height: 0 !important;
 }
