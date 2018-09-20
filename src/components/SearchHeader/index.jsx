@@ -14,9 +14,9 @@ class SearchHeader extends React.Component {
     render() {
         return (
             <div className='search_header'>
-                <span className='searchr-back' onClick={this.handleClick}>
-                    <i className='iconfont icon-houtui'></i>
-                </span>
+                <i className='iconfont icon-houtui searchr-back' onClick={this.handleClick}></i>
+                <span className='search_btn'>搜索</span>
+                <input type="text" className='search_input'/>
             </div>
         )
     }
