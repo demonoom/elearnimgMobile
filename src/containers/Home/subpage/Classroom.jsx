@@ -44,6 +44,7 @@ class Classroom extends React.Component {
                     {
                         classroomContent.length ? <ClassBox
                             classroomContent={this.state.classroomContent}
+                            typeGuoLv={true}
                         /> : <Icon type='loading'/>
                     }
                     <div className='item_to_all'>查看全部精选公开实景课 ></div>

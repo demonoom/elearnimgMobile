@@ -1,0 +1,38 @@
+#public_header {
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  width: 100%;
+  padding: 15px 0;
+  color: black;
+  text-align: center;
+  font-size: 18px;
+  &.Bg {
+    background-color: #fff;
+  }
+  .header-back {
+    position: absolute;
+    left: 20px;
+    color: black;
+    .iconfont {
+      font-size: 21px;
+      font-weight: bold;
+    }
+  }
+  .header-shaixuan {
+    position: absolute;
+    right: 20px;
+    .iconfont {
+      font-size: 17px;
+      color: black;
+    }
+  }
+  .header-title {
+    color: black;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: calc(100% - 105px);
+    margin: 0 auto;
+  }
+}

@@ -16,7 +16,7 @@ class BoxItem extends React.Component {
                 <NavLink to={`/detil/${data.id}/${data.publisher_id}`}>
                     <div className="imgDiv">
                         <img src={data.image} alt="" style={{width: '100%'}}/>
-                        <span className='sign'>{data.buyUids.length}人报名</span>
+                        <span className='sign'>{data.buyUids == null ? '' : `${data.buyUids.length}人报名`}</span>
                     </div>
                     <div className="textCont">
                         <div className='title_color text_hidden'>{data.courseName}</div>
