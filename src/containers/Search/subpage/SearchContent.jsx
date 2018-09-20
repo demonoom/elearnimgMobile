@@ -14,7 +14,14 @@ class SearchContent extends React.Component {
     render() {
         return (
             <div className='search_content'>
-                SearchContent
+                <div className='topCont'>
+                    <span>最近搜索</span>
+                    <span>清空搜索记录</span>
+                </div>
+                <div className='searchTagCont'>
+                    {/*SearchContent*/}
+                    <span className='grayTag_deep title_color'>传统节日</span>
+                </div>
             </div>
         )
     }

@@ -7,8 +7,11 @@
   background-color: #FFFFFF;
   z-index: 100;
   .detil_content {
-    margin-top: 50px;
-    height: calc(~"100% - 50px");
+    //margin-top: 50px;
+    //height: calc(~"100% - 50px");
+    height: 100%;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     .imgDiv {
       width: 100%;
       height: 200px;
@@ -22,8 +25,9 @@
      }
     }
     .detil-tab {
-      height: calc(~"100% - 245px");
-      overflow: hidden;
+      //height: calc(~"100% - 245px");
+      //overflow: hidden;
+      padding-bottom: 45px;
     }
     .detil_content_bottom {
       position: absolute;
@@ -33,6 +37,7 @@
       height: 45px;
       line-height: 45px;
       background-color: #fff;
+      z-index: 50;
       .detil_content_bottom_left {
         width: calc(~"100% - 160px");
         padding-left: 10px;

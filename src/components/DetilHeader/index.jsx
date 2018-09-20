@@ -17,7 +17,7 @@ class DetilHeader extends React.Component {
     render() {
 
         return (
-            <div id="header" className='blueBg'>
+            <div id="header">
                 <span className='header-back' onClick={this.handleClick}>
                     <i className='iconfont icon-houtui'></i>
                 </span>

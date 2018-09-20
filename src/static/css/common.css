@@ -74,6 +74,9 @@ input {
 }
 
 /*tab切换*/
+.am-tabs-default-bar-top .am-tabs-default-bar-tab{
+    border: 0 !important;
+}
 .am-tabs-default-bar-underline, .am-tabs-default-bar-tab::after {
     display: none !important;
 }
@@ -121,14 +124,42 @@ input {
 .index_tab .am-tabs-default-bar {
     background: none !important;
 }
+.tabTitle{
+    font-size: 13px;
+}
+.tabTitle span {
+    display: inline-block;
+    padding: 6px 10px 6px;
+}
+.tabTitle span.active {
+    color: #3672ED;
+    font-size: 15px;
+    position: relative;
+}
+.tabTitle span.active::after{
+     content: '';
+     position: absolute;
+     background-color: #3672ED;
+     display: block;
+     z-index: 1;
+     top: auto;
+     right: auto;
+     bottom: 0;
+     left: 50%;
+     width: 15px;
+     height: 2PX;
+     margin-left: -7.5px;
+     border-radius: 1px;
+ }
 
 /*标签*/
 .tag {
-    padding: 2px 5px;
+    padding: 2px 5px 0;
     border: 1px #2C80FF solid;
     color: #2C80FF;
     font-size: 10px;
     vertical-align: middle;
+    display: inline-block;
 }
 
 .tag.orange {
@@ -145,7 +176,29 @@ input {
     border: 1px #D6BE8C solid;
     color: #D6BE8C;
 }
-
+.grayTag_deep{
+    background-color: #D9DFE4;
+    font-size: 12px;
+    padding: 5px 10px;
+    margin: 5px;
+    display: inline-block;
+    line-height: 1.4;
+}
+.grayTag{
+    background-color: #F2F2F2;
+    font-size: 12px;
+    padding: 5px 10px;
+    margin: 5px;
+    display: inline-block;
+    line-height: 1.4;
+}
+.grayTag.active{
+    background-color: #E4E6F7;
+    color: #3672ED;
+}
+.grayTag.disable{
+    color: #9E9E9E;
+}
 /*遮罩及视频播放按钮*/
 .imgMask{
     background-color: rgba(0,0,0,0.4);
@@ -169,6 +222,22 @@ input {
     transform: translate(-50%,-50%);
 }
 
+/*按钮*/
+.blueBtn{
+    background-color: #3672ED;
+    color: #fff;
+    line-height: 45px;
+    height: 45px;
+    font-size: 16px;
+    width: 100%;
+    display: block;
+    text-align: center;
+}
+
+/**/
+.iconfont.icon-star{
+    color: #3672ED !important;
+}
 
 /*页面被缓存时将高度设置为0,解决路由跳转高度变高的问题*/
 .__CacheRoute__wrapper__cached {
