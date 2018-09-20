@@ -30,7 +30,9 @@ class DetilHeader extends React.Component {
                     <i className='iconfont icon-houtui'></i>
                 </span>
                 <span className={this.props.iconClass} onClick={this.iconOnClick.bind(this, this.props.iconClass)}>
-                    <i className={`${this.props.iconType} iconfont`}></i>
+                    {
+                        this.props.iconType === '交易记录' ? <span>交易记录</span> : <i className={`${this.props.iconType} iconfont`}></i>
+                    }
                 </span>
                 <div className='header-title'>
                     {this.props.title}
