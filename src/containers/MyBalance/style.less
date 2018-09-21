@@ -2,14 +2,43 @@
   height: 100%;
   .balance_content {
     height: 100%;
-    padding-top: 74px;
+    padding-top: .74rem;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+    background-color: white;
     .account {
-      height: 150px;
+      height: 1.13rem;
+      margin: .2rem .1rem .33rem;
+      font-size: .16rem;
+      padding-left: .24rem;
+      background: url("../../static/img/icon_myBalance.png") no-repeat;
+      background-size: cover;
+      -webkit-border-radius: 2px;
+      -moz-border-radius: 2px;
+      border-radius: 2px;
+      .text{
+        padding-top: .15rem;
+      }
+      .title_color{
+        padding-top: .2rem;
+        font-size: .44rem;
+        line-height: 1;
+        span{
+          font-size: .16rem;
+          padding-left: .1rem;
+          vertical-align: middle;
+        }
+      }
     }
     .recharge_btn {
-      margin: 0 20px;
+      margin: 0 .1rem;
+      .am-button-primary{
+        background-color: #3672ED;
+        font-size: .16rem;
+        height: .45rem;
+        line-height: .45rem;
+        border-radius: 2px;
+      }
     }
   }
 }

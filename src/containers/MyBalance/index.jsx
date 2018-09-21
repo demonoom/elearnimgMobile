@@ -37,8 +37,8 @@ class MyBalance extends React.Component {
                     />
                     <div className='balance_content'>
                         <div className='account'>
-                            <div>账户余额</div>
-                            <div>0元</div>
+                            <div className='text'>账户余额</div>
+                            <div className='title_color'>0<span>元</span></div>
                         </div>
                         <div className='recharge_btn'>
                             <Button type="primary">充值</Button>

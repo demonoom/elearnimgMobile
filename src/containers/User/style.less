@@ -4,53 +4,33 @@
   overflow-y: auto;
   -webkit-overflow-scrolling : touch;
   .user_header {
-    height: 1.49rem;
+    height: 2.01rem;
     background: url("img/icon_personBg.png") no-repeat;
     background-size: cover;
     position: relative;
-    .leftCont {
-      position: absolute;
-      top: .5rem;
-      left: .19rem;
-      width: calc(~"100% - 1.3rem");
+    padding-top: .43rem;
+    box-sizing: border-box;
+    img {
+      width: .66rem;
+      height: .66rem;
+      border: 5px rgba(255,255,255,.44) solid;
+      border-radius: 50%;
+      display: block;
+      margin: 0 auto;
     }
-    .imgDiv{
-      position: absolute;
-      width: .85rem;
-      height: .63rem;
-      right: .2rem;
-      top: .4rem;
-      img {
-        width: .66rem;
-        height: .66rem;
-        border: .05rem #fff solid;
-        border-radius: 50%;
+    .textCont{
+      color: white;
+      text-align: center;
+      line-height: 1;
+      .text_hidden{
+        font-size: .17rem;
+        margin: 0.08rem 0 0.02rem;
       }
-      .rightArrow{
-        display: block;
-        width: .15rem;
-        height: .15rem;
-        background: url("img/icon_next .png") no-repeat right center;
-        background-size: .07rem;
-        position: absolute;
-        right: 0;
-        top:50%;
-        -webkit-transform: translateY(-50%);
-        -moz-transform: translateY(-50%);
-        -ms-transform: translateY(-50%);
-        -o-transform: translateY(-50%);
-        transform: translateY(-50%);
+      .idNUm{
+        font-size: .14rem;
       }
     }
-    .title_color{
-      font-size: .2rem;
-    }
-    .idNUm{
-      color: #666;
-      font-size: .14rem;
-      line-height: .2rem;
-      margin-top: .04rem;
-    }
+
   }
 
 }

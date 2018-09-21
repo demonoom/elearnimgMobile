@@ -12,16 +12,12 @@ class User extends React.Component {
         return (
             <div className='user'>
                 <div className='user_header'>
-                    <div className="p14"></div>
-                    <div className='leftCont'>
-                        <h3 className='title_color text_hidden'>用户名</h3>
+                    <img
+                        src='http://60.205.86.217/upload6/2018-02-09/19/805eee4a-b707-49a2-9c75-d5b14ed9227b.jpg?size=100x100'
+                        alt=""/>
+                    <div className='textCont'>
+                        <div className='text_hidden'>用户名</div>
                         <div className='idNUm'>id</div>
-                    </div>
-                    <div className="imgDiv">
-                        <img
-                            src='http://60.205.86.217/upload6/2018-02-09/19/805eee4a-b707-49a2-9c75-d5b14ed9227b.jpg?size=100x100'
-                            alt=""/>
-                        <i className='rightArrow'></i>
                     </div>
                 </div>
                 <UserList/>

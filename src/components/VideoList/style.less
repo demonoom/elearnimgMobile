@@ -1,11 +1,13 @@
 #videoList {
   width: 100%;
-  overflow: auto;
-  ::-webkit-scrollbar{
-    display: none;
-  }
+  overflow: hidden;
   .videoUl {
    white-space: nowrap;
+    overflow-x: auto;
+    font-size: 0;
+    ::-webkit-scrollbar{
+      display: none;
+    }
     //height: 1.6rem;
     .videoLi {
       display: inline-block;
