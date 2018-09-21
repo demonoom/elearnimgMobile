@@ -1,9 +1,10 @@
 import {post} from '../post'
 
 /**
- * 获取我的订单
- * @param pageNo
+ * 获取消费记录
  * @param userId
+ * @param pageNo
+ * @param value
  * @returns {*}
  */
 export function queryPageByOrder(userId, pageNo) {
@@ -19,16 +20,16 @@ export function queryPageByOrder(userId, pageNo) {
 }
 
 /**
- * 新版获取我的订单
+ * 获取充值记录
  * @param userId
  * @param pageNo
  * @returns {*}
  */
-export function queryPageByOrderV3(userId, pageNo) {
+export function queryPageByRecharge(userId, pageNo) {
     const result = post({
-        "method": 'queryPageByOrderV3',
+        "method": 'queryPageByRecharge',
         "pageNo": pageNo,
-        "userId": userId,
+        "personId": userId,
     })
 
     return result

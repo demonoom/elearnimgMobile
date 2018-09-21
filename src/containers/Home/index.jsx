@@ -33,8 +33,7 @@ class Home extends React.Component {
          * 同时获取轮播图(num=1)和三个宣传视频(num=2)
          * @type {*}
          */
-        const data = findAdvanceAll();
-        data.then((json) => {
+        findAdvanceAll().then((json) => {
             if (json.msg === '调用成功' && json.success) {
                 this.setState({
                     categoryArr: json.response.filter((item) => {

@@ -2,7 +2,7 @@ body {
     margin: 0;
     padding: 0;
     background-color: #F3F6F9 !important;
-    font-size:14px !important;
+    font-size: 14px !important;
 }
 
 body * {
@@ -10,6 +10,9 @@ body * {
     padding: 0;
     box-sizing: border-box;
     font-family: "Microsoft YaHei", "Times New Roman", Georgia, Serif;
+    -webkit-touch-callout: none; /*系统默认菜单被禁用*/
+    /*-webkit-user-select: none; !*webkit浏览器*!*/
+    /*user-select: none;*/
 }
 
 input {
@@ -75,9 +78,10 @@ input {
 }
 
 /*tab切换*/
-.am-tabs-default-bar-top .am-tabs-default-bar-tab{
+.am-tabs-default-bar-top .am-tabs-default-bar-tab {
     border: 0 !important;
 }
+
 .am-tabs-default-bar-underline, .am-tabs-default-bar-tab::after {
     display: none !important;
 }
@@ -125,34 +129,38 @@ input {
 .index_tab .am-tabs-default-bar {
     background: none !important;
 }
-.tabTitle{
+
+.tabTitle {
     font-size: .13rem;
     background-color: white;
 }
+
 .tabTitle span {
     display: inline-block;
     padding: .06rem .1rem .06rem;
 }
+
 .tabTitle span.active {
     color: #3672ED;
     font-size: .15rem;
     position: relative;
 }
-.tabTitle span.active::after{
-     content: '';
-     position: absolute;
-     background-color: #3672ED;
-     display: block;
-     z-index: 1;
-     top: auto;
-     right: auto;
-     bottom: 0;
-     left: 50%;
-     width: .15rem;
-     height: 2PX;
-     margin-left: -.075rem;
-     border-radius: 1px;
- }
+
+.tabTitle span.active::after {
+    content: '';
+    position: absolute;
+    background-color: #3672ED;
+    display: block;
+    z-index: 1;
+    top: auto;
+    right: auto;
+    bottom: 0;
+    left: 50%;
+    width: .15rem;
+    height: 2PX;
+    margin-left: -.075rem;
+    border-radius: 1px;
+}
 
 /*标签*/
 .tag {
@@ -178,7 +186,8 @@ input {
     border: 1px #D6BE8C solid;
     color: #D6BE8C;
 }
-.grayTag_deep{
+
+.grayTag_deep {
     background-color: #D9DFE4;
     font-size: .12rem;
     padding: .05rem .1rem;
@@ -186,7 +195,8 @@ input {
     display: inline-block;
     line-height: 1.4;
 }
-.grayTag{
+
+.grayTag {
     background-color: #F2F2F2;
     font-size: .12rem;
     padding: .05rem .1rem;
@@ -194,38 +204,42 @@ input {
     display: inline-block;
     line-height: 1.4;
 }
-.grayTag.active{
+
+.grayTag.active {
     background-color: #E4E6F7;
     color: #3672ED;
 }
-.grayTag.disable{
+
+.grayTag.disable {
     color: #9E9E9E;
 }
+
 /*遮罩及视频播放按钮*/
-.imgMask{
-    background-color: rgba(0,0,0,0.4);
+.imgMask {
+    background-color: rgba(0, 0, 0, 0.4);
     width: 100%;
     height: 100%;
     position: absolute;
     left: 0;
-    top:0;
+    top: 0;
     z-index: 10;
 }
-.icon-bofang{
+
+.icon-bofang {
     color: #fff;
     position: absolute;
-    top:50%;
+    top: 50%;
     left: 50%;
     font-size: .32rem;
-    -webkit-transform: translate(-50%,-50%);
-    -moz-transform: translate(-50%,-50%);
-    -ms-transform: translate(-50%,-50%);
-    -o-transform: translate(-50%,-50%);
-    transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 }
 
 /*按钮*/
-.blueBtn{
+.blueBtn {
     background-color: #3672ED;
     color: #fff;
     line-height: .45rem;
@@ -235,30 +249,33 @@ input {
     display: block;
     text-align: center;
 }
-.am-button-primary{
+
+.am-button-primary {
     background-color: #108ee9;
 }
 
 /*收藏*/
-.iconfont.icon-star{
+.iconfont.icon-star {
     color: #F5A623 !important;
 }
 
 /*需要定位的页面,为遮住底部栏*/
-.positionBg{
+.positionBg {
     position: fixed;
     left: 0;
-    top:0;
+    top: 0;
     width: 100%;
     height: 100%;
     z-index: 100;
     overflow: hidden;
     background-color: #F3F6F9;
 }
-.p14{
+
+.p14 {
     padding-top: .14rem;
 }
-.whiteBg{
+
+.whiteBg {
     background-color: white;
 }
 

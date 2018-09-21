@@ -3,7 +3,7 @@ import './style.less'
 import {CSSTransition} from 'react-transition-group'
 import {Toast, Icon} from 'antd-mobile'
 import PublicHeader from '../../components/PublicHeader'
-import {queryPageByOrder} from '../../../src/fetch/my-order/my-order'
+import {queryPageByOrder, queryPageByOrderV3} from '../../../src/fetch/my-order/my-order'
 import OrderList from '../../components/OrderList'
 
 class MyOrder extends React.Component {
@@ -19,7 +19,7 @@ class MyOrder extends React.Component {
         this.setState({show: true})
 
         /**
-         * 获取我的订单
+         * 老版获取我的订单
          */
         queryPageByOrder('500001020', '-1').then((res) => {
             if (res.msg === '调用成功' && res.success) {
@@ -28,6 +28,14 @@ class MyOrder extends React.Component {
                 Toast.fail(res.msg, 2)
             }
         })
+
+        /*queryPageByOrderV3('500001129', 1).then((res) => {
+            if (res.msg === '调用成功' && res.success) {
+                this.setState({myOrderContent: res.response})
+            } else {
+                Toast.fail(res.msg, 2)
+            }
+        })*/
     }
 
     render() {

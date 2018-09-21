@@ -28,3 +28,15 @@ export function getElearningIndex() {
 
     return result
 }
+
+/**
+ * 获取今日课程
+ * @returns {*}
+ */
+export function getCourseByTodayV3() {
+    const result = post({
+        "method": 'getCourseByTodayV3',
+    })
+
+    return result
+}

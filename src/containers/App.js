@@ -13,6 +13,9 @@ import Detil from '../containers/Detil'
 import MyOrder from '../containers/MyOrder'
 import MyCollection from '../containers/MyCollection'
 import MyBalance from '../containers/MyBalance'
+import TransactionHistory from '../containers/TransactionHistory'
+import BalanceRecharge from '../containers/BalanceRecharge'
+import SetUp from '../containers/SetUp'
 
 class App extends Component {
 
@@ -128,6 +131,45 @@ class App extends Component {
                                         className: '__CacheRoute__wrapper__uncached'
                                     })}/>
                         <CacheRoute className='content_window_all' path='/mybalance' component={MyBalance}
+                                    behavior={cached => (cached ? {
+                                        style: {
+                                            position: 'absolute',
+                                            zIndex: -9999,
+                                            opacity: 0,
+                                            visibility: 'hidden',
+                                            pointerEvents: 'none'
+                                        },
+                                        className: '__CacheRoute__wrapper__cached'
+                                    } : {
+                                        className: '__CacheRoute__wrapper__uncached'
+                                    })}/>
+                        <CacheRoute className='content_window_all' path='/balancerecharge' component={BalanceRecharge}
+                                    behavior={cached => (cached ? {
+                                        style: {
+                                            position: 'absolute',
+                                            zIndex: -9999,
+                                            opacity: 0,
+                                            visibility: 'hidden',
+                                            pointerEvents: 'none'
+                                        },
+                                        className: '__CacheRoute__wrapper__cached'
+                                    } : {
+                                        className: '__CacheRoute__wrapper__uncached'
+                                    })}/>
+                        <CacheRoute className='content_window_all' path='/transactionhistory' component={TransactionHistory}
+                                    behavior={cached => (cached ? {
+                                        style: {
+                                            position: 'absolute',
+                                            zIndex: -9999,
+                                            opacity: 0,
+                                            visibility: 'hidden',
+                                            pointerEvents: 'none'
+                                        },
+                                        className: '__CacheRoute__wrapper__cached'
+                                    } : {
+                                        className: '__CacheRoute__wrapper__uncached'
+                                    })}/>
+                        <CacheRoute className='content_window_all' path='/setup' component={SetUp}
                                     behavior={cached => (cached ? {
                                         style: {
                                             position: 'absolute',

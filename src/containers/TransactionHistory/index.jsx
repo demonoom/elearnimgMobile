@@ -2,9 +2,10 @@ import React from 'react'
 import './style.less'
 import {CSSTransition} from 'react-transition-group'
 import PublicHeader from '../../components/PublicHeader'
-import {Button} from 'antd-mobile'
+import RecordTabs from './subpage/RecordTabs'
+import {} from 'antd-mobile'
 
-class MyBalance extends React.Component {
+class TransactionHistory extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
@@ -16,14 +17,6 @@ class MyBalance extends React.Component {
         this.setState({show: true})
     }
 
-    iconOnClick = (word) => {
-        this.props.history.push("/transactionhistory");
-    }
-
-    recharge = () => {
-        this.props.history.push("/balancerecharge");
-    }
-
     render() {
         return (
             <CSSTransition
@@ -33,20 +26,14 @@ class MyBalance extends React.Component {
             >
                 <div className='my_balance positionBg'>
                     <PublicHeader
-                        title='我的余额'
+                        title='交易记录'
                         ref='header'
                         iconOnClick={this.iconOnClick}
-                        iconType='交易记录'
-                        iconClass='header-jiaoyi'
+                        iconType=''
+                        iconClass=''
                     />
                     <div className='balance_content'>
-                        <div className='account'>
-                            <div className='text'>账户余额</div>
-                            <div className='title_color'>0<span>元</span></div>
-                        </div>
-                        <div className='recharge_btn'>
-                            <Button type="primary" onClick={this.recharge}>充值</Button>
-                        </div>
+                        <RecordTabs/>
                     </div>
                 </div>
             </CSSTransition>
@@ -54,4 +41,4 @@ class MyBalance extends React.Component {
     }
 }
 
-export default MyBalance
+export default TransactionHistory

@@ -46,7 +46,6 @@ class Detil extends React.Component {
     }
 
     render() {
-
         return (
             <CSSTransition
                 in={this.state.show}

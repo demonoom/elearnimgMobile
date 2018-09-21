@@ -77,15 +77,17 @@ class UserList extends React.Component {
                             我的余额
                         </Item>
                     </NavLink>
-                    <Item
-                        className='user_list_item setting'
-                        thumb={Icon_setting}
-                        onClick={() => {
-                        }}
-                        arrow="horizontal"
-                    >
-                        设置
-                    </Item>
+                    <NavLink to='/setup'>
+                        <Item
+                            className='user_list_item setting'
+                            thumb={Icon_setting}
+                            onClick={() => {
+                            }}
+                            arrow="horizontal"
+                        >
+                            设置
+                        </Item>
+                    </NavLink>
                 </List>
             </div>
         )
