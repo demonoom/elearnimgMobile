@@ -1,5 +1,5 @@
 import React from 'react'
-import {List} from 'antd-mobile'
+import {List, Toast} from 'antd-mobile'
 import './style.less'
 import Icon_order from '../img/icon_person_order.png'
 import Icon_collect from '../img/icon_person_collect.png'
@@ -14,6 +14,18 @@ class UserList extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.state = {}
+    }
+
+    goLoginPage() {
+        var data = {
+            method: 'goLoginPage',
+        };
+
+        window.Bridge.callHandler(data, function (res) {
+            Toast.info(res, 4)
+        }, function (error) {
+            Toast.info(error, 4)
+        });
     }
 
     render() {
@@ -46,6 +58,7 @@ class UserList extends React.Component {
                         className='user_list_item bind'
                         thumb={Icon_bind}
                         onClick={() => {
+                            this.goLoginPage()
                         }}
                         arrow="horizontal"
                         extra="请绑定"
@@ -80,3 +93,6 @@ class UserList extends React.Component {
 }
 
 export default UserList
+
+
+

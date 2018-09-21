@@ -62,6 +62,22 @@ class Home extends React.Component {
         return
     }
 
+    /**
+     * 宣传片被点击返回的数据
+     * 调用客户端
+     * @param data
+     */
+    listOnClick(res) {
+        var data = {
+            method: 'openElearningWeiKeClass',
+            url: res.url,
+        };
+
+        window.Bridge.callHandler(data, null, function (error) {
+            Toast.info(error, 4)
+        });
+    }
+
     render() {
 
         return (
@@ -77,13 +93,14 @@ class Home extends React.Component {
                     <h4 className='title_color same_title' style={{textAlign: 'center'}}>实景课宣传片</h4>
                     <VideoList
                         videoArr={this.state.videoArr}
+                        listOnClick={this.listOnClick}
                     />
 
                     <Living/>
 
-                   <div className='index_tab'>
-                       <Classroom/>
-                   </div>
+                    <div className='index_tab'>
+                        <Classroom/>
+                    </div>
                 </div>
             </div>
         )

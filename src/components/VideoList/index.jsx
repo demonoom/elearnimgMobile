@@ -11,14 +11,18 @@ class VideoList extends React.Component {
         this.buildVideoList(nextProps.videoArr)
     }
 
+    liOnClick = (data) => {
+        this.props.listOnClick(data)
+    }
+
     buildVideoList(res) {
         var videoList = []
         if (res.length !== 0) {
             res.forEach((item) => {
                 videoList.push(
                     <li key={item.id} className='videoLi'>
-                         <img src={item.image} alt=""/>
-                         <i className='iconfont icon-bofang'></i>
+                        <img src={item.image} alt=""/>
+                        <i className='iconfont icon-bofang' onClick={this.liOnClick.bind(this, item)}></i>
                     </li>
                 )
             })

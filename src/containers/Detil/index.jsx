@@ -29,6 +29,22 @@ class Detil extends React.Component {
         })
     }
 
+    courseOnClick = () => {
+        console.log(this.state.courseObj);
+
+        var data = {
+            method: 'openElearningClass',
+            vid: 210984,
+            videoName: 4,
+            videoStatus: 3,
+            antUid: 141088
+        };
+
+        window.Bridge.callHandler(data, null, function (error) {
+            Toast.info(error, 4)
+        });
+    }
+
     render() {
 
         return (
@@ -45,12 +61,13 @@ class Detil extends React.Component {
                     <div className='detil_content'>
                         <div className="imgDiv">
                             <img src={this.state.courseObj.image} alt=""/>
-                            <div className="imgMask"><i className='iconfont icon-bofang'></i></div>
+                            <div className="imgMask"><i className='iconfont icon-bofang'
+                                                        onClick={this.courseOnClick}></i></div>
                         </div>
                         <div className='detil-tab'>
                             {
                                 this.state.courseObj ?
-                                    <CourseTab courseObj={this.state.courseObj}/> : <Icon type='loading' />
+                                    <CourseTab courseObj={this.state.courseObj}/> : <Icon type='loading'/>
                             }
                         </div>
                     </div>
