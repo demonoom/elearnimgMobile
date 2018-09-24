@@ -24,7 +24,6 @@ class Home extends React.Component {
      * List cached被缓存
      */
     componentDidCache = () => {
-        this.setState({truelyHeight: this.refs.home.parentNode.offsetHeight})
         setTimeout((() => {
             this.refs.home.parentNode.style.height = 0;
         }), 300)
@@ -60,6 +59,9 @@ class Home extends React.Component {
             } else {
                 Toast.fail(json.msg, 2)
             }
+        }).then(() => {
+            // eslint-disable-next-line
+            this.state.truelyHeight = this.refs.home.parentNode.offsetHeight
         })
     }
 

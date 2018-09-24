@@ -11,8 +11,27 @@ class MyCollection extends React.Component {
         super(props, context);
         this.state = {
             show: false,
-            myCollectionContent: []
+            myCollectionContent: [],
+            truelyHeight: '',
         }
+        props.cacheLifecycles.didCache(this.componentDidCache)
+        props.cacheLifecycles.didRecover(this.componentDidRecover)
+    }
+
+    /**
+     * List cached被缓存
+     */
+    componentDidCache = () => {
+        setTimeout((() => {
+            this.refs.MyCollection.parentNode.style.height = 0;
+        }), 300)
+    }
+
+    /**
+     * List recovered被恢复
+     */
+    componentDidRecover = () => {
+        this.refs.MyCollection.parentNode.style.height = `${this.state.truelyHeight}px`
     }
 
     componentDidMount() {
@@ -26,6 +45,9 @@ class MyCollection extends React.Component {
             } else {
                 Toast.fail(res.msg, 2)
             }
+        }).then(() => {
+            // eslint-disable-next-line
+            this.state.truelyHeight = this.refs.MyCollection.parentNode.offsetHeight
         })
     }
 
@@ -45,7 +67,7 @@ class MyCollection extends React.Component {
                 timeout={300}
                 classNames='translate'
             >
-                <div className='my_collection positionBg'>
+                <div className='my_collection positionBg' ref='MyCollection'>
                     <PublicHeader
                         title='我的收藏'
                         ref='header'

@@ -1,6 +1,7 @@
 import React from 'react'
 import {getMyPurchaseCourseList} from '../../../fetch/my-course/my-course'
 import ClassList from '../../../components/ClassList'
+import LoadMore from '../../../components/LoadMore'
 import './style.less'
 
 class SeeMoreContent extends React.Component {
@@ -8,13 +9,20 @@ class SeeMoreContent extends React.Component {
         super(props, context);
         this.state = {
             courseType: 'public',
+            courseList: [],
+            page: 1,
+            isLoadingMore: false
         }
     }
 
     componentDidMount() {
+        this.getMyPurchaseCourseList(this.state.page, '500001020')
+    }
+
+    getMyPurchaseCourseList = (page, id) => {
         //用我的课程模拟数据
-        getMyPurchaseCourseList(-1, '500001020').then((res) => {
-            this.setState({courseList: res.response})
+        getMyPurchaseCourseList(page, id).then((res) => {
+            this.setState({courseList: this.state.courseList.concat(res.response)})
         })
     }
 
@@ -22,6 +30,18 @@ class SeeMoreContent extends React.Component {
         this.setState({courseType}, () => {
 
         })
+    }
+
+    /**
+     * 加载更多数据
+     */
+    loadMoreDate() {
+        this.setState({
+            isLoadingMore: true
+        })
+        const page = this.state.page + 1
+        this.getMyPurchaseCourseList(page, '500001020')
+        this.setState({page, isLoadingMore: false})
     }
 
     render() {
@@ -41,6 +61,7 @@ class SeeMoreContent extends React.Component {
                     <ClassList
                         courseList={this.state.courseList}
                     />
+                    <LoadMore isLoadingMore={this.state.isLoadingMore} loadMoreFn={this.loadMoreDate.bind(this)}/>
                 </div>
             </div>
         )

@@ -11,8 +11,27 @@ class MyOrder extends React.Component {
         super(props, context);
         this.state = {
             show: false,
-            myOrderContent: []
+            myOrderContent: [],
+            truelyHeight: '',
         }
+        props.cacheLifecycles.didCache(this.componentDidCache)
+        props.cacheLifecycles.didRecover(this.componentDidRecover)
+    }
+
+    /**
+     * List cached被缓存
+     */
+    componentDidCache = () => {
+        setTimeout((() => {
+            this.refs.MyOrder.parentNode.style.height = 0;
+        }), 300)
+    }
+
+    /**
+     * List recovered被恢复
+     */
+    componentDidRecover = () => {
+        this.refs.MyOrder.parentNode.style.height = `${this.state.truelyHeight}px`
     }
 
     componentDidMount() {
@@ -27,6 +46,9 @@ class MyOrder extends React.Component {
             } else {
                 Toast.fail(res.msg, 2)
             }
+        }).then(() => {
+            // eslint-disable-next-line
+            this.state.truelyHeight = this.refs.MyOrder.parentNode.offsetHeight
         })
 
         /*queryPageByOrderV3('500001129', 1).then((res) => {
@@ -46,7 +68,7 @@ class MyOrder extends React.Component {
                 timeout={300}
                 classNames='translate'
             >
-                <div className='my_order positionBg'>
+                <div className='my_order positionBg' ref='MyOrder'>
                     <PublicHeader
                         title='我的订单'
                         ref='header'

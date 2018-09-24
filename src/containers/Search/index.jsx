@@ -11,12 +11,31 @@ class Search extends React.Component {
         super(props, context);
         this.state = {
             show: false,
-            searchResponse: []
+            searchResponse: [],
+            truelyHeight: '',
         }
+        props.cacheLifecycles.didCache(this.componentDidCache)
+        props.cacheLifecycles.didRecover(this.componentDidRecover)
+    }
+
+    /**
+     * List cached被缓存
+     */
+    componentDidCache = () => {
+        setTimeout((() => {
+            this.refs.Search.parentNode.style.height = 0;
+        }), 300)
+    }
+
+    /**
+     * List recovered被恢复
+     */
+    componentDidRecover = () => {
+        this.refs.Search.parentNode.style.height = `${this.state.truelyHeight}px`
     }
 
     componentDidMount() {
-        this.setState({show: true})
+        this.setState({show: true, truelyHeight: this.refs.Search.parentNode.offsetHeight})
     }
 
     /**
@@ -40,7 +59,7 @@ class Search extends React.Component {
                 timeout={300}
                 classNames='translate'
             >
-                <div id='search' className='positionBg'>
+                <div id='search' className='positionBg' ref='Search'>
                     <div className="p14 whiteBg"></div>
                     <SearchHeader
                         listCourseByKeyWords={this.listCourseByKeyWords}

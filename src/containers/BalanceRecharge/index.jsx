@@ -19,9 +19,8 @@ class BalanceRecharge extends React.Component {
      * List cached被缓存
      */
     componentDidCache = () => {
-        this.setState({truelyHeight: this.refs.home.parentNode.offsetHeight})
         setTimeout((() => {
-            this.refs.detil.parentNode.style.height = 0;
+            this.refs.balanceRecharge.parentNode.style.height = 0;
         }), 300)
     }
 
@@ -33,7 +32,7 @@ class BalanceRecharge extends React.Component {
     }
 
     componentDidMount() {
-        this.setState({show: true})
+        this.setState({show: true, truelyHeight: this.refs.balanceRecharge.parentNode.offsetHeight})
     }
 
     render() {

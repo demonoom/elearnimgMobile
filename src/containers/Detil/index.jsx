@@ -23,7 +23,6 @@ class Detil extends React.Component {
      * List cached被缓存
      */
     componentDidCache = () => {
-        this.setState({truelyHeight: this.refs.home.parentNode.offsetHeight})
         setTimeout((() => {
             this.refs.detil.parentNode.style.height = 0;
         }), 300)
@@ -33,7 +32,7 @@ class Detil extends React.Component {
      * List recovered被恢复
      */
     componentDidRecover = () => {
-        this.refs.home.parentNode.style.height = `${this.state.truelyHeight}px`
+        this.refs.detil.parentNode.style.height = `${this.state.truelyHeight}px`
     }
 
     componentDidMount() {
@@ -47,6 +46,9 @@ class Detil extends React.Component {
             } else {
                 Toast.fail(res.msg, 2)
             }
+        }).then(() => {
+            // eslint-disable-next-line
+            this.state.truelyHeight = this.refs.detil.parentNode.offsetHeight
         })
     }
 

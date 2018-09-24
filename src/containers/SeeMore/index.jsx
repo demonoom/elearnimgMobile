@@ -9,11 +9,30 @@ class SeeMore extends React.Component {
         super(props, context);
         this.state = {
             show: false,
+            truelyHeight: '',
         }
+        props.cacheLifecycles.didCache(this.componentDidCache)
+        props.cacheLifecycles.didRecover(this.componentDidRecover)
+    }
+
+    /**
+     * List cached被缓存
+     */
+    componentDidCache = () => {
+        setTimeout((() => {
+            this.refs.SeeMore.parentNode.style.height = 0;
+        }), 300)
+    }
+
+    /**
+     * List recovered被恢复
+     */
+    componentDidRecover = () => {
+        this.refs.SeeMore.parentNode.style.height = `${this.state.truelyHeight}px`
     }
 
     componentDidMount() {
-        this.setState({show: true})
+        this.setState({show: true, truelyHeight: this.refs.SeeMore.parentNode.offsetHeight})
     }
 
     iconOnClick = () => {
@@ -32,7 +51,7 @@ class SeeMore extends React.Component {
                 timeout={300}
                 classNames='translate'
             >
-                <div className='see_more positionBg'>
+                <div className='see_more positionBg' ref='SeeMore'>
                     <PublicHeader
                         boxShadowFlag={true}
                         title='see_more'

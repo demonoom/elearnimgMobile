@@ -10,11 +10,30 @@ class TransactionHistory extends React.Component {
         super(props, context);
         this.state = {
             show: false,
+            truelyHeight: '',
         }
+        props.cacheLifecycles.didCache(this.componentDidCache)
+        props.cacheLifecycles.didRecover(this.componentDidRecover)
+    }
+
+    /**
+     * List cached被缓存
+     */
+    componentDidCache = () => {
+        setTimeout((() => {
+            this.refs.TransactionHistory.parentNode.style.height = 0;
+        }), 300)
+    }
+
+    /**
+     * List recovered被恢复
+     */
+    componentDidRecover = () => {
+        this.refs.TransactionHistory.parentNode.style.height = `${this.state.truelyHeight}px`
     }
 
     componentDidMount() {
-        this.setState({show: true})
+        this.setState({show: true, truelyHeight: this.refs.TransactionHistory.parentNode.offsetHeight})
     }
 
     render() {
@@ -24,7 +43,7 @@ class TransactionHistory extends React.Component {
                 timeout={300}
                 classNames='translate'
             >
-                <div className='my_balance positionBg'>
+                <div className='my_balance positionBg' ref='TransactionHistory'>
                     <PublicHeader
                         title='交易记录'
                         ref='header'

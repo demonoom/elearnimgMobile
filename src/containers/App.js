@@ -28,7 +28,6 @@ class App extends Component {
                 position: 'absolute',
                 zIndex: -9999,
                 pointerEvents: 'none',
-                // height: 0
             }
         }
     }
