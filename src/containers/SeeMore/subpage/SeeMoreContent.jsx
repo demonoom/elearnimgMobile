@@ -3,6 +3,7 @@ import {getMyPurchaseCourseList} from '../../../fetch/my-course/my-course'
 import ClassList from '../../../components/ClassList'
 import LoadMore from '../../../components/LoadMore'
 import './style.less'
+import {Toast} from "antd-mobile/lib/index";
 
 class SeeMoreContent extends React.Component {
     constructor(props, context) {
@@ -11,18 +12,48 @@ class SeeMoreContent extends React.Component {
             courseType: 'public',
             courseList: [],
             page: 1,
-            isLoadingMore: false
+            isLoadingMore: true
         }
     }
 
     componentDidMount() {
-        this.getMyPurchaseCourseList(this.state.page, '500001020')
+        this.getMyPurchaseCourseList(1, '500001020')
+
+        /**
+         * 下拉加载更多实现
+         * @type {SeeMoreContent.loadMoreDate}
+         */
+        const loadMoreFn = this.loadMoreDate
+        const loadMore = document.querySelectorAll('.load_more')[0]
+        let timeoutId
+
+        function callback() {
+            const top = loadMore.getBoundingClientRect().top
+            const windowHeight = window.screen.height
+            if (top && top < windowHeight) {
+                loadMoreFn()
+            }
+        }
+
+        this.refs.class_list.addEventListener('scroll', () => {
+            if (this.state.isLoadingMore) {
+                return
+            }
+            if (timeoutId) {
+                clearTimeout(timeoutId)
+            }
+            timeoutId = setTimeout(callback, 50)
+        })
     }
 
     getMyPurchaseCourseList = (page, id) => {
         //用我的课程模拟数据
         getMyPurchaseCourseList(page, id).then((res) => {
-            this.setState({courseList: this.state.courseList.concat(res.response)})
+            if (res.msg === '调用成功' && res.success) {
+                this.setState({courseList: this.state.courseList.concat(res.response), page, isLoadingMore: false})
+            } else {
+                Toast.fail(res.msg, 2)
+            }
         })
     }
 
@@ -35,13 +66,12 @@ class SeeMoreContent extends React.Component {
     /**
      * 加载更多数据
      */
-    loadMoreDate() {
+    loadMoreDate = () => {
         this.setState({
             isLoadingMore: true
+        }, () => {
+            this.getMyPurchaseCourseList(this.state.page + 1, '500001020')
         })
-        const page = this.state.page + 1
-        this.getMyPurchaseCourseList(page, '500001020')
-        this.setState({page, isLoadingMore: false})
     }
 
     render() {
@@ -57,11 +87,12 @@ class SeeMoreContent extends React.Component {
                     <span className={this.state.courseType === 'weiclass' ? 'active' : ''}
                           onClick={this.typeOnChange.bind(this, 'weiclass')}>微课</span>
                 </div>
-                <div className='class_list'>
+                <div className='class_list' ref='class_list'>
                     <ClassList
                         courseList={this.state.courseList}
                     />
-                    <LoadMore isLoadingMore={this.state.isLoadingMore} loadMoreFn={this.loadMoreDate.bind(this)}/>
+                    <LoadMore ref='LoadMore' isLoadingMore={this.state.isLoadingMore}
+                              loadMoreFn={this.loadMoreDate.bind(this)}/>
                 </div>
             </div>
         )
