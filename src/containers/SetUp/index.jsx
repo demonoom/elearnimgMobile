@@ -3,6 +3,7 @@ import './style.less'
 import {CSSTransition} from 'react-transition-group'
 import PublicHeader from '../../components/PublicHeader'
 import {List, Switch} from 'antd-mobile';
+import {createForm} from 'rc-form';
 
 class SetUp extends React.Component {
     constructor(props, context) {
@@ -17,6 +18,28 @@ class SetUp extends React.Component {
     }
 
     render() {
+
+        let SwitchExample = (props) => {
+            const {getFieldProps} = props.form;
+            return (
+                <List>
+                    <List.Item
+                        extra={<Switch
+                            {...getFieldProps('Switch1', {
+                                initialValue: true,
+                                valuePropName: 'checked',
+                            })}
+                            onClick={(checked) => {
+                                console.log(checked);
+                            }}
+                        />}
+                    >上课短信通知</List.Item>
+                </List>
+            );
+        };
+
+        SwitchExample = createForm()(SwitchExample);
+
         return (
             <CSSTransition
                 in={this.state.show}
@@ -32,15 +55,7 @@ class SetUp extends React.Component {
                         iconClass=''
                     />
                     <div className='set_up_content'>
-                        <List>
-                            <List.Item
-                                extra={<Switch
-                                    onClick={(checked) => {
-                                        console.log(checked);
-                                    }}
-                                />}
-                            >上课短信通知</List.Item>
-                        </List>
+                        <SwitchExample/>
                         <div>退出登录</div>
                     </div>
                 </div>

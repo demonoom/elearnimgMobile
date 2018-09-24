@@ -2,6 +2,7 @@ import React from 'react'
 import {Tabs, Badge, WhiteSpace} from 'antd-mobile'
 import './style.less'
 import FormatTime from '../../../util/formatTime'
+import {SMALL_IMG} from '../../../util/const'
 
 class CourseTab extends React.Component {
     constructor(props, context) {
@@ -29,7 +30,7 @@ class CourseTab extends React.Component {
                 <div className='detil-tab-item courseDetail'>
                     <WhiteSpace/>
                     <div className='topCont text_color'>
-                        <div>好评率：98%  <span>{courseObj.evaluates.length}人评论</span></div>
+                        <div>好评率：98% <span>{courseObj.evaluates.length}人评论</span></div>
                         <div>授课时间：{FormatTime.formatYMD(courseObj.courseTime)}</div>
                         <div>课时：{courseObj.videoNum}课时</div>
                     </div>
@@ -39,11 +40,11 @@ class CourseTab extends React.Component {
                         {
                             courseObj.users.map((v, i) => {
                                 return <div className='teach_item my_flex' key={i}>
-                                    <img src={v.avatar} alt=""/>
-                                   <div className='right'>
-                                       <div className='userName title_color text_hidden'>{v.userName}</div>
-                                       <div className='text text_color'>{v.userContent}</div>
-                                   </div>
+                                    <img src={v.avatar + SMALL_IMG} alt=""/>
+                                    <div className='right'>
+                                        <div className='userName title_color text_hidden'>{v.userName}</div>
+                                        <div className='text text_color'>{v.userContent}</div>
+                                    </div>
                                 </div>
                             })
                         }

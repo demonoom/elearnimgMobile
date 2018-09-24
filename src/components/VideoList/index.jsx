@@ -1,5 +1,6 @@
 import React from 'react'
 import './style.less'
+import {LARGE_IMG} from '../../util/const'
 
 class VideoList extends React.Component {
     constructor(props, context) {
@@ -21,7 +22,7 @@ class VideoList extends React.Component {
             res.forEach((item) => {
                 videoList.push(
                     <li key={item.id} className='videoLi'>
-                        <img src={item.image} alt=""/>
+                        <img src={item.image + LARGE_IMG} alt=""/>
                         <i className='iconfont icon-bofang' onClick={this.liOnClick.bind(this, item)}></i>
                     </li>
                 )

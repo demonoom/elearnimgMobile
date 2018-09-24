@@ -1,6 +1,7 @@
 import React from 'react'
 import './style.less'
 import {NavLink} from "react-router-dom"
+import {MID_IMG} from '../../../util/const'
 
 class ListItem extends React.Component {
     constructor(props, context) {
@@ -14,7 +15,7 @@ class ListItem extends React.Component {
 
         return (
             <NavLink to={`/detil/${itemObj.id}/${itemObj.publisher_id}`} className='list_item'>
-                <img src={itemObj.image} alt=""/>
+                <img src={itemObj.image + MID_IMG} alt=""/>
                 <div className='rightCont text_color'>
                     <div className='title_color text_hidden'>{itemObj.courseName}</div>
                     <div className='tagDiv'><span className='tag orange'>{itemObj.courseType.name}</span></div>

@@ -13,18 +13,28 @@ class Home extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
-            categoryArr: []
+            categoryArr: [],
+            truelyHeight: '',
         }
         props.cacheLifecycles.didCache(this.componentDidCache)
         props.cacheLifecycles.didRecover(this.componentDidRecover)
     }
 
+    /**
+     * List cached被缓存
+     */
     componentDidCache = () => {
-        console.log('List cached被缓存')
+        this.setState({truelyHeight: this.refs.home.parentNode.offsetHeight})
+        setTimeout((() => {
+            this.refs.home.parentNode.style.height = 0;
+        }), 300)
     }
 
+    /**
+     * List recovered被恢复
+     */
     componentDidRecover = () => {
-        console.log('List recovered被恢复')
+        this.refs.home.parentNode.style.height = `${this.state.truelyHeight}px`
     }
 
     componentDidMount() {
@@ -80,7 +90,7 @@ class Home extends React.Component {
     render() {
 
         return (
-            <div id='home'>
+            <div id='home' ref='home'>
                 <HomeHeader/>
 
                 <div className='home_content'>

@@ -9,7 +9,27 @@ class MyBalance extends React.Component {
         super(props, context);
         this.state = {
             show: false,
+            truelyHeight: '',
         }
+        props.cacheLifecycles.didCache(this.componentDidCache)
+        props.cacheLifecycles.didRecover(this.componentDidRecover)
+    }
+
+    /**
+     * List cached被缓存
+     */
+    componentDidCache = () => {
+        this.setState({truelyHeight: this.refs.home.parentNode.offsetHeight})
+        setTimeout((() => {
+            this.refs.detil.parentNode.style.height = 0;
+        }), 300)
+    }
+
+    /**
+     * List recovered被恢复
+     */
+    componentDidRecover = () => {
+        this.refs.MyBalance.parentNode.style.height = `${this.state.truelyHeight}px`
     }
 
     componentDidMount() {
@@ -31,7 +51,7 @@ class MyBalance extends React.Component {
                 timeout={300}
                 classNames='translate'
             >
-                <div className='my_balance positionBg'>
+                <div className='my_balance positionBg' ref='MyBalance'>
                     <PublicHeader
                         title='我的余额'
                         ref='header'

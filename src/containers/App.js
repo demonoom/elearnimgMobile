@@ -16,13 +16,20 @@ import MyBalance from '../containers/MyBalance'
 import TransactionHistory from '../containers/TransactionHistory'
 import BalanceRecharge from '../containers/BalanceRecharge'
 import SetUp from '../containers/SetUp'
+import SeeMore from '../containers/SeeMore'
 
 class App extends Component {
 
     constructor(props, context) {
         super(props, context);
         this.state = {
-            navWord: window.location.pathname
+            navWord: window.location.pathname,
+            cachedStyle: {
+                position: 'absolute',
+                zIndex: -9999,
+                pointerEvents: 'none',
+                // height: 0
+            }
         }
     }
 
@@ -41,156 +48,92 @@ class App extends Component {
                     <CacheSwitch>
                         <CacheRoute className='content_window' path='/home' component={Home}
                                     behavior={cached => (cached ? {
-                                        style: {
-                                            position: 'absolute',
-                                            zIndex: -9999,
-                                            opacity: 0,
-                                            visibility: 'hidden',
-                                            pointerEvents: 'none'
-                                        },
+                                        style: this.state.cachedStyle,
                                         className: '__CacheRoute__wrapper__cached'
                                     } : {
                                         className: '__CacheRoute__wrapper__uncached'
                                     })}/>
                         <CacheRoute className='content_window' path='/mycourse' component={MyCourse}
                                     behavior={cached => (cached ? {
-                                        style: {
-                                            position: 'absolute',
-                                            zIndex: -9999,
-                                            opacity: 0,
-                                            visibility: 'hidden',
-                                            pointerEvents: 'none'
-                                        },
+                                        style: this.state.cachedStyle,
                                         className: '__CacheRoute__wrapper__cached'
                                     } : {
                                         className: '__CacheRoute__wrapper__uncached'
                                     })}/>
                         <CacheRoute className='content_window' path='/user' component={User}
                                     behavior={cached => (cached ? {
-                                        style: {
-                                            position: 'absolute',
-                                            zIndex: -9999,
-                                            opacity: 0,
-                                            visibility: 'hidden',
-                                            pointerEvents: 'none'
-                                        },
+                                        style: this.state.cachedStyle,
                                         className: '__CacheRoute__wrapper__cached'
                                     } : {
                                         className: '__CacheRoute__wrapper__uncached'
                                     })}/>
                         <CacheRoute className='content_window_all' path='/search' component={Search}
                                     behavior={cached => (cached ? {
-                                        style: {
-                                            position: 'absolute',
-                                            zIndex: -9999,
-                                            opacity: 0,
-                                            visibility: 'hidden',
-                                            pointerEvents: 'none'
-                                        },
+                                        style: this.state.cachedStyle,
                                         className: '__CacheRoute__wrapper__cached'
                                     } : {
                                         className: '__CacheRoute__wrapper__uncached'
                                     })}/>
                         <CacheRoute className='content_window_all' path='/detil/:id/:publisherId' component={Detil}
                                     behavior={cached => (cached ? {
-                                        style: {
-                                            position: 'absolute',
-                                            zIndex: -9999,
-                                            opacity: 0,
-                                            visibility: 'hidden',
-                                            pointerEvents: 'none'
-                                        },
+                                        style: this.state.cachedStyle,
                                         className: '__CacheRoute__wrapper__cached'
                                     } : {
                                         className: '__CacheRoute__wrapper__uncached'
                                     })}/>
                         <CacheRoute className='content_window_all' path='/myorder' component={MyOrder}
                                     behavior={cached => (cached ? {
-                                        style: {
-                                            position: 'absolute',
-                                            zIndex: -9999,
-                                            opacity: 0,
-                                            visibility: 'hidden',
-                                            pointerEvents: 'none'
-                                        },
+                                        style: this.state.cachedStyle,
                                         className: '__CacheRoute__wrapper__cached'
                                     } : {
                                         className: '__CacheRoute__wrapper__uncached'
                                     })}/>
                         <CacheRoute className='content_window_all' path='/mycollection' component={MyCollection}
                                     behavior={cached => (cached ? {
-                                        style: {
-                                            position: 'absolute',
-                                            zIndex: -9999,
-                                            opacity: 0,
-                                            visibility: 'hidden',
-                                            pointerEvents: 'none'
-                                        },
+                                        style: this.state.cachedStyle,
                                         className: '__CacheRoute__wrapper__cached'
                                     } : {
                                         className: '__CacheRoute__wrapper__uncached'
                                     })}/>
                         <CacheRoute className='content_window_all' path='/mybalance' component={MyBalance}
                                     behavior={cached => (cached ? {
-                                        style: {
-                                            position: 'absolute',
-                                            zIndex: -9999,
-                                            opacity: 0,
-                                            visibility: 'hidden',
-                                            pointerEvents: 'none'
-                                        },
+                                        style: this.state.cachedStyle,
                                         className: '__CacheRoute__wrapper__cached'
                                     } : {
                                         className: '__CacheRoute__wrapper__uncached'
                                     })}/>
                         <CacheRoute className='content_window_all' path='/balancerecharge' component={BalanceRecharge}
                                     behavior={cached => (cached ? {
-                                        style: {
-                                            position: 'absolute',
-                                            zIndex: -9999,
-                                            opacity: 0,
-                                            visibility: 'hidden',
-                                            pointerEvents: 'none'
-                                        },
+                                        style: this.state.cachedStyle,
                                         className: '__CacheRoute__wrapper__cached'
                                     } : {
                                         className: '__CacheRoute__wrapper__uncached'
                                     })}/>
-                        <CacheRoute className='content_window_all' path='/transactionhistory' component={TransactionHistory}
+                        <CacheRoute className='content_window_all' path='/transactionhistory'
+                                    component={TransactionHistory}
                                     behavior={cached => (cached ? {
-                                        style: {
-                                            position: 'absolute',
-                                            zIndex: -9999,
-                                            opacity: 0,
-                                            visibility: 'hidden',
-                                            pointerEvents: 'none'
-                                        },
+                                        style: this.state.cachedStyle,
                                         className: '__CacheRoute__wrapper__cached'
                                     } : {
                                         className: '__CacheRoute__wrapper__uncached'
                                     })}/>
                         <CacheRoute className='content_window_all' path='/setup' component={SetUp}
                                     behavior={cached => (cached ? {
-                                        style: {
-                                            position: 'absolute',
-                                            zIndex: -9999,
-                                            opacity: 0,
-                                            visibility: 'hidden',
-                                            pointerEvents: 'none'
-                                        },
+                                        style: this.state.cachedStyle,
+                                        className: '__CacheRoute__wrapper__cached'
+                                    } : {
+                                        className: '__CacheRoute__wrapper__uncached'
+                                    })}/>
+                        <CacheRoute className='content_window_all' path='/seemore' component={SeeMore}
+                                    behavior={cached => (cached ? {
+                                        style: this.state.cachedStyle,
                                         className: '__CacheRoute__wrapper__cached'
                                     } : {
                                         className: '__CacheRoute__wrapper__uncached'
                                     })}/>
                         <Redirect from='/' to='home'/>
                         <CacheRoute className='content_window' component={Home} behavior={cached => (cached ? {
-                            style: {
-                                position: 'absolute',
-                                zIndex: -9999,
-                                opacity: 0,
-                                visibility: 'hidden',
-                                pointerEvents: 'none'
-                            },
+                            style: this.state.cachedStyle,
                             className: '__CacheRoute__wrapper__cached'
                         } : {
                             className: '__CacheRoute__wrapper__uncached'

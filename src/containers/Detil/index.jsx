@@ -5,6 +5,7 @@ import {Toast, Icon} from 'antd-mobile'
 import DetilHeader from '../../components/DetilHeader'
 import CourseTab from './subpage/CourseTab'
 import {findCourseByCourseId} from '../../../src/fetch/detil/detil'
+import {LARGE_IMG} from '../../util/const'
 
 class Detil extends React.Component {
     constructor(props, context) {
@@ -12,7 +13,27 @@ class Detil extends React.Component {
         this.state = {
             show: false,
             courseObj: false,     //课程对象
+            truelyHeight: '',
         }
+        props.cacheLifecycles.didCache(this.componentDidCache)
+        props.cacheLifecycles.didRecover(this.componentDidRecover)
+    }
+
+    /**
+     * List cached被缓存
+     */
+    componentDidCache = () => {
+        this.setState({truelyHeight: this.refs.home.parentNode.offsetHeight})
+        setTimeout((() => {
+            this.refs.detil.parentNode.style.height = 0;
+        }), 300)
+    }
+
+    /**
+     * List recovered被恢复
+     */
+    componentDidRecover = () => {
+        this.refs.home.parentNode.style.height = `${this.state.truelyHeight}px`
     }
 
     componentDidMount() {
@@ -52,14 +73,14 @@ class Detil extends React.Component {
                 timeout={300}
                 classNames='translate'
             >
-                <div id='detil'>
+                <div id='detil' ref='detil'>
                     <DetilHeader
                         title={this.state.courseObj.courseName}
                         ref='header'
                     />
                     <div className='detil_content'>
                         <div className="imgDiv">
-                            <img src={this.state.courseObj.image} alt=""/>
+                            <img src={this.state.courseObj.image + LARGE_IMG} alt=""/>
                             <div className="imgMask"><i className='iconfont icon-bofang'
                                                         onClick={this.courseOnClick}></i></div>
                         </div>

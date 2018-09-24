@@ -3,6 +3,7 @@ import {Tabs, Badge, Icon} from 'antd-mobile'
 import './style.less'
 import {getElearningIndex} from '../../../../src/fetch/home/home'
 import ClassBox from '../../../components/ClassBox'
+import {NavLink} from 'react-router-dom'
 
 class Classroom extends React.Component {
     constructor(props, context) {
@@ -47,10 +48,12 @@ class Classroom extends React.Component {
                             typeGuoLv={true}
                         /> : <Icon type='loading'/>
                     }
-                    <div className='item_to_all'>查看全部精选公开实景课 ></div>
+                    <NavLink className='item_to_all' to='/seemore'>
+                        查看全部精选公开实景课 >
+                    </NavLink>
                 </div>
                 <div>
-                    <div className='item_to_all'>查看全部精选公开常规课 ></div>
+                    <NavLink to='/seemore' className='item_to_all'>查看全部精选公开实景课 ></NavLink>
                 </div>
             </Tabs>
         )
