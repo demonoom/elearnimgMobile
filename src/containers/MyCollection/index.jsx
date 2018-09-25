@@ -5,6 +5,7 @@ import {Toast, Icon} from 'antd-mobile'
 import PublicHeader from '../../components/PublicHeader'
 import {listCourseByCollect} from '../../../src/fetch/my-collection/my-collection'
 import ClassBox from '../../components/ClassBox'
+import Filter from '../../components/Filter'
 
 class MyCollection extends React.Component {
     constructor(props, context) {
@@ -13,6 +14,7 @@ class MyCollection extends React.Component {
             show: false,
             myCollectionContent: [],
             truelyHeight: '',
+            filterDisplsy: false,
         }
         props.cacheLifecycles.didCache(this.componentDidCache)
         props.cacheLifecycles.didRecover(this.componentDidRecover)
@@ -55,8 +57,8 @@ class MyCollection extends React.Component {
      * 右侧Icon被点击
      * @param word
      */
-    iconOnClick(word) {
-        console.log(word);
+    iconOnClick = (word) => {
+        this.setState({filterDisplsy: true})
     }
 
     render() {
@@ -84,6 +86,7 @@ class MyCollection extends React.Component {
                             /> : <Icon type='loading'/>
                         }
                     </div>
+                    <Filter filterDisplsy={this.state.filterDisplsy}/>
                 </div>
             </CSSTransition>
         )

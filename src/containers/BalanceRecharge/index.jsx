@@ -10,6 +10,8 @@ class BalanceRecharge extends React.Component {
         this.state = {
             show: false,
             truelyHeight: '',
+            inputValueHtml: '其他数额',
+            moneyNum: 10,
         }
         props.cacheLifecycles.didCache(this.componentDidCache)
         props.cacheLifecycles.didRecover(this.componentDidRecover)
@@ -35,6 +37,10 @@ class BalanceRecharge extends React.Component {
         this.setState({show: true, truelyHeight: this.refs.balanceRecharge.parentNode.offsetHeight})
     }
 
+    moneyBtnOnClick = (num) => {
+        this.setState({moneyNum: num})
+    }
+
     render() {
         return (
             <CSSTransition
@@ -51,7 +57,25 @@ class BalanceRecharge extends React.Component {
                         iconClass=''
                     />
                     <div className='balance_content'>
-                        123
+                        <div className='rechargeAmount'>
+                            <div>
+                                请选择充值金额
+                            </div>
+                            <div>
+                                <span onClick={this.moneyBtnOnClick.bind(this, '10')} className='moneyBtn'>10元</span>
+                                <span onClick={this.moneyBtnOnClick.bind(this, '20')} className='moneyBtn'>20元</span>
+                                <span onClick={this.moneyBtnOnClick.bind(this, '50')} className='moneyBtn'>50元</span>
+                            </div>
+                        </div>
+                        <div className='rechargeMethod'>
+
+                        </div>
+                    </div>
+                    <div className='balance_content_bottom'>
+                        <div className='balance_content_bottom_left'>
+                            需支付:¥{this.state.moneyNum}
+                        </div>
+                        <div className='balance_content_bottom_right'>立即充值</div>
                     </div>
                 </div>
             </CSSTransition>

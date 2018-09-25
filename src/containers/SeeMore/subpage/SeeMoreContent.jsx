@@ -3,7 +3,7 @@ import {getMyPurchaseCourseList} from '../../../fetch/my-course/my-course'
 import ClassList from '../../../components/ClassList'
 import LoadMore from '../../../components/LoadMore'
 import './style.less'
-import {Toast} from "antd-mobile/lib/index";
+import {Toast} from "antd-mobile";
 
 class SeeMoreContent extends React.Component {
     constructor(props, context) {
