@@ -3,6 +3,7 @@ import {CSSTransition} from 'react-transition-group'
 import './style.less'
 import {Toast} from 'antd-mobile'
 import PublicHeader from '../../components/PublicHeader'
+import PatList from '../../components/PayList'
 
 class BalanceRecharge extends React.Component {
     constructor(props, context) {
@@ -68,7 +69,7 @@ class BalanceRecharge extends React.Component {
                             </div>
                         </div>
                         <div className='rechargeMethod'>
-
+                            <PatList/>
                         </div>
                     </div>
                     <div className='balance_content_bottom'>
