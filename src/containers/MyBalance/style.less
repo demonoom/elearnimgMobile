@@ -2,10 +2,34 @@
   height: 100%;
   .balance_content {
     height: 100%;
-    padding-top: .74rem;
+    padding-top: .64rem;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     background-color: white;
+    .am-tabs-tab-bar-wrap{
+      border-top: 1px #EDEFF9 solid;
+      border-bottom:1px #EDEFF9 solid;
+      .am-tabs-default-bar-tab:first-child::after{
+        display: block !important;
+        content: "";
+        height: 55%;
+        width: 1px;
+        position: absolute;
+        left: auto!important;
+        right: 0!important;
+        top:50%!important;
+        bottom:auto!important;
+        background-color: #EDEFF9!important;
+        -webkit-transform: translateY(-50%);
+        -moz-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        -o-transform: translateY(-50%);
+        transform: translateY(-50%);
+      }
+    }
+    #record_list{
+      margin-top: .1rem;
+    }
     .account {
       height: 1.13rem;
       margin: .2rem .1rem .33rem;

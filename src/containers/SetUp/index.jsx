@@ -75,7 +75,7 @@ class SetUp extends React.Component {
                     />
                     <div className='set_up_content'>
                         <SwitchExample/>
-                        <div>退出登录</div>
+                        <div className="quite">退出登录</div>
                     </div>
                 </div>
             </CSSTransition>

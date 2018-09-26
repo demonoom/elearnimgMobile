@@ -35,7 +35,7 @@ input {
 
 .text_color {
     color: #7A809B;
-    font-size: 12px;
+    font-size: .12rem;
 }
 
 .title_color {
@@ -76,7 +76,12 @@ input {
     -ms-transform: scaleY(0.5);
     transform: scaleY(0.5);
 }
-
+.am-list-body{
+    border: 0 !important;
+}
+.am-list-body::before{
+    display: none!important;
+}
 /*tab切换*/
 .am-tabs-default-bar-top .am-tabs-default-bar-tab {
     border: 0 !important;
@@ -133,6 +138,7 @@ input {
 .tabTitle {
     font-size: .13rem;
     background-color: white;
+    position: relative;
 }
 
 .tabTitle span {
@@ -160,6 +166,20 @@ input {
     height: 2PX;
     margin-left: -.075rem;
     border-radius: 1px;
+}
+
+.tabTitle .tabFilter{
+    font-size: .13rem;
+    position: absolute;
+    right: 0;
+    line-height: 1;
+    bottom: 0;
+}
+
+.tabTitle .tabFilter i{
+    padding-left: .03rem;
+    vertical-align: text-bottom;
+    font-size: .14rem;
 }
 
 /*标签*/

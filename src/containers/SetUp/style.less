@@ -5,5 +5,46 @@
     padding-top: .74rem;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+    .am-list-content{
+      color: #2A3350;
+      font-size: .14rem;
+      padding-top: .15rem;
+      padding-bottom: .15rem;
+    }
+    .am-list-item{
+      padding: 0 .15rem;
+      .am-list-line{
+        padding-right: 0;
+      }
+    }
+    .quite{
+      padding: .12rem;
+      text-align: center;
+      background-color: white;
+      color: #4285F4;
+      margin-top: .2rem;
+      font-size: .14rem
+    }
+
+  }
+  @media screen and (max-width: 720px){
+    .am-switch .checkbox{
+      width: 35px;
+      height: 20px;
+      &:after{
+        height:18px;
+        width: 18px;
+        border-radius: 18px;
+        left: -4.5px;
+        right: 0;
+      }
+      &:before{
+        height:18px;
+        width: 32px;
+        border-radius: 18px;
+        left: 1.5px;
+        right: 0;
+      }
+    }
   }
 }
