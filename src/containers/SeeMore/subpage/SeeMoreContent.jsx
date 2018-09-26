@@ -24,7 +24,7 @@ class SeeMoreContent extends React.Component {
          * @type {SeeMoreContent.loadMoreDate}
          */
         const loadMoreFn = this.loadMoreDate
-        const loadMore = document.querySelectorAll('.load_more')[0]
+        const loadMore = document.querySelectorAll('.class_list_seemore .load_more')[0]
         let timeoutId
 
         function callback() {
@@ -35,7 +35,7 @@ class SeeMoreContent extends React.Component {
             }
         }
 
-        this.refs.class_list.addEventListener('scroll', () => {
+        this.refs.class_list_seemore.addEventListener('scroll', () => {
             if (this.state.isLoadingMore) {
                 return
             }
@@ -87,7 +87,7 @@ class SeeMoreContent extends React.Component {
                     <span className={this.state.courseType === 'weiclass' ? 'active' : ''}
                           onClick={this.typeOnChange.bind(this, 'weiclass')}>微课</span>
                 </div>
-                <div className='class_list' ref='class_list'>
+                <div className='class_list class_list_seemore' ref='class_list_seemore'>
                     <ClassList
                         courseList={this.state.courseList}
                     />

@@ -28,7 +28,7 @@ class MyCourse extends React.Component {
         this.refs.MyCourse.parentNode.style.height = `${this.state.truelyHeight}px`
     }
 
-    componentDidMount() {
+    setTruelyHeight = () => {
         this.setState({truelyHeight: this.refs.MyCourse.parentNode.offsetHeight})
     }
 
@@ -48,7 +48,9 @@ class MyCourse extends React.Component {
                     <i className='iconfont icon-tubiao11'
                        onClick={this.turnToPage}></i></div>
                 <div className='myCourseList_content'>
-                    <MyCourseLists/>
+                    <MyCourseLists
+                        setTruelyHeight={this.setTruelyHeight}
+                    />
                 </div>
             </div>
         )

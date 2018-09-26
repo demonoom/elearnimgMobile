@@ -1,18 +1,16 @@
 import {post} from '../post'
 
 /**
- * 获取我收藏的课程
- * @param pageNo
+ * 获取我的收藏
  * @param userId
+ * @param pageNo
  * @returns {*}
  */
-export function listCourseByCollect(userId, pageNo) {
+export function getMyCollectCourseListV3(userId, pageNo) {
     const result = post({
-        "method": 'listCourseByCollect',
+        "method": 'getMyCollectCourseListV3',
         "pageNo": pageNo,
-        "isseries": '',
-        "coursetypeid": '',
-        "person_id": userId,
+        "userId": userId,
     })
 
     return result

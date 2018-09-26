@@ -12,11 +12,12 @@ class LoadMore extends React.Component {
     }
 
     render() {
-
         return (
             <div className="load_more" ref='loadMore'>
                 {
-                    this.props.isLoadingMore ? <span>加载中...</span> : <span onClick={this.loadMoreHandle}>加载更多</span>
+
+                    this.props.hasMoreClass ? this.props.isLoadingMore ? <span>加载中...</span> :
+                        <span onClick={this.loadMoreHandle}>加载更多</span> : <span>没有更多了</span>
                 }
             </div>
         )

@@ -1,7 +1,7 @@
 import {post} from '../post'
 
 /**
- * 获取我的课程
+ * 获取我的课程(old)
  * @param pageNo
  * @param userId
  * @returns {*}

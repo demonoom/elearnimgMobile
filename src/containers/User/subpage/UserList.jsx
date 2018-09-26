@@ -37,7 +37,6 @@ class UserList extends React.Component {
                             className='user_list_item order'
                             thumb={Icon_order}
                             arrow="horizontal"
-                            extra="5"
                             onClick={() => {
                             }}
                         >我的订单</Item>
@@ -49,7 +48,6 @@ class UserList extends React.Component {
                             onClick={() => {
                             }}
                             arrow="horizontal"
-                            extra="6"
                         >
                             我的收藏
                         </Item>

@@ -3,18 +3,22 @@ import './style.less'
 import {CSSTransition} from 'react-transition-group'
 import {Toast, Icon} from 'antd-mobile'
 import PublicHeader from '../../components/PublicHeader'
-import {listCourseByCollect} from '../../../src/fetch/my-collection/my-collection'
+import {getMyCollectCourseListV3} from '../../../src/fetch/my-collection/my-collection'
 import ClassBox from '../../components/ClassBox'
 import Filter from '../../components/Filter'
+import LoadMore from '../../components/LoadMore'
 
 class MyCollection extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
             show: false,
-            myCollectionContent: [],
             truelyHeight: '',
             filterDisplsy: false,
+            myCollectionContent: [],
+            page: 1,
+            isLoadingMore: true,
+            hasMoreClass: true,
         }
         props.cacheLifecycles.didCache(this.componentDidCache)
         props.cacheLifecycles.didRecover(this.componentDidRecover)
@@ -37,19 +41,61 @@ class MyCollection extends React.Component {
     }
 
     componentDidMount() {
+        var _this = this;
         this.setState({show: true})
+        this.getMyCollectCourseListV3('500001020', 1)
+        /**
+         * 下拉加载更多实现
+         * @type {SeeMoreContent.loadMoreDate}
+         */
+        const loadMoreFn = this.loadMoreDate
+        const loadMore = document.querySelectorAll('.collect_content .load_more')[0]
+        let timeoutId
+
+        function callback() {
+            const top = loadMore.getBoundingClientRect().top
+            const windowHeight = window.screen.height
+            if (!_this.state.hasMoreClass) {
+                return
+            }
+            if (top && top < windowHeight) {
+                loadMoreFn()
+            }
+        }
+
+        this.refs.collect_content.addEventListener('scroll', () => {
+            if (this.state.isLoadingMore) {
+                return
+            }
+            if (timeoutId) {
+                clearTimeout(timeoutId)
+            }
+            timeoutId = setTimeout(callback, 50)
+        })
+    }
+
+    getMyCollectCourseListV3(id, page) {
         /**
          * 获取我的收藏
          */
-        listCourseByCollect('500001020', '-1').then((res) => {
+        getMyCollectCourseListV3(id, page).then((res) => {
             if (res.msg === '调用成功' && res.success) {
-                this.setState({myCollectionContent: res.response})
+                this.setState({
+                    myCollectionContent: this.state.myCollectionContent.concat(res.response),
+                    page,
+                    isLoadingMore: false,
+                })
+                if (page === res.pager.pageCount) {
+                    this.setState({hasMoreClass: false})
+                }
+
             } else {
                 Toast.fail(res.msg, 2)
             }
         }).then(() => {
-            // eslint-disable-next-line
-            this.state.truelyHeight = this.refs.MyCollection.parentNode.offsetHeight
+            if (page === 1) {
+                this.setState({truelyHeight: this.refs.MyCollection.parentNode.offsetHeight})
+            }
         })
     }
 
@@ -59,6 +105,17 @@ class MyCollection extends React.Component {
      */
     iconOnClick = (word) => {
         this.setState({filterDisplsy: true})
+    }
+
+    /**
+     * 加载更多数据
+     */
+    loadMoreDate = () => {
+        this.setState({
+            isLoadingMore: true
+        }, () => {
+            this.getMyCollectCourseListV3('500001020', this.state.page + 1)
+        })
     }
 
     render() {
@@ -78,6 +135,7 @@ class MyCollection extends React.Component {
                         iconClass='header-shaixuan'
                     />
                     <div className='collect_content'
+                         ref='collect_content'
                          style={!myCollectionContent.length ? {textAlign: 'center', paddingTop: '.74rem'} : {}}>
                         {
                             myCollectionContent.length ? <ClassBox
@@ -85,6 +143,9 @@ class MyCollection extends React.Component {
                                 typeGuoLv={false}
                             /> : <Icon type='loading'/>
                         }
+                        <LoadMore ref='LoadMore' isLoadingMore={this.state.isLoadingMore}
+                                  hasMoreClass={this.state.hasMoreClass}
+                                  loadMoreFn={this.loadMoreDate.bind(this)}/>
                     </div>
                     <Filter filterDisplsy={this.state.filterDisplsy}/>
                 </div>
