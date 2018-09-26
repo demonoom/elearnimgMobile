@@ -28,8 +28,8 @@ class ListItem extends React.Component {
                             }</span>
                         })
                     }</span>
-                        {orderObj.course.money === '0.00' ? <span className='free'>免费</span> :
-                            <span className='price'>¥ {orderObj.course.money}</span>}
+                        {orderObj.course.money === '1.00' ? <span className='free'>免费</span> :
+                            <span className='price'><span>¥</span> {orderObj.course.money}</span>}
                     </div>
                 </NavLink>
             </div>

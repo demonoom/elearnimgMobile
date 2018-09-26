@@ -3,7 +3,6 @@
   background-color: rgba(0, 0, 0, 0.5);
   position: fixed;
   width: 100%;
-  padding: .15rem 0;
   color: #2A3350;
   text-align: center;
   font-size: .18rem;
@@ -13,12 +12,19 @@
   &.Bs {
     box-shadow: 0 .5px 1px rgba(210, 210, 210, .5);
   }
+  .headerCont{
+    padding: .15rem 0;
+    position: relative;
+  }
   .header-back {
     position: absolute;
     left: .1rem;
     width: .3rem;
     height: .3rem;
+    line-height: .3rem;
     text-align: left;
+    top:50%;
+    transform: translateY(-50%);
     .iconfont {
       font-size: .21rem;
       font-weight: bold;
@@ -42,7 +48,8 @@
     position: absolute;
     right: .10rem;
     font-size: .14rem;
-    bottom: .15rem;
+    top:50%;
+    transform: translateY(-50%);
   }
   .header-title {
     overflow: hidden;

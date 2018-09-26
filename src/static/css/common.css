@@ -46,6 +46,7 @@ input {
     overflow: hidden; /*超出部分隐藏*/
     white-space: nowrap; /*不换行*/
     text-overflow: ellipsis; /*超出部分文字以...显示*/
+    line-height: 1.2;
 }
 
 .my_flex {
@@ -79,7 +80,7 @@ input {
 .am-list-body{
     border: 0 !important;
 }
-.am-list-body::before{
+.am-list-body::before,.am-list-body::after{
     display: none!important;
 }
 /*tab切换*/
@@ -139,6 +140,17 @@ input {
     font-size: .13rem;
     background-color: white;
     position: relative;
+}
+
+.tabTitle.headTab{
+    font-size: .18rem;
+}
+
+.tabTitle.headTab span {
+    width: 50%;
+}
+.tabTitle.headTab span.active{
+    font-size: .18rem;
 }
 
 .tabTitle span {

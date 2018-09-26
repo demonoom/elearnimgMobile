@@ -1,11 +1,11 @@
 import React from 'react'
 import {List, Toast} from 'antd-mobile'
 import './style.less'
-import Icon_order from '../img/icon_person_order.png'
-import Icon_collect from '../img/icon_person_collect.png'
-import Icon_bind from '../img/icon_person_bind.png'
-import Icon_overMoney from '../img/icon_person_overMoney.png'
-import Icon_setting from '../img/icon_person_setting.png'
+import Icon_order from '../../../static/img/icon_person_order.png'
+import Icon_collect from '../../../static/img/icon_person_collect.png'
+import Icon_bind from '../../../static/img/icon_person_bind.png'
+import Icon_overMoney from '../../../static/img/icon_person_overMoney.png'
+import Icon_setting from '../../../static/img/icon_person_setting.png'
 import {NavLink} from "react-router-dom"
 
 const Item = List.Item;

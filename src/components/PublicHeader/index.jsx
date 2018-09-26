@@ -34,23 +34,26 @@ class DetilHeader extends React.Component {
         return (
             <div id="public_header" className={!!this.props.boxShadowFlag ? 'Bg' : 'Bg Bs'}>
                 <div className="p14"></div>
-                <span className='header-back' onClick={this.handleClick}>
+                <div className="headerCont">
+                    <span className='header-back' onClick={this.handleClick}>
                     <i className='iconfont icon-houtui'></i>
                 </span>
-                <span className={this.props.iconClass} onClick={this.iconOnClick.bind(this, this.props.iconClass)}>
+                    <span className={this.props.iconClass} onClick={this.iconOnClick.bind(this, this.props.iconClass)}>
                     {
                         this.props.iconType === '交易记录' ? <span>交易记录</span> :
                             <i className={`${this.props.iconType} iconfont`}></i>
                     }
                 </span>
-                <div className='header-title'>
-                    {
-                        this.props.title !== 'see_more' ? this.props.title : <div>
-                            <span onClick={this.courseTypeOnClick.bind(this, 'trueCourse')}>实景课堂</span><span
-                            onClick={this.courseTypeOnClick.bind(this, 'publicCourse')}>常规课</span>
-                        </div>
-                    }
+                    <div className='header-title'>
+                        {
+                            this.props.title !== 'see_more' ? this.props.title : <div className="tabTitle headTab">
+                                <span className="active" onClick={this.courseTypeOnClick.bind(this, 'trueCourse')}>实景课堂</span><span
+                                onClick={this.courseTypeOnClick.bind(this, 'publicCourse')}>常规课</span>
+                            </div>
+                        }
+                    </div>
                 </div>
+
             </div>
         )
     }
