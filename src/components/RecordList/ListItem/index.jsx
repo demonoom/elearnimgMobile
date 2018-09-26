@@ -12,15 +12,15 @@ class ListItem extends React.Component {
         const recordObj = this.props.recordObj
 
         return (
-            <div id="orderListItem">
+            <div className="orderListItem">
                 <div>
                     {
-                        recordObj.courseId == null ? <div>{recordObj.payResult === 1 ? '充值成功' : '充值失敗'}</div> :
-                            <div>{recordObj.course.courseName}</div>
+                        recordObj.courseId == null ? <div className="title_color text_hidden">{recordObj.payResult === 1 ? '充值成功' : '充值失败'}</div> :
+                            <div className="title_color text_hidden">{recordObj.course.courseName}</div>
                     }
-                    <div>{FormatTime.formatYMD(recordObj.createTime)}</div>
+                    <div className='time'>{FormatTime.formatYMD(recordObj.createTime)}</div>
                 </div>
-                <div>{recordObj.courseId == null ? `-${recordObj.payPrice}元` : `+${recordObj.price}元`}</div>
+                <div className="moneyRecording title_color">{recordObj.courseId == null ? `-${recordObj.payPrice}元` : `+${recordObj.price}元`}</div>
             </div>
         )
     }

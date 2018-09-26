@@ -35,7 +35,7 @@ input {
 
 .text_color {
     color: #7A809B;
-    font-size: 12px;
+    font-size: .12rem;
 }
 
 .title_color {
@@ -76,7 +76,12 @@ input {
     -ms-transform: scaleY(0.5);
     transform: scaleY(0.5);
 }
-
+.am-list-body{
+    border: 0 !important;
+}
+.am-list-body::before{
+    display: none!important;
+}
 /*tab切换*/
 .am-tabs-default-bar-top .am-tabs-default-bar-tab {
     border: 0 !important;

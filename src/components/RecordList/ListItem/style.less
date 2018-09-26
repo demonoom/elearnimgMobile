@@ -1,3 +1,25 @@
-#orderListItem {
-
+.orderListItem{
+  border-top: 1px #EDEFF9 solid;
+  background-color: white;
+  padding: .1rem;
+  font-size: .14rem;
+  position: relative;
+  &:first-child{
+    border-top: 0;
+  }
+  .text_hidden{
+    margin-bottom: 7px;
+    width: calc(~"100% - 80px");
+    line-height: 1.4;
+  }
+  .moneyRecording{
+    position: absolute;
+    right: 10px;
+    top:50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
 }

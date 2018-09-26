@@ -1,3 +1,67 @@
 #pay_list {
-
+  .textDec{
+    padding: .12rem;
+    text-align: center;
+    font-size: .12rem;
+    color: #7A809B;
+  }
+    .payItem{
+      background-color: white;
+      padding: .15rem .1rem;
+      font-size: .14rem;
+      color: #2A3350;
+      border-top: 1px #EDEFF9 solid;
+      &:first-child{
+        border-top: 0;
+      }
+      .title_color{
+        margin-bottom: .15rem;
+        font-size: .14rem;
+      }
+      .cont{
+        div{
+          position: relative;
+          line-height: .3rem;
+          padding-left: .39rem;
+          &:first-child{
+            background: url("../../static/img/icon_weixin.png") no-repeat left center;
+            background-size: .29rem;
+            margin-bottom: .15rem;
+          }
+          &:last-child{
+            background: url("../../static/img/icon_alipay.png") no-repeat left center;
+            background-size: .29rem;
+          }
+          &::after{
+            content: '';
+            position: absolute;
+            right: .1rem;
+            width: .2rem;
+            height: 100%;
+            background: url("../../static/img/icon_payRadio.png") no-repeat right center;
+            background-size: .2rem;
+          }
+          &.active::after{
+            content: '';
+            position: absolute;
+            right: .1rem;
+            width: .2rem;
+            height: 100%;
+            background: url("../../static/img/icon_payRadioActive.png") no-repeat right center;
+            background-size: .2rem;
+          }
+        }
+        &.paySao div{
+          &:first-child{
+            background: url("../../static/img/icon_weixinSao.png") no-repeat left center;
+            background-size: .29rem;
+            margin-bottom: .15rem;
+          }
+          &:last-child{
+            background: url("../../static/img/icon_alipaySao.png") no-repeat left center;
+            background-size: .29rem;
+          }
+        }
+      }
+    }
 }

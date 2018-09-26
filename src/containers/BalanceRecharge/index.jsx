@@ -57,15 +57,15 @@ class BalanceRecharge extends React.Component {
                         iconType=''
                         iconClass=''
                     />
-                    <div className='balance_content'>
+                    <div className='balance_content' style={{paddingBottom:'.45rem'}}>
                         <div className='rechargeAmount'>
-                            <div>
+                            <div className='title_color'>
                                 请选择充值金额
                             </div>
-                            <div>
-                                <span onClick={this.moneyBtnOnClick.bind(this, '10')} className='moneyBtn'>10元</span>
-                                <span onClick={this.moneyBtnOnClick.bind(this, '20')} className='moneyBtn'>20元</span>
-                                <span onClick={this.moneyBtnOnClick.bind(this, '50')} className='moneyBtn'>50元</span>
+                            <div className='my_flex'>
+                                <span onClick={this.moneyBtnOnClick.bind(this, '10')} className='active'>10元</span>
+                                <span onClick={this.moneyBtnOnClick.bind(this, '20')}>20元</span>
+                                <span onClick={this.moneyBtnOnClick.bind(this, '50')}>50元</span>
                             </div>
                         </div>
                         <div className='rechargeMethod'>
@@ -74,7 +74,7 @@ class BalanceRecharge extends React.Component {
                     </div>
                     <div className='balance_content_bottom'>
                         <div className='balance_content_bottom_left'>
-                            需支付:¥{this.state.moneyNum}
+                            需支付：<span className='price'><span>¥</span>{this.state.moneyNum}</span>
                         </div>
                         <div className='balance_content_bottom_right'>立即充值</div>
                     </div>
