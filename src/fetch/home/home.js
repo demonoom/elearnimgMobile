@@ -14,16 +14,29 @@ export function findAdvanceAll() {
 }
 
 /**
- * 制作list模拟数据
+ * 获取实景|常规课堂
+ * @param pageNo
+ * @param courseType
+ * @param courseSubject
+ * @param courseProperty
+ * @param courseStatus
+ * @param courseSort
+ * @param recommend
+ * @param courseGrade
  * @returns {*}
  */
-export function getElearningIndex() {
+export function getCourseListV3(pageNo, courseType, courseSubject, courseProperty, courseStatus, courseSort, recommend, courseGrade) {
     const result = post({
-        "method": 'getElearningIndex',
-        "course_class": '29',
-        "coursetypeid": '',
-        "versionCode": '',
-        "userId": '',
+        "method": 'getCourseListV3',
+        "pageNo": pageNo,
+        "courseType": courseType,
+        "courseSubject": courseSubject,
+        "courseProperty": courseProperty,
+        "courseStatus": courseStatus,
+        "courseSort": courseSort,
+        "recommend": recommend,
+        "courseGrade": courseGrade,
+        "courseOrder": 'desc',
     })
 
     return result

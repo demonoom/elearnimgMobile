@@ -9,7 +9,6 @@ class MyCourseLists extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
-            courseList: false,
             courseType: 'mostnew',
             page: 1,
             isLoadingMore: true,
@@ -102,7 +101,7 @@ class MyCourseLists extends React.Component {
                 <div className='tabTitle' style={{backgroundColor: 'white'}}>
                     <span className={this.state.courseType === 'mostnew' ? 'active' : ''}
                           onClick={this.typeOnChange.bind(this, 'mostnew')}>最新课程</span>
-                    <span className="tabFilter">筛选<i className='icon-shaixuan2 iconfont'></i></span>
+                    {/*<span className="tabFilter">筛选<i className='icon-shaixuan2 iconfont'></i></span>*/}
                 </div>
                 <div className='class_list class_list_myCourse' ref='class_list_myCourse'>
                     <ClassList

@@ -1,6 +1,5 @@
 import React from 'react'
-import {getMyPurchaseCourseList} from '../../../fetch/my-course/my-course'
-// import {getCourseByTodayV3} from '../../../fetch/home/home'
+import {getCourseByTodayV3} from '../../../fetch/home/home'
 import ClassList from '../../../components/ClassList'
 import './style.less'
 import {Toast} from 'antd-mobile'
@@ -12,24 +11,31 @@ class Living extends React.Component {
     }
 
     componentDidMount() {
-        //用我的课程模拟数据
-        getMyPurchaseCourseList(-1, '500001020').then((res) => {
-            this.setState({courseList: res.response.splice(0, 2)})
-        })
-
-        /*getCourseByTodayV3().then((res) => {
+        /**
+         * 获取今日直播
+         */
+        getCourseByTodayV3().then((res) => {
             if (res.msg === '调用成功' && res.success) {
-                console.log(res.response);
+                var length = res.response.length
+                length > 2 ? this.setState({
+                    courseList: res.response.splice(0, 2).map((v) => {
+                        return v.course
+                    })
+                }) : this.setState({
+                    courseList: res.response.map((v) => {
+                        return v.course
+                    })
+                })
             } else {
                 Toast.fail(res.msg, 2)
             }
-        })*/
+        })
     }
 
     render() {
         return (
             <div>
-                <h4 className='title_color same_title noBottom' style={{textAlign: 'center'}}>正在直播</h4>
+                <h4 className='title_color same_title noBottom' style={{textAlign: 'center'}}>今日直播</h4>
                 <ClassList
                     courseList={this.state.courseList}
                 />
