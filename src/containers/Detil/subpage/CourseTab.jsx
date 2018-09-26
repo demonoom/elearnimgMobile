@@ -1,13 +1,28 @@
 import React from 'react'
-import {Tabs, Badge, WhiteSpace} from 'antd-mobile'
+import {Tabs, Badge, WhiteSpace, Toast} from 'antd-mobile'
 import './style.less'
 import FormatTime from '../../../util/formatTime'
 import {SMALL_IMG} from '../../../util/const'
+import {queryEvaluatePageByCourseId} from '../../../fetch/detil/detil'
+import CommentList from '../../../components/CommentList'
 
 class CourseTab extends React.Component {
     constructor(props, context) {
         super(props, context);
-        this.state = {}
+        this.state = {
+            page: 1,
+            CommentArr: [],
+        }
+    }
+
+    queryEvaluatePageByCourseId = () => {
+        queryEvaluatePageByCourseId(this.props.courseObj.id, this.state.page).then((res) => {
+            if (res.msg === '调用成功' && res.success) {
+                this.setState({CommentArr: this.state.CommentArr.concat(res.response)})
+            } else {
+                Toast.fail(res.msg, 2)
+            }
+        })
     }
 
     render() {
@@ -26,6 +41,11 @@ class CourseTab extends React.Component {
                   swipeable={false}
                   animated={false}
                   useOnPan={false}
+                  onChange={(tab, index) => {
+                      if (index === 2) {
+                          this.queryEvaluatePageByCourseId()
+                      }
+                  }}
             >
                 <div className='detil-tab-item courseDetail'>
                     <WhiteSpace/>
@@ -82,6 +102,15 @@ class CourseTab extends React.Component {
                 </div>
                 <div className='detil-tab-item'>
                     <WhiteSpace/>
+                    <div>
+                        撰写评论
+                    </div>
+                    <WhiteSpace/>
+                    <div>
+                        <CommentList
+                            commentList={this.state.CommentArr}
+                        />
+                    </div>
                 </div>
             </Tabs>
         )

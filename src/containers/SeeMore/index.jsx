@@ -10,6 +10,7 @@ class SeeMore extends React.Component {
         this.state = {
             show: false,
             truelyHeight: '',
+            courseType: this.props.match.params.type,
         }
         props.cacheLifecycles.didCache(this.componentDidCache)
         props.cacheLifecycles.didRecover(this.componentDidRecover)
@@ -39,8 +40,9 @@ class SeeMore extends React.Component {
         this.props.history.push('/search');
     }
 
-    courseTypeOnClick(type) {
-        console.log(type);
+    courseTypeOnClick = (type) => {
+        this.setState({courseType: type})
+        this.refs.seeMore_content.courseTypeOnChange(type)
     }
 
     render() {
@@ -53,6 +55,7 @@ class SeeMore extends React.Component {
             >
                 <div className='see_more positionBg' ref='SeeMore'>
                     <PublicHeader
+                        courseType={this.props.match.params.type}
                         boxShadowFlag={true}
                         title='see_more'
                         ref='header'
@@ -62,7 +65,10 @@ class SeeMore extends React.Component {
                         courseTypeOnClick={this.courseTypeOnClick}
                     />
                     <div className='see_more_content'>
-                        <SeeMoreContent/>
+                        <SeeMoreContent
+                            ref='seeMore_content'
+                            courseType={this.state.courseType}
+                        />
                     </div>
                 </div>
 

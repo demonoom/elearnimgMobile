@@ -3,7 +3,7 @@ import {CSSTransition} from 'react-transition-group'
 import './style.less'
 import {Toast} from 'antd-mobile'
 import PublicHeader from '../../components/PublicHeader'
-import PatList from '../../components/PayList'
+import PayList from '../../components/PayList'
 
 class BalanceRecharge extends React.Component {
     constructor(props, context) {
@@ -12,7 +12,7 @@ class BalanceRecharge extends React.Component {
             show: false,
             truelyHeight: '',
             inputValueHtml: '其他数额',
-            moneyNum: 10,
+            moneyNum: '10',
         }
         props.cacheLifecycles.didCache(this.componentDidCache)
         props.cacheLifecycles.didRecover(this.componentDidRecover)
@@ -57,19 +57,22 @@ class BalanceRecharge extends React.Component {
                         iconType=''
                         iconClass=''
                     />
-                    <div className='balance_content' style={{paddingBottom:'.45rem'}}>
+                    <div className='balance_content' style={{paddingBottom: '.45rem'}}>
                         <div className='rechargeAmount'>
                             <div className='title_color'>
                                 请选择充值金额
                             </div>
                             <div className='my_flex'>
-                                <span onClick={this.moneyBtnOnClick.bind(this, '10')} className='active'>10元</span>
-                                <span onClick={this.moneyBtnOnClick.bind(this, '20')}>20元</span>
-                                <span onClick={this.moneyBtnOnClick.bind(this, '50')}>50元</span>
+                                <span onClick={this.moneyBtnOnClick.bind(this, '10')}
+                                      className={this.state.moneyNum === '10' ? 'active' : ''}>10元</span>
+                                <span onClick={this.moneyBtnOnClick.bind(this, '20')}
+                                      className={this.state.moneyNum === '20' ? 'active' : ''}>20元</span>
+                                <span onClick={this.moneyBtnOnClick.bind(this, '50')}
+                                      className={this.state.moneyNum === '50' ? 'active' : ''}>50元</span>
                             </div>
                         </div>
                         <div className='rechargeMethod'>
-                            <PatList/>
+                            <PayList/>
                         </div>
                     </div>
                     <div className='balance_content_bottom'>

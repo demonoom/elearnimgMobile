@@ -33,7 +33,7 @@ class App extends Component {
     }
 
     componentDidMount() {
-        this.props.userInfoActions.login({ident: '23836'})
+        this.props.userInfoActions.login({userId: '500001020'})
     }
 
     navOnClick = (word) => {
@@ -123,7 +123,7 @@ class App extends Component {
                                     } : {
                                         className: '__CacheRoute__wrapper__uncached'
                                     })}/>
-                        <CacheRoute className='content_window_all' path='/seemore' component={SeeMore}
+                        <CacheRoute className='content_window_all' path='/seemore/:type' component={SeeMore}
                                     behavior={cached => (cached ? {
                                         style: this.state.cachedStyle,
                                         className: '__CacheRoute__wrapper__cached'

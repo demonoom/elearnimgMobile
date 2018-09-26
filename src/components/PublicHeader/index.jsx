@@ -4,7 +4,9 @@ import './style.less'
 class DetilHeader extends React.Component {
     constructor(props, context) {
         super(props, context);
-        this.state = {}
+        this.state = {
+            courseType: this.props.courseType
+        }
     }
 
     /**
@@ -26,8 +28,9 @@ class DetilHeader extends React.Component {
      * 实景|常规点击
      * @param type
      */
-    courseTypeOnClick(type) {
+    courseTypeOnClick = (type) => {
         this.props.courseTypeOnClick(type)
+        this.setState({courseType: type})
     }
 
     render() {
@@ -47,8 +50,10 @@ class DetilHeader extends React.Component {
                     <div className='header-title'>
                         {
                             this.props.title !== 'see_more' ? this.props.title : <div className="tabTitle headTab">
-                                <span className="active" onClick={this.courseTypeOnClick.bind(this, 'trueCourse')}>实景课堂</span><span
-                                onClick={this.courseTypeOnClick.bind(this, 'publicCourse')}>常规课</span>
+                                <span className={this.state.courseType === 'sjkc' ? 'active' : ''}
+                                      onClick={this.courseTypeOnClick.bind(this, 'sjkc')}>实景课堂</span><span
+                                onClick={this.courseTypeOnClick.bind(this, 'cgkc')}
+                                className={this.state.courseType === 'cgkc' ? 'active' : ''}>常规课</span>
                             </div>
                         }
                     </div>

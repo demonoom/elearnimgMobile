@@ -74,7 +74,7 @@ class Classroom extends React.Component {
                             typeGuoLv={true}
                         /> : <Icon type='loading'/>
                     }
-                    <NavLink className='item_to_all' to='/seemore'>
+                    <NavLink className='item_to_all' to='/seemore/sjkc'>
                         查看全部精选公开实景课 >
                     </NavLink>
                 </div>
@@ -87,7 +87,7 @@ class Classroom extends React.Component {
                             typeGuoLv={true}
                         /> : <Icon type='loading'/>
                     }
-                    <NavLink to='/seemore' className='item_to_all'>查看全部精选公开实景课 ></NavLink>
+                    <NavLink to='/seemore/cgkc' className='item_to_all'>查看全部精选公开实景课 ></NavLink>
                 </div>
             </Tabs>
         )

@@ -14,3 +14,18 @@ export function findCourseByCourseId(courseId, userId) {
     })
     return result
 }
+
+/**
+ * 获取评价
+ * @param courseId
+ * @param pageNo
+ * @returns {*}
+ */
+export function queryEvaluatePageByCourseId(courseId, pageNo) {
+    const result = post({
+        "method": 'queryEvaluatePageByCourseId',
+        "courseId": courseId,
+        "pageNo": pageNo
+    })
+    return result
+}

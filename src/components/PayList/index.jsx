@@ -4,7 +4,13 @@ import './style.less'
 class PayList extends React.Component {
     constructor(props, context) {
         super(props, context);
-        this.state = {}
+        this.state = {
+            payMethod: 'weixin'
+        }
+    }
+
+    payMethodOnChange = (method) => {
+        this.setState({payMethod: method})
     }
 
     render() {
@@ -14,15 +20,23 @@ class PayList extends React.Component {
                 <div className='payItem'>
                     <div className='title_color'>app支付</div>
                     <div className='cont'>
-                        <div className='active'>微信支付</div>
-                        <div >支付宝支付</div>
+                        <div onClick={this.payMethodOnChange.bind(this, 'weixin')}
+                             className={this.state.payMethod === 'weixin' ? 'active' : ''}>微信支付
+                        </div>
+                        <div onClick={this.payMethodOnChange.bind(this, 'zhifubao')}
+                             className={this.state.payMethod === 'zhifubao' ? 'active' : ''}>支付宝支付
+                        </div>
                     </div>
                 </div>
                 <div className='payItem'>
                     <div className='title_color'>找人代付</div>
                     <div className='cont paySao'>
-                        <div>微信扫码支付</div>
-                        <div>支付宝扫码支付</div>
+                        <div onClick={this.payMethodOnChange.bind(this, 'weixin_scan')}
+                             className={this.state.payMethod === 'weixin_scan' ? 'active' : ''}>微信扫码支付
+                        </div>
+                        <div onClick={this.payMethodOnChange.bind(this, 'zhifubao_scan')}
+                             className={this.state.payMethod === 'zhifubao_scan' ? 'active' : ''}>支付宝扫码支付
+                        </div>
                     </div>
                 </div>
                 <div className="textDec">

@@ -1,12 +1,19 @@
 import React from 'react'
 import './style.less'
 import UserList from './subpage/UserList'
+import {findUserById} from '../../fetch/user/user'
+import {Toast} from 'antd-mobile'
+import {SMALL_IMG} from '../../util/const'
+import {bindActionCreators} from 'redux'
+import {connect} from 'react-redux'
+import * as userInfoActionFormOtherFile from '../../actions/userinfo'
 
 class User extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
             truelyHeight: '',
+            loginUser: false
         }
         props.cacheLifecycles.didCache(this.componentDidCache)
         props.cacheLifecycles.didRecover(this.componentDidRecover)
@@ -29,7 +36,15 @@ class User extends React.Component {
     }
 
     componentDidMount() {
-        this.setState({truelyHeight: this.refs.User.parentNode.offsetHeight})
+        findUserById(this.props.userInfo.userId).then((res) => {
+            if (res.msg === '调用成功' && res.success) {
+                this.setState({loginUser: res.response})
+            } else {
+                Toast.fail(res.msg, 2)
+            }
+        }).then(() => {
+            this.setState({truelyHeight: this.refs.User.parentNode.offsetHeight})
+        })
     }
 
     render() {
@@ -37,11 +52,11 @@ class User extends React.Component {
             <div className='user' ref='User'>
                 <div className='user_header'>
                     <img
-                        src='http://60.205.86.217/upload6/2018-02-09/19/805eee4a-b707-49a2-9c75-d5b14ed9227b.jpg?size=100x100'
+                        src={this.state.loginUser.avatar + SMALL_IMG}
                         alt=""/>
                     <div className='textCont'>
-                        <div className='text_hidden'>用户名</div>
-                        <div className='idNUm'>id</div>
+                        <div className='text_hidden'>{this.state.loginUser.userName}</div>
+                        {/*<div className='idNUm'>id</div>*/}
                     </div>
                 </div>
                 <UserList/>
@@ -50,4 +65,26 @@ class User extends React.Component {
     }
 }
 
-export default User
+/**
+ * 展示信息(从state获取)
+ * @returns {{}}
+ */
+function mapStateToProps(state) {
+    return {
+        userInfo: state.userinfo
+    }
+}
+
+/**
+ * 设置到state
+ * @param dispatch
+ * @returns {{userInfoActions: (ActionCreator<A> | ActionCreator<any> | ActionCreatorsMapObject<A> | ActionCreatorsMapObject<any>)}}
+ */
+function mapDispatchToProps(dispatch) {
+    return {
+        userInfoActions: bindActionCreators(userInfoActionFormOtherFile, dispatch)
+    }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(User)
