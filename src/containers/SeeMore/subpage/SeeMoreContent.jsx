@@ -86,6 +86,7 @@ class SeeMoreContent extends React.Component {
                           onClick={this.typeOnChange.bind(this, 'mostnew')}>最新课程</span>
                     <span className={this.state.courseType === 'weiclass' ? 'active' : ''}
                           onClick={this.typeOnChange.bind(this, 'weiclass')}>微课</span>
+                    <span className="tabFilter">筛选<i className='icon-shaixuan2 iconfont'></i></span>
                 </div>
                 <div className='class_list' ref='class_list'>
                     <ClassList

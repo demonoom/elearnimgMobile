@@ -138,6 +138,7 @@ input {
 .tabTitle {
     font-size: .13rem;
     background-color: white;
+    position: relative;
 }
 
 .tabTitle span {
@@ -165,6 +166,20 @@ input {
     height: 2PX;
     margin-left: -.075rem;
     border-radius: 1px;
+}
+
+.tabTitle .tabFilter{
+    font-size: .13rem;
+    position: absolute;
+    right: 0;
+    line-height: 1;
+    bottom: 0;
+}
+
+.tabTitle .tabFilter i{
+    padding-left: .03rem;
+    vertical-align: text-bottom;
+    font-size: .14rem;
 }
 
 /*标签*/
