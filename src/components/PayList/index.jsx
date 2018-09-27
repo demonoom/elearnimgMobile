@@ -41,7 +41,7 @@ class PayList extends React.Component {
                 </div>
                 <div className='payItem' style={{display: !this.props.rechargeFlag ? '' : 'none'}}>
                     <div className='title_color'>其他支付</div>
-                    <div className='cont paySao'>
+                    <div className='cont elsePay'>
                         <div onClick={this.payMethodOnChange.bind(this, 'balance')}
                              className={this.state.payMethod === 'balance' ? 'active' : ''}>余额支付
                         </div>
