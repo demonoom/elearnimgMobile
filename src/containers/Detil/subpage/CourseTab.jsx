@@ -146,7 +146,7 @@ class CourseTab extends React.Component {
             >
                 <div className='detil-tab-item courseDetail'>
                     <WhiteSpace/>
-                    <div className='topCont text_color'>
+                    <div className='topCont text_color whiteBg'>
                         <div>好评率：98% <span>{courseObj.evaluatesCount}人评论</span></div>
                         <div>授课时间：{FormatTime.formatYMD(courseObj.courseTime)}</div>
                         <div>课时：{courseObj.videoNum}课时</div>
@@ -173,11 +173,10 @@ class CourseTab extends React.Component {
                             {courseObj.content || ''}
                         </div>
                     </div>
-                    <WhiteSpace/>
                 </div>
                 <div className='detil-tab-item courseList'>
                     <WhiteSpace/>
-                    <div>
+                    <div className='whiteBg'>
                         {
                             courseObj.videos.map((v, i) => {
                                 return <div className='my_flex line_public' key={i}>
@@ -199,11 +198,10 @@ class CourseTab extends React.Component {
                             })
                         }
                     </div>
-                    <WhiteSpace/>
                 </div>
                 <div className='detil-tab-item' id='detil-tab-item3'>
                     <WhiteSpace/>
-                    <div className="core">
+                    <div className="core whiteBg">
                         <div className="star">
                             <span className="title_color">8.2</span>
                             <i className="iconfont icon-shiwujiaoxing"></i>
@@ -217,7 +215,6 @@ class CourseTab extends React.Component {
                             1123人评价
                         </div>
                     </div>
-                    <WhiteSpace/>
                     <div id='comment_tab'>
                         <CommentList
                             commentList={this.state.CommentArr}
