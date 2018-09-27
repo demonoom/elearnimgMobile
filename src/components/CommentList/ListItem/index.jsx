@@ -15,12 +15,17 @@ class ListItem extends React.Component {
 
         return (
             <div id='comment_list_item'>
-                <div>
+                <div className="my_flex item line_public">
                     <img src={itemObj.user.avatar + SMALL_IMG} alt=""/>
-                    <span>{itemObj.user.userName}</span>
-                    <span>{FormatTime.formatAllTime(itemObj.createTime)}</span>
+                    <div className="rightCont">
+                        <div className="userName">
+                            <span className="text_hidden title_color">{itemObj.user.userName}</span>
+                            <span className="time">{FormatTime.formatAllTime(itemObj.createTime)}</span>
+                        </div>
+                        <div className="content">{itemObj.content}</div>
+                    </div>
                 </div>
-                <div>{itemObj.content}</div>
+
             </div>
         )
     }

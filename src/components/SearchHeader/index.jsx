@@ -29,7 +29,7 @@ class SearchHeader extends React.Component {
 
     render() {
         return (
-            <div className='search_header'>
+            <div className='search_header line_public lineB'>
                 <i className='iconfont icon-houtui searchr-back' onClick={this.handleClick}></i>
                 <span className='search_btn' onClick={this.searchCoruse}>搜索</span>
                 <input

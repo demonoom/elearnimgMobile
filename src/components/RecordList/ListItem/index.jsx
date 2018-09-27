@@ -12,7 +12,7 @@ class ListItem extends React.Component {
         const recordObj = this.props.recordObj
 
         return (
-            <div className="orderListItem">
+            <div className="orderListItem line_public">
                 <div>
                     {
                         recordObj.courseId == null ? <div className="title_color text_hidden">{recordObj.payResult === 1 ? '充值成功' : '充值失败'}</div> :

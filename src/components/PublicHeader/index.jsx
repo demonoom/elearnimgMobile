@@ -35,7 +35,7 @@ class DetilHeader extends React.Component {
 
     render() {
         return (
-            <div id="public_header" className={!!this.props.boxShadowFlag ? 'Bg' : 'Bg Bs'}>
+            <div id="public_header" className={!!this.props.boxShadowFlag ? 'Bg' : 'Bg line_public lineB'}>
                 <div className="p14"></div>
                 <div className="headerCont">
                     <span className='header-back' onClick={this.handleClick}>

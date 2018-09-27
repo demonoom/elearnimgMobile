@@ -102,8 +102,19 @@ class CourseTab extends React.Component {
                 </div>
                 <div className='detil-tab-item'>
                     <WhiteSpace/>
-                    <div>
-                        撰写评论
+                    <div className="core">
+                        <div className="star">
+                            <span className="title_color">8.2</span>
+                            <i className="iconfont icon-shiwujiaoxing"></i>
+                            <i className="iconfont icon-shiwujiaoxing"></i>
+                            <i className="iconfont icon-shiwujiaoxing"></i>
+                            <i className="iconfont icon-shiwujiaoxing"></i>
+                            <i className="iconfont icon-kongwujiaoxing"></i>
+                            <div className='editorBtn'>撰写评论</div>
+                        </div>
+                        <div className="num">
+                            1123人评价
+                        </div>
                     </div>
                     <WhiteSpace/>
                     <div>
