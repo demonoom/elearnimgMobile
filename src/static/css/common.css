@@ -48,7 +48,14 @@ input {
     text-overflow: ellipsis; /*超出部分文字以...显示*/
     line-height: 1.2;
 }
-
+.text_hidden2{
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    /* autoprefixer: off */
+    -webkit-box-orient: vertical;
+    /* autoprefixer: on */
+}
 .my_flex {
     display: -webkit-flex; /* Safari */
     display: flex;
@@ -119,6 +126,9 @@ input {
     margin-left: -7.5px;
     border-radius: 1px;
 }
+.index_tab{
+    padding-top: .1rem;
+}
 
 .index_tab .am-tabs-default-bar-tab {
     height: .36rem !important;
@@ -176,7 +186,7 @@ input {
     bottom: 0;
     left: 50%;
     width: .15rem;
-    height: 2PX;
+    height: .02rem;
     margin-left: -.075rem;
     border-radius: 1px;
 }
@@ -197,7 +207,7 @@ input {
 
 /*标签*/
 .tag {
-    padding: .02rem .05rem 0;
+    padding: .01rem .05rem 0;
     border: 1px #2C80FF solid;
     color: #2C80FF;
     font-size: .1rem;

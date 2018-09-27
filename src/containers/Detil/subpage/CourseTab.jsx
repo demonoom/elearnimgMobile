@@ -122,7 +122,7 @@ class CourseTab extends React.Component {
                                     <img src={v.avatar + SMALL_IMG} alt=""/>
                                     <div className='right'>
                                         <div className='userName title_color text_hidden'>{v.userName}</div>
-                                        <div className='text text_color'>{v.userContent}</div>
+                                        <div className='text text_color text_hidden2'>{v.userContent}</div>
                                     </div>
                                 </div>
                             })
@@ -139,24 +139,26 @@ class CourseTab extends React.Component {
                 </div>
                 <div className='detil-tab-item courseList'>
                     <WhiteSpace/>
-                    {
-                        courseObj.videos.map((v, i) => {
-                            return <div className='my_flex line_public' key={i}>
-                                <div className='num text_color'>{FormatTime.formatNum(i + 1)}</div>
-                                <div className='textCont'>
-                                    <div className='title_color'>{v.name}</div>
-                                    <div className='text_color'>
-                                        授课时间：{FormatTime.formatAllTime(v.liveTime)}
-                                        {/*<span className='status text_color'>未开课</span>*/}
-                                        {/*<span className='status icon_record'></span>*/}
-                                        {/*<span className='status icon_live'></span>*/}
-                                        <span className='status icon_playBack'></span>
+                    <div>
+                        {
+                            courseObj.videos.map((v, i) => {
+                                return <div className='my_flex line_public' key={i}>
+                                    <div className='num text_color'>{FormatTime.formatNum(i + 1)}</div>
+                                    <div className='textCont'>
+                                        <div className='title_color'>{v.name}</div>
+                                        <div className='text_color'>
+                                            授课时间：{FormatTime.formatAllTime(v.liveTime)}
+                                            {/*<span className='status text_color'>未开课</span>*/}
+                                            {/*<span className='status icon_record'></span>*/}
+                                            {/*<span className='status icon_live'></span>*/}
+                                            <span className='status icon_playBack'></span>
 
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        })
-                    }
+                            })
+                        }
+                    </div>
                     <WhiteSpace/>
                 </div>
                 <div className='detil-tab-item' id='detil-tab-item3'>
