@@ -5,6 +5,9 @@ import {Toast} from 'antd-mobile'
 import PublicHeader from '../../components/PublicHeader'
 import PayList from '../../components/PayList'
 import {getCourseByCourseId} from '../../fetch/place-order/place-order'
+import {SimpleWebsocketConnection} from '../../util/simple_websocket_connection'
+
+let simpleMS = null
 
 class PlaceOrder extends React.Component {
     constructor(props, context) {
@@ -12,6 +15,7 @@ class PlaceOrder extends React.Component {
         this.state = {
             show: false,
             courseObj: false,
+            payMethod: 'wxpayjs',
         }
         props.cacheLifecycles.didCache(this.componentDidCache)
         props.cacheLifecycles.didRecover(this.componentDidRecover)
@@ -33,8 +37,14 @@ class PlaceOrder extends React.Component {
         this.refs.PlaceOrder.parentNode.style.height = `${this.state.truelyHeight}px`
     }
 
+    componentWillMount() {
+        simpleMS = new SimpleWebsocketConnection();
+        simpleMS.connect();
+    }
+
     componentDidMount() {
         this.setState({show: true})
+        this.simpleListener()
         this.setState({truelyHeight: this.refs.PlaceOrder.parentNode.offsetHeight})
         getCourseByCourseId(this.props.match.params.id).then((res) => {
             if (res.msg === '调用成功' && res.success) {
@@ -45,9 +55,27 @@ class PlaceOrder extends React.Component {
         })
     }
 
+    /**
+     * 消息监听
+     */
+    simpleListener() {
+        simpleMS.msgWsListener = {
+            onError: function (errorMsg) {
+
+            }, onWarn: function (warnMsg) {
+
+            }, onMessage: function (info) {
+                console.log(info);
+            }
+        };
+    }
+
+    payTypeOnChange = (type) => {
+        this.setState({payMethod: type})
+    }
+
     render() {
         const courseObj = this.state.courseObj
-        console.log(courseObj);
         return (
             <CSSTransition
                 in={this.state.show}
@@ -77,7 +105,7 @@ class PlaceOrder extends React.Component {
                         <div>
                             支付方式
                         </div>
-                        <PayList rechargeFlag={false}/>
+                        <PayList rechargeFlag={false} payTypeOnChange={this.payTypeOnChange}/>
                         <div>
                             <span>需支付:¥149</span>
                             <span>{this.props.match.params.type === '1' ? '确认报名' : '确认支付'}</span>

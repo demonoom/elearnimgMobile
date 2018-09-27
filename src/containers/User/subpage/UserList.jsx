@@ -1,5 +1,5 @@
 import React from 'react'
-import {List, Toast} from 'antd-mobile'
+import {List} from 'antd-mobile'
 import './style.less'
 import Icon_order from '../../../static/img/icon_person_order.png'
 import Icon_collect from '../../../static/img/icon_person_collect.png'
@@ -17,15 +17,7 @@ class UserList extends React.Component {
     }
 
     goLoginPage() {
-        var data = {
-            method: 'goLoginPage',
-        };
 
-        window.Bridge.callHandler(data, function (res) {
-            Toast.info(JSON.parse(res).colUid, 10)
-        }, function (error) {
-            Toast.info(error, 4)
-        });
     }
 
     render() {

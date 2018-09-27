@@ -5,12 +5,13 @@ class PayList extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
-            payMethod: 'weixin'
+            payMethod: 'wxpayjs'
         }
     }
 
     payMethodOnChange = (method) => {
         this.setState({payMethod: method})
+        this.props.payTypeOnChange(method)
     }
 
     render() {
@@ -20,22 +21,22 @@ class PayList extends React.Component {
                 <div className='payItem'>
                     <div className='title_color'>app支付</div>
                     <div className='cont'>
-                        <div onClick={this.payMethodOnChange.bind(this, 'weixin')}
-                             className={this.state.payMethod === 'weixin' ? 'active' : ''}>微信支付
+                        <div onClick={this.payMethodOnChange.bind(this, 'wxpayjs')}
+                             className={this.state.payMethod === 'wxpayjs' ? 'active' : ''}>微信支付
                         </div>
-                        <div onClick={this.payMethodOnChange.bind(this, 'zhifubao')}
-                             className={this.state.payMethod === 'zhifubao' ? 'active' : ''}>支付宝支付
+                        <div onClick={this.payMethodOnChange.bind(this, 'alipayjs')}
+                             className={this.state.payMethod === 'alipayjs' ? 'active' : ''}>支付宝支付
                         </div>
                     </div>
                 </div>
                 <div className='payItem'>
                     <div className='title_color'>找人代付</div>
                     <div className='cont paySao'>
-                        <div onClick={this.payMethodOnChange.bind(this, 'weixin_scan')}
-                             className={this.state.payMethod === 'weixin_scan' ? 'active' : ''}>微信扫码支付
+                        <div onClick={this.payMethodOnChange.bind(this, 'wxpayqr')}
+                             className={this.state.payMethod === 'wxpayqr' ? 'active' : ''}>微信扫码支付
                         </div>
-                        <div onClick={this.payMethodOnChange.bind(this, 'zhifubao_scan')}
-                             className={this.state.payMethod === 'zhifubao_scan' ? 'active' : ''}>支付宝扫码支付
+                        <div onClick={this.payMethodOnChange.bind(this, 'alipayqr')}
+                             className={this.state.payMethod === 'alipayqr' ? 'active' : ''}>支付宝扫码支付
                         </div>
                     </div>
                 </div>

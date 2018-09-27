@@ -41,6 +41,10 @@ class BalanceRecharge extends React.Component {
         this.setState({moneyNum: num})
     }
 
+    payTypeOnChange(type) {
+        console.log(type);
+    }
+
     render() {
         return (
             <CSSTransition
@@ -71,7 +75,7 @@ class BalanceRecharge extends React.Component {
                             </div>
                         </div>
                         <div className='rechargeMethod'>
-                            <PayList rechargeFlag={true}/>
+                            <PayList rechargeFlag={true} payTypeOnChange={this.payTypeOnChange}/>
                         </div>
                     </div>
                     <div className='balance_content_bottom'>
