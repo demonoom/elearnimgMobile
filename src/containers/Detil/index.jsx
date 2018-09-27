@@ -41,11 +41,16 @@ class Detil extends React.Component {
         } else {
             this.setState({show: true})
         }
-        const userId = localStorage.getItem("userId") || ''
+
+        this.findCourseByCourseId()
+
+    }
+
+    findCourseByCourseId() {
         /**
          * 获取课程详情
          */
-        findCourseByCourseId(this.props.match.params.id, userId).then((res) => {
+        findCourseByCourseId(this.props.match.params.id, localStorage.getItem("userId") || '').then((res) => {
             if (res.msg === '调用成功' && res.success) {
                 this.setState({courseObj: res.response})
             } else {
@@ -58,23 +63,69 @@ class Detil extends React.Component {
     }
 
     courseOnClick = () => {
+        var _this = this;
+
+        if (localStorage.getItem("userId") == null) {
+            var data = {
+                method: 'goLoginPage',
+            };
+
+            window.Bridge.callHandler(data, function (res) {
+                localStorage.setItem("userId", JSON.parse(res).colUid)
+                _this.findCourseByCourseId()
+            }, function (error) {
+                Toast.info(error, 4)
+            });
+            return
+        }
 
         if (!this.state.courseObj.buyed) {
             Toast.info('您还没有购买!')
             return
         }
 
-        var data = {
+        var datas = {
             method: 'openElearningClass',
             vid: this.state.courseObj.videos[0].virtual_classId,
             videoName: this.state.courseObj.videos[0].name,
             videoStatus: this.state.courseObj.videos[0].videoStatus,
-            antUid: this.state.courseObj.users[0].antUid
+            antUid: this.state.courseObj.videos[0].user.antUid
         };
 
-        window.Bridge.callHandler(data, null, function (error) {
+        window.Bridge.callHandler(datas, null, function (error) {
             Toast.info(error, 4)
         });
+    }
+
+    loginSuccess = () => {
+        this.findCourseByCourseId()
+    }
+
+    /**
+     * 买课
+     */
+    buyCourse = () => {
+        var _this = this;
+
+        if (localStorage.getItem("userId") == null) {
+            var data = {
+                method: 'goLoginPage',
+            };
+
+            window.Bridge.callHandler(data, function (res) {
+                localStorage.setItem("userId", JSON.parse(res).colUid)
+                _this.findCourseByCourseId()
+            }, function (error) {
+                Toast.info(error, 4)
+            });
+            return
+        }
+
+        const type = this.state.courseObj.money === '0.00' ? 1 : 2
+
+        this.props.history.push(`/placeorder/${type}/${this.state.courseObj.id}`)
+
+
     }
 
     render() {
@@ -104,7 +155,8 @@ class Detil extends React.Component {
                         <div className='detil-tab'>
                             {
                                 this.state.courseObj ?
-                                    <CourseTab courseObj={this.state.courseObj}/> : <Icon type='loading'/>
+                                    <CourseTab courseObj={this.state.courseObj}
+                                               loginSuccess={this.loginSuccess}/> : <Icon type='loading'/>
                             }
                         </div>
                     </div>
@@ -117,8 +169,8 @@ class Detil extends React.Component {
                             <span
                                 className='personBuy text_color'>{this.state.courseObj ? this.state.courseObj.buyUids.length : 0}人购买</span>
                         </div>
-                        <div
-                            className='detil_content_bottom_right'>{this.state.courseObj.money === '0.00' ? '立即报名' : '立即购买'}</div>
+                        <div onClick={this.buyCourse}
+                             className='detil_content_bottom_right'>{this.state.courseObj.money === '0.00' ? '立即报名' : '立即购买'}</div>
                     </div>
                 </div>
             </CSSTransition>

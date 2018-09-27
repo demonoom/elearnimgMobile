@@ -71,7 +71,7 @@ class BalanceRecharge extends React.Component {
                             </div>
                         </div>
                         <div className='rechargeMethod'>
-                            <PayList/>
+                            <PayList rechargeFlag={true}/>
                         </div>
                     </div>
                     <div className='balance_content_bottom'>
