@@ -22,7 +22,7 @@ class MyCourseLists extends React.Component {
         /**
          * 获取我的课程
          */
-        this.getMyPurchaseCourseList(1, '500001129')
+        this.getMyPurchaseCourseList(1, localStorage.getItem("userId"))
 
         /**
          * 下拉加载更多实现
@@ -80,7 +80,7 @@ class MyCourseLists extends React.Component {
 
     typeOnChange = (courseType) => {
         this.setState({courseType}, () => {
-            this.getMyPurchaseCourseList(1, '500001129')
+            this.getMyPurchaseCourseList(1, localStorage.getItem("userId"))
         })
     }
 
@@ -91,7 +91,7 @@ class MyCourseLists extends React.Component {
         this.setState({
             isLoadingMore: true
         }, () => {
-            this.getMyPurchaseCourseList(this.state.page + 1, '500001020')
+            this.getMyPurchaseCourseList(this.state.page + 1, localStorage.getItem("userId"))
         })
     }
 

@@ -22,7 +22,7 @@ class UserList extends React.Component {
         };
 
         window.Bridge.callHandler(data, function (res) {
-            Toast.info(res, 4)
+            Toast.info(JSON.parse(res).colUid, 10)
         }, function (error) {
             Toast.info(error, 4)
         });

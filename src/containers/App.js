@@ -17,6 +17,7 @@ import TransactionHistory from '../containers/TransactionHistory'
 import BalanceRecharge from '../containers/BalanceRecharge'
 import SetUp from '../containers/SetUp'
 import SeeMore from '../containers/SeeMore'
+import {Toast} from 'antd-mobile'
 
 class App extends Component {
 
@@ -33,18 +34,36 @@ class App extends Component {
     }
 
     componentDidMount() {
+        //模拟登录
         this.props.userInfoActions.login({userId: '500001020'})
+        localStorage.setItem("userId", "500001020")
     }
 
     navOnClick = (word) => {
+        var _this = this;
+        if (localStorage.getItem("userId") == null) {
+            var data = {
+                method: 'goLoginPage',
+            };
+
+            window.Bridge.callHandler(data, function (res) {
+                localStorage.setItem("userId", JSON.parse(res).colUid)
+                _this.refs.switch.context.router.history.push(word)
+                _this.setState({navWord: word})
+            }, function (error) {
+                Toast.info(error, 4)
+            });
+            return
+        }
         this.setState({navWord: word})
+        this.refs.switch.context.router.history.push(word)
     }
 
     render() {
         return (
             <Router>
                 <div>
-                    <CacheSwitch>
+                    <CacheSwitch ref='switch'>
                         <CacheRoute className='content_window' path='/home' component={Home}
                                     behavior={cached => (cached ? {
                                         style: this.state.cachedStyle,
@@ -148,18 +167,19 @@ class App extends Component {
                         </div>
                         <div
                             className={this.state.navWord === '/mycourse' ? 'tab-item tab_myCurriculum active' : 'tab-item tab_myCurriculum'}>
-                            <NavLink className='nav-link' to='/mycourse'
-                                     onClick={this.navOnClick.bind(this, '/mycourse')}>
+                            {/*<NavLink className='nav-link' to='/mycourse'*/}
+                            <div className='nav-link'
+                                 onClick={this.navOnClick.bind(this, '/mycourse')}>
                                 <i></i>
                                 <span>我的课表</span>
-                            </NavLink>
+                            </div>
                         </div>
                         <div
                             className={this.state.navWord === '/user' ? 'tab-item tab_person active' : 'tab-item tab_person'}>
-                            <NavLink className='nav-link' to='/user' onClick={this.navOnClick.bind(this, '/user')}>
+                            <div className='nav-link' onClick={this.navOnClick.bind(this, '/user')}>
                                 <i></i>
                                 <span>个人中心</span>
-                            </NavLink>
+                            </div>
                         </div>
                     </div>
                 </div>

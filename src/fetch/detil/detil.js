@@ -8,7 +8,7 @@ import {post} from '../post'
  */
 export function findCourseByCourseId(courseId, userId) {
     const result = post({
-        "method": 'findCourseByCourseId',
+        "method": 'getCourseByCourseId',
         "id": courseId,
         "publisher_id": userId
     })

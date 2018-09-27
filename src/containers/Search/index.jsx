@@ -43,7 +43,7 @@ class Search extends React.Component {
      * @param value
      */
     listCourseByKeyWords = (value) => {
-        listCourseByKeyWords('500001020', '-1', value).then((res) => {
+        listCourseByKeyWords(localStorage.getItem("userId"), '-1', value).then((res) => {
             if (res.msg === '调用成功' && res.success) {
                 this.setState({searchResponse: res.response})
             } else {

@@ -5,6 +5,9 @@ import FormatTime from '../../../util/formatTime'
 import {SMALL_IMG} from '../../../util/const'
 import {queryEvaluatePageByCourseId} from '../../../fetch/detil/detil'
 import CommentList from '../../../components/CommentList'
+import LoadMore from '../../../components/LoadMore'
+
+var loadMore;
 
 class CourseTab extends React.Component {
     constructor(props, context) {
@@ -12,16 +15,72 @@ class CourseTab extends React.Component {
         this.state = {
             page: 1,
             CommentArr: [],
+            isLoadingMore: true,
+            hasMoreClass: true,
         }
+    }
+
+    componentDidMount() {
+        var _this = this;
+        /**
+         * 下拉加载更多实现
+         * @type {SeeMoreContent.loadMoreDate}
+         */
+        const loadMoreFn = this.loadMoreDate
+        let timeoutId
+
+        function callback() {
+            const top = loadMore.getBoundingClientRect().top
+            const windowHeight = window.screen.height
+            if (!_this.state.hasMoreClass) {
+                return
+            }
+            if (top && top < windowHeight) {
+                console.log(1);
+                loadMoreFn()
+            }
+        }
+
+        document.querySelector('.detil_content').addEventListener('scroll', () => {
+            if (this.state.isLoadingMore) {
+                return
+            }
+            if (timeoutId) {
+                clearTimeout(timeoutId)
+            }
+            timeoutId = setTimeout(callback, 50)
+        })
     }
 
     queryEvaluatePageByCourseId = () => {
         queryEvaluatePageByCourseId(this.props.courseObj.id, this.state.page).then((res) => {
             if (res.msg === '调用成功' && res.success) {
-                this.setState({CommentArr: this.state.CommentArr.concat(res.response)})
+                if (this.state.page === res.pager.pageCount) {
+                    this.setState({hasMoreClass: false})
+                }
+                this.setState({
+                    CommentArr: this.state.CommentArr.concat(res.response),
+                    page: this.state.page + 1,
+                    isLoadingMore: false,
+                }, () => {
+                    if (this.state.page === 2) {
+                        loadMore = document.querySelectorAll('#comment_tab .load_more')[0]
+                    }
+                })
             } else {
                 Toast.fail(res.msg, 2)
             }
+        })
+    }
+
+    /**
+     * 加载更多数据
+     */
+    loadMoreDate = () => {
+        this.setState({
+            isLoadingMore: true
+        }, () => {
+            this.queryEvaluatePageByCourseId()
         })
     }
 
@@ -50,7 +109,7 @@ class CourseTab extends React.Component {
                 <div className='detil-tab-item courseDetail'>
                     <WhiteSpace/>
                     <div className='topCont text_color'>
-                        <div>好评率：98% <span>{courseObj.evaluates.length}人评论</span></div>
+                        <div>好评率：98% <span>{courseObj.evaluatesCount}人评论</span></div>
                         <div>授课时间：{FormatTime.formatYMD(courseObj.courseTime)}</div>
                         <div>课时：{courseObj.videoNum}课时</div>
                     </div>
@@ -100,7 +159,7 @@ class CourseTab extends React.Component {
                     }
                     <WhiteSpace/>
                 </div>
-                <div className='detil-tab-item'>
+                <div className='detil-tab-item' id='detil-tab-item3'>
                     <WhiteSpace/>
                     <div className="core">
                         <div className="star">
@@ -117,10 +176,13 @@ class CourseTab extends React.Component {
                         </div>
                     </div>
                     <WhiteSpace/>
-                    <div>
+                    <div id='comment_tab'>
                         <CommentList
                             commentList={this.state.CommentArr}
                         />
+                        <LoadMore ref='LoadMore' isLoadingMore={this.state.isLoadingMore}
+                                  hasMoreClass={this.state.hasMoreClass}
+                                  loadMoreFn={this.loadMoreDate.bind(this)}/>
                     </div>
                 </div>
             </Tabs>

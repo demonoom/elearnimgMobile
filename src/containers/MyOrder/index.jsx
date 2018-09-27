@@ -41,7 +41,7 @@ class MyOrder extends React.Component {
     componentDidMount() {
         var _this = this;
         this.setState({show: true})
-        this.queryPageByOrderV3('500001020', 1)
+        this.queryPageByOrderV3(localStorage.getItem("userId"), 1)
 
         /**
          * 下拉加载更多实现
@@ -101,7 +101,7 @@ class MyOrder extends React.Component {
         this.setState({
             isLoadingMore: true
         }, () => {
-            this.queryPageByOrderV3('500001020', this.state.page + 1)
+            this.queryPageByOrderV3(localStorage.getItem("userId"), this.state.page + 1)
         })
     }
 

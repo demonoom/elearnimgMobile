@@ -73,7 +73,7 @@ class RecordTabs extends React.Component {
     }
 
     queryRecord() {
-        this.state.recordType === 0 ? queryPageByRecharge('500001020', this.state.page).then((res) => {
+        this.state.recordType === 0 ? queryPageByRecharge(localStorage.getItem("userId"), this.state.page).then((res) => {
             if (res.msg === '调用成功' && res.success) {
                 if (this.state.page === res.pager.pageCount) {
                     this.setState({hasMoreClass: false})
@@ -87,7 +87,7 @@ class RecordTabs extends React.Component {
                 Toast.fail(res.msg, 2)
             }
 
-        }) : queryPageByOrder('500001020', -1).then((res) => {
+        }) : queryPageByOrder(localStorage.getItem("userId"), -1).then((res) => {
             if (res.msg === '调用成功' && res.success) {
                 // if (this.state.page === res.pager.pageCount) {
                 //     this.setState({hasMoreClass: false})

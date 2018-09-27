@@ -4,6 +4,7 @@ import {CSSTransition} from 'react-transition-group'
 import PublicHeader from '../../components/PublicHeader'
 import {List, Switch} from 'antd-mobile';
 import {createForm} from 'rc-form';
+import {Toast} from 'antd-mobile'
 
 class SetUp extends React.Component {
     constructor(props, context) {
@@ -34,6 +35,17 @@ class SetUp extends React.Component {
 
     componentDidMount() {
         this.setState({show: true, truelyHeight: this.refs.SetUp.parentNode.offsetHeight})
+    }
+
+    /**
+     * 退出
+     */
+    quitOnClick() {
+        localStorage.removeItem("userId");
+        Toast.success('退出成功', 2)
+        setTimeout(function () {
+            window.location.pathname = '/home'
+        }, 2000)
     }
 
     render() {
@@ -75,7 +87,7 @@ class SetUp extends React.Component {
                     />
                     <div className='set_up_content'>
                         <SwitchExample/>
-                        <div className="quite">退出登录</div>
+                        <div className="quite" onClick={this.quitOnClick}>退出登录</div>
                     </div>
                 </div>
             </CSSTransition>

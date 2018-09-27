@@ -1,7 +1,6 @@
 import React from 'react'
 import {CSSTransition} from 'react-transition-group'
 import './style.less'
-import {Toast} from 'antd-mobile'
 import PublicHeader from '../../components/PublicHeader'
 import PayList from '../../components/PayList'
 

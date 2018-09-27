@@ -12,6 +12,10 @@ class MyCourse extends React.Component {
         props.cacheLifecycles.didRecover(this.componentDidRecover)
     }
 
+    componentDidMount() {
+
+    }
+
     /**
      * List cached被缓存
      */

@@ -36,7 +36,7 @@ class User extends React.Component {
     }
 
     componentDidMount() {
-        findUserById(this.props.userInfo.userId).then((res) => {
+        findUserById(localStorage.getItem("userId")).then((res) => {
             if (res.msg === '调用成功' && res.success) {
                 this.setState({loginUser: res.response})
             } else {
