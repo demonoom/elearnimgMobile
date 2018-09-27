@@ -36,7 +36,6 @@ class CourseTab extends React.Component {
                 return
             }
             if (top && top < windowHeight) {
-                console.log(1);
                 loadMoreFn()
             }
         }
@@ -82,6 +81,45 @@ class CourseTab extends React.Component {
         }, () => {
             this.queryEvaluatePageByCourseId()
         })
+    }
+
+    /**
+     * 开课
+     * @param obj
+     */
+    courseOnPlay = (obj) => {
+
+        var _this = this;
+
+        if (localStorage.getItem("userId") == null) {
+            var data = {
+                method: 'goLoginPage',
+            };
+
+            window.Bridge.callHandler(data, function (res) {
+                localStorage.setItem("userId", JSON.parse(res).colUid)
+                _this.props.loginSuccess()
+            }, function (error) {
+                Toast.info(error, 4)
+            });
+            return
+        }
+        if (!this.props.courseObj.buyed) {
+            Toast.info('您还没有购买!', 2)
+            return
+        }
+
+        var datas = {
+            method: 'openElearningClass',
+            vid: obj.virtual_classId,
+            videoName: obj.name,
+            videoStatus: obj.videoStatus,
+            antUid: obj.user.antUid
+        };
+
+        window.Bridge.callHandler(datas, null, function (error) {
+            Toast.info(error, 4)
+        });
     }
 
     render() {
@@ -147,10 +185,12 @@ class CourseTab extends React.Component {
                                         <div className='title_color'>{v.name}</div>
                                         <div className='text_color'>
                                             授课时间：{FormatTime.formatAllTime(v.liveTime)}
-                                            {/*<span className='status text_color'>未开课</span>*/}
-                                            {/*<span className='status icon_record'></span>*/}
-                                            {/*<span className='status icon_live'></span>*/}
-                                            <span className='status icon_playBack'></span>
+                                            {
+                                                v.videoStatus === '1' ? <span className='status text_color'>未开课</span> :
+                                                    <span
+                                                        className={v.videoStatus === '2' ? 'status icon_live' : 'status icon_playBack'}
+                                                        onClick={this.courseOnPlay.bind(this, v)}></span>
+                                            }
 
                                         </div>
                                     </div>

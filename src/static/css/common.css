@@ -48,7 +48,8 @@ input {
     text-overflow: ellipsis; /*超出部分文字以...显示*/
     line-height: 1.2;
 }
-.text_hidden2{
+
+.text_hidden2 {
     display: -webkit-box;
     -webkit-line-clamp: 2;
     overflow: hidden;
@@ -56,6 +57,7 @@ input {
     -webkit-box-orient: vertical;
     /* autoprefixer: on */
 }
+
 .my_flex {
     display: -webkit-flex; /* Safari */
     display: flex;
@@ -82,15 +84,19 @@ input {
     -ms-transform: scaleY(0.5);
     transform: scaleY(0.5);
 }
-.line_public.lineB::after{
+
+.line_public.lineB::after {
     bottom: -1px;
 }
-.am-list-body{
+
+.am-list-body {
     border: 0 !important;
 }
-.am-list-body::before,.am-list-body::after{
-    display: none!important;
+
+.am-list-body::before, .am-list-body::after {
+    display: none !important;
 }
+
 /*tab切换*/
 .am-tabs-default-bar-top .am-tabs-default-bar-tab {
     border: 0 !important;
@@ -126,7 +132,8 @@ input {
     margin-left: -7.5px;
     border-radius: 1px;
 }
-.index_tab{
+
+.index_tab {
     padding-top: .1rem;
 }
 
@@ -153,14 +160,15 @@ input {
     position: relative;
 }
 
-.tabTitle.headTab{
+.tabTitle.headTab {
     font-size: .18rem;
 }
 
 .tabTitle.headTab span {
     width: 50%;
 }
-.tabTitle.headTab span.active{
+
+.tabTitle.headTab span.active {
     font-size: .18rem;
 }
 
@@ -191,7 +199,7 @@ input {
     border-radius: 1px;
 }
 
-.tabTitle .tabFilter{
+.tabTitle .tabFilter {
     font-size: .13rem;
     position: absolute;
     right: 0;
@@ -199,7 +207,7 @@ input {
     bottom: 0;
 }
 
-.tabTitle .tabFilter i{
+.tabTitle .tabFilter i {
     padding-left: .03rem;
     vertical-align: text-bottom;
     font-size: .14rem;
