@@ -216,7 +216,7 @@ input {
     bottom: 0;
 }
 
-.tabTitle .tabFilter i {
+.tabFilter i {
     padding-left: .03rem;
     vertical-align: text-bottom;
     font-size: .14rem;
@@ -224,10 +224,11 @@ input {
 
 /*标签*/
 .tag {
-    padding: .02rem .05rem 0;
+    padding: .02rem .05rem .01rem;
     border: 1px #2C80FF solid;
     color: #2C80FF;
     font-size: .1rem;
+    line-height: 1;
     vertical-align: middle;
     display: inline-block;
 }
@@ -250,10 +251,10 @@ input {
 .grayTag_deep {
     background-color: #D9DFE4;
     font-size: .12rem;
-    padding: .05rem .1rem;
+    padding: .08rem .1rem .06rem;
     margin: .05rem;
     display: inline-block;
-    line-height: 1.4;
+    line-height: 1;
 }
 
 .grayTag {
