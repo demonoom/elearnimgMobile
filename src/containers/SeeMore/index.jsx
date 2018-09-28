@@ -3,6 +3,9 @@ import './style.less'
 import {CSSTransition} from 'react-transition-group'
 import PublicHeader from '../../components/PublicHeader'
 import SeeMoreContent from './subpage/SeeMoreContent'
+import Filter from '../../components/Filter'
+import {getCourseSearchParamsV3} from '../../fetch/filter/filter'
+import {Toast} from 'antd-mobile'
 
 class SeeMore extends React.Component {
     constructor(props, context) {
@@ -11,6 +14,8 @@ class SeeMore extends React.Component {
             show: false,
             truelyHeight: '',
             courseType: this.props.match.params.type,
+            filterDisplsy: false,
+            searchParams: false
         }
         props.cacheLifecycles.didCache(this.componentDidCache)
         props.cacheLifecycles.didRecover(this.componentDidRecover)
@@ -45,8 +50,55 @@ class SeeMore extends React.Component {
         this.refs.seeMore_content.courseTypeOnChange(type)
     }
 
-    render() {
+    filterOpen = () => {
+        getCourseSearchParamsV3().then((res) => {
+            if (res.msg === '调用成功' && res.success) {
+                this.buildParamsArr(res.response)
+            } else {
+                Toast.fail(res.msg, 2)
+            }
+        })
+    }
 
+    /**
+     * 构建筛选数据
+     * @param data
+     */
+    buildParamsArr(data) {
+        var params = {
+            courseStatus: [],
+            courseSubject: [],
+            courseType: [],
+            courseGrade: [],
+        }
+        if (this.state.courseType === 'sjkc') {
+            for (var k in data) {
+                if (data[k].type === 'courseStatus') {
+                    params.courseStatus.push(data[k])
+                }
+                if (data[k].type === 'courseType' && data[k].value === 'sjkc') {
+                    params.courseSubject = data[k].courseTypes
+                }
+            }
+        } else {
+            for (var j in data) {
+                if (data[j].type === 'courseStatus') {
+                    params.courseStatus.push(data[j])
+                }
+                if (data[j].type === 'courseType' && data[j].value === "cgkc") {
+                    params.courseSubject = data[j].courseTypes
+                    params.courseGrade = data[j].courseGrade
+                }
+            }
+        }
+        this.setState({searchParams: params, filterDisplsy: true})
+    }
+
+    shadeOnClick = () => {
+        this.setState({filterDisplsy: false})
+    }
+
+    render() {
         return (
             <CSSTransition
                 in={this.state.show}
@@ -68,8 +120,11 @@ class SeeMore extends React.Component {
                         <SeeMoreContent
                             ref='seeMore_content'
                             courseType={this.state.courseType}
+                            filterOpen={this.filterOpen}
                         />
                     </div>
+                    <Filter data={this.state.searchParams} filterDisplsy={this.state.filterDisplsy}
+                            shadeOnClick={this.shadeOnClick}/>
                 </div>
 
             </CSSTransition>

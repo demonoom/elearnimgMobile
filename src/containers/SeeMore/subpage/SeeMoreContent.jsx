@@ -11,7 +11,9 @@ class SeeMoreContent extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
-            courseProperty: 'hot',
+            coursePropertyOnClick: 'hot',
+            courseProperty: 'all',
+            courseSort: 'hot',
             courseType: this.props.courseType,
             hasMoreClass: true,
             courseList: [],
@@ -55,7 +57,7 @@ class SeeMoreContent extends React.Component {
     }
 
     getCourseListV3(flag) {
-        getCourseListV3(this.state.page, this.state.courseType, -1, this.state.courseProperty, -1, -1, -1, -1).then((res) => {
+        getCourseListV3(this.state.page, this.state.courseType, -1, this.state.courseProperty, 'all', this.state.courseSort, 0, -1).then((res) => {
 
             if (res.msg === '调用成功' && res.success) {
                 if (this.state.page === res.pager.pageCount) {
@@ -84,8 +86,25 @@ class SeeMoreContent extends React.Component {
         })
     }
 
-    typeOnChange = (courseProperty) => {
-        this.setState({courseProperty, page: 1, hasMoreClass: true}, () => {
+    typeOnChange = (type) => {
+
+        type === 'little' ? this.setState({
+            courseSort: -1,
+            courseProperty: type,
+            coursePropertyOnClick: type,
+            page: 1,
+            hasMoreClass: true
+        }, () => {
+            this.getCourseListV3(true)
+            loadMoreFlag = true
+            this.refs.class_list_seemore.scrollTop = 0
+        }) : this.setState({
+            courseSort: type,
+            courseProperty: 'all',
+            coursePropertyOnClick: type,
+            page: 1,
+            hasMoreClass: true
+        }, () => {
             this.getCourseListV3(true)
             loadMoreFlag = true
             this.refs.class_list_seemore.scrollTop = 0
@@ -103,17 +122,21 @@ class SeeMoreContent extends React.Component {
         })
     }
 
+    filterOpen = () => {
+        this.props.filterOpen()
+    }
+
     render() {
         return (
             <div className='my_course_list'>
                 <div className='tabTitle_index noPadding' style={{backgroundColor: 'white'}}>
-                    <span className={this.state.courseProperty === 'hot' ? 'active' : ''}
+                    <span className={this.state.coursePropertyOnClick === 'hot' ? 'active' : ''}
                           onClick={this.typeOnChange.bind(this, 'hot')}>热门课程</span>
-                    <span className={this.state.courseProperty === 'mostnew' ? 'active' : ''}
+                    <span className={this.state.coursePropertyOnClick === 'mostnew' ? 'active' : ''}
                           onClick={this.typeOnChange.bind(this, 'mostnew')}>最新课程</span>
-                    <span className={this.state.courseProperty === 'little' ? 'active' : ''}
+                    <span className={this.state.coursePropertyOnClick === 'little' ? 'active' : ''}
                           onClick={this.typeOnChange.bind(this, 'little')}>微课</span>
-                    <span className="tabFilter">筛选<i className='icon-shaixuan2 iconfont'></i></span>
+                    <span onClick={this.filterOpen} className="tabFilter">筛选<i className='icon-shaixuan2 iconfont'></i></span>
                 </div>
                 <div className='class_list class_list_seemore' ref='class_list_seemore'>
                     <ClassList

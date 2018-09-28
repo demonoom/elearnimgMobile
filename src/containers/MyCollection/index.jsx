@@ -5,7 +5,6 @@ import {Toast, Icon} from 'antd-mobile'
 import PublicHeader from '../../components/PublicHeader'
 import {getMyCollectCourseListV3} from '../../../src/fetch/my-collection/my-collection'
 import ClassBox from '../../components/ClassBox'
-import Filter from '../../components/Filter'
 import LoadMore from '../../components/LoadMore'
 
 class MyCollection extends React.Component {
@@ -100,14 +99,6 @@ class MyCollection extends React.Component {
     }
 
     /**
-     * 右侧Icon被点击
-     * @param word
-     */
-    iconOnClick = (word) => {
-        this.setState({filterDisplsy: true})
-    }
-
-    /**
      * 加载更多数据
      */
     loadMoreDate = () => {
@@ -131,8 +122,8 @@ class MyCollection extends React.Component {
                         title='我的收藏'
                         ref='header'
                         iconOnClick={this.iconOnClick}
-                        iconType='icon-shaixuan2'
-                        iconClass='header-shaixuan'
+                        iconType=''
+                        iconClass=''
                     />
                     <div className='collect_content'
                          ref='collect_content'
@@ -147,7 +138,6 @@ class MyCollection extends React.Component {
                                   hasMoreClass={this.state.hasMoreClass}
                                   loadMoreFn={this.loadMoreDate.bind(this)}/>
                     </div>
-                    <Filter filterDisplsy={this.state.filterDisplsy}/>
                 </div>
             </CSSTransition>
         )

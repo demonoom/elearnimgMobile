@@ -39,9 +39,9 @@ class Classroom extends React.Component {
 
     changeCoruseType = (type) => {
 
-        type === 'hot' ? this.setState({courseSort: type, courseProperty: 'all'}, () => {
+        type === 'little' ? this.setState({courseSort: -1, courseProperty: type}, () => {
             this.getCourseListV3()
-        }) : this.setState({courseSort: -1, courseProperty: type}, () => {
+        }) : this.setState({courseSort: type, courseProperty: 'all'}, () => {
             this.getCourseListV3()
         })
     }
