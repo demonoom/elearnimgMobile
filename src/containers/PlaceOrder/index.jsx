@@ -91,24 +91,38 @@ class PlaceOrder extends React.Component {
                         iconClass=''
                     />
                     <div className='place_order_content'>
-                        <div>
-                            <div>订单信息</div>
-                            <div>订单名称:
-                                <span>{courseObj.courseName}</span>
-                                <span>{courseObj.publisher}</span>
-                                <span>{courseObj.courseClass}</span>
+                        <div className="orderMsg">
+                            <div className="line_public">
+                                <div className="title">订单信息</div>
+                                <div className="my_flex font14">
+                                    <div>订单名称：</div>
+                                    <div className="rightCont">
+                                        <div className="text_hidden">{courseObj.courseName}</div>
+                                        <div className='font12'>
+                                            <span>{courseObj.publisher}</span>
+                                            <span>{courseObj.courseClass}</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+                            <div className="orderMoney">
+                                订单金额：<span className="price"><span>¥ </span>{courseObj.money}</span>
+                            </div>
+
                         </div>
-                        <div>
-                            订单金额:¥{courseObj.money}
+                        <div className="payWay whiteBg">
+                            <div className="payTitle">
+                                支付方式
+                            </div>
+                            <PayList rechargeFlag={false} payTypeOnChange={this.payTypeOnChange}/>
                         </div>
-                        <div>
-                            支付方式
-                        </div>
-                        <PayList rechargeFlag={false} payTypeOnChange={this.payTypeOnChange}/>
-                        <div>
-                            <span>需支付:¥149</span>
-                            <span>{this.props.match.params.type === '1' ? '确认报名' : '确认支付'}</span>
+
+                        <div className='balance_content_bottom'>
+                            <div className='balance_content_bottom_left'>
+                                需支付：<span className='price'><span>¥</span>149</span>
+                            </div>
+                            <div
+                                className='balance_content_bottom_right'>{this.props.match.params.type === '1' ? '确认报名' : '确认支付'}</div>
                         </div>
                     </div>
                 </div>

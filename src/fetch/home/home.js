@@ -38,7 +38,6 @@ export function getCourseListV3(pageNo, courseType, courseSubject, coursePropert
         "courseGrade": courseGrade,
         "courseOrder": 'desc',
     })
-
     return result
 }
 
