@@ -3,7 +3,7 @@ import {List} from 'antd-mobile'
 import './style.less'
 import Icon_order from '../../../static/img/icon_person_order.png'
 import Icon_collect from '../../../static/img/icon_person_collect.png'
-import Icon_bind from '../../../static/img/icon_person_bind.png'
+// import Icon_bind from '../../../static/img/icon_person_bind.png'
 import Icon_overMoney from '../../../static/img/icon_person_overMoney.png'
 import Icon_setting from '../../../static/img/icon_person_setting.png'
 import {NavLink} from "react-router-dom"
@@ -44,17 +44,17 @@ class UserList extends React.Component {
                             我的收藏
                         </Item>
                     </NavLink>
-                    <Item
-                        className='user_list_item bind'
-                        thumb={Icon_bind}
-                        onClick={() => {
-                            this.goLoginPage()
-                        }}
-                        arrow="horizontal"
-                        extra="请绑定"
-                    >
-                        绑定手机号
-                    </Item>
+                    {/*<Item*/}
+                        {/*className='user_list_item bind'*/}
+                        {/*thumb={Icon_bind}*/}
+                        {/*onClick={() => {*/}
+                            {/*this.goLoginPage()*/}
+                        {/*}}*/}
+                        {/*arrow="horizontal"*/}
+                        {/*extra="请绑定"*/}
+                    {/*>*/}
+                        {/*绑定手机号*/}
+                    {/*</Item>*/}
                     <NavLink to='/mybalance'>
                         <Item
                             className='user_list_item overMoney'
@@ -62,7 +62,6 @@ class UserList extends React.Component {
                             onClick={() => {
                             }}
                             arrow="horizontal"
-                            extra="0.00币"
                         >
                             我的余额
                         </Item>

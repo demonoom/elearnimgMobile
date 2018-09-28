@@ -4,10 +4,11 @@ import {CSSTransition} from 'react-transition-group'
 import {Toast} from 'antd-mobile'
 import PublicHeader from '../../components/PublicHeader'
 import PayList from '../../components/PayList'
-import {getCourseByCourseId} from '../../fetch/place-order/place-order'
+import {getCourseByCourseId, createCourseOrder, yueBuyCourseV3} from '../../fetch/place-order/place-order'
 import {SimpleWebsocketConnection} from '../../util/simple_websocket_connection'
 
 let simpleMS = null
+let orderNoNoom = null
 
 class PlaceOrder extends React.Component {
     constructor(props, context) {
@@ -65,13 +66,53 @@ class PlaceOrder extends React.Component {
             }, onWarn: function (warnMsg) {
 
             }, onMessage: function (info) {
-                console.log(info);
+                if (info.data.command === "elearning_course_buy_complete") {
+                    var orderNo = info.data.order_no;
+                    if (orderNo === orderNoNoom) {
+                        Toast.success('支付成功', 2)
+                    }
+                }
             }
         };
     }
 
     payTypeOnChange = (type) => {
         this.setState({payMethod: type})
+    }
+
+    pay = () => {
+
+        if (this.state.payMethod === 'balance') {
+            /**
+             * 余额支付
+             */
+            yueBuyCourseV3(localStorage.getItem("userId"), 1).then((res) => {
+                console.log(res);
+            })
+            return
+        }
+
+        createCourseOrder(localStorage.getItem("userId"), this.state.payMethod, this.state.courseObj.id, 0.00).then((res) => {
+
+            if (res.msg === '调用成功' && res.success) {
+                if (!!res.response.payUrl) {
+                    // 客户端支付
+                    orderNoNoom = res.response.orderNo
+                    document.querySelectorAll('#pay_Iframe')[0].src = res.response.payUrl
+                } else if (!!res.response.ewm) {
+                    //扫码支付
+                    console.log(res.response);
+                } else {
+                    // 免费
+                    Toast.success('报名成功', 1)
+                    setTimeout(function () {
+                        window.history.back()
+                    }, 1000)
+                }
+            } else {
+                Toast.fail(res.msg, 2)
+            }
+        })
     }
 
     render() {
@@ -122,9 +163,11 @@ class PlaceOrder extends React.Component {
                                 需支付：<span className='price'><span>¥</span>149</span>
                             </div>
                             <div
+                                onClick={this.pay}
                                 className='balance_content_bottom_right'>{this.props.match.params.type === '1' ? '确认报名' : '确认支付'}</div>
                         </div>
                     </div>
+                    <iframe title='pay' id="pay_Iframe" src="" frameBorder="0" style={{display: 'none'}}></iframe>
                 </div>
             </CSSTransition>
         )

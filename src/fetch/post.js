@@ -16,7 +16,10 @@ export function post(paramsObj) {
         method: 'POST',
         headers: {
             'Accept': 'application/json, text/plain, */*',
-            'Content-Type': 'application/x-www-form-urlencoded'
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'accessUser': '',
+            'machineType': 'web',
+            'version': '1.0'
         },
         body: obj2params(paramsObj)
     }).then(res => {
@@ -25,3 +28,4 @@ export function post(paramsObj) {
 
     return result;
 }
+

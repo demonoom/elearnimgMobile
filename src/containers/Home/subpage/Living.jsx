@@ -7,7 +7,9 @@ import {Toast} from 'antd-mobile'
 class Living extends React.Component {
     constructor(props, context) {
         super(props, context);
-        this.state = {}
+        this.state = {
+            livingLength: 0,
+        }
     }
 
     componentDidMount() {
@@ -26,6 +28,7 @@ class Living extends React.Component {
                         return v.course
                     })
                 })
+                this.setState({livingLength: length})
             } else {
                 Toast.fail(res.msg, 2)
             }
@@ -33,8 +36,9 @@ class Living extends React.Component {
     }
 
     render() {
+
         return (
-            <div>
+            <div style={{display: this.state.livingLength === 0 ? 'none' : ''}}>
                 <h4 className='title_color same_title noBottom' style={{textAlign: 'center'}}>今日直播</h4>
                 <ClassList
                     courseList={this.state.courseList}

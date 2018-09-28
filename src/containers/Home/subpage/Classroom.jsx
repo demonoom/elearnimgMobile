@@ -10,8 +10,9 @@ class Classroom extends React.Component {
         super(props, context);
         this.state = {
             classroomContent: [],    //课堂数据
-            courseProperty: 'hot',
-            courseType: 'sjkc'
+            courseProperty: 'all',
+            courseSort: 'hot',
+            courseType: 'sjkc',
         }
     }
 
@@ -20,7 +21,9 @@ class Classroom extends React.Component {
     }
 
     getCourseListV3() {
-        getCourseListV3(1, this.state.courseType, -1, this.state.courseProperty, -1, -1, -1, -1).then((res) => {
+        // "courseProperty":"all","courseSort":"hot"}
+        // , courseProperty, courseSort,
+        getCourseListV3(1, this.state.courseType, -1, this.state.courseProperty, 'all', this.state.courseSort, 0, -1).then((res) => {
 
             if (res.msg === '调用成功' && res.success) {
                 res.response.length > 4 ? this.setState({
@@ -35,7 +38,10 @@ class Classroom extends React.Component {
     }
 
     changeCoruseType = (type) => {
-        this.setState({courseProperty: type}, () => {
+
+        type === 'hot' ? this.setState({courseSort: type, courseProperty: 'all'}, () => {
+            this.getCourseListV3()
+        }) : this.setState({courseSort: -1, courseProperty: type}, () => {
             this.getCourseListV3()
         })
     }
@@ -58,9 +64,16 @@ class Classroom extends React.Component {
                       this.refs.classBoxSj.defaultCourseType()
                       this.refs.classBoxCg.defaultCourseType()
                       this.setState({courseProperty: 'hot'})
-                      index === 1 ? this.setState({courseType: 'cgkc'}, () => {
+                      index === 1 ? this.setState({
+                          courseType: 'cgkc',
+                          courseProperty: 'all',
+                          courseSort: 'hot'
+                      }, () => {
                           this.getCourseListV3()
-                      }) : this.setState({courseType: 'sjkc'}, () => {
+                      }) : this.setState({
+                          courseType: 'sjkc', courseProperty: 'all',
+                          courseSort: 'hot'
+                      }, () => {
                           this.getCourseListV3()
                       })
                   }}

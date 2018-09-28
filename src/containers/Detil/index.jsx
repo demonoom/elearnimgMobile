@@ -33,6 +33,7 @@ class Detil extends React.Component {
      */
     componentDidRecover = () => {
         this.refs.detil.parentNode.style.height = `${this.state.truelyHeight}px`
+        this.findCourseByCourseId()
     }
 
     componentDidMount() {

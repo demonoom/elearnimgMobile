@@ -131,7 +131,7 @@ class CourseTab extends React.Component {
         ];
 
         const courseObj = this.props.courseObj
-
+        
         return (
             <Tabs tabs={tabs}
                   initialPage={0}
@@ -147,7 +147,7 @@ class CourseTab extends React.Component {
                 <div className='detil-tab-item courseDetail'>
                     <WhiteSpace/>
                     <div className='topCont text_color whiteBg'>
-                        <div>好评率：98% <span>{courseObj.evaluatesCount}人评论</span></div>
+                        <div>{courseObj.buyUids.length}人学习 <span>{courseObj.evaluatesCount}人评论</span></div>
                         <div>授课时间：{FormatTime.formatYMD(courseObj.courseTime)}</div>
                         <div>课时：{courseObj.videoNum}课时</div>
                     </div>
@@ -203,16 +203,20 @@ class CourseTab extends React.Component {
                     <WhiteSpace/>
                     <div className="core whiteBg">
                         <div className="star">
-                            <span className="title_color">8.2</span>
-                            <i className="iconfont icon-shiwujiaoxing"></i>
-                            <i className="iconfont icon-shiwujiaoxing"></i>
-                            <i className="iconfont icon-shiwujiaoxing"></i>
-                            <i className="iconfont icon-shiwujiaoxing"></i>
-                            <i className="iconfont icon-kongwujiaoxing"></i>
+                            <span className="title_color">{courseObj.evaluateAvgNum}</span>
+                            {
+                                [1, 2, 3, 4, 5].map((v, i) => {
+                                    if (courseObj.evaluateAvgNum > i) {
+                                        return <i key={i} className='iconfont icon-shiwujiaoxing'></i>
+                                    } else {
+                                        return <i key={i} className='iconfont icon-kongwujiaoxing'></i>
+                                    }
+                                })
+                            }
                             <div className='editorBtn'>撰写评论</div>
                         </div>
                         <div className="num">
-                            1123人评价
+                            {courseObj.evaluatesCount}人评价
                         </div>
                     </div>
                     <div id='comment_tab'>
