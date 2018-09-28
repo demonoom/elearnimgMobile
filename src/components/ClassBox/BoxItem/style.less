@@ -43,8 +43,16 @@
       font-size: .11rem;
       color: #9E9E9E;
       padding-bottom: .04rem;
+      overflow: hidden;
+      span{
+        float: left;
+      }
       .courseNum{
         float: right;
+        white-space:nowrap;
+        i{
+          font-size: 0;
+        }
       }
     }
     .textBottom{
@@ -65,7 +73,11 @@
       }
       .price{
         color: #444E6F;
-        font-size: .13rem;
+        font-size: .14rem;
+        span{
+          font-size: .1rem;
+          padding-right: .01rem;
+        }
       }
       .text_color{
         font-size: .13rem;

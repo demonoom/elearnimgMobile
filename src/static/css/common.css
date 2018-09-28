@@ -71,6 +71,20 @@ input {
     display: flex;
 }
 
+.flex_column{
+    display: -webkit-flex; /* Safari */
+    display: flex;
+    -ms-flex-flow: column;
+    flex-flow: column;
+    -moz-justify-content: space-between;
+    -ms-justify-content: space-between;
+    -o-justify-content: space-between;
+    -khtml-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+
+}
+
 .line_public {
     position: relative;
 }
@@ -136,7 +150,7 @@ input {
     bottom: 1px;
     left: 50%;
     width: .15rem;
-    height: 2PX;
+    height:  2px;
     margin-left: -7.5px;
     border-radius: 1px;
 }
@@ -200,10 +214,10 @@ input {
     z-index: 1;
     top: auto;
     right: auto;
-    bottom: 0;
+    bottom: 1px;
     left: 50%;
     width: .15rem;
-    height: .02rem;
+    height: 2px;
     margin-left: -.075rem;
     border-radius: 1px;
 }
@@ -357,7 +371,7 @@ input {
 
 /*需要定位的页面,为遮住底部栏*/
 .positionBg {
-    position: fixed;
+    position: absolute;
     left: 0;
     top: 0;
     width: 100%;

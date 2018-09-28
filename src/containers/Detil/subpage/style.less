@@ -10,11 +10,30 @@
       }
         .topCont{
           padding: .12rem .11rem;
-          font-size: .14rem;
+          font-size: .13rem;
           &>div{
-            padding-bottom: .10rem;
+            padding-bottom: .12rem;
+            line-height: 1;
             span{
-              padding-left: .2rem;
+              padding-right: .2rem;
+            }
+            .studyNum{
+              position: relative;
+              margin-right: .2rem;
+              &::after{
+                content: "";
+                height: 80%;
+                width: 1px;
+                position: absolute;
+                left: auto;
+                right: 0;
+                top: 50%;
+                bottom: auto;
+                background-color: #7A809B;
+                -webkit-transform: translateY(-50%);
+                -ms-transform: translateY(-50%);
+                transform: translateY(-50%);
+              }
             }
             &:last-child{
               padding-bottom: 0;
