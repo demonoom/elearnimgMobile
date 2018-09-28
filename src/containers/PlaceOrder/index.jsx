@@ -159,12 +159,12 @@ class PlaceOrder extends React.Component {
                         </div>
 
                         <div className='balance_content_bottom'>
-                            <div className='balance_content_bottom_left'>
-                                需支付：<span className='price'><span>¥</span>149</span>
+                            <div className='balance_content_bottom_left'
+                                 style={{display: courseObj.money === '0.00' ? "none" : 'block'}}>
+                                需支付：<span className='price'><span>¥</span>{courseObj.money}</span>
                             </div>
-                            <div
-                                onClick={this.pay}
-                                className='balance_content_bottom_right'>{this.props.match.params.type === '1' ? '确认报名' : '确认支付'}</div>
+                            <div onClick={this.pay} className='balance_content_bottom_right'
+                                 style={{width: courseObj.money === '0.00' ? "100%" : ''}}>{this.props.match.params.type === '1' ? '确认报名' : '确认支付'}</div>
                         </div>
                     </div>
                     <iframe title='pay' id="pay_Iframe" src="" frameBorder="0" style={{display: 'none'}}></iframe>

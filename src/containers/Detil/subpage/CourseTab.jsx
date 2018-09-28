@@ -122,6 +122,35 @@ class CourseTab extends React.Component {
         });
     }
 
+    /**
+     * 去评论
+     */
+    goToComment = () => {
+        var _this = this;
+
+        if (localStorage.getItem("userId") == null) {
+            var data = {
+                method: 'goLoginPage',
+            };
+
+            window.Bridge.callHandler(data, function (res) {
+                localStorage.setItem("userId", JSON.parse(res).colUid)
+                _this.props.loginSuccess()
+            }, function (error) {
+                Toast.info(error, 4)
+            });
+            return
+        }
+        if (!this.props.courseObj.buyed) {
+            Toast.info('您还没有购买!', 2)
+            return
+        }
+
+
+
+
+    }
+
     render() {
 
         const tabs = [
@@ -131,7 +160,7 @@ class CourseTab extends React.Component {
         ];
 
         const courseObj = this.props.courseObj
-        
+
         return (
             <Tabs tabs={tabs}
                   initialPage={0}
@@ -213,7 +242,7 @@ class CourseTab extends React.Component {
                                     }
                                 })
                             }
-                            <div className='editorBtn'>撰写评论</div>
+                            <div className='editorBtn' onClick={this.goToComment}>撰写评论</div>
                         </div>
                         <div className="num">
                             {courseObj.evaluatesCount}人评价

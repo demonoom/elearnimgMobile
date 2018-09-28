@@ -29,3 +29,33 @@ export function queryEvaluatePageByCourseId(courseId, pageNo) {
     })
     return result
 }
+
+/**
+ * 收藏
+ * @param person_id
+ * @param course_id
+ * @returns {*}
+ */
+export function addCollection(person_id, course_id) {
+    const result = post({
+        "method": 'addCollection',
+        "person_id": person_id,
+        "course_id": course_id
+    })
+    return result
+}
+
+/**
+ * 取消收藏
+ * @param person_id
+ * @param course_id
+ * @returns {*}
+ */
+export function updateCollection(person_id, course_id) {
+    const result = post({
+        "method": 'updateCollection',
+        "person_id": person_id,
+        "course_id": course_id
+    })
+    return result
+}

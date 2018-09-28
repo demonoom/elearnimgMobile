@@ -4,7 +4,7 @@ import {CSSTransition} from 'react-transition-group'
 import {Toast, Icon} from 'antd-mobile'
 import DetilHeader from '../../components/DetilHeader'
 import CourseTab from './subpage/CourseTab'
-import {findCourseByCourseId} from '../../../src/fetch/detil/detil'
+import {findCourseByCourseId, addCollection, updateCollection} from '../../../src/fetch/detil/detil'
 import {LARGE_IMG} from '../../util/const'
 
 class Detil extends React.Component {
@@ -14,6 +14,7 @@ class Detil extends React.Component {
             show: false,
             courseObj: false,     //课程对象
             truelyHeight: '',
+            collectionStar: false,
         }
         props.cacheLifecycles.didCache(this.componentDidCache)
         props.cacheLifecycles.didRecover(this.componentDidRecover)
@@ -53,7 +54,7 @@ class Detil extends React.Component {
          */
         findCourseByCourseId(this.props.match.params.id, localStorage.getItem("userId") || '').then((res) => {
             if (res.msg === '调用成功' && res.success) {
-                this.setState({courseObj: res.response})
+                this.setState({courseObj: res.response, collectionStar: res.response.collect})
             } else {
                 Toast.fail(res.msg, 2)
             }
@@ -129,6 +130,28 @@ class Detil extends React.Component {
 
     }
 
+    collectionOnClick = () => {
+
+        var collectionStar = this.state.collectionStar
+        if (collectionStar) {
+            updateCollection(localStorage.getItem("userId"), this.props.match.params.id).then((res) => {
+                if (res.msg === '调用成功' && res.success) {
+                    this.setState({collectionStar: false})
+                } else {
+                    Toast.fail(res.msg, 2)
+                }
+            })
+        } else {
+            addCollection(localStorage.getItem("userId"), this.props.match.params.id).then((res) => {
+                if (res.msg === '调用成功' && res.success) {
+                    this.setState({collectionStar: true})
+                } else {
+                    Toast.fail(res.msg, 2)
+                }
+            })
+        }
+    }
+
     render() {
 
         if (!!this.state.courseObj) {
@@ -144,7 +167,9 @@ class Detil extends React.Component {
                 <div id='detil' ref='detil'>
                     <DetilHeader
                         title={this.state.courseObj.courseName}
+                        collectionStar={this.state.collectionStar}
                         ref='header'
+                        collectionOnClick={this.collectionOnClick}
                     />
                     <div className='detil_content' style={{height: this.state.courseObj.buyed ? '100%' : ''}}>
                         <div className="imgDiv">

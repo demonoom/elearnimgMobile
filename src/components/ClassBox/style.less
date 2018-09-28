@@ -1,12 +1,21 @@
 .tabTitle_index{
   padding: .15rem .1rem .2rem;
+  position: relative;
   span{
     font-size: .12rem;
     padding-right: .15rem;
+    display: inline-block;
     &.active{
       color: #2A3350;
       font-size: .13rem;
       font-weight: bold;
+    }
+  }
+  &.noPadding{
+    padding: .05rem .1rem .06rem;
+    .tabFilter{
+      padding-right: 0.1rem;
+      bottom: .06rem;
     }
   }
 }

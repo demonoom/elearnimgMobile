@@ -106,7 +106,7 @@ class SeeMoreContent extends React.Component {
     render() {
         return (
             <div className='my_course_list'>
-                <div className='tabTitle' style={{backgroundColor: 'white'}}>
+                <div className='tabTitle_index noPadding' style={{backgroundColor: 'white'}}>
                     <span className={this.state.courseProperty === 'hot' ? 'active' : ''}
                           onClick={this.typeOnChange.bind(this, 'hot')}>热门课程</span>
                     <span className={this.state.courseProperty === 'mostnew' ? 'active' : ''}
