@@ -178,6 +178,7 @@ input {
 
 .tabTitle.headTab span.active {
     font-size: .18rem;
+    padding-bottom: .05rem;
 }
 
 .tabTitle span {
@@ -207,7 +208,7 @@ input {
     border-radius: 1px;
 }
 
-.tabTitle .tabFilter {
+.tabFilter {
     font-size: .13rem;
     position: absolute;
     right: 0;
