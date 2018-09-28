@@ -37,14 +37,14 @@ class BoxItem extends React.Component {
                         <div className='tagDiv'><span className='tag'>{data.courseType.name}</span></div>
                         <div className='time line_public'>
                             <span>{`${FormatTime.formatMD(data.startTime)}-${FormatTime.formatMD(data.endTime)}`}</span>
-                            <span className='courseNum'>{data.videos.length}课时</span>
+                            <span className='courseNum'>{data.videos.length}<i>-</i>课时</span>
                         </div>
                         <div className="textBottom my_flex">
                             <img src={data.users[0].avatar} alt=""/>
                             <span className='text_color text_hidden'>{data.users[0].userName}</span>
                             {data.money === '0.00' ?
                                 <span className='free'>免费</span> :
-                                <span className='price'>¥ {data.money}</span>}
+                                <span className='price'><span>¥ </span>{data.money}</span>}
                         </div>
                     </div>
 

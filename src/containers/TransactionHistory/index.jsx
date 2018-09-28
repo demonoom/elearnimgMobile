@@ -51,7 +51,7 @@ class TransactionHistory extends React.Component {
                         iconType=''
                         iconClass=''
                     />
-                    <div className='balance_content'>
+                    <div className='balance_content overflowScroll'>
                         <RecordTabs/>
                     </div>
                 </div>

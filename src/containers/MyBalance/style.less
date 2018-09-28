@@ -3,8 +3,6 @@
   .balance_content {
     height: 100%;
     padding-top: .64rem;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
     &.whiteBg{
       background-color: white;
     }
@@ -72,18 +70,17 @@
     .account {
       height: 1.13rem;
       margin: .3rem .1rem .33rem;
+      padding: .15rem .24rem;
       font-size: .16rem;
-      padding-left: .24rem;
       background: url("../../static/img/icon_myBalance.png") no-repeat;
       background-size: cover;
       -webkit-border-radius: 2px;
       -moz-border-radius: 2px;
       border-radius: 2px;
-      .text{
-        padding-top: .15rem;
+      @media screen and (min-width: 768px){
+        height: 1.3rem;
       }
       .title_color{
-        padding-top: .2rem;
         font-size: .44rem;
         line-height: 1;
         span{

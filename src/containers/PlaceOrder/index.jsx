@@ -131,7 +131,7 @@ class PlaceOrder extends React.Component {
                         iconType=''
                         iconClass=''
                     />
-                    <div className='place_order_content'>
+                    <div className='place_order_content overflowScroll'>
                         <div className="orderMsg">
                             <div className="line_public">
                                 <div className="title">订单信息</div>

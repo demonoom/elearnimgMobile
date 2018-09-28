@@ -95,7 +95,7 @@ class Home extends React.Component {
             <div id='home' ref='home'>
                 <HomeHeader/>
 
-                <div className='home_content'>
+                <div className='home_content overflowScroll'>
                     <Category
                         categoryArr={this.state.categoryArr}
                         categoryOnClick={this.categoryOnClick}

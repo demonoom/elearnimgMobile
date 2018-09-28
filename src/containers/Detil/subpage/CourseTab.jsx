@@ -176,7 +176,7 @@ class CourseTab extends React.Component {
                 <div className='detil-tab-item courseDetail'>
                     <WhiteSpace/>
                     <div className='topCont text_color whiteBg'>
-                        <div>{courseObj.buyUids.length}人学习 <span>{courseObj.evaluatesCount}人评论</span></div>
+                        <div><span className="title_color studyNum">{courseObj.buyUids.length}人学习</span><span>{courseObj.evaluatesCount}人评论</span></div>
                         <div>授课时间：{FormatTime.formatYMD(courseObj.courseTime)}</div>
                         <div>课时：{courseObj.videoNum}课时</div>
                     </div>

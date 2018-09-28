@@ -116,7 +116,7 @@ class SeeMore extends React.Component {
                         iconClass='header-sousuo'
                         courseTypeOnClick={this.courseTypeOnClick}
                     />
-                    <div className='see_more_content'>
+                    <div className='see_more_content overflowScroll'>
                         <SeeMoreContent
                             ref='seeMore_content'
                             courseType={this.state.courseType}

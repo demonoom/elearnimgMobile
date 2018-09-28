@@ -85,7 +85,7 @@ class SetUp extends React.Component {
                         iconType=''
                         iconClass=''
                     />
-                    <div className='set_up_content'>
+                    <div className='set_up_content overflowScroll'>
                         <SwitchExample/>
                         <div className="quite" onClick={this.quitOnClick}>退出登录</div>
                     </div>

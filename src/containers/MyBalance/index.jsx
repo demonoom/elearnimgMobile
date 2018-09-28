@@ -59,7 +59,7 @@ class MyBalance extends React.Component {
                         iconClass='header-jiaoyi'
                     />
                     <div className='balance_content whiteBg'>
-                        <div className='account'>
+                        <div className='account flex_column'>
                             <div className='text'>账户余额</div>
                             <div className='title_color'>0<span>元</span></div>
                         </div>

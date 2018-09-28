@@ -32,7 +32,7 @@ class SearchContent extends React.Component {
                         <span>最新课程</span>
                         <span className="tabFilter">筛选<i className='icon-shaixuan2 iconfont'></i></span>
                     </div>
-                    <div className='search_response'>
+                    <div className='search_response overflowScroll'>
                         <ClassBox
                             classroomContent={searchResponse}
                             typeGuoLv={false}

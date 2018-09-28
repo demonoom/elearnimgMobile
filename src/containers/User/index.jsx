@@ -49,7 +49,7 @@ class User extends React.Component {
 
     render() {
         return (
-            <div className='user' ref='User'>
+            <div className='user overflowScroll' ref='User'>
                 <div className='user_header'>
                     <img
                         src={this.state.loginUser.avatar + SMALL_IMG}
