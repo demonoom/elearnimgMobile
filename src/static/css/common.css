@@ -284,23 +284,6 @@ input {
     line-height: 1;
 }
 
-.grayTag {
-    background-color: #F2F2F2;
-    font-size: .12rem;
-    padding: .05rem .1rem;
-    margin: .05rem;
-    display: inline-block;
-    line-height: 1.4;
-}
-
-.grayTag.active {
-    background-color: #E4E6F7;
-    color: #3672ED;
-}
-
-.grayTag.disable {
-    color: #9E9E9E;
-}
 
 /*遮罩及视频播放按钮*/
 .imgMask {

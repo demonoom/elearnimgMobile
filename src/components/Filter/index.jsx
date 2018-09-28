@@ -33,7 +33,7 @@ class Filter extends React.Component {
                     title = '课程状态'
                     data[k].forEach((v) => {
                         content.push(
-                            <span key={v.value + v.groupName}>
+                            <span className="active" key={v.value + v.groupName}>
                                 {v.groupName}
                             </span>
                         )
@@ -68,9 +68,9 @@ class Filter extends React.Component {
                 }
 
                 dom.push(
-                    <div key={k}>
-                        <div key={`${k}title`}>{title}</div>
-                        <div key={`${k}content`}>{content}</div>
+                    <div className='p10' key={k}>
+                        <div className="title" key={`${k}title`}>{title}</div>
+                        <div className="content" key={`${k}content`}>{content}</div>
                     </div>
                 )
             }
@@ -95,7 +95,15 @@ class Filter extends React.Component {
                 <div className='shade' onClick={this.shadeOnClick}></div>
                 <div
                     className={this.state.filterPanelDisplsy ? 'filter_panel filter_panel_enter' : 'filter_panel filter_panel_leave'}>
-                    {this.state.dom}
+                    <div className="title_color line_public margin15">
+                        筛选
+                    </div>
+                    <div className="cont overflowScroll">
+                        {this.state.dom}
+                    </div>
+                    <div className="blueBtn">
+                        确定
+                    </div>
                 </div>
             </div>
         )

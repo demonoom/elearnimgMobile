@@ -131,33 +131,34 @@ class PlaceOrder extends React.Component {
                         iconType=''
                         iconClass=''
                     />
-                    <div className='place_order_content overflowScroll'>
-                        <div className="orderMsg">
-                            <div className="line_public">
-                                <div className="title">订单信息</div>
-                                <div className="my_flex font14">
-                                    <div>订单名称：</div>
-                                    <div className="rightCont">
-                                        <div className="text_hidden">{courseObj.courseName}</div>
-                                        <div className='font12'>
-                                            <span>{courseObj.publisher}</span>
-                                            <span>{courseObj.courseClass}</span>
+                    <div className="place_orderDiv">
+                        <div className='place_order_content overflowScroll'>
+                            <div className="orderMsg">
+                                <div className="line_public">
+                                    <div className="title">订单信息</div>
+                                    <div className="my_flex font14">
+                                        <div>订单名称：</div>
+                                        <div className="rightCont">
+                                            <div className="text_hidden">{courseObj.courseName}</div>
+                                            <div className='font12'>
+                                                <span>{courseObj.publisher}</span>
+                                                <span>{courseObj.courseClass}</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className="orderMoney">
-                                订单金额：<span className="price"><span>¥ </span>{courseObj.money}</span>
-                            </div>
+                                <div className="orderMoney">
+                                    订单金额：<span className="price"><span>¥ </span>{courseObj.money}</span>
+                                </div>
 
-                        </div>
-                        <div className="payWay whiteBg">
-                            <div className="payTitle">
-                                支付方式
                             </div>
-                            <PayList rechargeFlag={false} payTypeOnChange={this.payTypeOnChange}/>
+                            <div className="payWay whiteBg">
+                                <div className="payTitle">
+                                    支付方式
+                                </div>
+                                <PayList rechargeFlag={false} payTypeOnChange={this.payTypeOnChange}/>
+                            </div>
                         </div>
-
                         <div className='balance_content_bottom'>
                             <div className='balance_content_bottom_left'
                                  style={{display: courseObj.money === '0.00' ? "none" : 'block'}}>
@@ -167,6 +168,7 @@ class PlaceOrder extends React.Component {
                                  style={{width: courseObj.money === '0.00' ? "100%" : ''}}>{this.props.match.params.type === '1' ? '确认报名' : '确认支付'}</div>
                         </div>
                     </div>
+
                     <iframe title='pay' id="pay_Iframe" src="" frameBorder="0" style={{display: 'none'}}></iframe>
                 </div>
             </CSSTransition>

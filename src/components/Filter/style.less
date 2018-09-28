@@ -16,6 +16,7 @@
     //right: 0rem;
     right: -2.70rem;
     top: 0;
+    padding-top: .3rem;
   }
 
   .filter_panel_enter {
@@ -25,6 +26,47 @@
     animation-fill-mode: forwards;
     /*设置动画的播放状态  paused:暂停   running:播放*/
     animation-play-state: running;
+  }
+  .margin15{
+    margin: 0 .15rem;
+  }
+  .p10{
+    padding: 0 .1rem;
+  }
+  .title_color{
+    font-size: .18rem;
+    padding-bottom: .08rem;
+  }
+  .title{
+    color: #4C4C4C;
+    font-size: .11rem;
+    padding:.15rem .05rem 0;
+  }
+  .cont{
+    height: 100%;
+    padding-bottom: .45rem;
+  }
+  .blueBtn{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+  .content{
+    span {
+      background-color: #F2F2F2;
+      font-size: .12rem;
+      padding: 0.1rem .1rem 0.08rem;
+      margin: .1rem .05rem 0;
+      display: inline-block;
+      line-height: 1;
+      &.active {
+        background-color: #E4E6F7;
+        color: #3672ED;
+      }
+      &.disable {
+        color: #9E9E9E;
+      }
+    }
   }
 
   /*创建动画*/
