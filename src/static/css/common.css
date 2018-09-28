@@ -3,6 +3,7 @@ body {
     padding: 0;
     background-color: #F3F6F9 !important;
     font-size: 14px !important;
+
 }
 
 body * {
@@ -13,6 +14,9 @@ body * {
     -webkit-touch-callout: none; /*系统默认菜单被禁用*/
     /*-webkit-user-select: none; !*webkit浏览器*!*/
     /*user-select: none;*/
+}
+body::-webkit-scrollbar{
+    display: none;
 }
 
 input {
@@ -31,6 +35,15 @@ input {
     display: table;
     content: '';
     clear: both;
+}
+
+.overflowScroll{
+    overflow-y: auto;
+    -webkit-overflow-scrolling : touch;
+}
+
+.overflowScroll::-webkit-scrollbar,.am-tabs-pane-wrap::-webkit-scrollbar{
+    display: none;
 }
 
 .text_color {

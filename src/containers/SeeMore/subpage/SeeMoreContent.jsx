@@ -115,7 +115,7 @@ class SeeMoreContent extends React.Component {
                           onClick={this.typeOnChange.bind(this, 'little')}>微课</span>
                     <span className="tabFilter">筛选<i className='icon-shaixuan2 iconfont'></i></span>
                 </div>
-                <div className='class_list class_list_seemore' ref='class_list_seemore'>
+                <div className='class_list class_list_seemore overflowScroll' ref='class_list_seemore'>
                     <ClassList
                         courseList={this.state.courseList}
                     />

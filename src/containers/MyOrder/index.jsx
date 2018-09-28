@@ -121,7 +121,7 @@ class MyOrder extends React.Component {
                         iconType=''
                         iconClass=''
                     />
-                    <div className='order_content'
+                    <div className='order_content overflowScroll'
                          ref='order_content'
                          style={!myOrderContent.length ? {textAlign: 'center', paddingTop: '.75rem'} : {}}
                     >

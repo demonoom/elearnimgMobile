@@ -134,7 +134,7 @@ class MyCollection extends React.Component {
                         iconType='icon-shaixuan2'
                         iconClass='header-shaixuan'
                     />
-                    <div className='collect_content'
+                    <div className='collect_content overflowScroll'
                          ref='collect_content'
                          style={!myCollectionContent.length ? {textAlign: 'center', paddingTop: '.74rem'} : {}}>
                         {

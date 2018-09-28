@@ -60,7 +60,7 @@ class BalanceRecharge extends React.Component {
                         iconType=''
                         iconClass=''
                     />
-                    <div className='balance_content' style={{paddingBottom: '.45rem'}}>
+                    <div className='balance_content overflowScroll' style={{paddingBottom: '.45rem'}}>
                         <div className='rechargeAmount'>
                             <div className='title_color'>
                                 请选择充值金额
