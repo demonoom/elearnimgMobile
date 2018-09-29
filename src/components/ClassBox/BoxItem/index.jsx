@@ -1,5 +1,5 @@
 import React from 'react'
-// import {NavLink} from "react-router-dom"
+import {NavLink} from "react-router-dom"
 import './style.less'
 import FormatTime from '../../../util/formatTime'
 import {MID_IMG} from '../../../util/const'
@@ -27,7 +27,8 @@ class BoxItem extends React.Component {
         const data = this.props.data
         return (
             <div className='item'>
-                <div onClick={this.openNewPage.bind(this, data.id, data.publisher_id)}>
+                {/*<div onClick={this.openNewPage.bind(this, data.id, data.publisher_id)}>*/}
+                <NavLink to={`/detil/${data.id}/${data.publisher_id}`}>
                     <div className="imgDiv">
                         <img src={data.image + MID_IMG} alt="" style={{width: '100%'}}/>
                         <span className='sign'>{data.buyUids == null ? '' : `${data.buyUids.length}人报名`}</span>
@@ -48,7 +49,7 @@ class BoxItem extends React.Component {
                         </div>
                     </div>
 
-                </div>
+                </NavLink>
             </div>
         )
     }

@@ -21,6 +21,8 @@ class UserList extends React.Component {
     }
 
     render() {
+        const count = this.props.count
+
         return (
             <div className='user_list'>
                 <List>
@@ -45,17 +47,17 @@ class UserList extends React.Component {
                         </Item>
                     </NavLink>
                     {/*<Item*/}
-                        {/*className='user_list_item bind'*/}
-                        {/*thumb={Icon_bind}*/}
-                        {/*onClick={() => {*/}
-                            {/*this.goLoginPage()*/}
-                        {/*}}*/}
-                        {/*arrow="horizontal"*/}
-                        {/*extra="请绑定"*/}
+                    {/*className='user_list_item bind'*/}
+                    {/*thumb={Icon_bind}*/}
+                    {/*onClick={() => {*/}
+                    {/*this.goLoginPage()*/}
+                    {/*}}*/}
+                    {/*arrow="horizontal"*/}
+                    {/*extra="请绑定"*/}
                     {/*>*/}
-                        {/*绑定手机号*/}
+                    {/*绑定手机号*/}
                     {/*</Item>*/}
-                    <NavLink to='/mybalance'>
+                    <NavLink to={`/mybalance/${count}`}>
                         <Item
                             className='user_list_item overMoney'
                             thumb={Icon_overMoney}

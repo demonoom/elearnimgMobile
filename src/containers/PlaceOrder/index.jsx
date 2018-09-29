@@ -92,7 +92,7 @@ class PlaceOrder extends React.Component {
             return
         }
 
-        createCourseOrder(localStorage.getItem("userId"), this.state.payMethod, this.state.courseObj.id, 0.00).then((res) => {
+        createCourseOrder(localStorage.getItem("userId"), this.state.payMethod, this.state.courseObj.id, 0.01).then((res) => {
 
             if (res.msg === '调用成功' && res.success) {
                 if (!!res.response.payUrl) {
