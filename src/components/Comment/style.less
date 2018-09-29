@@ -1,10 +1,113 @@
 #comment {
   height: 4.3rem;
   width: 100%;
-  background-color: red;
+  background-color: white;
   position: absolute;
   bottom: -4.3rem;
   z-index: 44;
+  padding: 0 .15rem;
+  box-sizing: border-box;
+  .icon_close{
+    text-align: right;
+    padding-top: .15rem;
+    i{
+      padding-top: .15rem;
+      padding-left: .15rem;
+      font-size: .15rem;
+    }
+  }
+  h2{
+    color: #2A3350;
+    font-size: .18rem;
+    font-weight: normal;
+    text-align: center;
+  }
+  .my_flex{
+    margin-top: .25rem;
+    -webkit-align-items: center;
+    -moz-align-items: center;
+    -ms-align-items: center;
+    -o-align-items: center;
+    -khtml-align-items: center;
+    align-items: center;
+    .title{
+      font-size: .15rem;
+      margin-right: .05rem;
+    }
+    .star{
+      line-height: 1.2;
+      position: relative;
+      .title_color{
+        font-size: .18rem;
+        padding-right: .05rem;
+      }
+      .iconfont{
+        font-size: .16rem;
+        color: #FFA734;
+        padding-right: .05rem;
+      }
+      span{
+        font-size: .1rem;
+        padding-left: .12rem;
+      }
+    }
+  }
+  textarea{
+    margin-top: .25rem;
+    margin-bottom: .35rem;
+    height: 1.3rem;
+    background-color: #EFF3F7;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    padding: .1rem .1rem;
+    width: 100%;
+    box-sizing: border-box;
+    border: 0;
+    resize: none;
+    line-height: 1.4;
+  }
+  .selectCont{
+      position: relative;
+      height: .4rem;
+  }
+  .select{
+    border: 1px #EDEFF9 solid;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    font-size: .13rem;
+    color: #2A3350;
+    padding: .13rem .15rem;
+    width: 1.5rem;
+    box-sizing: border-box;
+    position: relative;
+    &::after{
+      content: "";
+      position: absolute;
+      right: .1rem;
+      top:50%;
+      width: .08rem;
+      height: .08rem;
+      border-top: 1px solid #7A809B;
+      border-right: 1px solid #7A809B;
+      transform: translateY(-50%) rotate(135deg);
+    }
+  }
+  .rightDiv{
+    ul{
+      border: 1px #EDEFF9 solid;
+      border-top:0 ;
+      position: relative;
+      top:0;
+      left: 0;
+      z-index: 99;
+      background: white;
+      li{
+        padding: .1rem .15rem;
+      }
+    }
+  }
 }
 
 .comment_panel_leave {
