@@ -59,7 +59,9 @@ class User extends React.Component {
                         {/*<div className='idNUm'>id</div>*/}
                     </div>
                 </div>
-                <UserList/>
+                <UserList
+                    count={this.state.loginUser.count}
+                />
             </div>
         )
     }

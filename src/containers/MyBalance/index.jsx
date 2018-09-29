@@ -44,6 +44,9 @@ class MyBalance extends React.Component {
     }
 
     render() {
+
+        const count = this.props.match.params.count
+
         return (
             <CSSTransition
                 in={this.state.show}
@@ -61,7 +64,7 @@ class MyBalance extends React.Component {
                     <div className='balance_content whiteBg'>
                         <div className='account flex_column'>
                             <div className='text'>账户余额</div>
-                            <div className='title_color'>0<span>元</span></div>
+                            <div className='title_color'>{count}<span>元</span></div>
                         </div>
                         <div className='recharge_btn'>
                             <Button type="primary" onClick={this.recharge}>充值</Button>

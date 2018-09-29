@@ -13,6 +13,11 @@ class ListItem extends React.Component {
 
         const itemObj = this.props.itemObj;
 
+        var arr = []
+        itemObj.videos.forEach((v) => {
+            arr.push(v.videoStatus)
+        })
+
         return (
             <NavLink to={`/detil/${itemObj.id}/${itemObj.publisher_id}`} className='list_item'>
                 <img src={itemObj.image + MID_IMG} alt=""/>
@@ -26,7 +31,10 @@ class ListItem extends React.Component {
                             })
                         }
                     </div>
-                    <div className='icon_live'>直播中</div>
+                    <div className='icon_live' style={{display: arr.indexOf('2') === -1 ? 'none' : ''}}>直播中</div>
+                    <div className='name'
+                         style={{display: arr.indexOf('2') !== -1 ? 'none' : ''}}>{itemObj.buyUids.length}人购买
+                    </div>
                 </div>
             </NavLink>
         )
