@@ -117,7 +117,7 @@ class SeeMore extends React.Component {
                         title='see_more'
                         ref='header'
                         iconOnClick={this.iconOnClick}
-                        iconType='icon-tubiao11'
+                        iconType='icon-sousuo1'
                         iconClass='header-sousuo'
                         courseTypeOnClick={this.courseTypeOnClick}
                     />

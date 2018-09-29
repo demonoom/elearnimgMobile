@@ -88,7 +88,7 @@ class Classroom extends React.Component {
                         /> : <Icon type='loading'/>
                     }
                     <NavLink className='item_to_all' to='/seemore/sjkc'>
-                        查看全部精选公开实景课 >
+                        查看全部课程 >
                     </NavLink>
                 </div>
                 <div>

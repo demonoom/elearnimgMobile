@@ -49,7 +49,7 @@ class MyCourse extends React.Component {
                 <div className="p14 whiteBg"></div>
                 <div className='myCourseList_header title_color'>
                     我的课表
-                    <i className='iconfont icon-tubiao11'
+                    <i className='iconfont icon-sousuo1'
                        onClick={this.turnToPage}></i>
                 </div>
                 <div className='myCourseList_content'>

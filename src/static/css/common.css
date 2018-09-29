@@ -10,7 +10,7 @@ body * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Microsoft YaHei", "Times New Roman", Georgia, Serif;
+    font-family: "Microsoft YaHei", "Arial", Georgia, Serif;
     -webkit-touch-callout: none; /*系统默认菜单被禁用*/
     /*-webkit-user-select: none; !*webkit浏览器*!*/
     /*user-select: none;*/
@@ -144,7 +144,7 @@ input {
 .am-tabs-default-bar-tab {
     height: .4rem !important;
     line-height: .4rem !important;
-    font-size: .13rem !important;
+    font-size: .15rem !important;
 }
 
 .am-tabs-default-bar-tab-active {
@@ -246,7 +246,7 @@ input {
 .tabFilter i {
     padding-left: .03rem;
     vertical-align: text-bottom;
-    font-size: .14rem;
+    font-size: .16rem;
 }
 
 /*标签*/
@@ -301,7 +301,7 @@ input {
     position: absolute;
     top: 50%;
     left: 50%;
-    font-size: .32rem;
+    font-size: .36rem;
     -webkit-transform: translate(-50%, -50%);
     -moz-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
@@ -387,4 +387,10 @@ input {
 
 .whiteBg {
     background-color: white;
+}
+.swiper-pagination-fraction{
+    bottom: 5px !important;
+}
+.icon-sousuo1{
+    font-size: .18rem;
 }
