@@ -30,14 +30,14 @@ class Comment extends React.Component {
                 <div className="icon_close" >
                     <i className="iconfont icon-guanbi" onClick={this.closePanel}></i>
                 </div>
-                <div>
                     <h2>撰写评论</h2>
+                <div className="content overflowScroll">
                     <div className="my_flex">
                         <div className="title_color title">课程选择：</div>
                         <div className="rightDiv selectCont">
                             <div className="select">1</div>
                             <ul>
-                                <li className="text_hidden">1</li>
+                                <li className="text_hidden line_public">1</li>
                                 <li>2</li>
                                 <li>3</li>
                             </ul>

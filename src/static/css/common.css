@@ -323,10 +323,10 @@ input {
 
 .am-button-primary {
     background-color: #3672ED!important;
-    font-size: 0.16rem;
+    font-size: 0.16rem!important;
     height: 0.45rem!important;
     line-height: 0.45rem!important;
-    border-radius: 2px;
+    border-radius: 2px!important;
 }
 
 /*收藏*/
