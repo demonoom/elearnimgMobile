@@ -10,13 +10,17 @@ import {SimpleWebsocketConnection} from '../../util/simple_websocket_connection'
 let simpleMS = null
 let orderNoNoom = null
 
+var _this;
+
 class PlaceOrder extends React.Component {
     constructor(props, context) {
         super(props, context);
+        _this = this;
         this.state = {
             show: false,
             courseObj: false,
             payMethod: 'wxpayjs',
+            paySuccess: true
         }
         props.cacheLifecycles.didCache(this.componentDidCache)
         props.cacheLifecycles.didRecover(this.componentDidRecover)
@@ -66,10 +70,10 @@ class PlaceOrder extends React.Component {
             }, onWarn: function (warnMsg) {
 
             }, onMessage: function (info) {
-                if (info.data.command === "elearning_course_buy_complete") {
+                if (info.command === "elearning_course_buy_complete") {
                     var orderNo = info.data.order_no;
                     if (orderNo === orderNoNoom) {
-                        Toast.success('支付成功', 2)
+                        _this.setState({paySuccess: true})
                     }
                 }
             }
@@ -92,7 +96,7 @@ class PlaceOrder extends React.Component {
             return
         }
 
-        createCourseOrder(localStorage.getItem("userId"), this.state.payMethod, this.state.courseObj.id, 0.01).then((res) => {
+        createCourseOrder(localStorage.getItem("userId"), this.state.payMethod, this.state.courseObj.id, this.state.courseObj.money).then((res) => {
 
             if (res.msg === '调用成功' && res.success) {
                 if (!!res.response.payUrl) {
@@ -131,7 +135,11 @@ class PlaceOrder extends React.Component {
                         iconType=''
                         iconClass=''
                     />
-                    <div className="place_orderDiv">
+                    <div className="place_orderDiv" style={{display: this.state.paySuccess ? 'block' : 'none'}}>
+                        报名成功
+                        {courseObj.courseName}
+                    </div>
+                    <div className="place_orderDiv" style={{display: !this.state.paySuccess ? 'block' : 'none'}}>
                         <div className='place_order_content overflowScroll'>
                             <div className="orderMsg">
                                 <div className="line_public">
@@ -152,7 +160,8 @@ class PlaceOrder extends React.Component {
                                 </div>
 
                             </div>
-                            <div className="payWay whiteBg">
+                            <div className="payWay whiteBg"
+                                 style={{display: courseObj.money === '0.00' ? "none" : 'block'}}>
                                 <div className="payTitle">
                                     支付方式
                                 </div>
