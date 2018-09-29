@@ -174,7 +174,7 @@ class PlaceOrder extends React.Component {
                         <div className='balance_content_bottom'>
                             <div className='balance_content_bottom_left'
                                  style={{display: courseObj.money === '0.00' ? "none" : 'block'}}>
-                                需支付：<span className='price'><span>¥</span>{courseObj.money}</span>
+                                需支付：<span className='price'><span>¥ </span>{courseObj.money}</span>
                             </div>
                             <div onClick={this.pay} className='balance_content_bottom_right'
                                  style={{width: courseObj.money === '0.00' ? "100%" : ''}}>{this.props.match.params.type === '1' ? '确认报名' : '确认支付'}</div>
