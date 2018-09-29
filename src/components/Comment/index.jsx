@@ -36,7 +36,7 @@ class Comment extends React.Component {
                         <div className="title_color title">课程选择：</div>
                         <div className="rightDiv selectCont">
                             <div className="select">1</div>
-                            <ul>
+                            <ul className="overflowScroll">
                                 <li className="text_hidden line_public">1</li>
                                 <li>2</li>
                                 <li>3</li>
