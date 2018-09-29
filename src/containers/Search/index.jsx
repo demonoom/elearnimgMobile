@@ -15,7 +15,7 @@ class Search extends React.Component {
             truelyHeight: '',
             filterDisplsy: false,
             searchParams: false,
-            searchParams2: false,
+            filterObj: false,
             courseType: 'cgkc',
         }
         props.cacheLifecycles.didCache(this.componentDidCache)
@@ -48,16 +48,26 @@ class Search extends React.Component {
      */
     listCourseByKeyWords = (value) => {
         this.refs.search_content.getCourseListV3(value, true)
+        this.setState({courseType: 'cgkc'}, () => {
+            this.refs.filter.setDefault()
+        })
     }
 
     filterOpen = () => {
         getCourseSearchParamsV3().then((res) => {
             if (res.msg === '调用成功' && res.success) {
+                this.setState({filterObj: res.response})
                 this.buildParamsArr(res.response)
             } else {
                 Toast.fail(res.msg, 2)
             }
         })
+    }
+
+    changeType = (courseType) => {
+        this.setState({courseType}, (() => {
+            this.buildParamsArr(this.state.filterObj)
+        }))
     }
 
     /**
@@ -71,36 +81,32 @@ class Search extends React.Component {
             courseSubject: [],
             courseGrade: [],
         }
-        var params2 = {
-            coursaType: [],
-            courseStatus: [],
-            courseSubject: [],
-            courseGrade: [],
-        }
-        for (var k in data) {
-            if (data[k].type === 'courseStatus') {
-                params.courseStatus.push(data[k])
+        if (this.state.courseType === 'sjkc') {
+            for (var k in data) {
+                if (data[k].type === 'courseStatus') {
+                    params.courseStatus.push(data[k])
+                }
+                if (data[k].type === 'courseType' && data[k].value === 'sjkc') {
+                    params.courseSubject = data[k].courseTypes
+                }
             }
-            if (data[k].type === 'courseType' && data[k].value === 'sjkc') {
-                params.courseSubject = data[k].courseTypes
-            }
-        }
-        for (var j in data) {
-            if (data[j].type === 'courseStatus') {
-                params2.courseStatus.push(data[j])
-            }
-            if (data[j].type === 'courseType' && data[j].value === "cgkc") {
-                params2.courseSubject = data[j].courseTypes
-                params2.courseGrade = data[j].courseGrade
+        } else {
+            for (var j in data) {
+                if (data[j].type === 'courseStatus') {
+                    params.courseStatus.push(data[j])
+                }
+                if (data[j].type === 'courseType' && data[j].value === "cgkc") {
+                    params.courseSubject = data[j].courseTypes
+                    params.courseGrade = data[j].courseGrade
+                }
             }
         }
         for (var m in data) {
             if (data[m].type === 'courseType') {
                 params.coursaType.push(data[m])
-                params2.coursaType.push(data[m])
             }
         }
-        this.setState({searchParams: params, filterDisplsy: true, searchParams2: params2})
+        this.setState({searchParams: params, filterDisplsy: true})
     }
 
     shadeOnClick = () => {
@@ -108,10 +114,7 @@ class Search extends React.Component {
     }
 
     filterMakeChose = (status, subject, grade, type) => {
-        console.log(status);
-        console.log(subject);
-        console.log(grade);
-        console.log(type);
+        this.refs.search_content.filterMakeChose(status, subject, grade, type)
     }
 
     render() {
@@ -133,7 +136,7 @@ class Search extends React.Component {
                     <Filter ref='filter' data={this.state.searchParams} filterDisplsy={this.state.filterDisplsy}
                             filterMakeChose={this.filterMakeChose}
                             shadeOnClick={this.shadeOnClick}
-                            data2={this.state.searchParams2}
+                            changeType={this.changeType}
                     />
                 </div>
             </CSSTransition>

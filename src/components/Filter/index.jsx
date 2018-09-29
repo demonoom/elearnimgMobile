@@ -19,13 +19,10 @@ class Filter extends React.Component {
     componentWillReceiveProps(nextProps) {
         this.setState({filterDisplsy: nextProps.filterDisplsy, filterPanelDisplsy: nextProps.filterDisplsy})
 
-        var data2 = nextProps.data     //实景
-        var data = nextProps.data2   //常规
-        this.setState({dataSourse: data, dataSourse2: data2})
+        var data = nextProps.data
+        this.setState({dataSourse: data})
         if (!!data) {
             this.buildOption(data)
-        } else if (!!data2) {
-            this.buildOption(data2)
         }
     }
 
@@ -37,7 +34,7 @@ class Filter extends React.Component {
             status: 'all',
             subject: '-1',
             grade: '-1',
-            type: 'cgkc'
+            type: "cgkc",
         }, () => {
             this.buildOption(this.state.dataSourse)
         })
@@ -49,46 +46,30 @@ class Filter extends React.Component {
      */
     changeStatus = (status) => {
         this.setState({status}, () => {
-            if (this.state.type === 'sjkc') {
-                this.buildOption(this.state.dataSourse2)
-            } else {
-                this.buildOption(this.state.dataSourse)
-            }
+            this.buildOption(this.state.dataSourse)
         })
     }
 
     changeSubject = (subject) => {
         this.setState({subject}, () => {
-            if (this.state.type === 'sjkc') {
-                this.buildOption(this.state.dataSourse2)
-            } else {
-                this.buildOption(this.state.dataSourse)
-            }
+            this.buildOption(this.state.dataSourse)
         })
     }
 
     changeGrade = (grade) => {
         this.setState({grade}, () => {
-
-            if (this.state.type === 'sjkc') {
-                this.buildOption(this.state.dataSourse2)
-            } else {
-                this.buildOption(this.state.dataSourse)
-            }
+            this.buildOption(this.state.dataSourse)
         })
     }
 
     changeType = (type) => {
         this.setState({
-            type, status: 'all',
+            type,
+            status: 'all',
             subject: '-1',
             grade: '-1',
         }, () => {
-            if (type === 'sjkc') {
-                this.buildOption(this.state.dataSourse2)
-            } else {
-                this.buildOption(this.state.dataSourse)
-            }
+            this.props.changeType(type)
         })
     }
 

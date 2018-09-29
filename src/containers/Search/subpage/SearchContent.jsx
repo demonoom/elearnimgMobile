@@ -43,16 +43,19 @@ class SearchContent extends React.Component {
                 loadMoreFn()
             }
         }
+        
+        if (this.refs.search_response != null) {
+            this.refs.search_response.addEventListener('scroll', () => {
+                if (this.state.isLoadingMore) {
+                    return
+                }
+                if (timeoutId) {
+                    clearTimeout(timeoutId)
+                }
+                timeoutId = setTimeout(callback, 50)
+            })
+        }
 
-        this.refs.search_response.addEventListener('scroll', () => {
-            if (this.state.isLoadingMore) {
-                return
-            }
-            if (timeoutId) {
-                clearTimeout(timeoutId)
-            }
-            timeoutId = setTimeout(callback, 50)
-        })
     }
 
     /**
@@ -67,7 +70,7 @@ class SearchContent extends React.Component {
                 hasMoreClass: true,
                 courseProperty: 'all',
                 courseSort: 'hot',
-                courseType: 'sjkc',
+                courseType: 'cgkc',
                 courseSubject: '-1',
                 courseStatus: 'all',
                 courseGrade: '-1',
@@ -125,6 +128,20 @@ class SearchContent extends React.Component {
 
     filterOpen = () => {
         this.props.filterOpen()
+    }
+
+    filterMakeChose = (status, subject, grade, type) => {
+        this.setState({
+            courseStatus: status,
+            courseSubject: subject,
+            courseGrade: grade,
+            courseType: type,
+            page: 1,
+            hasMoreClass: true
+        }, (() => {
+            this.searchList(this.state.searchValue, true)
+        }))
+
     }
 
     render() {
