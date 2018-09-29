@@ -4,7 +4,6 @@ import './style.less'
 import FormatTime from '../../../util/formatTime'
 import {SMALL_IMG} from '../../../util/const'
 import {queryEvaluatePageByCourseId} from '../../../fetch/detil/detil'
-import {addEvaluate} from '../../../fetch/comment/comment'
 import CommentList from '../../../components/CommentList'
 import LoadMore from '../../../components/LoadMore'
 
