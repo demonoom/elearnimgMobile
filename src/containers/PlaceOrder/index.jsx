@@ -20,7 +20,7 @@ class PlaceOrder extends React.Component {
             show: false,
             courseObj: false,
             payMethod: 'wxpayjs',
-            paySuccess: true
+            paySuccess: false
         }
         props.cacheLifecycles.didCache(this.componentDidCache)
         props.cacheLifecycles.didRecover(this.componentDidRecover)

@@ -174,6 +174,7 @@ class CourseTab extends React.Component {
                       onChange={(tab, index) => {
                           if (index === 2) {
                               this.queryEvaluatePageByCourseId()
+                              this.setState({commentFlag: false})
                           }
                       }}
                 >
@@ -267,6 +268,10 @@ class CourseTab extends React.Component {
                 </Tabs>
                 <Comment
                     commentFlag={this.state.commentFlag}
+                    courseArr={courseObj.videos}
+                    closeUl={() => {
+                        this.setState({commentFlag: false})
+                    }}
                 />
             </div>
         )
