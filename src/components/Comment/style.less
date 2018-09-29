@@ -1,0 +1,44 @@
+#comment {
+  height: 4.3rem;
+  width: 100%;
+  background-color: red;
+  position: absolute;
+  bottom: -4.3rem;
+  z-index: 44;
+}
+
+.comment_panel_leave {
+  animation-name: moveLeave;
+  animation-duration: 0.15s;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  /*设置动画的播放状态  paused:暂停   running:播放*/
+  animation-play-state: running;
+}
+
+@keyframes moveLeave {
+  from {
+    transform: translate(0, -4.3rem);
+  }
+  to {
+    transform: translate(0, 0);
+  }
+}
+
+.comment_panel_enter {
+  animation-name: moveEnter;
+  animation-duration: 0.15s;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  /*设置动画的播放状态  paused:暂停   running:播放*/
+  animation-play-state: running;
+}
+
+@keyframes moveEnter {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(0, -4.3rem);
+  }
+}

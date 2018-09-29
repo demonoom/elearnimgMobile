@@ -27,6 +27,10 @@ class SearchHeader extends React.Component {
         this.setState({searchKeyWord: e.target.value})
     }
 
+    passSearchValue = (e) => {
+        this.setState({searchKeyWord: e})
+    }
+
     render() {
         return (
             <div className='search_header line_public lineB'>

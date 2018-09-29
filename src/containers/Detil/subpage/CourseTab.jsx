@@ -6,6 +6,7 @@ import {SMALL_IMG} from '../../../util/const'
 import {queryEvaluatePageByCourseId} from '../../../fetch/detil/detil'
 import CommentList from '../../../components/CommentList'
 import LoadMore from '../../../components/LoadMore'
+import Comment from '../../../components/Comment'
 
 var loadMore;
 
@@ -17,6 +18,7 @@ class CourseTab extends React.Component {
             CommentArr: [],
             isLoadingMore: true,
             hasMoreClass: true,
+            commentFlag: false
         }
     }
 
@@ -146,7 +148,8 @@ class CourseTab extends React.Component {
             return
         }
 
-
+        console.log(1);
+        this.setState({commentFlag: true})
 
 
     }
@@ -162,102 +165,110 @@ class CourseTab extends React.Component {
         const courseObj = this.props.courseObj
 
         return (
-            <Tabs tabs={tabs}
-                  initialPage={0}
-                  swipeable={false}
-                  animated={false}
-                  useOnPan={false}
-                  onChange={(tab, index) => {
-                      if (index === 2) {
-                          this.queryEvaluatePageByCourseId()
-                      }
-                  }}
-            >
-                <div className='detil-tab-item courseDetail'>
-                    <WhiteSpace/>
-                    <div className='topCont text_color whiteBg'>
-                        <div><span className="title_color studyNum">{courseObj.buyUids.length}人学习</span><span>{courseObj.evaluatesCount}人评论</span></div>
-                        <div>授课时间：{FormatTime.formatYMD(courseObj.courseTime)}</div>
-                        <div>课时：{courseObj.videoNum}课时</div>
-                    </div>
-                    <WhiteSpace/>
-                    <div className='whiteBg teachDec'>
-                        <div className='title title_color'>老师简介</div>
-                        {
-                            courseObj.users.map((v, i) => {
-                                return <div className='teach_item my_flex' key={i}>
-                                    <img src={v.avatar + SMALL_IMG} alt=""/>
-                                    <div className='right'>
-                                        <div className='userName title_color text_hidden'>{v.userName}</div>
-                                        <div className='text text_color text_hidden2'>{v.userContent}</div>
-                                    </div>
-                                </div>
-                            })
-                        }
-                    </div>
-                    <WhiteSpace/>
-                    <div className='whiteBg courseDec'>
-                        <div className='title title_color'>课程简介</div>
-                        <div className='text text_color'>
-                            {courseObj.content || ''}
+            <div>
+                <Tabs tabs={tabs}
+                      initialPage={0}
+                      swipeable={false}
+                      animated={false}
+                      useOnPan={false}
+                      onChange={(tab, index) => {
+                          if (index === 2) {
+                              this.queryEvaluatePageByCourseId()
+                          }
+                      }}
+                >
+                    <div className='detil-tab-item courseDetail'>
+                        <WhiteSpace/>
+                        <div className='topCont text_color whiteBg'>
+                            <div><span
+                                className="title_color studyNum">{courseObj.buyUids.length}人学习</span><span>{courseObj.evaluatesCount}人评论</span>
+                            </div>
+                            <div>授课时间：{FormatTime.formatYMD(courseObj.courseTime)}</div>
+                            <div>课时：{courseObj.videoNum}课时</div>
                         </div>
-                    </div>
-                </div>
-                <div className='detil-tab-item courseList'>
-                    <WhiteSpace/>
-                    <div className='whiteBg'>
-                        {
-                            courseObj.videos.map((v, i) => {
-                                return <div className='my_flex line_public' key={i}>
-                                    <div className='num text_color'>{FormatTime.formatNum(i + 1)}</div>
-                                    <div className='textCont'>
-                                        <div className='title_color'>{v.name}</div>
-                                        <div className='text_color'>
-                                            授课时间：{FormatTime.formatAllTime(v.liveTime)}
-                                            {
-                                                v.videoStatus === '1' ? <span className='status text_color'>未开课</span> :
-                                                    <span
-                                                        className={v.videoStatus === '2' ? 'status icon_live' : 'status icon_playBack'}
-                                                        onClick={this.courseOnPlay.bind(this, v)}></span>
-                                            }
-
+                        <WhiteSpace/>
+                        <div className='whiteBg teachDec'>
+                            <div className='title title_color'>老师简介</div>
+                            {
+                                courseObj.users.map((v, i) => {
+                                    return <div className='teach_item my_flex' key={i}>
+                                        <img src={v.avatar + SMALL_IMG} alt=""/>
+                                        <div className='right'>
+                                            <div className='userName title_color text_hidden'>{v.userName}</div>
+                                            <div className='text text_color text_hidden2'>{v.userContent}</div>
                                         </div>
                                     </div>
-                                </div>
-                            })
-                        }
-                    </div>
-                </div>
-                <div className='detil-tab-item' id='detil-tab-item3'>
-                    <WhiteSpace/>
-                    <div className="core whiteBg">
-                        <div className="star">
-                            <span className="title_color">{courseObj.evaluateAvgNum}</span>
-                            {
-                                [1, 2, 3, 4, 5].map((v, i) => {
-                                    if (courseObj.evaluateAvgNum > i) {
-                                        return <i key={i} className='iconfont icon-shiwujiaoxing'></i>
-                                    } else {
-                                        return <i key={i} className='iconfont icon-kongwujiaoxing'></i>
-                                    }
                                 })
                             }
-                            <div className='editorBtn' onClick={this.goToComment}>撰写评论</div>
                         </div>
-                        <div className="num">
-                            {courseObj.evaluatesCount}人评价
+                        <WhiteSpace/>
+                        <div className='whiteBg courseDec'>
+                            <div className='title title_color'>课程简介</div>
+                            <div className='text text_color'>
+                                {courseObj.content || ''}
+                            </div>
                         </div>
                     </div>
-                    <div id='comment_tab'>
-                        <CommentList
-                            commentList={this.state.CommentArr}
-                        />
-                        <LoadMore ref='LoadMore' isLoadingMore={this.state.isLoadingMore}
-                                  hasMoreClass={this.state.hasMoreClass}
-                                  loadMoreFn={this.loadMoreDate.bind(this)}/>
+                    <div className='detil-tab-item courseList'>
+                        <WhiteSpace/>
+                        <div className='whiteBg'>
+                            {
+                                courseObj.videos.map((v, i) => {
+                                    return <div className='my_flex line_public' key={i}>
+                                        <div className='num text_color'>{FormatTime.formatNum(i + 1)}</div>
+                                        <div className='textCont'>
+                                            <div className='title_color'>{v.name}</div>
+                                            <div className='text_color'>
+                                                授课时间：{FormatTime.formatAllTime(v.liveTime)}
+                                                {
+                                                    v.videoStatus === '1' ?
+                                                        <span className='status text_color'>未开课</span> :
+                                                        <span
+                                                            className={v.videoStatus === '2' ? 'status icon_live' : 'status icon_playBack'}
+                                                            onClick={this.courseOnPlay.bind(this, v)}></span>
+                                                }
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                })
+                            }
+                        </div>
                     </div>
-                </div>
-            </Tabs>
+                    <div className='detil-tab-item' id='detil-tab-item3'>
+                        <WhiteSpace/>
+                        <div className="core whiteBg">
+                            <div className="star">
+                                <span className="title_color">{courseObj.evaluateAvgNum}</span>
+                                {
+                                    [1, 2, 3, 4, 5].map((v, i) => {
+                                        if (courseObj.evaluateAvgNum > i) {
+                                            return <i key={i} className='iconfont icon-shiwujiaoxing'></i>
+                                        } else {
+                                            return <i key={i} className='iconfont icon-kongwujiaoxing'></i>
+                                        }
+                                    })
+                                }
+                                <div className='editorBtn' onClick={this.goToComment}>撰写评论</div>
+                            </div>
+                            <div className="num">
+                                {courseObj.evaluatesCount}人评价
+                            </div>
+                        </div>
+                        <div id='comment_tab'>
+                            <CommentList
+                                commentList={this.state.CommentArr}
+                            />
+                            <LoadMore ref='LoadMore' isLoadingMore={this.state.isLoadingMore}
+                                      hasMoreClass={this.state.hasMoreClass}
+                                      loadMoreFn={this.loadMoreDate.bind(this)}/>
+                        </div>
+                    </div>
+                </Tabs>
+                <Comment
+                    commentFlag={this.state.commentFlag}
+                />
+            </div>
         )
     }
 }

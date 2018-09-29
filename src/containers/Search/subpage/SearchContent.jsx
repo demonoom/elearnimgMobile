@@ -20,6 +20,7 @@ class SearchContent extends React.Component {
             courseSubject: '-1',
             courseStatus: 'all',
             courseGrade: '-1',
+            historyArr: []
         }
     }
 
@@ -43,7 +44,7 @@ class SearchContent extends React.Component {
                 loadMoreFn()
             }
         }
-        
+
         if (this.refs.search_response != null) {
             this.refs.search_response.addEventListener('scroll', () => {
                 if (this.state.isLoadingMore) {
@@ -70,7 +71,7 @@ class SearchContent extends React.Component {
                 hasMoreClass: true,
                 courseProperty: 'all',
                 courseSort: 'hot',
-                courseType: 'cgkc',
+                courseType: '-1',
                 courseSubject: '-1',
                 courseStatus: 'all',
                 courseGrade: '-1',
@@ -85,6 +86,11 @@ class SearchContent extends React.Component {
     }
 
     searchList(value, falg) {
+        var searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || []
+        if (searchHistory.indexOf(value) === -1 && searchHistory.length <= 30) {
+            searchHistory.push(value);
+            localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
+        }
         getCourseListV3(this.state.page, this.state.courseType, this.state.courseSubject, this.state.courseStatus, this.state.courseSort, this.state.courseGrade, value).then((res) => {
             if (res.msg === '调用成功' && res.success) {
                 if (this.state.page === res.pager.pageCount) {
@@ -97,11 +103,18 @@ class SearchContent extends React.Component {
                 })
                 if (falg) {
                     this.setState({searchResponse: res.response})
+                    //把滚动变成0
+                    if (this.refs.search_response != null) {
+                        this.refs.search_response.scrollTop = 0
+                    }
                 } else {
                     this.setState({searchResponse: this.state.searchResponse.concat(res.response)})
                 }
-                if (res.success.length !== 0) {
+                if (res.response.length !== 0) {
                     this.lisitenDom()
+                } else {
+                    Toast.fail('未查到相关课程', 2)
+                    this.buildHistory()
                 }
             } else {
                 Toast.fail(res.msg, 2)
@@ -144,6 +157,25 @@ class SearchContent extends React.Component {
 
     }
 
+    delHistory = () => {
+        localStorage.removeItem("searchHistory");
+        this.buildHistory()
+    }
+
+    componentDidMount() {
+        this.buildHistory()
+    }
+
+    buildHistory = () => {
+        var arr = JSON.parse(localStorage.getItem("searchHistory")) || [];
+        this.setState({historyArr: arr})
+    }
+
+    historyOnClick = (v) => {
+        this.props.passSearchValue(v)
+        this.getCourseListV3(v, true)
+    }
+
     render() {
         const searchResponse = this.state.searchResponse
         return (
@@ -151,10 +183,17 @@ class SearchContent extends React.Component {
                 {searchResponse.length === 0 ? <div className='search_history'>
                         <div className='topCont'>
                             <span>最近搜索</span>
-                            <span>清空搜索记录</span>
+                            <span onClick={this.delHistory}>清空搜索记录</span>
                         </div>
                         <div className='searchTagCont'>
-                            <span className='grayTag_deep title_color'>传统节日</span>
+                            {
+                                this.state.historyArr.map((v, i) => {
+                                    return <span onClick={this.historyOnClick.bind(this, v)} key={i}
+                                                 className='grayTag_deep title_color'>
+                                            {v}
+                                    </span>
+                                })
+                            }
                         </div>
                     </div> :
                     <div style={{height: '100%'}}>

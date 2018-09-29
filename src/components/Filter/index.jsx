@@ -34,7 +34,7 @@ class Filter extends React.Component {
             status: 'all',
             subject: '-1',
             grade: '-1',
-            type: "cgkc",
+            type: "-1",
         }, () => {
             this.buildOption(this.state.dataSourse)
         })
@@ -131,6 +131,12 @@ class Filter extends React.Component {
                 } else if (k === 'coursaType') {
                     title = '课程分类'
                     data[k].forEach((v, i) => {
+                        if (i === 0) {
+                            content.push(
+                                <span className={this.state.type === "-1" ? "active" : ""}
+                                      onClick={this.changeType.bind(this, '-1')} key={v.value}>全部</span>
+                            )
+                        }
                         content.push(
                             <span onClick={this.changeType.bind(this, v.value)}
                                   className={this.state.type === v.value ? "active" : ''}

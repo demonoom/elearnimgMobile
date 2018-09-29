@@ -16,7 +16,7 @@ class Search extends React.Component {
             filterDisplsy: false,
             searchParams: false,
             filterObj: false,
-            courseType: 'cgkc',
+            courseType: '-1',
         }
         props.cacheLifecycles.didCache(this.componentDidCache)
         props.cacheLifecycles.didRecover(this.componentDidRecover)
@@ -48,7 +48,7 @@ class Search extends React.Component {
      */
     listCourseByKeyWords = (value) => {
         this.refs.search_content.getCourseListV3(value, true)
-        this.setState({courseType: 'cgkc'}, () => {
+        this.setState({courseType: '-1'}, () => {
             this.refs.filter.setDefault()
         })
     }
@@ -90,7 +90,7 @@ class Search extends React.Component {
                     params.courseSubject = data[k].courseTypes
                 }
             }
-        } else {
+        } else if (this.state.courseType === 'cgkc') {
             for (var j in data) {
                 if (data[j].type === 'courseStatus') {
                     params.courseStatus.push(data[j])
@@ -98,6 +98,12 @@ class Search extends React.Component {
                 if (data[j].type === 'courseType' && data[j].value === "cgkc") {
                     params.courseSubject = data[j].courseTypes
                     params.courseGrade = data[j].courseGrade
+                }
+            }
+        } else if (this.state.courseType === '-1') {
+            for (var t in data) {
+                if (data[t].type === 'courseStatus') {
+                    params.courseStatus.push(data[t])
                 }
             }
         }
@@ -117,6 +123,10 @@ class Search extends React.Component {
         this.refs.search_content.filterMakeChose(status, subject, grade, type)
     }
 
+    passSearchValue = (e) => {
+        this.refs.search_header.passSearchValue(e)
+    }
+
     render() {
         return (
             <CSSTransition
@@ -127,11 +137,13 @@ class Search extends React.Component {
                 <div id='search' className='positionBg' ref='Search'>
                     <div className="p14 whiteBg"></div>
                     <SearchHeader
+                        ref="search_header"
                         listCourseByKeyWords={this.listCourseByKeyWords}
                     />
                     <SearchContent
                         filterOpen={this.filterOpen}
                         ref='search_content'
+                        passSearchValue={this.passSearchValue}
                     />
                     <Filter ref='filter' data={this.state.searchParams} filterDisplsy={this.state.filterDisplsy}
                             filterMakeChose={this.filterMakeChose}
