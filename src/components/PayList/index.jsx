@@ -29,17 +29,17 @@ class PayList extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className='payItem'>
-                    <div className='title_color'>找人代付</div>
-                    <div className='cont paySao'>
-                        <div onClick={this.payMethodOnChange.bind(this, 'wxpayqr')}
-                             className={this.state.payMethod === 'wxpayqr' ? 'active' : ''}>微信扫码支付
-                        </div>
-                        <div onClick={this.payMethodOnChange.bind(this, 'alipayqr')}
-                             className={this.state.payMethod === 'alipayqr' ? 'active' : ''}>支付宝扫码支付
-                        </div>
-                    </div>
-                </div>
+                {/*<div className='payItem'>*/}
+                    {/*<div className='title_color'>找人代付</div>*/}
+                    {/*<div className='cont paySao'>*/}
+                        {/*<div onClick={this.payMethodOnChange.bind(this, 'wxpayqr')}*/}
+                             {/*className={this.state.payMethod === 'wxpayqr' ? 'active' : ''}>微信扫码支付*/}
+                        {/*</div>*/}
+                        {/*<div onClick={this.payMethodOnChange.bind(this, 'alipayqr')}*/}
+                             {/*className={this.state.payMethod === 'alipayqr' ? 'active' : ''}>支付宝扫码支付*/}
+                        {/*</div>*/}
+                    {/*</div>*/}
+                {/*</div>*/}
                 {/*<div className='payItem' style={{display: !this.props.rechargeFlag ? '' : 'none'}}>*/}
                     {/*<div className='title_color'>其他支付</div>*/}
                     {/*<div className='cont elsePay'>*/}
