@@ -100,7 +100,7 @@ class Classroom extends React.Component {
                             typeGuoLv={true}
                         /> : <Icon type='loading'/>
                     }
-                    <NavLink to='/seemore/cgkc' className='item_to_all'>查看全部精选公开实景课 ></NavLink>
+                    <NavLink to='/seemore/cgkc' className='item_to_all'>查看全部课程 ></NavLink>
                 </div>
             </Tabs>
         )
