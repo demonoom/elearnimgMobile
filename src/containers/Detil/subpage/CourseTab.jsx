@@ -7,7 +7,6 @@ import {queryEvaluatePageByCourseId} from '../../../fetch/detil/detil'
 import {addEvaluate} from '../../../fetch/comment/comment'
 import CommentList from '../../../components/CommentList'
 import LoadMore from '../../../components/LoadMore'
-import Comment from '../../../components/Comment'
 
 var loadMore;
 
@@ -19,7 +18,7 @@ class CourseTab extends React.Component {
             CommentArr: [],
             isLoadingMore: true,
             hasMoreClass: true,
-            commentFlag: false
+            // commentFlag: false
         }
     }
 
@@ -54,14 +53,24 @@ class CourseTab extends React.Component {
         })
     }
 
-    queryEvaluatePageByCourseId = () => {
+    queryEvaluatePageByCourseIdUseFirstPage = () => {
+        this.setState({page: 1}, () => {
+            this.queryEvaluatePageByCourseId(true)
+        })
+    }
+
+    queryEvaluatePageByCourseId = (flag) => {
         queryEvaluatePageByCourseId(this.props.courseObj.id, this.state.page).then((res) => {
             if (res.msg === '调用成功' && res.success) {
                 if (this.state.page === res.pager.pageCount) {
                     this.setState({hasMoreClass: false})
                 }
+                if (flag) {
+                    this.setState({CommentArr: res.response})
+                } else {
+                    this.setState({CommentArr: this.state.CommentArr.concat(res.response)})
+                }
                 this.setState({
-                    CommentArr: this.state.CommentArr.concat(res.response),
                     page: this.state.page + 1,
                     isLoadingMore: false,
                 }, () => {
@@ -149,7 +158,7 @@ class CourseTab extends React.Component {
             return
         }
 
-        this.setState({commentFlag: true})
+        this.props.setCommentFlag(true)
 
 
     }
@@ -160,7 +169,8 @@ class CourseTab extends React.Component {
      * @param commentValue
      * @param videoId
      */
-    comment = (videoNum, score, commentValue, videoId) => {
+
+    /*comment = (videoNum, score, commentValue, videoId) => {
         addEvaluate(videoNum, videoId, this.props.courseObj.id, commentValue, score, localStorage.getItem("userId")).then((res) => {
             if (res.msg === '调用成功' && res.success) {
                 Toast.success('评论成功', 1)
@@ -171,7 +181,7 @@ class CourseTab extends React.Component {
                 Toast.fail(res.msg, 2)
             }
         })
-    }
+    }*/
 
     render() {
 
@@ -193,7 +203,7 @@ class CourseTab extends React.Component {
                       onChange={(tab, index) => {
                           if (index === 2) {
                               this.queryEvaluatePageByCourseId()
-                              this.setState({commentFlag: false})
+                              this.props.setCommentFlag(false)
                           }
                       }}
                 >
@@ -285,14 +295,14 @@ class CourseTab extends React.Component {
                         </div>
                     </div>
                 </Tabs>
-                <Comment
-                    comment={this.comment}
-                    commentFlag={this.state.commentFlag}
-                    courseArr={courseObj.videos}
-                    closeUl={() => {
-                        this.setState({commentFlag: false})
-                    }}
-                />
+                {/*<Comment*/}
+                {/*comment={this.comment}*/}
+                {/*commentFlag={this.state.commentFlag}*/}
+                {/*courseArr={courseObj.videos}*/}
+                {/*closeUl={() => {*/}
+                {/*this.setState({commentFlag: false})*/}
+                {/*}}*/}
+                {/*/>*/}
             </div>
         )
     }

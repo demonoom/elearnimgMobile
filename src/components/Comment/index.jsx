@@ -13,17 +13,17 @@ class Comment extends React.Component {
             startArr: [false, false, false, false, false],
             score: 0,
             commentValue: '',
-            videoId: this.props.courseArr[0].id
         }
     }
 
     componentWillReceiveProps(nextProps) {
+        if (nextProps.courseArr != null) {
+            this.setState({courseArr: nextProps.courseArr, videoId: nextProps.courseArr[0].id})
+        }
         this.setState({
             commentFlag: nextProps.commentFlag,
-            courseArr: nextProps.courseArr,
             score: 0,
             commentValue: '',
-            videoId: this.props.courseArr[0].id,
             startArr: [false, false, false, false, false],
             ulINdex: 1
         })

@@ -6,6 +6,8 @@ import DetilHeader from '../../components/DetilHeader'
 import CourseTab from './subpage/CourseTab'
 import {findCourseByCourseId, addCollection, updateCollection} from '../../../src/fetch/detil/detil'
 import {LARGE_IMG} from '../../util/const'
+import Comment from '../../components/Comment'
+import {addEvaluate} from '../../../src/fetch/comment/comment'
 
 class Detil extends React.Component {
     constructor(props, context) {
@@ -15,6 +17,7 @@ class Detil extends React.Component {
             courseObj: false,     //课程对象
             truelyHeight: '',
             collectionStar: false,
+            commentFlag: false
         }
         props.cacheLifecycles.didCache(this.componentDidCache)
         props.cacheLifecycles.didRecover(this.componentDidRecover)
@@ -152,11 +155,41 @@ class Detil extends React.Component {
         }
     }
 
+    /**
+     * 评论
+     * @param score
+     * @param commentValue
+     * @param videoId
+     */
+    comment = (videoNum, score, commentValue, videoId) => {
+        addEvaluate(videoNum, videoId, this.state.courseObj.id, commentValue, score, localStorage.getItem("userId")).then((res) => {
+            if (res.msg === '调用成功' && res.success) {
+                Toast.success('评论成功', 1)
+                this.setState({commentFlag: false}, () => {
+                    this.refs.course_tab.queryEvaluatePageByCourseIdUseFirstPage()
+                })
+            } else {
+                Toast.fail(res.msg, 2)
+            }
+        })
+    }
+
+    setCommentFlag = (flag) => {
+        this.setState({commentFlag: flag})
+    }
+
     render() {
 
         if (!!this.state.courseObj) {
             var videoStatus = this.state.courseObj.videos[0].videoStatus
+            // const courseObj = this.state.courseObj
+
         }
+
+        // console.log(this.state.courseObj);
+        // if (!!this.state.courseObj) {
+        //     const courseObj = this.state.courseObj;
+        // }
 
         return (
             <CSSTransition
@@ -181,11 +214,20 @@ class Detil extends React.Component {
                         <div className={this.state.courseObj.buyed ? 'detil-tab' : 'detil-tab borderGray'}>
                             {
                                 this.state.courseObj ?
-                                    <CourseTab courseObj={this.state.courseObj}
+                                    <CourseTab ref='course_tab' setCommentFlag={this.setCommentFlag}
+                                               courseObj={this.state.courseObj}
                                                loginSuccess={this.loginSuccess}/> : <Icon type='loading'/>
                             }
                         </div>
                     </div>
+                    <Comment
+                        comment={this.comment}
+                        commentFlag={this.state.commentFlag}
+                        courseArr={this.state.courseObj.videos}
+                        closeUl={() => {
+                            this.setState({commentFlag: false})
+                        }}
+                    />
                     <div className='detil_content_bottom'
                          style={{display: this.state.courseObj.buyed ? 'none' : ''}}>
                         <div className='detil_content_bottom_left'>
