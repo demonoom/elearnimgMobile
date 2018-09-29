@@ -20,7 +20,7 @@ class PlaceOrder extends React.Component {
             show: false,
             courseObj: false,
             payMethod: 'wxpayjs',
-            paySuccess: true
+            paySuccess: false
         }
         props.cacheLifecycles.didCache(this.componentDidCache)
         props.cacheLifecycles.didRecover(this.componentDidRecover)
@@ -135,9 +135,12 @@ class PlaceOrder extends React.Component {
                         iconType=''
                         iconClass=''
                     />
-                    <div className="place_orderDiv" style={{display: this.state.paySuccess ? 'block' : 'none'}}>
-                        报名成功
-                        {courseObj.courseName}
+                    <div className="place_orderDiv whiteBg" style={{display: this.state.paySuccess ? 'block' : 'none'}}>
+                       <div className="sign_success">
+                           <i className="iconfont icon-chenggong"></i>
+                           <div className="text">报名成功</div>
+                           <div>{courseObj.courseName}</div>
+                       </div>
                     </div>
                     <div className="place_orderDiv" style={{display: !this.state.paySuccess ? 'block' : 'none'}}>
                         <div className='place_order_content overflowScroll'>
