@@ -9,36 +9,61 @@ class Comment extends React.Component {
             commentFlag: false,
             courseArr: [],
             ulDisplay: false,
-            ulINdex: 1
+            ulINdex: 1,
+            startArr: [false, false, false, false, false],
+            score: 0,
+            commentValue: '',
+            videoId: this.props.courseArr[0].id
         }
     }
 
     componentWillReceiveProps(nextProps) {
-        this.setState({commentFlag: nextProps.commentFlag, courseArr: nextProps.courseArr})
+        this.setState({
+            commentFlag: nextProps.commentFlag,
+            courseArr: nextProps.courseArr,
+            score: 0,
+            commentValue: '',
+            videoId: this.props.courseArr[0].id,
+            startArr: [false, false, false, false, false],
+            ulINdex: 1
+        })
 
     }
 
     closePanel = () => {
         this.setState({commentFlag: false, ulINdex: 1})
+        this.props.closeUl()
     }
 
     comment = () => {
-        console.log(1);
+        this.props.comment(this.state.ulINdex, this.state.score, this.state.commentValue, this.state.videoId)
     }
 
     openUl = () => {
         this.setState({ulDisplay: true})
     }
 
-    closeUl = (num) => {
-        this.setState({ulDisplay: false, ulINdex: num})
-        this.props.closeUl()
+    closeUl = (num, video) => {
+        this.setState({ulDisplay: false, ulINdex: num, videoId: video.id})
     }
 
     onClick(e) {
-        console.log(1);
-        console.log(e.target);
-        e.stopPropagation()
+
+    }
+
+    starOnClick = (index) => {
+        var arr = [false, false, false, false, false].map((v, i) => {
+            if (index >= i) {
+                return !v
+            } else {
+                return v
+            }
+        })
+        this.setState({startArr: arr, score: index + 1})
+    }
+
+    textAreaOnChange = (e) => {
+        this.setState({commentValue: e.target.value})
     }
 
     render() {
@@ -59,7 +84,7 @@ class Comment extends React.Component {
                                 <ul className="overflowScroll" style={{display: this.state.ulDisplay ? '' : 'none'}}>
                                     {
                                         this.state.courseArr.map((v, i) => {
-                                            return <li onClick={this.closeUl.bind(this, i + 1)} key={i}
+                                            return <li onClick={this.closeUl.bind(this, i + 1, v)} key={i}
                                                        className="text_hidden line_public">
                                                 {`第${i + 1}章节`}
                                             </li>
@@ -71,15 +96,18 @@ class Comment extends React.Component {
                         <div className="my_flex">
                             <div className="title_color title">课程评分：</div>
                             <div className="star rightDiv">
-                                <i className="iconfont icon-kongwujiaoxing"></i>
-                                <i className="iconfont icon-kongwujiaoxing"></i>
-                                <i className="iconfont icon-kongwujiaoxing"></i>
-                                <i className="iconfont icon-kongwujiaoxing"></i>
-                                <i className="iconfont icon-kongwujiaoxing"></i>
-                                <span className="title_color">9</span>
+                                {
+                                    this.state.startArr.map((v, i) => {
+                                        return <i onClick={this.starOnClick.bind(this, i)}
+                                                  className={v ? 'icon-shiwujiaoxing iconfont' : 'iconfont icon-kongwujiaoxing'}
+                                                  key={i}></i>
+                                    })
+                                }
+                                <span className="title_color">{this.state.score}.0</span>
                             </div>
                         </div>
-                        <textarea name="" id="" placeholder="请输入评价内容"></textarea>
+                        <textarea onChange={this.textAreaOnChange} name="" id="" placeholder="请输入评价内容"
+                                  value={this.state.commentValue}></textarea>
                         <Button type="primary" onClick={this.comment}>提交</Button>
                     </div>
                 </div>

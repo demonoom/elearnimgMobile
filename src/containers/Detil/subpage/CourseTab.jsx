@@ -4,6 +4,7 @@ import './style.less'
 import FormatTime from '../../../util/formatTime'
 import {SMALL_IMG} from '../../../util/const'
 import {queryEvaluatePageByCourseId} from '../../../fetch/detil/detil'
+import {addEvaluate} from '../../../fetch/comment/comment'
 import CommentList from '../../../components/CommentList'
 import LoadMore from '../../../components/LoadMore'
 import Comment from '../../../components/Comment'
@@ -148,10 +149,28 @@ class CourseTab extends React.Component {
             return
         }
 
-        console.log(1);
         this.setState({commentFlag: true})
 
 
+    }
+
+    /**
+     * 评论
+     * @param score
+     * @param commentValue
+     * @param videoId
+     */
+    comment = (videoNum, score, commentValue, videoId) => {
+        addEvaluate(videoNum, videoId, this.props.courseObj.id, commentValue, score, localStorage.getItem("userId")).then((res) => {
+            if (res.msg === '调用成功' && res.success) {
+                Toast.success('评论成功', 1)
+                this.setState({commentFlag: false, page: 1}, () => {
+                    this.queryEvaluatePageByCourseId()
+                })
+            } else {
+                Toast.fail(res.msg, 2)
+            }
+        })
     }
 
     render() {
@@ -267,6 +286,7 @@ class CourseTab extends React.Component {
                     </div>
                 </Tabs>
                 <Comment
+                    comment={this.comment}
                     commentFlag={this.state.commentFlag}
                     courseArr={courseObj.videos}
                     closeUl={() => {
