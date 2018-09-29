@@ -6,40 +6,56 @@ class Comment extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
-            commentFlag: false
+            commentFlag: false,
+            courseArr: [],
+            ulDisplay: false,
+            ulINdex: 1
         }
     }
 
     componentWillReceiveProps(nextProps) {
-        this.setState({commentFlag: nextProps.commentFlag})
+        this.setState({commentFlag: nextProps.commentFlag, courseArr: nextProps.courseArr})
 
     }
 
     closePanel = () => {
-        this.setState({commentFlag: false})
+        this.setState({commentFlag: false, ulINdex: 1})
     }
 
     comment = () => {
         console.log(1);
     }
 
+    openUl = () => {
+        this.setState({ulDisplay: true})
+    }
+
+    closeUl = (num) => {
+        this.setState({ulDisplay: false, ulINdex: num})
+    }
+
     render() {
 
         return (
             <div id='comment' className={this.state.commentFlag ? 'comment_panel_enter' : ''}>
-                <div className="icon_close" >
+                <div className="icon_close">
                     <i className="iconfont icon-guanbi" onClick={this.closePanel}></i>
                 </div>
-                    <h2>撰写评论</h2>
+                <h2>撰写评论</h2>
                 <div className="content overflowScroll">
                     <div className="my_flex">
                         <div className="title_color title">课程选择：</div>
                         <div className="rightDiv selectCont">
-                            <div className="select">1</div>
-                            <ul>
-                                <li className="text_hidden line_public">1</li>
-                                <li>2</li>
-                                <li>3</li>
+                            <div className="select" onClick={this.openUl}>第{this.state.ulINdex}章节</div>
+                            <ul style={{display: this.state.ulDisplay ? '' : 'none'}}>
+                                {
+                                    this.state.courseArr.map((v, i) => {
+                                        return <li onClick={this.closeUl.bind(this, i + 1)} key={i}
+                                                   className="text_hidden line_public">
+                                            {`第${i + 1}章节`}
+                                        </li>
+                                    })
+                                }
                             </ul>
                         </div>
                     </div>

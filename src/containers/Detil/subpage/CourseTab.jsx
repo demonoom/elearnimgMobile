@@ -267,6 +267,7 @@ class CourseTab extends React.Component {
                 </Tabs>
                 <Comment
                     commentFlag={this.state.commentFlag}
+                    courseArr={courseObj.videos}
                 />
             </div>
         )
