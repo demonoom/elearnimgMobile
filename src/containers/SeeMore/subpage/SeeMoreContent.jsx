@@ -19,6 +19,9 @@ class SeeMoreContent extends React.Component {
             courseList: [],
             page: 1,
             isLoadingMore: true,
+            courseSubject: '-1',
+            courseStatus: 'all',
+            courseGrade: '-1',
         }
     }
 
@@ -57,7 +60,7 @@ class SeeMoreContent extends React.Component {
     }
 
     getCourseListV3(flag) {
-        getCourseListV3(this.state.page, this.state.courseType, -1, this.state.courseProperty, 'all', this.state.courseSort, 0, -1).then((res) => {
+        getCourseListV3(this.state.page, this.state.courseType, this.state.courseSubject, this.state.courseProperty, this.state.courseStatus, this.state.courseSort, 0, this.state.courseGrade).then((res) => {
 
             if (res.msg === '调用成功' && res.success) {
                 if (this.state.page === res.pager.pageCount) {
@@ -79,7 +82,14 @@ class SeeMoreContent extends React.Component {
     }
 
     courseTypeOnChange(type) {
-        this.setState({courseType: type, page: 1, hasMoreClass: true}, () => {
+        this.setState({
+            courseType: type,
+            page: 1,
+            hasMoreClass: true,
+            courseSubject: '-1',
+            courseStatus: 'all',
+            courseGrade: '-1'
+        }, () => {
             this.getCourseListV3(true)
             loadMoreFlag = true
             this.refs.class_list_seemore.scrollTop = 0
@@ -124,6 +134,17 @@ class SeeMoreContent extends React.Component {
 
     filterOpen = () => {
         this.props.filterOpen()
+    }
+
+    filterMakeChose = (status, subject, grade) => {
+        this.setState({
+            courseSubject: subject, courseStatus: status, courseGrade: grade, page: 1,
+            hasMoreClass: true
+        }, () => {
+            this.getCourseListV3(true)
+            loadMoreFlag = true
+            this.refs.class_list_seemore.scrollTop = 0
+        })
     }
 
     render() {

@@ -1,19 +1,29 @@
 import {post} from '../post'
 
 /**
- * 搜索课程
- * @param userId
+ * 新版搜索
  * @param pageNo
- * @param value
+ * @param courseType 类别
+ * @param courseSubject 科目
+ * @param courseStatus
+ * @param courseSort
+ * @param courseGrade 年级
+ * @param searchKeyWords
  * @returns {*}
  */
-export function listCourseByKeyWords(userId, pageNo, value) {
+export function getCourseListV3(pageNo, courseType, courseSubject, courseStatus, courseSort, courseGrade, searchKeyWords) {
     const result = post({
-        "method": 'listCourseByKeyWords',
+        "method": 'getCourseListV3',
         "pageNo": pageNo,
-        "userId": userId,
-        "searchKeyWords": value,   //channel：antpay　区分消费记录为账户余额消费
-        "versionCode": '',
+        "courseType": courseType,
+        "courseSubject": courseSubject,
+        "courseProperty": 'all',
+        "courseStatus": courseStatus,
+        "courseSort": courseSort,
+        "recommend": 0,
+        "courseGrade": courseGrade,
+        "courseOrder": 'desc',
+        "searchKeyWords": searchKeyWords,
     })
 
     return result

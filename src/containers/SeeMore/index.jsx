@@ -48,6 +48,7 @@ class SeeMore extends React.Component {
     courseTypeOnClick = (type) => {
         this.setState({courseType: type})
         this.refs.seeMore_content.courseTypeOnChange(type)
+        this.refs.filter.setDefault()
     }
 
     filterOpen = () => {
@@ -98,6 +99,10 @@ class SeeMore extends React.Component {
         this.setState({filterDisplsy: false})
     }
 
+    filterMakeChose = (status, subject, grade) => {
+        this.refs.seeMore_content.filterMakeChose(status, subject, grade)
+    }
+
     render() {
         return (
             <CSSTransition
@@ -123,7 +128,8 @@ class SeeMore extends React.Component {
                             filterOpen={this.filterOpen}
                         />
                     </div>
-                    <Filter data={this.state.searchParams} filterDisplsy={this.state.filterDisplsy}
+                    <Filter ref='filter' data={this.state.searchParams} filterDisplsy={this.state.filterDisplsy}
+                            filterMakeChose={this.filterMakeChose}
                             shadeOnClick={this.shadeOnClick}/>
                 </div>
 
