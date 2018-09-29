@@ -33,11 +33,11 @@
   }
 
   .textCont{
-    padding: .1rem;
+    padding: .08rem .1rem;
     background-color: #fff;
-    font-size: .13rem;
+    font-size: .14rem;
     .tagDiv{
-      margin: .1rem 0 .05rem;
+      margin: .05rem 0 .07rem;
     }
     .time{
       font-size: .11rem;
@@ -56,7 +56,7 @@
       }
     }
     .textBottom{
-      margin-top: .04rem;
+      margin-top: .06rem;
       height: .25rem;
       line-height: .25rem;
       overflow: hidden;
@@ -67,6 +67,10 @@
       -khtml-align-items: center;
       align-items: center;
       justify-content: space-between;
+      .textLeft{
+        display: block;
+        width: calc(100% - .45rem);
+      }
       .free{
         color: #06BC71;
         font-size: .13rem;
@@ -82,7 +86,8 @@
       .text_color{
         font-size: .13rem;
         line-height: 1.2;
-        width: calc(~"100% - .75rem");
+        width: calc(~"100% - .25rem");
+        padding-left: .05rem;
       }
     }
     img{

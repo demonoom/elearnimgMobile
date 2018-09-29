@@ -10,7 +10,7 @@ body * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Microsoft YaHei", "Times New Roman", Georgia, Serif;
+    font-family: "Microsoft YaHei", "Arial", Georgia, Serif;
     -webkit-touch-callout: none; /*系统默认菜单被禁用*/
     /*-webkit-user-select: none; !*webkit浏览器*!*/
     /*user-select: none;*/
@@ -387,4 +387,7 @@ input {
 
 .whiteBg {
     background-color: white;
+}
+.swiper-pagination-fraction{
+    bottom: 5px !important;
 }

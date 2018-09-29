@@ -41,8 +41,10 @@ class BoxItem extends React.Component {
                             <span className='courseNum'>{data.videos.length}<i>-</i>课时</span>
                         </div>
                         <div className="textBottom my_flex">
-                            <img src={data.users[0].avatar} alt=""/>
-                            <span className='text_color text_hidden'>{data.users[0].userName}</span>
+                            <span className="textLeft my_flex">
+                                <img src={data.users[0].avatar} alt=""/>
+                                <span className='text_color text_hidden'>{data.users[0].userName}</span>
+                            </span>
                             {data.money === '0.00' ?
                                 <span className='free'>免费</span> :
                                 <span className='price'><span>¥ </span>{data.money}</span>}
