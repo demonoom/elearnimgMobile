@@ -128,7 +128,7 @@ class MyOrder extends React.Component {
                         {
                             myOrderContent.length ? <OrderList
                                 myOrderContent={myOrderContent}
-                            /> : <Icon type='loading'/>
+                            /> : <span>暂无订单</span>
                         }
                         <LoadMore ref='LoadMore' isLoadingMore={this.state.isLoadingMore}
                                   hasMoreClass={this.state.hasMoreClass}
