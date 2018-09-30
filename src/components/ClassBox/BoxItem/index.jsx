@@ -35,7 +35,7 @@ class BoxItem extends React.Component {
                     </div>
                     <div className="textCont">
                         <div className='title_color text_hidden'>{data.courseName}</div>
-                        <div className='tagDiv'><span className='tag'>{data.courseType.name}</span></div>
+                        <div className='tagDiv'><span className='tag orange'>{data.courseType.name}</span></div>
                         <div className='time line_public'>
                             <span>{`${FormatTime.formatMD(data.startTime)}-${FormatTime.formatMD(data.endTime)}`}</span>
                             <span className='courseNum'>{data.videos.length}<i>-</i>课时</span>
