@@ -15,7 +15,8 @@ class BoxItem extends React.Component {
 
         var data = {
             method: 'openNewPage',
-            url: `http://192.168.50.29:8100/detil/${id}/${publisher_id}/openNewPage`
+            // url: `http://192.168.50.139:8200/detil/${id}/${publisher_id}/openNewPage`
+            url: `http://jiaoxue.maaee.com:8200/detil/${id}/${publisher_id}/openNewPage`
         };
 
         window.Bridge.callHandler(data, null, function (error) {
