@@ -23,7 +23,7 @@ class ListItem extends React.Component {
                 <img src={itemObj.image + MID_IMG} alt=""/>
                 <div className='rightCont text_color my_flex'>
                     <div className='title_color text_hidden'>{itemObj.courseName}</div>
-                    <div className='tagDiv'><span className='tag orange'>{itemObj.courseType.name}</span></div>
+                    <div className='tagDiv'><span className='tag'>{itemObj.courseType.name}</span></div>
                     <div className='name text_hidden'>
                         {
                             itemObj.users.map((v, i) => {
