@@ -45,7 +45,7 @@ class BoxItem extends React.Component {
                             <span className='text_color text_hidden'>{data.users[0].userName}</span>
                             {data.money === '0.00' ?
                                 <span className='free'>免费</span> :
-                                <span className='price'><span>¥ </span>{data.money}</span>}
+                                <span className='price text_hidden'><span>¥ </span>{data.money}</span>}
                         </div>
                     </div>
 
