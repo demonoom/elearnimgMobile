@@ -31,6 +31,8 @@ class ClassBox extends React.Component {
                           className={this.state.coruseType === 'mostnew' ? 'active' : ''}>最新课程</span>
                     <span onClick={this.changeCoruseType.bind(this, 'little')}
                           className={this.state.coruseType === 'little' ? 'active' : ''}>微课</span>
+                    <span onClick={this.changeCoruseType.bind(this, 'chosen')}
+                          className={this.state.coruseType === 'chosen' ? 'active' : ''}>精选公开课</span>
                 </div>
                 <div className='item_div'>
                     {

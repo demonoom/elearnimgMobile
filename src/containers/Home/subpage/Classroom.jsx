@@ -13,6 +13,7 @@ class Classroom extends React.Component {
             courseProperty: 'all',
             courseSort: 'hot',
             courseType: 'sjkc',
+            recommend: 0,
         }
     }
 
@@ -23,7 +24,7 @@ class Classroom extends React.Component {
     getCourseListV3() {
         // "courseProperty":"all","courseSort":"hot"}
         // , courseProperty, courseSort,
-        getCourseListV3(1, this.state.courseType, -1, this.state.courseProperty, 'all', this.state.courseSort, 0, -1).then((res) => {
+        getCourseListV3(1, this.state.courseType, -1, this.state.courseProperty, 'all', this.state.courseSort, this.state.recommend, -1).then((res) => {
 
             if (res.msg === '调用成功' && res.success) {
                 res.response.length > 4 ? this.setState({
@@ -39,11 +40,14 @@ class Classroom extends React.Component {
 
     changeCoruseType = (type) => {
 
-        type === 'little' ? this.setState({courseSort: -1, courseProperty: type}, () => {
-            this.getCourseListV3()
-        }) : this.setState({courseSort: type, courseProperty: 'all'}, () => {
-            this.getCourseListV3()
-        })
+        type === 'chosen' ? this.setState({courseSort: -1, courseProperty: 'all', recommend: 1}, () => {
+                this.getCourseListV3()
+            }) :
+            type === 'little' ? this.setState({courseSort: -1, courseProperty: type, recommend: 0}, () => {
+                this.getCourseListV3()
+            }) : this.setState({courseSort: type, courseProperty: 'all', recommend: 0}, () => {
+                this.getCourseListV3()
+            })
     }
 
     render() {
@@ -67,12 +71,15 @@ class Classroom extends React.Component {
                       index === 1 ? this.setState({
                           courseType: 'cgkc',
                           courseProperty: 'all',
-                          courseSort: 'hot'
+                          courseSort: 'hot',
+                          recommend: 0
                       }, () => {
                           this.getCourseListV3()
                       }) : this.setState({
-                          courseType: 'sjkc', courseProperty: 'all',
-                          courseSort: 'hot'
+                          courseType: 'sjkc',
+                          courseProperty: 'all',
+                          courseSort: 'hot',
+                          recommend: 0
                       }, () => {
                           this.getCourseListV3()
                       })

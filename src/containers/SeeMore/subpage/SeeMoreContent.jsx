@@ -22,6 +22,7 @@ class SeeMoreContent extends React.Component {
             courseSubject: '-1',
             courseStatus: 'all',
             courseGrade: '-1',
+            recommend: 0,
         }
     }
 
@@ -60,7 +61,7 @@ class SeeMoreContent extends React.Component {
     }
 
     getCourseListV3(flag) {
-        getCourseListV3(this.state.page, this.state.courseType, this.state.courseSubject, this.state.courseProperty, this.state.courseStatus, this.state.courseSort, 0, this.state.courseGrade).then((res) => {
+        getCourseListV3(this.state.page, this.state.courseType, this.state.courseSubject, this.state.courseProperty, this.state.courseStatus, this.state.courseSort, this.state.recommend, this.state.courseGrade).then((res) => {
 
             if (res.msg === '调用成功' && res.success) {
                 if (this.state.page === res.pager.pageCount) {
@@ -98,27 +99,42 @@ class SeeMoreContent extends React.Component {
 
     typeOnChange = (type) => {
 
-        type === 'little' ? this.setState({
-            courseSort: -1,
-            courseProperty: type,
-            coursePropertyOnClick: type,
-            page: 1,
-            hasMoreClass: true
-        }, () => {
-            this.getCourseListV3(true)
-            loadMoreFlag = true
-            this.refs.class_list_seemore.scrollTop = 0
-        }) : this.setState({
-            courseSort: type,
-            courseProperty: 'all',
-            coursePropertyOnClick: type,
-            page: 1,
-            hasMoreClass: true
-        }, () => {
-            this.getCourseListV3(true)
-            loadMoreFlag = true
-            this.refs.class_list_seemore.scrollTop = 0
-        })
+        type === 'chosen' ? this.setState({
+                courseSort: -1,
+                courseProperty: 'all',
+                coursePropertyOnClick: type,
+                page: 1,
+                hasMoreClass: true,
+                recommend: 1
+            }, () => {
+                this.getCourseListV3(true)
+                loadMoreFlag = true
+                this.refs.class_list_seemore.scrollTop = 0
+            }) :
+
+            type === 'little' ? this.setState({
+                courseSort: -1,
+                courseProperty: type,
+                coursePropertyOnClick: type,
+                page: 1,
+                hasMoreClass: true,
+                recommend: 0
+            }, () => {
+                this.getCourseListV3(true)
+                loadMoreFlag = true
+                this.refs.class_list_seemore.scrollTop = 0
+            }) : this.setState({
+                courseSort: type,
+                courseProperty: 'all',
+                coursePropertyOnClick: type,
+                page: 1,
+                hasMoreClass: true,
+                recommend: 0
+            }, () => {
+                this.getCourseListV3(true)
+                loadMoreFlag = true
+                this.refs.class_list_seemore.scrollTop = 0
+            })
     }
 
     /**
@@ -157,6 +173,8 @@ class SeeMoreContent extends React.Component {
                           onClick={this.typeOnChange.bind(this, 'mostnew')}>最新课程</span>
                     <span className={this.state.coursePropertyOnClick === 'little' ? 'active' : ''}
                           onClick={this.typeOnChange.bind(this, 'little')}>微课</span>
+                    <span className={this.state.coursePropertyOnClick === 'chosen' ? 'active' : ''}
+                          onClick={this.typeOnChange.bind(this, 'chosen')}>精选公开课</span>
                     <span onClick={this.filterOpen} className="tabFilter">筛选<i className='icon-shaixuan2 iconfont'></i></span>
                 </div>
                 <div className='class_list class_list_seemore overflowScroll' ref='class_list_seemore'>

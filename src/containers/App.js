@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {BrowserRouter as Router, Redirect, NavLink} from "react-router-dom"
+import {BrowserRouter as Router, Redirect} from "react-router-dom"
 import CacheRoute, {CacheSwitch} from 'react-router-cache-route'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
@@ -20,6 +20,9 @@ import SeeMore from '../containers/SeeMore'
 import PlaceOrder from '../containers/PlaceOrder'
 import SeeMoreLiving from '../containers/SeeMoreLiving'
 import {Toast} from 'antd-mobile'
+
+let navClickFlag = false
+let timeout
 
 class App extends Component {
 
@@ -44,7 +47,7 @@ class App extends Component {
 
     navOnClick = (word) => {
         var _this = this;
-        if (localStorage.getItem("userId") == null) {
+        if (word !== '/home' && localStorage.getItem("userId") == null) {
             var data = {
                 method: 'goLoginPage',
             };
@@ -58,8 +61,17 @@ class App extends Component {
             });
             return
         }
-        this.setState({navWord: word})
-        this.refs.switch.context.router.history.push(word)
+        if (!navClickFlag) {
+            navClickFlag = true
+            this.setState({navWord: word})
+            this.refs.switch.context.router.history.push(word)
+            if (timeout) {
+                clearTimeout(timeout)
+            }
+            timeout = setTimeout(function () {
+                navClickFlag = false
+            }, 400)
+        }
     }
 
     render() {
@@ -177,10 +189,10 @@ class App extends Component {
                     <div className='tab'>
                         <div
                             className={this.state.navWord === '/home' ? 'tab-item tab_course active' : 'tab-item tab_course'}>
-                            <NavLink className='nav-link' to='/home' onClick={this.navOnClick.bind(this, '/home')}>
+                            <div className='nav-link' onClick={this.navOnClick.bind(this, '/home')}>
                                 <i></i>
                                 <span>发现课程</span>
-                            </NavLink>
+                            </div>
                         </div>
                         <div
                             className={this.state.navWord === '/mycourse' ? 'tab-item tab_myCurriculum active' : 'tab-item tab_myCurriculum'}>
