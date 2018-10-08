@@ -93,11 +93,47 @@ class CourseTab extends React.Component {
         })
     }
 
+    courseWeiOnPlay = (obj) => {
+
+        var _this = this;
+
+        if (localStorage.getItem("userId") == null) {
+            var data = {
+                method: 'goLoginPage',
+            };
+
+            window.Bridge.callHandler(data, function (res) {
+                localStorage.setItem("userId", JSON.parse(res).colUid)
+                _this.props.loginSuccess()
+            }, function (error) {
+                Toast.info(error, 4)
+            });
+            return
+        }
+        if (!this.props.courseObj.buyed) {
+            Toast.info('您还没有购买!', 2)
+            return
+        }
+
+
+        var datas = {
+            method: 'openElearningWeiKeClass',
+            videoName: obj.name,
+            antUid: obj.user.antUid,
+            url: obj.url
+        };
+
+        window.Bridge.callHandler(datas, null, function (error) {
+            Toast.info(error, 4)
+        });
+    }
+
     /**
      * 开课
      * @param obj
      */
     courseOnPlay = (obj) => {
+
 
         var _this = this;
 
@@ -171,7 +207,6 @@ class CourseTab extends React.Component {
 
         const courseObj = this.props.courseObj
 
-        console.log(courseObj.isSeries);
 
         return (
             <div>
@@ -238,7 +273,7 @@ class CourseTab extends React.Component {
 
                                                     ( courseObj.isSeries === '3' || courseObj.isSeries === '4') ?
                                                         <span className='status icon_playBack'
-                                                              onClick={this.courseOnPlay.bind(this, v)}></span> : v.videoStatus === '1' ?
+                                                              onClick={this.courseWeiOnPlay.bind(this, v)}></span> : v.videoStatus === '1' ?
                                                         <span className='status text_color'>未开课</span> :
                                                         <span
                                                             className={v.videoStatus === '2' ? 'status icon_live' : 'status icon_playBack'}

@@ -33,6 +33,13 @@ class User extends React.Component {
      */
     componentDidRecover = () => {
         this.refs.User.parentNode.style.height = `${this.state.truelyHeight}px`
+        findUserById(localStorage.getItem("userId")).then((res) => {
+            if (res.msg === '调用成功' && res.success) {
+                this.setState({loginUser: res.response})
+            } else {
+                Toast.fail(res.msg, 2)
+            }
+        })
     }
 
     componentDidMount() {

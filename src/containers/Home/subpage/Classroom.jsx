@@ -1,5 +1,5 @@
 import React from 'react'
-import {Tabs, Badge, Icon, Toast} from 'antd-mobile'
+import {Tabs, Badge, Toast} from 'antd-mobile'
 import './style.less'
 import {getCourseListV3} from '../../../../src/fetch/home/home'
 import ClassBox from '../../../components/ClassBox'
@@ -25,7 +25,6 @@ class Classroom extends React.Component {
         // "courseProperty":"all","courseSort":"hot"}
         // , courseProperty, courseSort,
         getCourseListV3(1, this.state.courseType, -1, this.state.courseProperty, 'all', this.state.courseSort, this.state.recommend, -1).then((res) => {
-
             if (res.msg === '调用成功' && res.success) {
                 res.response.length > 4 ? this.setState({
                     classroomContent: res.response.splice(0, 4)
@@ -65,8 +64,12 @@ class Classroom extends React.Component {
                   animated={false}
                   useOnPan={false}
                   onChange={(tab, index) => {
-                      this.refs.classBoxSj.defaultCourseType()
-                      this.refs.classBoxCg.defaultCourseType()
+                      if (this.refs.classBoxSj != null) {
+                          this.refs.classBoxSj.defaultCourseType()
+                      }
+                      if (this.refs.classBoxCg != null) {
+                          this.refs.classBoxCg.defaultCourseType()
+                      }
                       this.setState({courseProperty: 'hot'})
                       index === 1 ? this.setState({
                           courseType: 'cgkc',
@@ -87,12 +90,12 @@ class Classroom extends React.Component {
             >
                 <div style={!classroomContent.length ? {textAlign: 'center', paddingTop: '.15rem'} : {}}>
                     {
-                        classroomContent.length ? <ClassBox
+                        <ClassBox
                             ref='classBoxSj'
                             changeCoruseType={this.changeCoruseType}
                             classroomContent={this.state.classroomContent}
                             typeGuoLv={true}
-                        /> : <Icon type='loading'/>
+                        />
                     }
                     <NavLink className='item_to_all' to='/seemore/sjkc'>
                         查看全部课程 >
@@ -100,12 +103,12 @@ class Classroom extends React.Component {
                 </div>
                 <div>
                     {
-                        classroomContent.length ? <ClassBox
+                        <ClassBox
                             ref='classBoxCg'
                             changeCoruseType={this.changeCoruseType}
                             classroomContent={this.state.classroomContent}
                             typeGuoLv={true}
-                        /> : <Icon type='loading'/>
+                        />
                     }
                     <NavLink to='/seemore/cgkc' className='item_to_all'>查看全部课程 ></NavLink>
                 </div>

@@ -1,7 +1,7 @@
 import React from 'react'
 import './style.less'
 import {CSSTransition} from 'react-transition-group'
-import {Toast, Icon} from 'antd-mobile'
+import {Toast} from 'antd-mobile'
 import PublicHeader from '../../components/PublicHeader'
 import {getMyCollectCourseListV3} from '../../../src/fetch/my-collection/my-collection'
 import ClassBox from '../../components/ClassBox'
@@ -132,7 +132,7 @@ class MyCollection extends React.Component {
                             myCollectionContent.length ? <ClassBox
                                 classroomContent={myCollectionContent}
                                 typeGuoLv={false}
-                            /> : <Icon type='loading'/>
+                            /> : <span>暂无收藏</span>
                         }
                         <LoadMore ref='LoadMore' isLoadingMore={this.state.isLoadingMore}
                                   hasMoreClass={this.state.hasMoreClass}

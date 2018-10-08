@@ -82,8 +82,8 @@ class BalanceRecharge extends React.Component {
     }
 
     createRechargeOrder = () => {
-        // createRechargeOrder(localStorage.getItem("userId"), this.state.payMethod, this.state.moneyNum).then((res) => {
-        createRechargeOrder(localStorage.getItem("userId"), this.state.payMethod, 0.01).then((res) => {
+        createRechargeOrder(localStorage.getItem("userId"), this.state.payMethod, this.state.moneyNum).then((res) => {
+        // createRechargeOrder(localStorage.getItem("userId"), this.state.payMethod, 0.01).then((res) => {
 
             if (res.msg === '调用成功' && res.success) {
                 if (!!res.response.payUrl) {
