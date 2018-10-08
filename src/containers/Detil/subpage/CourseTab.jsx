@@ -17,7 +17,6 @@ class CourseTab extends React.Component {
             CommentArr: [],
             isLoadingMore: true,
             hasMoreClass: true,
-            // commentFlag: false
         }
     }
 
@@ -162,26 +161,6 @@ class CourseTab extends React.Component {
 
     }
 
-    /**
-     * 评论
-     * @param score
-     * @param commentValue
-     * @param videoId
-     */
-
-    /*comment = (videoNum, score, commentValue, videoId) => {
-        addEvaluate(videoNum, videoId, this.props.courseObj.id, commentValue, score, localStorage.getItem("userId")).then((res) => {
-            if (res.msg === '调用成功' && res.success) {
-                Toast.success('评论成功', 1)
-                this.setState({commentFlag: false, page: 1}, () => {
-                    this.queryEvaluatePageByCourseId()
-                })
-            } else {
-                Toast.fail(res.msg, 2)
-            }
-        })
-    }*/
-
     render() {
 
         const tabs = [
@@ -212,7 +191,9 @@ class CourseTab extends React.Component {
                             <div><span
                                 className="title_color studyNum">{courseObj.buyUids.length}人学习</span><span>{courseObj.evaluatesCount}人评论</span>
                             </div>
-                            <div>授课时间：{FormatTime.formatYMD(courseObj.courseTime)}</div>
+                            <div>授课时间：{
+                                (courseObj.isSeries === '3' || courseObj.isSeries === '4') ? FormatTime.formatYMD(courseObj.createTime) : FormatTime.formatYMD(courseObj.courseTime)
+                            }</div>
                             <div>课时：{courseObj.videoNum}课时</div>
                         </div>
                         <WhiteSpace/>
@@ -248,7 +229,7 @@ class CourseTab extends React.Component {
                                         <div className='textCont'>
                                             <div className='title_color'>{v.name}</div>
                                             <div className='text_color'>
-                                                授课时间：{FormatTime.formatAllTime(v.liveTime)}
+                                                授课时间：{(courseObj.isSeries === '3' || courseObj.isSeries === '4') ? FormatTime.formatAllTime(courseObj.createTime) : FormatTime.formatAllTime(v.liveTime)}
                                                 {
                                                     v.videoStatus === '1' ?
                                                         <span className='status text_color'>未开课</span> :
@@ -294,14 +275,6 @@ class CourseTab extends React.Component {
                         </div>
                     </div>
                 </Tabs>
-                {/*<Comment*/}
-                {/*comment={this.comment}*/}
-                {/*commentFlag={this.state.commentFlag}*/}
-                {/*courseArr={courseObj.videos}*/}
-                {/*closeUl={() => {*/}
-                {/*this.setState({commentFlag: false})*/}
-                {/*}}*/}
-                {/*/>*/}
             </div>
         )
     }

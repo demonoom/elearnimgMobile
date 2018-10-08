@@ -14,11 +14,11 @@ class SearchContent extends React.Component {
             isLoadingMore: true,
             hasMoreClass: true,
             searchValue: '',
-            courseProperty: 'all',
+            courseProperty: '-1',
             courseSort: 'hot',
             courseType: '-1',
             courseSubject: '-1',
-            courseStatus: 'all',
+            courseStatus: '-1',
             courseGrade: '-1',
             historyArr: []
         }
@@ -69,11 +69,11 @@ class SearchContent extends React.Component {
                 page: 1,
                 searchValue: value,
                 hasMoreClass: true,
-                courseProperty: 'all',
+                courseProperty: '-1',
                 courseSort: 'hot',
                 courseType: '-1',
                 courseSubject: '-1',
-                courseStatus: 'all',
+                courseStatus: '-1',
                 courseGrade: '-1',
             }, () => {
                 this.searchList(value, falg)

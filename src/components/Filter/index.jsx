@@ -12,7 +12,7 @@ class Filter extends React.Component {
             status: 'all',
             subject: '-1',
             grade: '-1',
-            type: "cgkc",
+            type: "-1",
         }
     }
 

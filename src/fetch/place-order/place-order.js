@@ -15,6 +15,14 @@ export function getCourseByCourseId(id) {
     return result
 }
 
+/**
+ * 创建订单
+ * @param userId
+ * @param channel
+ * @param courseId
+ * @param coursePrice
+ * @returns {*}
+ */
 export function createCourseOrder(userId, channel, courseId, coursePrice) {
     const result = post({
         "method": "createCourseOrder",

@@ -1,7 +1,7 @@
 import React from 'react'
 import './style.less'
 import {CSSTransition} from 'react-transition-group'
-import {Toast, Icon} from 'antd-mobile'
+import {Toast} from 'antd-mobile'
 import PublicHeader from '../../components/PublicHeader'
 import {queryPageByOrderV3} from '../../../src/fetch/my-order/my-order'
 import OrderList from '../../components/OrderList'
