@@ -3,6 +3,7 @@ import {getCourseByTodayV3} from '../../../fetch/home/home'
 import ClassList from '../../../components/ClassList'
 import './style.less'
 import {Toast} from 'antd-mobile'
+import {NavLink} from 'react-router-dom'
 
 class Living extends React.Component {
     constructor(props, context) {
@@ -41,7 +42,9 @@ class Living extends React.Component {
             <div style={{display: this.state.livingLength === 0 ? 'none' : ''}}>
                 <h4 className='title_color same_title noBottom' style={{textAlign: 'center'}}>
                     今日直播
-                    <i className="iconfont icon-shenglvehao1"></i>
+                    <NavLink to='/seemoreliving'>
+                        <i className="iconfont icon-shenglvehao1"></i>
+                    </NavLink>
                 </h4>
                 <ClassList
                     courseList={this.state.courseList}
