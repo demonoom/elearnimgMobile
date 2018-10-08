@@ -227,7 +227,7 @@ class CourseTab extends React.Component {
                                     return <div className='my_flex line_public' key={i}>
                                         <div className='num text_color'>{FormatTime.formatNum(i + 1)}</div>
                                         <div className='textCont'>
-                                            <div className='title_color'>{v.name}</div>
+                                            <div className='title_color text_hidden'>{v.name}</div>
                                             <div className='text_color'>
                                                 授课时间：{(courseObj.isSeries === '3' || courseObj.isSeries === '4') ? FormatTime.formatAllTime(courseObj.createTime) : FormatTime.formatAllTime(v.liveTime)}
                                                 {
