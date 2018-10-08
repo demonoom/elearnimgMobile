@@ -39,7 +39,10 @@ class Living extends React.Component {
 
         return (
             <div style={{display: this.state.livingLength === 0 ? 'none' : ''}}>
-                <h4 className='title_color same_title noBottom' style={{textAlign: 'center'}}>今日直播</h4>
+                <h4 className='title_color same_title noBottom' style={{textAlign: 'center'}}>
+                    今日直播
+                    <i className="iconfont icon-shenglvehao1"></i>
+                </h4>
                 <ClassList
                     courseList={this.state.courseList}
                 />
