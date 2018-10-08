@@ -18,6 +18,7 @@ import BalanceRecharge from '../containers/BalanceRecharge'
 import SetUp from '../containers/SetUp'
 import SeeMore from '../containers/SeeMore'
 import PlaceOrder from '../containers/PlaceOrder'
+import SeeMoreLiving from '../containers/SeeMoreLiving'
 import {Toast} from 'antd-mobile'
 
 class App extends Component {
@@ -38,6 +39,7 @@ class App extends Component {
         //模拟登录
         this.props.userInfoActions.login({userId: '500001020'})
         // localStorage.setItem("userId", "500001020")
+        localStorage.setItem("version", this.refs.switch.context.router.route.location.pathname.split('/')[2])
     }
 
     navOnClick = (word) => {
@@ -137,6 +139,13 @@ class App extends Component {
                                         className: '__CacheRoute__wrapper__uncached'
                                     })}/>
                         <CacheRoute className='content_window_all' path='/setup' component={SetUp}
+                                    behavior={cached => (cached ? {
+                                        style: this.state.cachedStyle,
+                                        className: '__CacheRoute__wrapper__cached'
+                                    } : {
+                                        className: '__CacheRoute__wrapper__uncached'
+                                    })}/>
+                        <CacheRoute className='content_window_all' path='/seemoreliving' component={SeeMoreLiving}
                                     behavior={cached => (cached ? {
                                         style: this.state.cachedStyle,
                                         className: '__CacheRoute__wrapper__cached'

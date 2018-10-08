@@ -10,6 +10,14 @@ function obj2params(obj) {
     return result;
 }
 
+var phoneType = navigator.userAgent;
+var phone;
+if (phoneType.indexOf('iPhone') > -1 || phoneType.indexOf('iPad') > -1) {
+    phone = 'ios'
+} else {
+    phone = 'android'
+}
+
 // 发送 post 请求
 export function post(paramsObj) {
     var result = fetch(fetchUrl, {
@@ -17,9 +25,9 @@ export function post(paramsObj) {
         headers: {
             'Accept': 'application/json, text/plain, */*',
             'Content-Type': 'application/x-www-form-urlencoded',
-            'accessUser': '',
-            'machineType': 'web',
-            'version': '1.0'
+            'accessUser': localStorage.getItem("userId") || '',
+            'machineType': phone,
+            'version': localStorage.getItem("version") || '',
         },
         body: obj2params(paramsObj)
     }).then(res => {
