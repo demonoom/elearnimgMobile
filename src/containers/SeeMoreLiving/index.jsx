@@ -63,7 +63,7 @@ class SeeMoreLiving extends React.Component {
                 timeout={300}
                 classNames='translate'
             >
-                <div className='my_collection positionBg' ref='SeeMoreLiving'>
+                <div className='my_seeMoreLiving positionBg' ref='SeeMoreLiving'>
                     <PublicHeader
                         title='今日直播'
                         ref='header'
