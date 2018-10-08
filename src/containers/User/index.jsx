@@ -33,6 +33,9 @@ class User extends React.Component {
      */
     componentDidRecover = () => {
         this.refs.User.parentNode.style.height = `${this.state.truelyHeight}px`
+        if (localStorage.getItem("userId") == null) {
+            return
+        }
         findUserById(localStorage.getItem("userId")).then((res) => {
             if (res.msg === '调用成功' && res.success) {
                 this.setState({loginUser: res.response})
@@ -57,15 +60,17 @@ class User extends React.Component {
     render() {
         return (
             <div className='user overflowScroll' ref='User'>
-                <div className='user_header'>
-                    <img
-                        src={this.state.loginUser.avatar + SMALL_IMG}
-                        alt=""/>
-                    <div className='textCont'>
-                        <div className='text_hidden'>{this.state.loginUser.userName}</div>
-                        {/*<div className='idNUm'>id</div>*/}
+                {
+                    this.state.loginUser == null ? '' : <div className='user_header'>
+                        <img
+                            src={this.state.loginUser.avatar + SMALL_IMG}
+                            alt=""/>
+                        <div className='textCont'>
+                            <div className='text_hidden'>{this.state.loginUser.userName}</div>
+                            {/*<div className='idNUm'>id</div>*/}
+                        </div>
                     </div>
-                </div>
+                }
                 <UserList
                     count={this.state.loginUser.count}
                 />
