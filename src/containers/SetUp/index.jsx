@@ -40,11 +40,12 @@ class SetUp extends React.Component {
     /**
      * 退出
      */
-    quitOnClick() {
+    quitOnClick = () => {
         localStorage.removeItem("userId");
+        window.history.go(-1)
         Toast.success('退出成功', 1)
         setTimeout(function () {
-            window.location.pathname = '/home'
+            window.__quit__()
         }, 1000)
     }
 

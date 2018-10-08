@@ -36,6 +36,12 @@ class App extends Component {
                 pointerEvents: 'none',
             }
         }
+        window.__quit__ = this.quit
+    }
+
+    quit = () => {
+        this.setState({navWord: '/home'})
+        this.refs.switch.context.router.history.replace('/home')
     }
 
     componentDidMount() {
@@ -46,6 +52,11 @@ class App extends Component {
     }
 
     navOnClick = (word) => {
+
+        if (word === this.refs.switch.context.router.route.location.pathname) {
+            return
+        }
+
         var _this = this;
         if (word !== '/home' && localStorage.getItem("userId") == null) {
             var data = {
@@ -64,7 +75,7 @@ class App extends Component {
         if (!navClickFlag) {
             navClickFlag = true
             this.setState({navWord: word})
-            this.refs.switch.context.router.history.push(word)
+            this.refs.switch.context.router.history.replace(word)
             if (timeout) {
                 clearTimeout(timeout)
             }

@@ -171,6 +171,8 @@ class CourseTab extends React.Component {
 
         const courseObj = this.props.courseObj
 
+        console.log(courseObj.isSeries);
+
         return (
             <div>
                 <Tabs tabs={tabs}
@@ -205,7 +207,8 @@ class CourseTab extends React.Component {
                                         <img src={v.avatar + SMALL_IMG} alt=""/>
                                         <div className='right'>
                                             <div className='userName title_color text_hidden'>{v.userName}</div>
-                                            <div className='text text_color text_hidden2'>{v.userContent}</div>
+                                            <div
+                                                className='text text_color text_hidden2'>{v.userContent || '暂无介绍'}</div>
                                         </div>
                                     </div>
                                 })
@@ -231,7 +234,11 @@ class CourseTab extends React.Component {
                                             <div className='text_color'>
                                                 授课时间：{(courseObj.isSeries === '3' || courseObj.isSeries === '4') ? FormatTime.formatAllTime(courseObj.createTime) : FormatTime.formatAllTime(v.liveTime)}
                                                 {
-                                                    v.videoStatus === '1' ?
+
+
+                                                    ( courseObj.isSeries === '3' || courseObj.isSeries === '4') ?
+                                                        <span className='status icon_playBack'
+                                                              onClick={this.courseOnPlay.bind(this, v)}></span> : v.videoStatus === '1' ?
                                                         <span className='status text_color'>未开课</span> :
                                                         <span
                                                             className={v.videoStatus === '2' ? 'status icon_live' : 'status icon_playBack'}
