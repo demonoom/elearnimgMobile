@@ -50,26 +50,38 @@ module.exports = function(proxy, allowedHost) {
     // use an image, put it in `src` and `import` it from JavaScript instead.
     contentBase: paths.appPublic,
     // By default files from `contentBase` will not trigger a page reload.
-    watchContentBase: true,
+    watchContentBase: false,
     // Enable hot reloading server. It will provide /sockjs-node/ endpoint
     // for the WebpackDevServer client so it can learn when the files were
     // updated. The WebpackDevServer client is included as an entry point
     // in the Webpack development configuration. Note that only changes
     // to CSS are currently hot reloaded. JS changes will refresh the browser.
-    hot: true,
+    hot: false,
     // It is important to tell WebpackDevServer to use the same "root" path
     // as we specified in the config. In development, we always serve from /.
     publicPath: config.output.publicPath,
     // WebpackDevServer is noisy by default so we emit custom message instead
     // by listening to the compiler events with `compiler.plugin` calls above.
-    quiet: true,
+    quiet: false,
     // Reportedly, this avoids CPU overload on some systems.
     // https://github.com/facebookincubator/create-react-app/issues/293
     // src/node_modules is not ignored to support absolute imports
     // https://github.com/facebookincubator/create-react-app/issues/1065
-    watchOptions: {
+      watchOptions: {
+          // 不监听的文件或文件夹，支持正则匹配
+          // 默认为空
+          // ignored: /src/,
+          ignored: [/src/,/node_modules/],
+          // 监听到变化发生后会等300ms再去执行动作，防止文件更新太快导致重新编译频率太高
+          // 默认为 300ms
+          aggregateTimeout: 300,
+          // 判断文件是否发生变化是通过不停的去询问系统指定文件有没有变化实现的
+          // 默认每秒问 1000 次
+          poll: 1000
+      },
+/*    watchOptions: {
       ignored: ignoredFiles(paths.appSrc),
-    },
+    },*/
     // Enable HTTPS if the HTTPS environment variable is set to 'true'
     https: protocol === 'https',
     host: host,
