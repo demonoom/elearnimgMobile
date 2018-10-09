@@ -7,26 +7,21 @@
     display: none;
   }
   .item{
-    padding: .1rem;
+    padding:.15rem .1rem;
     width: 100%;
     img{
-      width: .3rem;
-      height: .3rem;
+      width: .35rem;
+      height: .35rem;
       -webkit-border-radius: 50%;
       -moz-border-radius: 50%;
       border-radius: 50%;
-      margin-right:.15rem;
-    }
-    .title_color{
-      font-size: .14rem;
-      display: inline-block;
-      width: calc(~"100% - 1.2rem");
+      margin-right:.1rem;
     }
     .rightCont{
       width: calc(~"100% - .45rem");
     }
     .content{
-      font-size: .12rem;
+      font-size: .14rem;
       margin-top: .07rem;
       word-break: break-word;
       line-height: 1.6;
@@ -34,18 +29,23 @@
     .userName{
       line-height: 1.2;
       position: relative;
+      font-size: .14rem;
       padding-top: .05rem;
     }
-    .time{
+    .timeCont{
       font-size: .12rem;
-      position: absolute;
-      right: 0;
-      top:50%;
-      -webkit-transform: translateY(-50%);
-      -moz-transform: translateY(-50%);
-      -ms-transform: translateY(-50%);
-      -o-transform: translateY(-50%);
-      transform: translateY(-50%);
+      .blue{
+        color: #3672ED;
+      }
+      .courseName{
+        padding-right: .08rem;
+        line-height: 1.2;
+      }
+      >span{
+        padding-top: .08rem;
+        display: inline-block;
+        vertical-align: middle;
+      }
     }
   }
 

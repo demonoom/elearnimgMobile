@@ -18,12 +18,15 @@ class ListItem extends React.Component {
                 <div className="my_flex item line_public">
                     <img src={itemObj.user.avatar + SMALL_IMG} alt=""/>
                     <div className="rightCont">
-                        <div className="userName">
-                            <span className="text_hidden title_color">{itemObj.user.userName}</span>
-                            <span
-                                className="time">{`评价来自<<${itemObj.course.courseName}>>`} {FormatTime.formatAllTime(itemObj.createTime)}</span>
+                        <div className="userName text_hidden">
+                            {itemObj.user.userName}
                         </div>
-                        <div className="content">{itemObj.content}</div>
+                        <div className="content title_color">{itemObj.content}</div>
+                        <div className="timeCont">
+                            <span className="courseName">评价来自<span className='blue'>{`《${itemObj.course.courseName}》`}</span></span>
+                            <span> {FormatTime.formatAllTime(itemObj.createTime)}</span>
+                        </div>
+
                     </div>
                 </div>
 
