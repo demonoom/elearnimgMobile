@@ -1,9 +1,10 @@
 import React from 'react'
-import {Tabs, Badge, Toast} from 'antd-mobile'
+import {Tabs, Badge, Toast, WhiteSpace} from 'antd-mobile'
 import './style.less'
 import {findEvaluateByTeacherId, findCourseByTeacherId} from '../../../fetch/teacher/teacher'
 import {SMALL_IMG} from '../../../util/const'
 import TeacherComList from '../../../components/TeacherComList'
+
 import ClassBox from '../../../components/ClassBox'
 
 class TeacherTab extends React.Component {
@@ -109,6 +110,7 @@ class TeacherTab extends React.Component {
                       }}
                 >
                     <div className='detil-tab-item'>
+                        <WhiteSpace/>
                         <ClassBox
                             ref='classBoxCg'
                             classroomContent={this.state.classContent}
@@ -116,11 +118,16 @@ class TeacherTab extends React.Component {
                         />
                     </div>
                     <div className='detil-tab-item'>
-                        <div>
-                            <img src={teacherObj.avatar + SMALL_IMG} alt=""/>
-                            <div>
-                                <span>{teacherObj.userName}</span>
-                                <span>老师简介:{!!teacherObj.userContent ? teacherObj.userContent : '暂无简介'}</span>
+                        <WhiteSpace/>
+                        <div className='whiteBg teachDec'>
+                            <div className='title title_color'>老师简介</div>
+                            <div className='teach_item my_flex'>
+                                  <img src={teacherObj.avatar + SMALL_IMG} alt=""/>
+                                 <div className='right'>
+                                    <div className='userName title_color text_hidden'>{teacherObj.userName}</div>
+                                    <div
+                                        className='text text_color text_hidden2'>{!!teacherObj.userContent ? teacherObj.userContent : '暂无介绍'}</div>
+                                </div>
                             </div>
                         </div>
                     </div>

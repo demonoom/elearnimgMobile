@@ -56,16 +56,19 @@ class Teacher extends React.Component {
                 timeout={300}
                 classNames='translate'
             >
-                <div id='teacher' ref='teacher'>
+                <div id='teacher' ref='teacher' className='positionBg'>
                     <DetilHeader
                         title=''
                         ref='header'
                         collectFlag={true}
                     />
-                    <div className='teacher_content'>
-                        <div style={{backgroundColor: 'red', height: '240px'}}>
+                    <div className='teacher_content overflowScroll'>
+                        <div className='user_header'>
                             <img src={teacherObj.avatar + SMALL_IMG} alt=""/>
-                            <span>{teacherObj.userName}</span>
+                            <div className='textCont'>
+                                <div className='text_hidden'>{teacherObj.userName}</div>
+                                {/*<div className='idNUm'>id</div>*/}
+                            </div>
                         </div>
                         <TeacherTab
                             teacherObj={this.state.teacherObj}
