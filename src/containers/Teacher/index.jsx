@@ -24,7 +24,7 @@ class Teacher extends React.Component {
      */
     componentDidCache = () => {
         setTimeout((() => {
-            this.refs.detil.parentNode.style.height = 0;
+            this.refs.teacher.parentNode.style.height = 0;
         }), 300)
     }
 
@@ -32,7 +32,7 @@ class Teacher extends React.Component {
      * List recovered被恢复
      */
     componentDidRecover = () => {
-        this.refs.detil.parentNode.style.height = `${this.state.truelyHeight}px`
+        this.refs.teacher.parentNode.style.height = `${this.state.truelyHeight}px`
     }
 
     componentDidMount() {
@@ -67,7 +67,6 @@ class Teacher extends React.Component {
                             <img src={teacherObj.avatar + SMALL_IMG} alt=""/>
                             <div className='textCont'>
                                 <div className='text_hidden'>{teacherObj.userName}</div>
-                                {/*<div className='idNUm'>id</div>*/}
                             </div>
                         </div>
                         <TeacherTab
