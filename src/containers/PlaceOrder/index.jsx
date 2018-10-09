@@ -145,9 +145,9 @@ class PlaceOrder extends React.Component {
                             <div>{courseObj.courseName}</div>
                         </div>
                     </div>
-                    <div style={{display: this.state.scanFlag ? 'block' : 'none'}}>
+                    <div className="SaoCont" style={{display: this.state.scanFlag ? 'block' : 'none'}}>
                         <img src={this.state.scanSrc} alt=""/>
-                        <span>请扫码支付</span>
+                        <div>请扫描二维码进行支付</div>
                     </div>
                     <div className="place_orderDiv"
                          style={{display: !this.state.scanFlag ? (!this.state.paySuccess ? 'block' : 'none') : 'none'}}>

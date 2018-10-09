@@ -369,6 +369,21 @@ input {
     font-size: .16rem;
 }
 
+/*扫码支付*/
+.SaoCont{
+    height: 100%;
+    background-color: white;
+    box-sizing: border-box;
+    padding-top: 1rem;
+    text-align: center;
+    font-size: .14rem;
+    position: relative;
+}
+.SaoCont img{
+    width: 2rem;
+}
+
+
 /*需要定位的页面,为遮住底部栏*/
 .positionBg {
     position: absolute;
@@ -394,3 +409,4 @@ input {
 .icon-sousuo1{
     font-size: .18rem;
 }
+
