@@ -97,17 +97,20 @@ class BindPhoneNum extends React.Component {
                     <div className='Bind_content overflowScroll'
                          ref='order_content'
                     >
-                        <div>
+                        <div className='inputDiv phoneDiv'>
                             <input placeholder='请输入手机号' type="text" value={this.state.phoneNum}
                                    onChange={this.phoneOnChange}/>
                         </div>
-                        <div>
+                        <div  className='inputDiv codeDiv'>
                             <input type="text" placeholder='请输入验证码' value={this.state.code}
                                    onChange={this.codeOnChange}/>
-                            <Button type="warning" size="small" style={{width: '105px'}}
-                                    onClick={this.sendMessagebindPhone}>获取验证码</Button>
+                            <span className="code" onClick={this.sendMessagebindPhone}>
+                                获取验证码
+                            </span>
                         </div>
-                        <Button type="warning" onClick={this.validMessagePhoneV3}>绑定</Button>
+                        <div className="blueBtn" onClick={this.validMessagePhoneV3}>
+                            绑定
+                        </div>
                     </div>
                 </div>
             </CSSTransition>
