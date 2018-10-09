@@ -73,6 +73,9 @@ class User extends React.Component {
                 }
                 <UserList
                     count={this.state.loginUser.count}
+                    phoneNumber={this.state.loginUser.phoneNumber}
+                    colUid={this.state.loginUser.colUid}
+                    userName={this.state.loginUser.userName}
                 />
             </div>
         )
