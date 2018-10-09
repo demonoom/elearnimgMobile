@@ -21,7 +21,9 @@ class BalanceRecharge extends React.Component {
             inputValueHtml: '其他数额',
             moneyNum: '10',
             payMethod: 'wxpayjs',
-            paySuccess: false
+            paySuccess: false,
+            scanFlag: false,
+            scanSrc: ''
         }
         props.cacheLifecycles.didCache(this.componentDidCache)
         props.cacheLifecycles.didRecover(this.componentDidRecover)
@@ -83,7 +85,7 @@ class BalanceRecharge extends React.Component {
 
     createRechargeOrder = () => {
         createRechargeOrder(localStorage.getItem("userId"), this.state.payMethod, this.state.moneyNum).then((res) => {
-        // createRechargeOrder(localStorage.getItem("userId"), this.state.payMethod, 0.01).then((res) => {
+            // createRechargeOrder(localStorage.getItem("userId"), this.state.payMethod, 0.01).then((res) => {
 
             if (res.msg === '调用成功' && res.success) {
                 if (!!res.response.payUrl) {
@@ -92,7 +94,8 @@ class BalanceRecharge extends React.Component {
                     document.querySelectorAll('#charge_Iframe')[0].src = res.response.payUrl
                 } else if (!!res.response.ewm) {
                     //扫码支付
-                    console.log(res.response);
+                    orderNoNoom = res.response.orderNo
+                    this.setState({scanFlag: true, scanSrc: res.response.ewm})
                 }
             } else {
                 Toast.fail(res.msg, 2)
@@ -123,7 +126,12 @@ class BalanceRecharge extends React.Component {
                         </div>
                     </div>
 
-                    <div style={{display: !this.state.paySuccess ? 'block' : 'none'}}>
+                    <div style={{display: this.state.scanFlag ? 'block' : 'none'}}>
+                        <img src={this.state.scanSrc} alt=""/>
+                        <span>请扫码支付</span>
+                    </div>
+
+                    <div style={{display: !this.state.scanFlag ? (!this.state.paySuccess ? 'block' : 'none') : 'none'}}>
                         <div className='balance_content overflowScroll' style={{paddingBottom: '.45rem'}}>
                             <div className='rechargeAmount'>
                                 <div className='title_color'>
