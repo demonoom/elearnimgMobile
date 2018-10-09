@@ -255,7 +255,7 @@ class CourseTab extends React.Component {
                         <div className='whiteBg courseDec'>
                             <div className='title title_color'>课程简介</div>
                             <div className='text text_color'>
-                                {courseObj.content || ''}
+                                {courseObj.content || '暂无介绍'}
                             </div>
                         </div>
                     </div>
