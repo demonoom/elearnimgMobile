@@ -27,7 +27,8 @@ class DetilHeader extends React.Component {
                     <span className='header-back' onClick={this.handleClick}>
                     <i className='iconfont icon-houtui'></i>
                 </span>
-                    <span className='header-collect' onClick={this.collectionOnClick}>
+                    <span style={{display: this.props.collectFlag ? 'none' : ''}} className='header-collect'
+                          onClick={this.collectionOnClick}>
                         <i className={this.props.collectionStar ? 'iconfont icon-star' : 'iconfont icon-shoucang2'}></i>
                 </span>
                     <div className='header-title'>

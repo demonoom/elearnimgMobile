@@ -199,6 +199,7 @@ class Detil extends React.Component {
             >
                 <div id='detil' ref='detil'>
                     <DetilHeader
+                        collectFlag={false}
                         title={this.state.courseObj.courseName}
                         collectionStar={this.state.collectionStar}
                         ref='header'

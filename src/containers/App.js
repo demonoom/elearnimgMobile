@@ -19,6 +19,7 @@ import SetUp from '../containers/SetUp'
 import SeeMore from '../containers/SeeMore'
 import PlaceOrder from '../containers/PlaceOrder'
 import SeeMoreLiving from '../containers/SeeMoreLiving'
+import Teacher from '../containers/Teacher'
 import {Toast} from 'antd-mobile'
 
 let navClickFlag = false
@@ -183,6 +184,13 @@ class App extends Component {
                                         className: '__CacheRoute__wrapper__uncached'
                                     })}/>
                         <CacheRoute className='content_window_all' path='/seemore/:type' component={SeeMore}
+                                    behavior={cached => (cached ? {
+                                        style: this.state.cachedStyle,
+                                        className: '__CacheRoute__wrapper__cached'
+                                    } : {
+                                        className: '__CacheRoute__wrapper__uncached'
+                                    })}/>
+                        <CacheRoute className='content_window_all' path='/teacher/:id' component={Teacher}
                                     behavior={cached => (cached ? {
                                         style: this.state.cachedStyle,
                                         className: '__CacheRoute__wrapper__cached'

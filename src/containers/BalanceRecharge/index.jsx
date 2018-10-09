@@ -131,7 +131,10 @@ class BalanceRecharge extends React.Component {
                         <div>请扫描二维码进行支付</div>
                     </div>
 
-                    <div style={{display: !this.state.scanFlag ? (!this.state.paySuccess ? 'block' : 'none') : 'none',height:'100%'}}>
+                    <div style={{
+                        display: !this.state.scanFlag ? (!this.state.paySuccess ? 'block' : 'none') : 'none',
+                        height: '100%'
+                    }}>
                         <div className='balance_content overflowScroll' style={{paddingBottom: '.45rem'}}>
                             <div className='rechargeAmount'>
                                 <div className='title_color'>
