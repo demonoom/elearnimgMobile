@@ -14,7 +14,7 @@ class ListItem extends React.Component {
         const itemObj = this.props.itemObj;
 
         return (
-            <div id='comment_list_item'>
+            <div id='tercomment_list_item'>
                 <div className="my_flex item line_public">
                     <img src={itemObj.user.avatar + SMALL_IMG} alt=""/>
                     <div className="rightCont">
