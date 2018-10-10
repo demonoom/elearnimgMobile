@@ -141,7 +141,8 @@ class App extends Component {
                                     } : {
                                         className: '__CacheRoute__wrapper__uncached'
                                     })}/>
-                        <CacheRoute className='content_window_all' path='/bindPhoneNum/:id/:name' component={BindPhoneNum}
+                        <CacheRoute className='content_window_all' path='/bindPhoneNum/:id/:name'
+                                    component={BindPhoneNum}
                                     behavior={cached => (cached ? {
                                         style: this.state.cachedStyle,
                                         className: '__CacheRoute__wrapper__cached'

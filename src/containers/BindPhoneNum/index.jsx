@@ -1,7 +1,7 @@
 import React from 'react'
 import './style.less'
 import {CSSTransition} from 'react-transition-group'
-import {Toast, Button} from 'antd-mobile'
+import {Toast} from 'antd-mobile'
 import PublicHeader from '../../components/PublicHeader'
 import {sendMessagebindPhone, validMessagePhoneV3, updateUserV3} from '../../fetch/bind-phone/bind-phone'
 
@@ -101,7 +101,7 @@ class BindPhoneNum extends React.Component {
                             <input placeholder='请输入手机号' type="text" value={this.state.phoneNum}
                                    onChange={this.phoneOnChange}/>
                         </div>
-                        <div  className='inputDiv codeDiv'>
+                        <div className='inputDiv codeDiv'>
                             <input type="text" placeholder='请输入验证码' value={this.state.code}
                                    onChange={this.codeOnChange}/>
                             <span className="code" onClick={this.sendMessagebindPhone}>
