@@ -1,7 +1,7 @@
 import React from 'react'
 import './style.less'
 import {CSSTransition} from 'react-transition-group'
-import {Toast} from 'antd-mobile'
+import {Toast, PullToRefresh} from 'antd-mobile'
 import PublicHeader from '../../components/PublicHeader'
 import {getMyCollectCourseListV3} from '../../../src/fetch/my-collection/my-collection'
 import ClassBox from '../../components/ClassBox'
@@ -18,6 +18,7 @@ class MyCollection extends React.Component {
             page: 1,
             isLoadingMore: true,
             hasMoreClass: true,
+            refreshing: false,
         }
         props.cacheLifecycles.didCache(this.componentDidCache)
         props.cacheLifecycles.didRecover(this.componentDidRecover)
@@ -42,13 +43,13 @@ class MyCollection extends React.Component {
     componentDidMount() {
         var _this = this;
         this.setState({show: true})
-        this.getMyCollectCourseListV3(localStorage.getItem("userId"), 1)
+        this.getMyCollectCourseListV3(localStorage.getItem("userId"), 1, false)
         /**
          * 下拉加载更多实现
          * @type {SeeMoreContent.loadMoreDate}
          */
         const loadMoreFn = this.loadMoreDate
-        const loadMore = document.querySelectorAll('.collect_content .load_more')[0]
+        const loadMore = document.querySelectorAll('.collect_content_div .load_more')[0]
         let timeoutId
 
         function callback() {
@@ -62,7 +63,7 @@ class MyCollection extends React.Component {
             }
         }
 
-        this.refs.collect_content.addEventListener('scroll', () => {
+        document.querySelector('.collect_content_pull').addEventListener('scroll', () => {
             if (this.state.isLoadingMore) {
                 return
             }
@@ -73,17 +74,27 @@ class MyCollection extends React.Component {
         })
     }
 
-    getMyCollectCourseListV3(id, page) {
+    getMyCollectCourseListV3(id, page, flag) {
         /**
          * 获取我的收藏
          */
         getMyCollectCourseListV3(id, page).then((res) => {
             if (res.msg === '调用成功' && res.success) {
-                this.setState({
-                    myCollectionContent: this.state.myCollectionContent.concat(res.response),
-                    page,
-                    isLoadingMore: false,
-                })
+                if (flag) {
+                    this.setState({
+                        page,
+                        isLoadingMore: false,
+                        myCollectionContent: res.response,
+                        refreshing: false,
+                        hasMoreClass: true,
+                    })
+                } else {
+                    this.setState({
+                        myCollectionContent: this.state.myCollectionContent.concat(res.response),
+                        page,
+                        isLoadingMore: false,
+                    })
+                }
                 if (page === res.pager.pageCount) {
                     this.setState({hasMoreClass: false})
                 }
@@ -105,8 +116,14 @@ class MyCollection extends React.Component {
         this.setState({
             isLoadingMore: true
         }, () => {
-            this.getMyCollectCourseListV3(localStorage.getItem("userId"), this.state.page + 1)
+            this.getMyCollectCourseListV3(localStorage.getItem("userId"), this.state.page + 1, false)
         })
+    }
+
+    handlePullToRefresh = () => {
+        this.setState({refreshing: true}, () => {
+            this.getMyCollectCourseListV3(localStorage.getItem("userId"), 1, true)
+        });
     }
 
     render() {
@@ -125,19 +142,27 @@ class MyCollection extends React.Component {
                         iconType=''
                         iconClass=''
                     />
-                    <div className='collect_content overflowScroll'
-                         ref='collect_content'
-                         style={!myCollectionContent.length ? {textAlign: 'center', paddingTop: '.74rem'} : {}}>
-                        {
-                            myCollectionContent.length ? <ClassBox
-                                classroomContent={myCollectionContent}
-                                typeGuoLv={false}
-                            /> : <span>暂无收藏</span>
-                        }
-                        <LoadMore ref='LoadMore' isLoadingMore={this.state.isLoadingMore}
-                                  hasMoreClass={this.state.hasMoreClass}
-                                  loadMoreFn={this.loadMoreDate.bind(this)}/>
-                    </div>
+                    <PullToRefresh
+                        className='overflowScroll collect_content_pull collect_content'
+                        damping={60}
+                        indicator={this.state.down ? {} : {deactivate: '上拉可以刷新'}}
+                        direction={'down'}
+                        refreshing={this.state.refreshing}
+                        onRefresh={this.handlePullToRefresh}
+                    >
+                        <div className='collect_content_div'
+                             style={!myCollectionContent.length ? {textAlign: 'center', paddingTop: '.74rem'} : {}}>
+                            {
+                                myCollectionContent.length ? <ClassBox
+                                    classroomContent={myCollectionContent}
+                                    typeGuoLv={false}
+                                /> : <span>暂无收藏</span>
+                            }
+                            <LoadMore ref='LoadMore' isLoadingMore={this.state.isLoadingMore}
+                                      hasMoreClass={this.state.hasMoreClass}
+                                      loadMoreFn={this.loadMoreDate.bind(this)}/>
+                        </div>
+                    </PullToRefresh>
                 </div>
             </CSSTransition>
         )

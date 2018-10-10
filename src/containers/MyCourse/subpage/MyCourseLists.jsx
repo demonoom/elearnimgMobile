@@ -2,7 +2,7 @@ import React from 'react'
 import './style.less'
 import {getMyPurchaseCourseListV3} from '../../../fetch/my-course/my-course'
 import ClassList from '../../../components/ClassList'
-import {Toast} from 'antd-mobile'
+import {Toast, PullToRefresh} from 'antd-mobile'
 import LoadMore from '../../../components/LoadMore'
 
 class MyCourseLists extends React.Component {
@@ -14,6 +14,7 @@ class MyCourseLists extends React.Component {
             isLoadingMore: true,
             courseList: [],
             hasMoreClass: true,
+            refreshing: false,
         }
     }
 
@@ -22,7 +23,7 @@ class MyCourseLists extends React.Component {
         /**
          * 获取我的课程
          */
-        this.getMyPurchaseCourseList(1, localStorage.getItem("userId"))
+        this.getMyPurchaseCourseList(1, localStorage.getItem("userId"), false)
 
         /**
          * 下拉加载更多实现
@@ -43,7 +44,7 @@ class MyCourseLists extends React.Component {
             }
         }
 
-        this.refs.class_list_myCourse.addEventListener('scroll', () => {
+        document.querySelector('.class_list_myCourse_pull').addEventListener('scroll', () => {
             if (this.state.isLoadingMore) {
                 return
             }
@@ -57,18 +58,29 @@ class MyCourseLists extends React.Component {
     /**
      * 获取我的课程
      */
-    getMyPurchaseCourseList(page, id) {
+    getMyPurchaseCourseList(page, id, flag) {
         getMyPurchaseCourseListV3(page, id, this.state.courseType).then((res) => {
             if (res.msg === '调用成功' && res.success) {
-                this.setState({
-                    courseList: this.state.courseList.concat(res.response),
-                    page,
-                    isLoadingMore: false,
-                }, () => {
-                    if (page === 1) {
-                        this.props.setTruelyHeight()
-                    }
-                })
+                if (flag) {
+                    this.setState({
+                        page,
+                        isLoadingMore: false,
+                        courseList: res.response,
+                        refreshing: false,
+                        hasMoreClass: true,
+                    })
+                } else {
+                    this.setState({
+                        courseList: this.state.courseList.concat(res.response),
+                        page,
+                        isLoadingMore: false,
+                    }, () => {
+                        if (page === 1) {
+                            this.props.setTruelyHeight()
+                        }
+                    })
+                }
+
                 if (page === res.pager.pageCount) {
                     this.setState({hasMoreClass: false})
                 }
@@ -80,7 +92,7 @@ class MyCourseLists extends React.Component {
 
     typeOnChange = (courseType) => {
         this.setState({courseType}, () => {
-            this.getMyPurchaseCourseList(1, localStorage.getItem("userId"))
+            this.getMyPurchaseCourseList(1, localStorage.getItem("userId"), false)
         })
     }
 
@@ -91,8 +103,14 @@ class MyCourseLists extends React.Component {
         this.setState({
             isLoadingMore: true
         }, () => {
-            this.getMyPurchaseCourseList(this.state.page + 1, localStorage.getItem("userId"))
+            this.getMyPurchaseCourseList(this.state.page + 1, localStorage.getItem("userId"), false)
         })
+    }
+
+    handlePullToRefresh = () => {
+        this.setState({refreshing: true}, () => {
+            this.getMyPurchaseCourseList(1, localStorage.getItem("userId"), true)
+        });
     }
 
     render() {
@@ -103,14 +121,23 @@ class MyCourseLists extends React.Component {
                           onClick={this.typeOnChange.bind(this, 'mostnew')}>最新课程</span>
                     {/*<span className="tabFilter">筛选<i className='icon-shaixuan2 iconfont'></i></span>*/}
                 </div>
-                <div className='class_list class_list_myCourse overflowScroll' ref='class_list_myCourse'>
-                    <ClassList
-                        courseList={this.state.courseList}
-                    />
-                    <LoadMore ref='LoadMore' isLoadingMore={this.state.isLoadingMore}
-                              hasMoreClass={this.state.hasMoreClass}
-                              loadMoreFn={this.loadMoreDate.bind(this)}/>
-                </div>
+                <PullToRefresh
+                    className='overflowScroll class_list class_list_myCourse_pull'
+                    damping={60}
+                    indicator={this.state.down ? {} : {deactivate: '上拉可以刷新'}}
+                    direction={'down'}
+                    refreshing={this.state.refreshing}
+                    onRefresh={this.handlePullToRefresh}
+                >
+                    <div className='class_list_myCourse' ref='class_list_myCourse'>
+                        <ClassList
+                            courseList={this.state.courseList}
+                        />
+                        <LoadMore ref='LoadMore' isLoadingMore={this.state.isLoadingMore}
+                                  hasMoreClass={this.state.hasMoreClass}
+                                  loadMoreFn={this.loadMoreDate.bind(this)}/>
+                    </div>
+                </PullToRefresh>
             </div>
         )
     }

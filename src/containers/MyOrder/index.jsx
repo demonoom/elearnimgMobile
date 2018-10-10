@@ -1,7 +1,7 @@
 import React from 'react'
 import './style.less'
 import {CSSTransition} from 'react-transition-group'
-import {Toast} from 'antd-mobile'
+import {Toast, PullToRefresh} from 'antd-mobile'
 import PublicHeader from '../../components/PublicHeader'
 import {queryPageByOrderV3} from '../../../src/fetch/my-order/my-order'
 import OrderList from '../../components/OrderList'
@@ -17,6 +17,7 @@ class MyOrder extends React.Component {
             page: 1,
             isLoadingMore: true,
             hasMoreClass: true,
+            refreshing: false,
         }
         props.cacheLifecycles.didCache(this.componentDidCache)
         props.cacheLifecycles.didRecover(this.componentDidRecover)
@@ -41,14 +42,14 @@ class MyOrder extends React.Component {
     componentDidMount() {
         var _this = this;
         this.setState({show: true})
-        this.queryPageByOrderV3(localStorage.getItem("userId"), 1)
+        this.queryPageByOrderV3(localStorage.getItem("userId"), 1, false)
 
         /**
          * 下拉加载更多实现
          * @type {SeeMoreContent.loadMoreDate}
          */
         const loadMoreFn = this.loadMoreDate
-        const loadMore = document.querySelectorAll('.order_content .load_more')[0]
+        const loadMore = document.querySelectorAll('.order_content_div .load_more')[0]
         let timeoutId
 
         function callback() {
@@ -62,7 +63,7 @@ class MyOrder extends React.Component {
             }
         }
 
-        this.refs.order_content.addEventListener('scroll', () => {
+        document.querySelector('.order_content_pull').addEventListener('scroll', () => {
             if (this.state.isLoadingMore) {
                 return
             }
@@ -73,14 +74,25 @@ class MyOrder extends React.Component {
         })
     }
 
-    queryPageByOrderV3(id, page) {
+    queryPageByOrderV3(id, page, flag) {
         queryPageByOrderV3(id, page).then((res) => {
             if (res.msg === '调用成功' && res.success) {
-                this.setState({
-                    myOrderContent: this.state.myOrderContent.concat(res.response),
-                    page,
-                    isLoadingMore: false,
-                })
+                if (flag) {
+                    this.setState({
+                        page,
+                        isLoadingMore: false,
+                        myOrderContent: res.response,
+                        refreshing: false,
+                        hasMoreClass: true,
+                    })
+                } else {
+                    this.setState({
+                        myOrderContent: this.state.myOrderContent.concat(res.response),
+                        page,
+                        isLoadingMore: false,
+                    })
+                }
+
                 if (page === res.pager.pageCount) {
                     this.setState({hasMoreClass: false})
                 }
@@ -101,8 +113,14 @@ class MyOrder extends React.Component {
         this.setState({
             isLoadingMore: true
         }, () => {
-            this.queryPageByOrderV3(localStorage.getItem("userId"), this.state.page + 1)
+            this.queryPageByOrderV3(localStorage.getItem("userId"), this.state.page + 1, false)
         })
+    }
+
+    handlePullToRefresh = () => {
+        this.setState({refreshing: true}, () => {
+            this.queryPageByOrderV3(localStorage.getItem("userId"), 1, true)
+        });
     }
 
     render() {
@@ -121,19 +139,28 @@ class MyOrder extends React.Component {
                         iconType=''
                         iconClass=''
                     />
-                    <div className='order_content overflowScroll'
-                         ref='order_content'
-                         style={!myOrderContent.length ? {textAlign: 'center', paddingTop: '.75rem'} : {}}
+                    <PullToRefresh
+                        className='overflowScroll order_content_pull order_content'
+                        damping={60}
+                        indicator={this.state.down ? {} : {deactivate: '上拉可以刷新'}}
+                        direction={'down'}
+                        refreshing={this.state.refreshing}
+                        onRefresh={this.handlePullToRefresh}
                     >
-                        {
-                            myOrderContent.length ? <OrderList
-                                myOrderContent={myOrderContent}
-                            /> : <span>暂无订单</span>
-                        }
-                        <LoadMore ref='LoadMore' isLoadingMore={this.state.isLoadingMore}
-                                  hasMoreClass={this.state.hasMoreClass}
-                                  loadMoreFn={this.loadMoreDate.bind(this)}/>
-                    </div>
+                        <div className='order_content_div'
+                             ref='order_content'
+                             style={!myOrderContent.length ? {textAlign: 'center', paddingTop: '.75rem'} : {}}
+                        >
+                            {
+                                myOrderContent.length ? <OrderList
+                                    myOrderContent={myOrderContent}
+                                /> : <span>暂无订单</span>
+                            }
+                            <LoadMore ref='LoadMore' isLoadingMore={this.state.isLoadingMore}
+                                      hasMoreClass={this.state.hasMoreClass}
+                                      loadMoreFn={this.loadMoreDate.bind(this)}/>
+                        </div>
+                    </PullToRefresh>
                 </div>
             </CSSTransition>
         )

@@ -1,7 +1,7 @@
 import React from 'react'
 import Category from '../../components/Category'
 import VideoList from '../../components/VideoList'
-import {Toast} from 'antd-mobile'
+import {Toast, PullToRefresh} from 'antd-mobile'
 import Living from './subpage/Living'
 import Classroom from './subpage/Classroom'
 import HomeHeader from '../../components/HomeHeader'
@@ -95,7 +95,17 @@ class Home extends React.Component {
             <div id='home' ref='home'>
                 <HomeHeader/>
 
-                <div className='home_content overflowScroll'>
+                <PullToRefresh
+                    className='overflowScroll home_content'
+                    damping={60}
+                    indicator={this.state.down ? {} : {deactivate: '上拉可以刷新'}}
+                    direction={'down'}
+                    refreshing={this.state.refreshing}
+                    onRefresh={() => {
+                        this.setState({refreshing: true});
+                        window.location.reload();
+                    }}
+                >
                     <Category
                         categoryArr={this.state.categoryArr}
                         categoryOnClick={this.categoryOnClick}
@@ -112,7 +122,8 @@ class Home extends React.Component {
                     <div className='index_tab'>
                         <Classroom/>
                     </div>
-                </div>
+                </PullToRefresh>
+
             </div>
         )
     }
