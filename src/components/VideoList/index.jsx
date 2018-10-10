@@ -18,16 +18,20 @@ class VideoList extends React.Component {
 
     buildVideoList(res) {
         var videoList = []
-        if (res.length !== 0) {
-            res.forEach((item) => {
-                videoList.push(
-                    <li key={item.id} className='videoLi'>
-                        <img src={item.image + LARGE_IMG} alt=""/>
-                        <i className='iconfont icon-bofang' onClick={this.liOnClick.bind(this, item)}></i>
-                    </li>
-                )
-            })
+
+        if (!!res) {
+            if (res.length !== 0) {
+                res.forEach((item) => {
+                    videoList.push(
+                        <li key={item.id} className='videoLi'>
+                            <img src={item.image + LARGE_IMG} alt=""/>
+                            <i className='iconfont icon-bofang' onClick={this.liOnClick.bind(this, item)}></i>
+                        </li>
+                    )
+                })
+            }
         }
+
         this.setState({videoList})
     }
 
