@@ -3,7 +3,7 @@ import Category from '../../components/Category'
 import VideoList from '../../components/VideoList'
 import {Toast, PullToRefresh} from 'antd-mobile'
 import Living from './subpage/Living'
-import Classroom from './subpage/Classroom'
+import Qualitycourse from './subpage/Qualitycourse'
 import HomeHeader from '../../components/HomeHeader'
 import {findAdvanceAll} from '../../../src/fetch/home/home'
 import './style.less'
@@ -18,6 +18,22 @@ class Home extends React.Component {
         }
         props.cacheLifecycles.didCache(this.componentDidCache)
         props.cacheLifecycles.didRecover(this.componentDidRecover)
+        // this.changeTitleCol('white');
+    }
+
+    /**
+     * 改变title颜色
+     * @param col
+     */
+    changeTitleCol = (col) => {
+        var dataCol = {
+            method: 'changeTitleCol',
+            col: col,
+        };
+
+        window.Bridge.callHandler(dataCol, null, function (error) {
+            // Toast.info(error, 4)
+        });
     }
 
     /**
@@ -33,6 +49,7 @@ class Home extends React.Component {
      * List recovered被恢复
      */
     componentDidRecover = () => {
+        this.changeTitleCol('white');
         this.refs.home.parentNode.style.height = `${this.state.truelyHeight}px`
     }
 
@@ -105,9 +122,9 @@ class Home extends React.Component {
                         // this.setState({refreshing: true});
                         // window.location.reload();
 
-                        this.setState({ refreshing: true });
+                        this.setState({refreshing: true});
                         setTimeout(() => {
-                            this.setState({ refreshing: false });
+                            this.setState({refreshing: false});
                         }, 1000);
                     }}
                 >
@@ -125,7 +142,7 @@ class Home extends React.Component {
                     <Living/>
 
                     <div className='index_tab'>
-                        <Classroom/>
+                        <Qualitycourse/>
                     </div>
                 </PullToRefresh>
 
