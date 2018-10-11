@@ -135,7 +135,7 @@ class Home extends React.Component {
 
                     <PullToRefresh
                         className='overflowScroll home_content'
-                        damping={100}
+                        damping={130}
                         indicator={this.state.down ? {} : {deactivate: '上拉可以刷新'}}
                         direction={'down'}
                         refreshing={this.state.refreshing}

@@ -158,7 +158,7 @@ class MyOrder extends React.Component {
                     />
                     <PullToRefresh
                         className='overflowScroll order_content_pull order_content'
-                        damping={100}
+                        damping={130}
                         indicator={this.state.down ? {} : {deactivate: '上拉可以刷新'}}
                         direction={'down'}
                         refreshing={this.state.refreshing}

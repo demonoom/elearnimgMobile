@@ -41,7 +41,8 @@ class ListItem extends React.Component {
                     <div className='icon_live'
                          style={{display: listType === '2' ? 'none' : arr.indexOf('2') === -1 ? 'none' : ''}}>直播中
                     </div>
-                    <div className='timeCont' style={{display: arr.indexOf('2') === -1 ? '' : 'none'}}>
+                    <div className='timeCont'
+                         style={{display: listType !== '1' ? '' : arr.indexOf('2') === -1 ? '' : 'none'}}>
                         <span style={{display: listType === '1' ? arr.indexOf('2') === -1 ? '' : 'none' : 'none'}}>
                              开课时间：
                             {
