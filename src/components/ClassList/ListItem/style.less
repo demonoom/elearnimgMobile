@@ -7,15 +7,31 @@
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   border-radius: 2px;
-  > img {
+  .imgCont{
+    position: relative;
     width: 50%;
-    height: 100%;
-    object-fit: cover;
-    -o-object-fit: cover;
-    //background: #fff url("../../../static/img/empty_elearning.jpg") no-repeat center center;
-    //background-size: cover;
-    overflow: hidden;
+    > img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      -o-object-fit: cover;
+      //background: #fff url("../../../static/img/empty_elearning.jpg") no-repeat center center;
+      //background-size: cover;
+      overflow: hidden;
+    }
+    .buyPerson{
+      line-height: .18rem;
+      background: rgba(0,0,0,0.5);
+      color: white;
+      padding: 0 .08rem;
+      font-size: .1rem;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+    }
   }
+
   .rightCont{
     width:50%;
     padding: .08rem .1rem;
@@ -36,6 +52,30 @@
         line-height: 1.2;
       }
     }
+    .timeCont{
+      font-size: .1rem;
+      .progress{
+        float: right;
+      }
+      .price {
+        color: #444E6F;
+        font-size: 0.14rem;
+        width: 0.45rem;
+        text-align: right;
+        float: right;
+        span {
+          font-size: 0.1rem;
+          padding-right: 0.01rem;
+        }
+      }
+      .free {
+        float: right;
+        color: #06BC71;
+        font-size: 0.13rem;
+        width: 0.45rem;
+        text-align: right;
+      }
+    }
     .icon_live{
       background: url("../../../static/img/icon_livePlay.png") no-repeat left top;
       background-size: .14rem;
@@ -45,13 +85,7 @@
       line-height: .13rem;
 
     }
-    .buyPerson{
-      line-height: .18rem;
-      background: rgba(0,0,0,0.5);
-      color: white;
-      padding: 0 .08rem;
-      font-size: .1rem;
-    }
+
   }
   @media screen and (min-width: 768px){
     height: 1.1rem;
