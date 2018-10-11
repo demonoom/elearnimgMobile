@@ -38,7 +38,7 @@ class ListItem extends React.Component {
                     </div>
                     <div style={{display: listType === '1' ? arr.indexOf('2') === -1 ? '' : 'none' : 'none'}}>
                         {
-                            FormatTime.formatTime(itemObj.startTime)
+                            FormatTime.formatHM(itemObj.startTime)
                         }
                     </div>
                     <div style={{display: listType === '1' ? 'none' : ''}}>

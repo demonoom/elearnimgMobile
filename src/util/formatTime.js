@@ -47,6 +47,17 @@ export default {
         return dateStr;
     },
 
+    formatHM: function (nS) {
+        var da = new Date(parseInt(nS));
+        var hour = da.getHours() + ":";
+        var minutes = da.getMinutes();
+        if (minutes < 10) {
+            minutes = "0" + minutes;
+        }
+        var hmStr = hour + minutes;
+        return hmStr;
+    },
+
     /**
      * 时间戳转月日
      * @param nS

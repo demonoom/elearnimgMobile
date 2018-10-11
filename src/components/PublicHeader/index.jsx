@@ -5,7 +5,7 @@ class DetilHeader extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
-            courseType: this.props.courseType
+            courseType: this.props.courseType || 'today'
         }
     }
 
@@ -38,7 +38,8 @@ class DetilHeader extends React.Component {
             <div id="public_header" className={!!this.props.boxShadowFlag ? 'Bg' : 'Bg line_public lineB'}>
                 <div className="p14"></div>
                 <div className="headerCont">
-                    <span className='header-back' onClick={this.handleClick} style={{display: this.props.backFlag ? 'none' : ''}}>
+                    <span className='header-back' onClick={this.handleClick}
+                          style={{display: this.props.backFlag ? 'none' : ''}}>
                     <i className='iconfont icon-houtui'></i>
                 </span>
                     <span className={this.props.iconClass} onClick={this.iconOnClick.bind(this, this.props.iconClass)}>
@@ -49,12 +50,19 @@ class DetilHeader extends React.Component {
                 </span>
                     <div className='header-title'>
                         {
-                            this.props.title !== 'see_more' ? this.props.title : <div className="tabTitle headTab">
+                            this.props.title === 'see_more_living' ?
+                                <div className="tabTitle headTab">
+                                <span className={this.state.courseType === 'today' ? 'active' : ''}
+                                      onClick={this.courseTypeOnClick.bind(this, 'today')}>今日直播</span><span
+                                    onClick={this.courseTypeOnClick.bind(this, 'tomorrow')}
+                                    className={this.state.courseType === 'tomorrow' ? 'active' : ''}>明日开课</span>
+                                </div> :
+                                this.props.title !== 'see_more' ? this.props.title : <div className="tabTitle headTab">
                                 <span className={this.state.courseType === 'sjkc' ? 'active' : ''}
                                       onClick={this.courseTypeOnClick.bind(this, 'sjkc')}>实景课堂</span><span
-                                onClick={this.courseTypeOnClick.bind(this, 'cgkc')}
-                                className={this.state.courseType === 'cgkc' ? 'active' : ''}>常规课</span>
-                            </div>
+                                    onClick={this.courseTypeOnClick.bind(this, 'cgkc')}
+                                    className={this.state.courseType === 'cgkc' ? 'active' : ''}>常规课</span>
+                                </div>
                         }
                     </div>
                 </div>
