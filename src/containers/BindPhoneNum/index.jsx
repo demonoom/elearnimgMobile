@@ -16,6 +16,22 @@ class BindPhoneNum extends React.Component {
         }
         props.cacheLifecycles.didCache(this.componentDidCache)
         props.cacheLifecycles.didRecover(this.componentDidRecover)
+        this.changeTitleCol('black');
+    }
+
+    /**
+     * 改变title颜色
+     * @param col
+     */
+    changeTitleCol = (col) => {
+        var dataCol = {
+            method: 'changeTitleCol',
+            col: col,
+        };
+
+        window.Bridge.callHandler(dataCol, null, function (error) {
+            // Toast.info(error, 4)
+        });
     }
 
     /**
@@ -31,6 +47,7 @@ class BindPhoneNum extends React.Component {
      * List recovered被恢复
      */
     componentDidRecover = () => {
+        this.changeTitleCol('black');
         this.refs.Bind_Phone.parentNode.style.height = `${this.state.truelyHeight}px`
     }
 

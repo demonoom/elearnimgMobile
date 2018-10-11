@@ -17,6 +17,7 @@ class Teacher extends React.Component {
         }
         props.cacheLifecycles.didCache(this.componentDidCache);
         props.cacheLifecycles.didRecover(this.componentDidRecover)
+        this.changeTitleCol('white');
     }
 
     /**
@@ -32,6 +33,7 @@ class Teacher extends React.Component {
      * List recovered被恢复
      */
     componentDidRecover = () => {
+        this.changeTitleCol('white');
         this.refs.teacher.parentNode.style.height = `${this.state.truelyHeight}px`
     }
 
@@ -44,6 +46,21 @@ class Teacher extends React.Component {
                 Toast.fail(res.msg, 2)
             }
         })
+    }
+
+    /**
+     * 改变title颜色
+     * @param col
+     */
+    changeTitleCol = (col) => {
+        var dataCol = {
+            method: 'changeTitleCol',
+            col: col,
+        };
+
+        window.Bridge.callHandler(dataCol, null, function (error) {
+            // Toast.info(error, 4)
+        });
     }
 
     render() {
