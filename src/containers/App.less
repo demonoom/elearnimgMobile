@@ -65,13 +65,15 @@ html, body {
       }
       i {
         display: block;
-        width: .2rem;
-        height: .2rem;
-        margin: .03rem auto;
+        width: .17rem;
+        height: .18rem;
+        margin: .03rem auto .05rem;
 
       }
       &.tab_course {
         i {
+          width: .2rem;
+          height: .18rem;
           background: url("../static/img/tab_course.png") no-repeat;
           background-size: 100%;
         }
@@ -79,6 +81,19 @@ html, body {
           color: #3672ED;
           i {
             background: url("../static/img/tab_course_active.png") no-repeat;
+            background-size: 100%;
+          }
+        }
+      }
+      &.tab_sort {
+        i {
+          background: url("../static/img/tab_sort.png") no-repeat;
+          background-size: 100%;
+        }
+        &.active {
+          color: #3672ED;
+          i {
+            background: url("../static/img/tab_sort_active.png") no-repeat;
             background-size: 100%;
           }
         }

@@ -405,8 +405,17 @@ input {
 }
 .swiper-pagination-fraction{
     bottom: 5px !important;
+    color: white;
+    line-height: 20px;
+    background: rgba(0,0,0,0.2);
+    width: 60px !important;
+    left: 50%!important;
+    margin-left: -30px;
+    border-radius: 15px;
+
 }
 .icon-sousuo1{
     font-size: .18rem;
+    font-weight: bold;
 }
 
