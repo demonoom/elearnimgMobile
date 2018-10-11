@@ -49,8 +49,8 @@ class App extends Component {
     componentDidMount() {
         //模拟登录
         this.props.userInfoActions.login({userId: '500001020'})
-        // localStorage.setItem("userId", "500001020")
-        localStorage.setItem("version", this.refs.switch.context.router.route.location.pathname.split('/')[2])
+        localStorage.setItem("userId", "500001020")
+        // localStorage.setItem("version", this.refs.switch.context.router.route.location.pathname.split('/')[2])
     }
 
     navOnClick = (word) => {
@@ -223,10 +223,10 @@ class App extends Component {
                             </div>
                         </div>
                         <div
-                            className={this.state.navWord === '/seemore/sjkc' ? 'tab-item tab_course active' : 'tab-item tab_course'}>
+                            className={this.state.navWord === '/seemore/sjkc' ? 'tab-item tab_sort active' : 'tab-item tab_sort'}>
                             <div className='nav-link' onClick={this.navOnClick.bind(this, '/seemore/sjkc')}>
                                 <i></i>
-                                <span>更多课程</span>
+                                <span>分类</span>
                             </div>
                         </div>
                         <div
