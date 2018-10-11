@@ -113,8 +113,8 @@ class Home extends React.Component {
         return (
             <div id='home' ref='home'>
 
-                <div style={{height: '100%', display: this.state.IMG_display ? 'none' : ''}}>
-                    <img src={IMG} alt=""/>
+                <div style={{width:'100%',height: '100%', display: this.state.IMG_display ? 'none' : ''}}>
+                    <img style={{width:'100%'}} src={IMG} alt=""/>
                 </div>
 
                 <div style={{height: "100%", display: !this.state.IMG_display ? 'none' : ''}}>
