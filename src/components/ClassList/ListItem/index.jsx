@@ -22,7 +22,12 @@ class ListItem extends React.Component {
 
         return (
             <NavLink to={`/detil/${itemObj.id}/${itemObj.publisher_id}`} className='list_item'>
-                <img src={itemObj.image + MID_IMG} alt=""/>
+                <div className='imgCont'>
+                    <img src={itemObj.image + MID_IMG} alt=""/>
+                    <div className='buyPerson text_hidden'
+                         style={{display: listType === '2' ? 'none' : listType === '1' ? 'none' : arr.indexOf('2') !== -1 ? 'none' : ''}}>{itemObj.buyUids.length}人购买
+                    </div>
+                </div>
                 <div className='rightCont text_color my_flex'>
                     <div className='title_color text_hidden'>{itemObj.courseName}</div>
                     <div className='tagDiv'><span className='tag'>{itemObj.courseType.name}</span></div>
@@ -36,29 +41,29 @@ class ListItem extends React.Component {
                     <div className='icon_live'
                          style={{display: listType === '2' ? 'none' : arr.indexOf('2') === -1 ? 'none' : ''}}>直播中
                     </div>
-                    <div style={{display: listType === '1' ? arr.indexOf('2') === -1 ? '' : 'none' : 'none'}}>
-                        {
-                            FormatTime.formatHM(itemObj.startTime)
-                        }
+                    <div className='timeCont'>
+                        <span style={{display: listType === '1' ? arr.indexOf('2') === -1 ? '' : 'none' : 'none'}}>
+                            {
+                                FormatTime.formatTime(itemObj.startTime)
+                            }
+                        </span>
+                        <span style={{display: listType === '1' ? 'none' : ''}}>
+                            {
+                                FormatTime.formatYMD(itemObj.startTime)
+                            }
+                        </span>
+                        <span className='progress' style={{display: listType === '3' ? 'none' : listType === '1' ? 'none' : ''}}>
+                            {
+                                `课程进度:${itemObj.jindu}`
+                            }
+                        </span>
+                        <span style={{display: listType === '2' ? 'none' : listType === '1' ? 'none' : ''}}>
+                            {
+                                itemObj.money === '0.00' ? <span className='free'>免费</span> : <span className='price'><span>¥</span>itemObj.money</span>
+                            }
+                        </span>
                     </div>
-                    <div style={{display: listType === '1' ? 'none' : ''}}>
-                        {
-                            FormatTime.formatMD(itemObj.startTime)
-                        }
-                    </div>
-                    <div style={{display: listType === '3' ? 'none' : listType === '1' ? 'none' : ''}}>
-                        {
-                            `进度:${itemObj.jindu}`
-                        }
-                    </div>
-                    <div style={{display: listType === '2' ? 'none' : listType === '1' ? 'none' : ''}}>
-                        {
-                            itemObj.money === '0.00' ? '免费' : itemObj.money
-                        }
-                    </div>
-                    <div className='name'
-                         style={{display: listType === '2' ? 'none' : listType === '1' ? 'none' : arr.indexOf('2') !== -1 ? 'none' : ''}}>{itemObj.buyUids.length}人购买
-                    </div>
+
                 </div>
             </NavLink>
         )
