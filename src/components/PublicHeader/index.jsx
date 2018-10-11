@@ -38,7 +38,7 @@ class DetilHeader extends React.Component {
             <div id="public_header" className={!!this.props.boxShadowFlag ? 'Bg' : 'Bg line_public lineB'}>
                 <div className="p14"></div>
                 <div className="headerCont">
-                    <span className='header-back' onClick={this.handleClick}>
+                    <span className='header-back' onClick={this.handleClick} style={{display: this.props.backFlag ? 'none' : ''}}>
                     <i className='iconfont icon-houtui'></i>
                 </span>
                     <span className={this.props.iconClass} onClick={this.iconOnClick.bind(this, this.props.iconClass)}>

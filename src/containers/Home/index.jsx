@@ -102,8 +102,13 @@ class Home extends React.Component {
                     direction={'down'}
                     refreshing={this.state.refreshing}
                     onRefresh={() => {
-                        this.setState({refreshing: true});
-                        window.location.reload();
+                        // this.setState({refreshing: true});
+                        // window.location.reload();
+
+                        this.setState({ refreshing: true });
+                        setTimeout(() => {
+                            this.setState({ refreshing: false });
+                        }, 1000);
                     }}
                 >
                     <Category

@@ -212,7 +212,12 @@ class Detil extends React.Component {
                                                         onClick={this.courseOnClick}
                                                         style={{display: videoStatus === '1' ? 'none' : ''}}></i></div>
                         </div>
-                        <div className={this.state.courseObj.buyed ? 'detil-tab' : 'detil-tab borderGray'}>
+                        <div className={this.state.courseObj.buyed ? 'detil-tab' : 'detil-tab borderGray'}
+                             style={{
+                                 textAlign: this.state.courseObj ? '' : 'center',
+                                 marginTop: this.state.courseObj ? '' : '0.1rem'
+                             }}
+                        >
                             {
                                 this.state.courseObj ?
                                     <CourseTab ref='course_tab' setCommentFlag={this.setCommentFlag}

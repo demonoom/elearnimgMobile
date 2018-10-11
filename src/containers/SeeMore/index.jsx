@@ -1,6 +1,5 @@
 import React from 'react'
 import './style.less'
-import {CSSTransition} from 'react-transition-group'
 import PublicHeader from '../../components/PublicHeader'
 import SeeMoreContent from './subpage/SeeMoreContent'
 import Filter from '../../components/Filter'
@@ -11,7 +10,6 @@ class SeeMore extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
-            show: false,
             truelyHeight: '',
             courseType: this.props.match.params.type,
             filterDisplsy: false,
@@ -38,7 +36,7 @@ class SeeMore extends React.Component {
     }
 
     componentDidMount() {
-        this.setState({show: true, truelyHeight: this.refs.SeeMore.parentNode.offsetHeight})
+        this.setState({truelyHeight: this.refs.SeeMore.parentNode.offsetHeight})
     }
 
     iconOnClick = () => {
@@ -105,35 +103,29 @@ class SeeMore extends React.Component {
 
     render() {
         return (
-            <CSSTransition
-                in={this.state.show}
-                timeout={300}
-                classNames='translate'
-            >
-                <div className='see_more positionBg' ref='SeeMore'>
-                    <PublicHeader
-                        courseType={this.props.match.params.type}
-                        boxShadowFlag={true}
-                        title='see_more'
-                        ref='header'
-                        iconOnClick={this.iconOnClick}
-                        iconType='icon-sousuo1'
-                        iconClass='header-sousuo'
-                        courseTypeOnClick={this.courseTypeOnClick}
+            <div className='see_more' ref='SeeMore'>
+                <PublicHeader
+                    courseType={this.props.match.params.type}
+                    boxShadowFlag={true}
+                    title='see_more'
+                    ref='header'
+                    iconOnClick={this.iconOnClick}
+                    iconType='icon-sousuo1'
+                    iconClass='header-sousuo'
+                    courseTypeOnClick={this.courseTypeOnClick}
+                    backFlag={true}
+                />
+                <div className='see_more_content overflowScroll'>
+                    <SeeMoreContent
+                        ref='seeMore_content'
+                        courseType={this.state.courseType}
+                        filterOpen={this.filterOpen}
                     />
-                    <div className='see_more_content overflowScroll'>
-                        <SeeMoreContent
-                            ref='seeMore_content'
-                            courseType={this.state.courseType}
-                            filterOpen={this.filterOpen}
-                        />
-                    </div>
-                    <Filter ref='filter' data={this.state.searchParams} filterDisplsy={this.state.filterDisplsy}
-                            filterMakeChose={this.filterMakeChose}
-                            shadeOnClick={this.shadeOnClick}/>
                 </div>
-
-            </CSSTransition>
+                <Filter ref='filter' data={this.state.searchParams} filterDisplsy={this.state.filterDisplsy}
+                        filterMakeChose={this.filterMakeChose}
+                        shadeOnClick={this.shadeOnClick}/>
+            </div>
         )
     }
 }

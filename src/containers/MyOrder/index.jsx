@@ -149,7 +149,7 @@ class MyOrder extends React.Component {
                     >
                         <div className='order_content_div'
                              ref='order_content'
-                             style={!myOrderContent.length ? {textAlign: 'center', paddingTop: '.75rem'} : {}}
+                             style={!myOrderContent.length ? {textAlign: 'center'} : {}}
                         >
                             {
                                 myOrderContent.length ? <OrderList

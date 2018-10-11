@@ -117,8 +117,8 @@ class MyCourseLists extends React.Component {
         return (
             <div className='my_course_list'>
                 <div className='tabTitle' style={{backgroundColor: 'white'}}>
-                    <span className={this.state.courseType === 'mostnew' ? 'active' : ''}
-                          onClick={this.typeOnChange.bind(this, 'mostnew')}>最新课程</span>
+                    {/*<span className={this.state.courseType === 'mostnew' ? 'active' : ''}*/}
+                          {/*onClick={this.typeOnChange.bind(this, 'mostnew')}>最新课程</span>*/}
                     {/*<span className="tabFilter">筛选<i className='icon-shaixuan2 iconfont'></i></span>*/}
                 </div>
                 <PullToRefresh

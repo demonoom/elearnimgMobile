@@ -99,6 +99,13 @@ class App extends Component {
                                     } : {
                                         className: '__CacheRoute__wrapper__uncached'
                                     })}/>
+                        <CacheRoute className='content_window' path='/seemore/:type' component={SeeMore}
+                                    behavior={cached => (cached ? {
+                                        style: this.state.cachedStyle,
+                                        className: '__CacheRoute__wrapper__cached'
+                                    } : {
+                                        className: '__CacheRoute__wrapper__uncached'
+                                    })}/>
                         <CacheRoute className='content_window' path='/mycourse' component={MyCourse}
                                     behavior={cached => (cached ? {
                                         style: this.state.cachedStyle,
@@ -192,13 +199,6 @@ class App extends Component {
                                     } : {
                                         className: '__CacheRoute__wrapper__uncached'
                                     })}/>
-                        <CacheRoute className='content_window_all' path='/seemore/:type' component={SeeMore}
-                                    behavior={cached => (cached ? {
-                                        style: this.state.cachedStyle,
-                                        className: '__CacheRoute__wrapper__cached'
-                                    } : {
-                                        className: '__CacheRoute__wrapper__uncached'
-                                    })}/>
                         <CacheRoute className='content_window_all' path='/teacher/:id' component={Teacher}
                                     behavior={cached => (cached ? {
                                         style: this.state.cachedStyle,
@@ -220,6 +220,13 @@ class App extends Component {
                             <div className='nav-link' onClick={this.navOnClick.bind(this, '/home')}>
                                 <i></i>
                                 <span>发现课程</span>
+                            </div>
+                        </div>
+                        <div
+                            className={this.state.navWord === '/seemore/sjkc' ? 'tab-item tab_course active' : 'tab-item tab_course'}>
+                            <div className='nav-link' onClick={this.navOnClick.bind(this, '/seemore/sjkc')}>
+                                <i></i>
+                                <span>更多课程</span>
                             </div>
                         </div>
                         <div

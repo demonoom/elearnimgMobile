@@ -201,8 +201,8 @@ class CourseTab extends React.Component {
     render() {
 
         const tabs = [
-            {title: <Badge>课程详情</Badge>, index: 0},
-            {title: <Badge>课程目录</Badge>, index: 1},
+            {title: <Badge>课程目录</Badge>, index: 0},
+            {title: <Badge>课程详情</Badge>, index: 1},
             {title: <Badge>课程评价</Badge>, index: 2},
         ];
 
@@ -223,6 +223,36 @@ class CourseTab extends React.Component {
                           }
                       }}
                 >
+                    <div className='detil-tab-item courseList'>
+                        <WhiteSpace/>
+                        <div className='whiteBg'>
+                            {
+                                courseObj.videos.map((v, i) => {
+                                    return <div className='my_flex line_public' key={i}>
+                                        <div className='num text_color'>{FormatTime.formatNum(i + 1)}</div>
+                                        <div className='textCont'>
+                                            <div className='title_color text_hidden'>{v.name}</div>
+                                            <div className='text_color'>
+                                                授课时间：{(courseObj.isSeries === '3' || courseObj.isSeries === '4') ? FormatTime.formatAllTime(courseObj.createTime) : FormatTime.formatAllTime(v.liveTime)}
+                                                {
+
+
+                                                    ( courseObj.isSeries === '3' || courseObj.isSeries === '4') ?
+                                                        <span className='status icon_playBack'
+                                                              onClick={this.courseWeiOnPlay.bind(this, v)}></span> : v.videoStatus === '1' ?
+                                                        <span className='status text_color'>未开课</span> :
+                                                        <span
+                                                            className={v.videoStatus === '2' ? 'status icon_live' : 'status icon_playBack'}
+                                                            onClick={this.courseOnPlay.bind(this, v)}></span>
+                                                }
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                })
+                            }
+                        </div>
+                    </div>
                     <div className='detil-tab-item courseDetail'>
                         <WhiteSpace/>
                         <div className='topCont text_color whiteBg'>
@@ -257,36 +287,6 @@ class CourseTab extends React.Component {
                             <div className='text text_color'>
                                 {courseObj.content || '暂无介绍'}
                             </div>
-                        </div>
-                    </div>
-                    <div className='detil-tab-item courseList'>
-                        <WhiteSpace/>
-                        <div className='whiteBg'>
-                            {
-                                courseObj.videos.map((v, i) => {
-                                    return <div className='my_flex line_public' key={i}>
-                                        <div className='num text_color'>{FormatTime.formatNum(i + 1)}</div>
-                                        <div className='textCont'>
-                                            <div className='title_color text_hidden'>{v.name}</div>
-                                            <div className='text_color'>
-                                                授课时间：{(courseObj.isSeries === '3' || courseObj.isSeries === '4') ? FormatTime.formatAllTime(courseObj.createTime) : FormatTime.formatAllTime(v.liveTime)}
-                                                {
-
-
-                                                    ( courseObj.isSeries === '3' || courseObj.isSeries === '4') ?
-                                                        <span className='status icon_playBack'
-                                                              onClick={this.courseWeiOnPlay.bind(this, v)}></span> : v.videoStatus === '1' ?
-                                                        <span className='status text_color'>未开课</span> :
-                                                        <span
-                                                            className={v.videoStatus === '2' ? 'status icon_live' : 'status icon_playBack'}
-                                                            onClick={this.courseOnPlay.bind(this, v)}></span>
-                                                }
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                })
-                            }
                         </div>
                     </div>
                     <div className='detil-tab-item' id='detil-tab-item3'>
