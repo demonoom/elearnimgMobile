@@ -110,7 +110,7 @@ class Classroom extends React.Component {
                             typeGuoLv={true}
                         />
                     }
-                    <NavLink to='/seemore/cgkc' className='item_to_all'>查看全部课程 ></NavLink>
+                    <NavLink to='/seemore/cgkc' className='item_to_all'>查看全部 ></NavLink>
                 </div>
             </Tabs>
         )
