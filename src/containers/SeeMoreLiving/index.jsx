@@ -53,6 +53,7 @@ class SeeMoreLiving extends React.Component {
     }
 
     componentDidMount() {
+        this.setState({show: true})
         /**
          * 获取今日直播
          */
