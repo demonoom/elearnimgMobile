@@ -129,7 +129,7 @@ class MyCourseLists extends React.Component {
                     refreshing={this.state.refreshing}
                     onRefresh={this.handlePullToRefresh}
                 >
-                    <div className='class_list_myCourse' ref='class_list_myCourse'>
+                    <div className='class_list_myCourse' ref='class_list_myCourse' style={{marginTop:'.1rem'}}>
                         <ClassList
                             listType='2'
                             courseList={this.state.courseList}
