@@ -103,7 +103,7 @@ class Qualitycourse extends React.Component {
         return (
             <div className='quality_course'>
                 <h4 className='title_color same_title noBottom noTop' style={{textAlign: 'center'}}>
-                    精品课程
+                    精选课程
                 </h4>
                 <ClassBox
                     ref='classBoxSj'

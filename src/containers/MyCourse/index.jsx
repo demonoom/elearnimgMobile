@@ -64,7 +64,7 @@ class MyCourse extends React.Component {
         return (
             <div className='myCourse' ref='MyCourse'>
                 <div className="p14 whiteBg"></div>
-                <div className='myCourseList_header title_color'>
+                <div className='myCourseList_header title_color line_public'>
                     我的课表
                     <i className='iconfont icon-sousuo1'
                        onClick={this.turnToPage}></i>
