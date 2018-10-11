@@ -55,6 +55,10 @@ class Home extends React.Component {
     }
 
     componentDidMount() {
+        this.findAdvanceAll()
+    }
+
+    findAdvanceAll = () => {
         /**
          * 获取轮播图
          * 同时获取轮播图(num=1)和三个宣传视频(num=2)
@@ -108,6 +112,15 @@ class Home extends React.Component {
         });
     }
 
+    pullToRefresh = () => {
+        setTimeout(() => {
+            this.setState({refreshing: false});
+        }, 1000);
+        this.refs.living.getCourseByTodayV3()
+        this.findAdvanceAll()
+
+    }
+
     render() {
 
         return (
@@ -122,18 +135,14 @@ class Home extends React.Component {
 
                     <PullToRefresh
                         className='overflowScroll home_content'
-                        damping={60}
+                        damping={100}
                         indicator={this.state.down ? {} : {deactivate: '上拉可以刷新'}}
                         direction={'down'}
                         refreshing={this.state.refreshing}
                         onRefresh={() => {
-                            // this.setState({refreshing: true});
-                            // window.location.reload();
-
-                            this.setState({refreshing: true});
-                            setTimeout(() => {
-                                this.setState({refreshing: false});
-                            }, 1000);
+                            this.setState({refreshing: true}, () => {
+                                this.pullToRefresh()
+                            });
                         }}
                     >
                         <Category
@@ -147,7 +156,9 @@ class Home extends React.Component {
                             listOnClick={this.listOnClick}
                         />
 
-                        <Living/>
+                        <Living
+                            ref='living'
+                        />
 
                         <div className='index_tab'>
                             <Qualitycourse/>

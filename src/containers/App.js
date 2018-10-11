@@ -65,6 +65,14 @@ class App extends Component {
                 method: 'goLoginPage',
             };
 
+            if (this.refs.switch.context.router.route.location.pathname === '/seemore/sjkc') {
+                data.col = 'black'
+            } else {
+                data.col = 'white'
+            }
+
+            console.log(data);
+
             window.Bridge.callHandler(data, function (res) {
                 localStorage.setItem("userId", JSON.parse(res).colUid)
                 _this.refs.switch.context.router.history.push(word)

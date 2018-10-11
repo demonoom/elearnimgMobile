@@ -123,7 +123,7 @@ class MyCourseLists extends React.Component {
                 </div>
                 <PullToRefresh
                     className='overflowScroll class_list class_list_myCourse_pull'
-                    damping={60}
+                    damping={100}
                     indicator={this.state.down ? {} : {deactivate: '上拉可以刷新'}}
                     direction={'down'}
                     refreshing={this.state.refreshing}
