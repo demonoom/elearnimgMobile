@@ -1,3 +1,4 @@
+/* eslint-disable */
 export default {
     /**
      * 时间戳转年月日

@@ -7,6 +7,7 @@ import Qualitycourse from './subpage/Qualitycourse'
 import HomeHeader from '../../components/HomeHeader'
 import {findAdvanceAll} from '../../../src/fetch/home/home'
 import './style.less'
+import IMG from '../../static/img/lALPDgQ9qSaDfcvNBTbNAu4_750_1334.png'
 
 
 class Home extends React.Component {
@@ -15,10 +16,10 @@ class Home extends React.Component {
         this.state = {
             categoryArr: [],
             truelyHeight: '',
+            IMG_display: false
         }
         props.cacheLifecycles.didCache(this.componentDidCache)
         props.cacheLifecycles.didRecover(this.componentDidRecover)
-        // this.changeTitleCol('white');
     }
 
     /**
@@ -72,6 +73,7 @@ class Home extends React.Component {
                             item.number !== '1'
                         )
                     }),
+                    IMG_display: true
                 })
             } else {
                 Toast.fail(json.msg, 2)
@@ -110,41 +112,48 @@ class Home extends React.Component {
 
         return (
             <div id='home' ref='home'>
-                <HomeHeader/>
 
-                <PullToRefresh
-                    className='overflowScroll home_content'
-                    damping={60}
-                    indicator={this.state.down ? {} : {deactivate: '上拉可以刷新'}}
-                    direction={'down'}
-                    refreshing={this.state.refreshing}
-                    onRefresh={() => {
-                        // this.setState({refreshing: true});
-                        // window.location.reload();
+                <div style={{height: '100%', display: this.state.IMG_display ? 'none' : ''}}>
+                    <img src={IMG} alt=""/>
+                </div>
 
-                        this.setState({refreshing: true});
-                        setTimeout(() => {
-                            this.setState({refreshing: false});
-                        }, 1000);
-                    }}
-                >
-                    <Category
-                        categoryArr={this.state.categoryArr}
-                        categoryOnClick={this.categoryOnClick}
-                    />
+                <div style={{height: "100%", display: !this.state.IMG_display ? 'none' : ''}}>
+                    <HomeHeader/>
 
-                    <h4 className='title_color same_title' style={{textAlign: 'center'}}>实景课宣传片</h4>
-                    <VideoList
-                        videoArr={this.state.videoArr}
-                        listOnClick={this.listOnClick}
-                    />
+                    <PullToRefresh
+                        className='overflowScroll home_content'
+                        damping={60}
+                        indicator={this.state.down ? {} : {deactivate: '上拉可以刷新'}}
+                        direction={'down'}
+                        refreshing={this.state.refreshing}
+                        onRefresh={() => {
+                            // this.setState({refreshing: true});
+                            // window.location.reload();
 
-                    <Living/>
+                            this.setState({refreshing: true});
+                            setTimeout(() => {
+                                this.setState({refreshing: false});
+                            }, 1000);
+                        }}
+                    >
+                        <Category
+                            categoryArr={this.state.categoryArr}
+                            categoryOnClick={this.categoryOnClick}
+                        />
 
-                    <div className='index_tab'>
-                        <Qualitycourse/>
-                    </div>
-                </PullToRefresh>
+                        <h4 className='title_color same_title' style={{textAlign: 'center'}}>实景课宣传片</h4>
+                        <VideoList
+                            videoArr={this.state.videoArr}
+                            listOnClick={this.listOnClick}
+                        />
+
+                        <Living/>
+
+                        <div className='index_tab'>
+                            <Qualitycourse/>
+                        </div>
+                    </PullToRefresh>
+                </div>
 
             </div>
         )
