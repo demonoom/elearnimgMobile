@@ -42,6 +42,11 @@ class ListItem extends React.Component {
                          style={{display: listType === '2' ? 'none' : arr.indexOf('2') === -1 ? 'none' : ''}}>直播中
                     </div>
                     <div className='timeCont'>
+                        <span style={{display: listType === '1' ? arr.indexOf('2') === -1 ? '' : 'none' : 'none'}}>
+                            {
+                                FormatTime.formatTime(itemObj.startTime)
+                            }
+                        </span>
                         <span style={{display: listType === '1' ? 'none' : ''}}>
                             {
                                 FormatTime.formatYMD(itemObj.startTime)
@@ -49,7 +54,7 @@ class ListItem extends React.Component {
                         </span>
                         <span className='progress' style={{display: listType === '3' ? 'none' : listType === '1' ? 'none' : ''}}>
                             {
-                                `进度:${itemObj.jindu}`
+                                `课程进度:${itemObj.jindu}`
                             }
                         </span>
                         <span style={{display: listType === '2' ? 'none' : listType === '1' ? 'none' : ''}}>
@@ -58,14 +63,6 @@ class ListItem extends React.Component {
                             }
                         </span>
                     </div>
-                    <div style={{display: listType === '1' ? arr.indexOf('2') === -1 ? '' : 'none' : 'none'}}>
-                            {
-                                FormatTime.formatTime(itemObj.startTime)
-                            }
-                        </div>
-
-
-
 
                 </div>
             </NavLink>
