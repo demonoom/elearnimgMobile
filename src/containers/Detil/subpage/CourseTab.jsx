@@ -101,6 +101,7 @@ class CourseTab extends React.Component {
         if (localStorage.getItem("userId") == null) {
             var data = {
                 method: 'goLoginPage',
+                col:'white'
             };
 
             window.Bridge.callHandler(data, function (res) {
@@ -141,6 +142,7 @@ class CourseTab extends React.Component {
         if (localStorage.getItem("userId") == null) {
             var data = {
                 method: 'goLoginPage',
+                col:'white'
             };
 
             window.Bridge.callHandler(data, function (res) {
@@ -178,6 +180,7 @@ class CourseTab extends React.Component {
         if (localStorage.getItem("userId") == null) {
             var data = {
                 method: 'goLoginPage',
+                col:'white'
             };
 
             window.Bridge.callHandler(data, function (res) {
