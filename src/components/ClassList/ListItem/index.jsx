@@ -2,6 +2,7 @@ import React from 'react'
 import './style.less'
 import {NavLink} from "react-router-dom"
 import {MID_IMG} from '../../../util/const'
+import FormatTime from '../../../util/formatTime'
 
 class ListItem extends React.Component {
     constructor(props, context) {
@@ -12,6 +13,7 @@ class ListItem extends React.Component {
     render() {
 
         const itemObj = this.props.itemObj;
+        const listType = this.props.listType;
 
         var arr = []
         itemObj.videos.forEach((v) => {
@@ -31,9 +33,31 @@ class ListItem extends React.Component {
                             })
                         }
                     </div>
-                    <div className='icon_live' style={{display: arr.indexOf('2') === -1 ? 'none' : ''}}>直播中</div>
+                    <div className='icon_live'
+                         style={{display: listType === '2' ? 'none' : arr.indexOf('2') === -1 ? 'none' : ''}}>直播中
+                    </div>
+                    <div style={{display: listType === '1' ? arr.indexOf('2') === -1 ? '' : 'none' : 'none'}}>
+                        {
+                            FormatTime.formatTime(itemObj.startTime)
+                        }
+                    </div>
+                    <div style={{display: listType === '1' ? 'none' : ''}}>
+                        {
+                            FormatTime.formatYMD(itemObj.startTime)
+                        }
+                    </div>
+                    <div style={{display: listType === '3' ? 'none' : listType === '1' ? 'none' : ''}}>
+                        {
+                            `进度:${itemObj.jindu}`
+                        }
+                    </div>
+                    <div style={{display: listType === '2' ? 'none' : listType === '1' ? 'none' : ''}}>
+                        {
+                            itemObj.money === '0.00' ? '免费' : itemObj.money
+                        }
+                    </div>
                     <div className='name'
-                         style={{display: arr.indexOf('2') !== -1 ? 'none' : ''}}>{itemObj.buyUids.length}人购买
+                         style={{display: listType === '2' ? 'none' : listType === '1' ? 'none' : arr.indexOf('2') !== -1 ? 'none' : ''}}>{itemObj.buyUids.length}人购买
                     </div>
                 </div>
             </NavLink>

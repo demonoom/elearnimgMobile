@@ -44,10 +44,11 @@ class Living extends React.Component {
                     今日直播
                 </h4>
                 <ClassList
+                    listType='1'
                     courseList={this.state.courseList}
                 />
                 <div>
-                    <NavLink className='item_to_all' to='/seemoreliving' style={{marginTop:'.1rem'}}>
+                    <NavLink className='item_to_all' to='/seemoreliving' style={{marginTop: '.1rem'}}>
                         查看全部 >
                     </NavLink>
                 </div>
