@@ -43,7 +43,7 @@ class ListItem extends React.Component {
                     </div>
                     <div style={{display: listType === '1' ? 'none' : ''}}>
                         {
-                            FormatTime.formatYMD(itemObj.startTime)
+                            FormatTime.formatMD(itemObj.startTime)
                         }
                     </div>
                     <div style={{display: listType === '3' ? 'none' : listType === '1' ? 'none' : ''}}>

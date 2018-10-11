@@ -92,6 +92,7 @@ class SeeMoreLiving extends React.Component {
                          ref='collect_content'
                     >
                         <ClassList
+                            listType='1'
                             courseList={this.state.courseList}
                         />
                     </div>
