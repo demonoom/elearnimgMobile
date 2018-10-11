@@ -179,6 +179,7 @@ class SeeMoreContent extends React.Component {
                 </div>
                 <div className='class_list class_list_seemore overflowScroll' ref='class_list_seemore'>
                     <ClassList
+                        listType='3'
                         courseList={this.state.courseList}
                     />
                     <LoadMore ref='LoadMore' isLoadingMore={this.state.isLoadingMore}

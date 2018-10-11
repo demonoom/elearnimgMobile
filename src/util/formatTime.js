@@ -35,6 +35,19 @@ export default {
     },
 
     /**
+     * 时间戳转时分秒
+     * @param nS
+     * @returns {string}
+     */
+    formatTime: function (nS) {
+        var da = new Date(parseInt(nS, 10));
+        var hour = da.getHours() + ":";
+        var minutes = da.getMinutes();
+        var dateStr = hour + minutes;
+        return dateStr;
+    },
+
+    /**
      * 时间戳转月日
      * @param nS
      * @returns {string}
