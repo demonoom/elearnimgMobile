@@ -97,7 +97,6 @@ class TeacherTab extends React.Component {
     findCourseByTeacherId = (id) => {
         findCourseByTeacherId(id, this.state.pageNo1).then((res) => {
             if (res.msg === '调用成功' && res.success) {
-                debugger
                 if (this.state.pageNo1 === res.pager.pageCount) {
                     this.setState({hasMoreClass1: false})
                 }

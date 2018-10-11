@@ -83,6 +83,9 @@ class BindPhoneNum extends React.Component {
                     updateUserV3(this.state.phoneNum, this.props.match.params.name, this.props.match.params.id).then((res) => {
                         if (res.msg === '调用成功' && res.success) {
                             Toast.success('绑定成功', 1)
+                            setTimeout(function () {
+                                window.history.go(-1)
+                            }, 1000)
                         } else {
                             Toast.fail(res.msg, 2)
                         }
