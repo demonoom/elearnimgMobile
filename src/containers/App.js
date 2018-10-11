@@ -225,7 +225,7 @@ class App extends Component {
                             className={this.state.navWord === '/home' ? 'tab-item tab_course active' : 'tab-item tab_course'}>
                             <div className='nav-link' onClick={this.navOnClick.bind(this, '/home')}>
                                 <i></i>
-                                <span>发现课程</span>
+                                <span>首页</span>
                             </div>
                         </div>
                         <div
@@ -241,14 +241,14 @@ class App extends Component {
                             <div className='nav-link'
                                  onClick={this.navOnClick.bind(this, '/mycourse')}>
                                 <i></i>
-                                <span>我的课表</span>
+                                <span>课表</span>
                             </div>
                         </div>
                         <div
                             className={this.state.navWord === '/user' ? 'tab-item tab_person active' : 'tab-item tab_person'}>
                             <div className='nav-link' onClick={this.navOnClick.bind(this, '/user')}>
                                 <i></i>
-                                <span>个人中心</span>
+                                <span>我的</span>
                             </div>
                         </div>
                     </div>

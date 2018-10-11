@@ -58,7 +58,7 @@ class ListItem extends React.Component {
                         <span className='progress'
                               style={{display: listType === '3' ? 'none' : listType === '1' ? 'none' : ''}}>
                             {
-                                `课程进度:${itemObj.jindu}`
+                                `进度:${itemObj.jindu}`
                             }
                         </span>
                         <span style={{display: listType === '2' ? 'none' : listType === '1' ? 'none' : ''}}>
