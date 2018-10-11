@@ -14,6 +14,10 @@ class Living extends React.Component {
     }
 
     componentDidMount() {
+        this.getCourseByTodayV3()
+    }
+
+    getCourseByTodayV3 = () => {
         /**
          * 获取今日直播
          */
