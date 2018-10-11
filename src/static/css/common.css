@@ -205,12 +205,11 @@ input {
 
 .tabTitle.headTab span.active {
     font-size: .18rem;
-    padding-bottom: .05rem;
 }
 
 .tabTitle span {
     display: inline-block;
-    padding: .06rem .1rem .06rem;
+    padding: .06rem .1rem .08rem;
 }
 
 .tabTitle span.active {

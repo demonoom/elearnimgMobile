@@ -41,25 +41,29 @@ class ListItem extends React.Component {
                     <div className='icon_live'
                          style={{display: listType === '2' ? 'none' : arr.indexOf('2') === -1 ? 'none' : ''}}>直播中
                     </div>
-                    <div className='timeCont'>
+                    <div className='timeCont' style={{display: arr.indexOf('2') === -1 ? '' : 'none'}}>
                         <span style={{display: listType === '1' ? arr.indexOf('2') === -1 ? '' : 'none' : 'none'}}>
+                             开课时间：
                             {
                                 FormatTime.formatTime(itemObj.startTime)
                             }
                         </span>
                         <span style={{display: listType === '1' ? 'none' : ''}}>
+
                             {
                                 FormatTime.formatYMD(itemObj.startTime)
                             }
                         </span>
-                        <span className='progress' style={{display: listType === '3' ? 'none' : listType === '1' ? 'none' : ''}}>
+                        <span className='progress'
+                              style={{display: listType === '3' ? 'none' : listType === '1' ? 'none' : ''}}>
                             {
                                 `课程进度:${itemObj.jindu}`
                             }
                         </span>
                         <span style={{display: listType === '2' ? 'none' : listType === '1' ? 'none' : ''}}>
                             {
-                                itemObj.money === '0.00' ? <span className='free'>免费</span> : <span className='price'><span>¥</span>itemObj.money</span>
+                                itemObj.money === '0.00' ? <span className='free'>免费</span> :
+                                    <span className='price'><span>¥</span>itemObj.money</span>
                             }
                         </span>
                     </div>
