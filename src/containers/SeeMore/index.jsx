@@ -132,7 +132,7 @@ class SeeMore extends React.Component {
                     courseTypeOnClick={this.courseTypeOnClick}
                     backFlag={true}
                 />
-                <div className='see_more_content overflowScroll'>
+                <div className='see_more_content'>
                     <SeeMoreContent
                         ref='seeMore_content'
                         courseType={this.state.courseType}

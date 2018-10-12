@@ -14,10 +14,6 @@
   &.lineB .headerCont{
     color: #2A3350;
   }
-  .headerCont{
-    padding: .15rem 0;
-    position: relative;
-  }
   .header-back {
     position: absolute;
     left: .1rem;
@@ -44,7 +40,12 @@
     position: absolute;
     right: .10rem;
     font-size: .14rem;
-    bottom: .15rem;
+    top:50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
   }
   .header-sousuo {
     position: absolute;

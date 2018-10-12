@@ -131,7 +131,18 @@ input {
 .am-list-body::before, .am-list-body::after {
     display: none !important;
 }
-
+/*公共头部*/
+.headerCont{
+    text-align: center;
+    line-height: 0.44rem;
+    height: 0.44rem;
+    font-size: 0.18rem;
+    padding: 0 0.2rem;
+    position: relative;
+}
+.mainCont{
+    height: 100%;
+}
 /*tab切换*/
 .am-tabs-default-bar-top .am-tabs-default-bar-tab {
     border: 0 !important;
@@ -205,12 +216,11 @@ input {
 
 .tabTitle.headTab span.active {
     font-size: .18rem;
-    padding-bottom: .07rem;
 }
 
 .tabTitle span {
     display: inline-block;
-    padding: 0 .1rem .08rem;
+    padding: 0 .1rem 0;
 }
 
 .tabTitle span.active {
@@ -227,14 +237,16 @@ input {
     z-index: 1;
     top: auto;
     right: auto;
-    bottom: 0;
+    bottom: 1px;
     left: 50%;
     width: .15rem;
     height: 2px;
     margin-left: -.075rem;
     border-radius: 1px;
 }
-
+.tabTitle.hasPadding span{
+    padding: 0.08rem .1rem;
+}
 .tabFilter {
     font-size: .13rem;
     position: absolute;

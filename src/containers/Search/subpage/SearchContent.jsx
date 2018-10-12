@@ -197,7 +197,7 @@ class SearchContent extends React.Component {
                         </div>
                     </div> :
                     <div style={{height: '100%'}}>
-                        <div className='tabTitle'>
+                        <div className='tabTitle hasPadding'>
                             <span className={this.state.courseSort === 'hot' ? 'active' : ''}
                                   onClick={this.changeCourseSort.bind(this, 'hot')}>按热度排序</span>
                             <span className={this.state.courseSort === 'mostnew' ? 'active' : ''}
