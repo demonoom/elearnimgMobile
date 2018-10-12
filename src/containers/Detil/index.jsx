@@ -81,7 +81,11 @@ class Detil extends React.Component {
             }
         }).then(() => {
             // eslint-disable-next-line
-            this.state.truelyHeight = this.refs.detil.parentNode.offsetHeight
+            if (this.refs.detil == null) {
+
+            } else {
+                this.state.truelyHeight = this.refs.detil.parentNode.offsetHeight
+            }
         })
     }
 
@@ -133,7 +137,7 @@ class Detil extends React.Component {
         if (localStorage.getItem("userId") == null) {
             var data = {
                 method: 'goLoginPage',
-                col:'white'
+                col: 'white'
             };
 
             window.Bridge.callHandler(data, function (res) {
