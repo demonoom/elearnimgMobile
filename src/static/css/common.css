@@ -210,7 +210,7 @@ input {
 
 .tabTitle span {
     display: inline-block;
-    padding: .06rem .1rem .08rem;
+    padding: 0 .1rem .08rem;
 }
 
 .tabTitle span.active {
