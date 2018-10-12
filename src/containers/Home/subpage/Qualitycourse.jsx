@@ -85,6 +85,7 @@ class Qualitycourse extends React.Component {
         }) : this.setState({page: 1, courseType: type, recommend: 0, hasMoreClass: true}, () => {
             this.getCourseListV3(true)
         })
+        this.refs.classBoxSj.setDefaultCoruseType(type)
     }
 
     /**
