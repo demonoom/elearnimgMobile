@@ -7,6 +7,7 @@ import {queryEvaluatePageByCourseId} from '../../../fetch/detil/detil'
 import CommentList from '../../../components/CommentList'
 import LoadMore from '../../../components/LoadMore'
 import {NavLink} from "react-router-dom"
+import avatarImg from '../../../static/img/adver-error.png'
 
 var loadMore;
 
@@ -201,6 +202,10 @@ class CourseTab extends React.Component {
 
     }
 
+    avatarOnError = (e) => {
+        e.target.src = avatarImg
+    }
+
     render() {
 
         const tabs = [
@@ -274,6 +279,7 @@ class CourseTab extends React.Component {
                                 courseObj.users.map((v, i) => {
                                     return <div className='teach_item my_flex' key={i}>
                                         <NavLink to={`/teacher/${v.colUid}`}><img src={v.avatar + SMALL_IMG}
+                                                                                  onError={this.avatarOnError}
                                                                                  alt=""/></NavLink>
                                         <div className='right'>
                                             <div className='userName title_color text_hidden'>{v.userName}</div>

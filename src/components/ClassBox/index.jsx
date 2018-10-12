@@ -20,6 +20,10 @@ class ClassBox extends React.Component {
         })
     }
 
+    setDefaultCoruseType = (type) => {
+        this.setState({coruseType: type})
+    }
+
     render() {
         const classroomContent = this.props.classroomContent;
         return (

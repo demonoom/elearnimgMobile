@@ -1,4 +1,4 @@
-import {post} from '../post'
+import {post, ajax} from '../post'
 
 /**
  * 获取轮播图
@@ -46,8 +46,10 @@ export function getCourseListV3(pageNo, courseType, courseSubject, coursePropert
  * @returns {*}
  */
 export function getCourseByTodayV3() {
-    const result = post({
-        "method": 'getCourseByTodayV3',
+    var result = ajax({
+        "method": "getCourseByTodayV3"
+    }).then(res => {
+        return res
     })
 
     return result

@@ -118,7 +118,7 @@ class Home extends React.Component {
         }, 1000);
         this.refs.living.getCourseByTodayV3()
         this.findAdvanceAll()
-
+        this.refs.quality_course.changeCoruseType('recommend')
     }
 
     render() {
@@ -126,8 +126,8 @@ class Home extends React.Component {
         return (
             <div id='home' ref='home'>
 
-                <div style={{width:'100%',height: '100%', display: this.state.IMG_display ? 'none' : ''}}>
-                    <img style={{width:'100%'}} src={IMG} alt=""/>
+                <div style={{width: '100%', height: '100%', display: this.state.IMG_display ? 'none' : ''}}>
+                    <img style={{width: '100%'}} src={IMG} alt=""/>
                 </div>
 
                 <div style={{height: "100%", display: !this.state.IMG_display ? 'none' : ''}}>
@@ -135,7 +135,7 @@ class Home extends React.Component {
 
                     <PullToRefresh
                         className='overflowScroll home_content'
-                        damping={100}
+                        damping={130}
                         indicator={this.state.down ? {} : {deactivate: '上拉可以刷新'}}
                         direction={'down'}
                         refreshing={this.state.refreshing}
@@ -161,7 +161,9 @@ class Home extends React.Component {
                         />
 
                         <div className='index_tab'>
-                            <Qualitycourse/>
+                            <Qualitycourse
+                                ref='quality_course'
+                            />
                         </div>
                     </PullToRefresh>
                 </div>
