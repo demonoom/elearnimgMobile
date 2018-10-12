@@ -4,6 +4,8 @@ import './style.less'
 import FormatTime from '../../../util/formatTime'
 import {MID_IMG} from '../../../util/const'
 import {Toast} from 'antd-mobile'
+import defaultImg from '../../../static/img/error.png'
+import avatarImg from '../../../static/img/adver-error.png'
 
 class BoxItem extends React.Component {
     constructor(props, context) {
@@ -24,6 +26,14 @@ class BoxItem extends React.Component {
         });
     }
 
+    imgOnError = (e) => {
+        e.target.src = defaultImg
+    }
+
+    avatarOnError = (e) => {
+        e.target.src = avatarImg
+    }
+
     render() {
         const data = this.props.data
         return (
@@ -32,7 +42,7 @@ class BoxItem extends React.Component {
                     {/*<div onClick={this.openNewPage.bind(this, data.id, data.publisher_id)}>*/}
                     <NavLink to={`/detil/${data.id}/${data.publisher_id}`}>
                         <div className="imgDiv">
-                            <img src={data.image + MID_IMG} alt="" style={{width: '100%'}}/>
+                            <img src={data.image + MID_IMG} alt="" style={{width: '100%'}} onError={this.imgOnError}/>
                             <span className='sign'>{data.buyUids == null ? '' : `${data.buyUids.length}人报名`}</span>
                         </div>
                         <div className="textCont">
@@ -43,7 +53,7 @@ class BoxItem extends React.Component {
                                 <span className='courseNum'>{data.videos.length}<i>-</i>课时</span>
                             </div>
                             <div className="textBottom my_flex">
-                                <img src={data.users[0].avatar} alt=""/>
+                                <img src={data.users[0].avatar} alt="" onError={this.avatarOnError}/>
                                 <span className='text_color text_hidden'>{data.users[0].userName}</span>
                                 {data.money === '0.00' ?
                                     <span className='free'>免费</span> :

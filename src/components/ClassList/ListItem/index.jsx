@@ -3,11 +3,16 @@ import './style.less'
 import {NavLink} from "react-router-dom"
 import {MID_IMG} from '../../../util/const'
 import FormatTime from '../../../util/formatTime'
+import defaultImg from '../../../static/img/error.png'
 
 class ListItem extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.state = {}
+    }
+
+    imgOnError = (e) => {
+        e.target.src = defaultImg
     }
 
     render() {
@@ -23,7 +28,7 @@ class ListItem extends React.Component {
         return (
             <NavLink to={`/detil/${itemObj.id}/${itemObj.publisher_id}`} className='list_item'>
                 <div className='imgCont'>
-                    <img src={itemObj.image + MID_IMG} alt=""/>
+                    <img src={itemObj.image + MID_IMG} alt="" onError={this.imgOnError}/>
                     <div className='buyPerson text_hidden'
                          style={{display: listType === '2' ? 'none' : listType === '1' ? 'none' : arr.indexOf('2') !== -1 ? 'none' : ''}}>{itemObj.buyUids.length}人购买
                     </div>

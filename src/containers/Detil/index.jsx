@@ -8,6 +8,7 @@ import {findCourseByCourseId, addCollection, updateCollection} from '../../../sr
 import {LARGE_IMG} from '../../util/const'
 import Comment from '../../components/Comment'
 import {addEvaluate} from '../../../src/fetch/comment/comment'
+import defaultImg from '../../static/img/error.png'
 
 class Detil extends React.Component {
     constructor(props, context) {
@@ -196,6 +197,10 @@ class Detil extends React.Component {
         this.setState({commentFlag: flag})
     }
 
+    imgOnError = (e) => {
+        e.target.src = defaultImg
+    }
+
     render() {
 
         if (!!this.state.courseObj) {
@@ -225,7 +230,7 @@ class Detil extends React.Component {
                     />
                     <div className='detil_content' style={{height: this.state.courseObj.buyed ? '100%' : ''}}>
                         <div className="imgDiv">
-                            <img src={this.state.courseObj.image + LARGE_IMG} alt=""/>
+                            <img src={this.state.courseObj.image + LARGE_IMG} alt="" onError={this.imgOnError}/>
                             <div className="imgMask"><i className='iconfont icon-bofang'
                                                         onClick={this.courseOnClick}
                                                         style={{display: videoStatus === '1' ? 'none' : ''}}></i></div>
