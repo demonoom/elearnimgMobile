@@ -6,6 +6,7 @@ import PublicHeader from '../../components/PublicHeader'
 import {getMyCollectCourseListV3} from '../../../src/fetch/my-collection/my-collection'
 import ClassBox from '../../components/ClassBox'
 import LoadMore from '../../components/LoadMore'
+import none_img from '../../static/img/none.png'
 
 class MyCollection extends React.Component {
     constructor(props, context) {
@@ -173,7 +174,10 @@ class MyCollection extends React.Component {
                                 myCollectionContent.length ? <ClassBox
                                     classroomContent={myCollectionContent}
                                     typeGuoLv={false}
-                                /> : <span>暂无收藏</span>
+                                /> : <div style={{height: '100vh', textAlign: "center", paddingTop: '1.7rem'}}>
+                                    <img src={none_img} alt=""/>
+                                    <div>还没有内容哦</div>
+                                </div>
                             }
                             <LoadMore ref='LoadMore' isLoadingMore={this.state.isLoadingMore}
                                       hasMoreClass={this.state.hasMoreClass}
