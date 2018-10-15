@@ -174,14 +174,17 @@ class MyCollection extends React.Component {
                                 myCollectionContent.length ? <ClassBox
                                     classroomContent={myCollectionContent}
                                     typeGuoLv={false}
-                                /> : <div style={{height: '100vh', textAlign: "center", paddingTop: '1rem'}}>
+                                /> : <div style={{height: '80vh', textAlign: "center", paddingTop: '1rem'}}>
                                     <img src={none_img} alt=""/>
                                     <div style={{marginTop:'.2rem', fontSize:'.15rem', color:'#2A3350'}}>还没有内容哦</div>
                                 </div>
                             }
-                            <LoadMore ref='LoadMore' isLoadingMore={this.state.isLoadingMore}
-                                      hasMoreClass={this.state.hasMoreClass}
-                                      loadMoreFn={this.loadMoreDate.bind(this)}/>
+                            <div  style={myCollectionContent.length ? {display:'block'}:{display:'none'}} >
+                                <LoadMore ref='LoadMore' isLoadingMore={this.state.isLoadingMore}
+                                          hasMoreClass={this.state.hasMoreClass}
+                                          loadMoreFn={this.loadMoreDate.bind(this)}/>
+                            </div>
+
                         </div>
                     </PullToRefresh>
                 </div>
