@@ -80,11 +80,9 @@ class Detil extends React.Component {
                 Toast.fail(res.msg, 2)
             }
         }).then(() => {
-            // eslint-disable-next-line
-            if (this.refs.detil == null) {
-
-            } else {
-                this.state.truelyHeight = this.refs.detil.parentNode.offsetHeight
+            if (this.refs.detil !== null) {
+                var truelyHeight = this.refs.detil.parentNode.offsetHeight
+                this.setState({truelyHeight})
             }
         })
     }
