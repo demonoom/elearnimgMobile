@@ -396,7 +396,10 @@ input {
     width: 2rem;
 }
 
+/*空页面*/
+.emptyCont{
 
+}
 /*需要定位的页面,为遮住底部栏*/
 .positionBg {
     position: absolute;
