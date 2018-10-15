@@ -168,8 +168,7 @@ class MyCollection extends React.Component {
                         refreshing={this.state.refreshing}
                         onRefresh={this.handlePullToRefresh}
                     >
-                        <div className='collect_content_div'
-                             style={!myCollectionContent.length ? {textAlign: 'center'} : {}}>
+                        <div className='collect_content_div'>
                             {
                                 myCollectionContent.length ? <ClassBox
                                     classroomContent={myCollectionContent}
