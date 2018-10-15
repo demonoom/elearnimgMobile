@@ -15,12 +15,12 @@ class ClassList extends React.Component {
             <div id='classList'
                  style={!courseList ? {textAlign: 'center', paddingTop: '.15rem'} : {marginTop: '.1rem'}}>
                 {
-                    !!courseList ? courseList.length !== 0 ? courseList.map((v, i) => {
+                    !!courseList ? courseList.length ? courseList.map((v, i) => {
                         return <ListItem key={i} itemObj={v} listType={this.props.listType}/>
-                    }) : <div style={{textAlign: "center", paddingTop: '1rem'}}>
+                    }) : this.props.networkOver ? <div style={{textAlign: "center", paddingTop: '1rem'}}>
                         <img src={none_img} alt=""/>
-                        <div  style={{marginTop:'.2rem', fontSize:'.15rem', color:'#2A3350'}}>还没有内容哦</div>
-                    </div> : <Icon type='loading'/>
+                        <div style={{marginTop: '.2rem', fontSize: '.15rem', color: '#2A3350'}}>还没有内容哦</div>
+                    </div> : '' : <Icon type='loading'/>
                 }
             </div>
         )

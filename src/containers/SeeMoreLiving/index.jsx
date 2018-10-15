@@ -14,6 +14,7 @@ class SeeMoreLiving extends React.Component {
             show: false,
             truelyHeight: '',
             courseList: [],
+            networkOver: false
         }
         props.cacheLifecycles.didCache(this.componentDidCache)
         props.cacheLifecycles.didRecover(this.componentDidRecover)
@@ -64,7 +65,8 @@ class SeeMoreLiving extends React.Component {
         getCourseByTodayV3ByTime(a, b).then((res) => {
             if (res.msg === '调用成功' && res.success) {
                 this.setState({
-                    courseList: res.response
+                    courseList: res.response,
+                    networkOver: true
                 })
             } else {
                 Toast.fail(res.msg, 2)
@@ -106,6 +108,7 @@ class SeeMoreLiving extends React.Component {
                         <ClassList
                             listType='1'
                             courseList={this.state.courseList}
+                            networkOver={this.state.networkOver}
                         />
                     </div>
                 </div>

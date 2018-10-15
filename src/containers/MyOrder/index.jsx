@@ -1,11 +1,12 @@
 import React from 'react'
 import './style.less'
 import {CSSTransition} from 'react-transition-group'
-import {Toast, PullToRefresh} from 'antd-mobile'
+import {Toast, PullToRefresh, Icon} from 'antd-mobile'
 import PublicHeader from '../../components/PublicHeader'
 import {queryPageByOrderV3} from '../../../src/fetch/my-order/my-order'
 import OrderList from '../../components/OrderList'
 import LoadMore from '../../components/LoadMore'
+import none_img from '../../static/img/none.png'
 
 class MyOrder extends React.Component {
     constructor(props, context) {
@@ -18,6 +19,7 @@ class MyOrder extends React.Component {
             isLoadingMore: true,
             hasMoreClass: true,
             refreshing: false,
+            networkOver: false,
         }
         props.cacheLifecycles.didCache(this.componentDidCache)
         props.cacheLifecycles.didRecover(this.componentDidRecover)
@@ -94,6 +96,7 @@ class MyOrder extends React.Component {
     queryPageByOrderV3(id, page, flag) {
         queryPageByOrderV3(id, page).then((res) => {
             if (res.msg === '调用成功' && res.success) {
+                this.setState({networkOver: true})
                 if (flag) {
                     this.setState({
                         page,
@@ -171,11 +174,16 @@ class MyOrder extends React.Component {
                             {
                                 myOrderContent.length ? <OrderList
                                     myOrderContent={myOrderContent}
-                                /> : <span>暂无订单</span>
+                                /> : this.state.networkOver ? <div style={{textAlign: "center", paddingTop: '1rem'}}>
+                                    <img src={none_img} alt=""/>
+                                    <div style={{marginTop: '.2rem', fontSize: '.15rem', color: '#2A3350'}}>还没有订单哦</div>
+                                </div> : <Icon type='loading'/>
                             }
-                            <LoadMore ref='LoadMore' isLoadingMore={this.state.isLoadingMore}
-                                      hasMoreClass={this.state.hasMoreClass}
-                                      loadMoreFn={this.loadMoreDate.bind(this)}/>
+                            <div style={myOrderContent.length ? {display: 'block'} : {display: 'none'}}>
+                                <LoadMore ref='LoadMore' isLoadingMore={this.state.isLoadingMore}
+                                          hasMoreClass={this.state.hasMoreClass}
+                                          loadMoreFn={this.loadMoreDate.bind(this)}/>
+                            </div>
                         </div>
                     </PullToRefresh>
                 </div>

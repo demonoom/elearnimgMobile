@@ -15,6 +15,7 @@ class MyCourseLists extends React.Component {
             courseList: [],
             hasMoreClass: true,
             refreshing: false,
+            networkOver: false
         }
     }
 
@@ -61,6 +62,7 @@ class MyCourseLists extends React.Component {
     getMyPurchaseCourseList(page, id, flag) {
         getMyPurchaseCourseListV3(page, id, this.state.courseType).then((res) => {
             if (res.msg === '调用成功' && res.success) {
+                this.setState({networkOver: true})
                 if (flag) {
                     this.setState({
                         page,
@@ -129,14 +131,17 @@ class MyCourseLists extends React.Component {
                     refreshing={this.state.refreshing}
                     onRefresh={this.handlePullToRefresh}
                 >
-                    <div className='class_list_myCourse' ref='class_list_myCourse' style={{marginTop:'.1rem'}}>
+                    <div className='class_list_myCourse' ref='class_list_myCourse' style={{marginTop: '.1rem'}}>
                         <ClassList
                             listType='2'
                             courseList={this.state.courseList}
+                            networkOver={this.state.networkOver}
                         />
-                        <LoadMore ref='LoadMore' isLoadingMore={this.state.isLoadingMore}
-                                  hasMoreClass={this.state.hasMoreClass}
-                                  loadMoreFn={this.loadMoreDate.bind(this)}/>
+                        <div style={this.state.courseList.length ? {display: 'block'} : {display: 'none'}}>
+                            <LoadMore ref='LoadMore' isLoadingMore={this.state.isLoadingMore}
+                                      hasMoreClass={this.state.hasMoreClass}
+                                      loadMoreFn={this.loadMoreDate.bind(this)}/>
+                        </div>
                     </div>
                 </PullToRefresh>
             </div>

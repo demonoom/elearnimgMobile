@@ -23,6 +23,7 @@ class SeeMoreContent extends React.Component {
             courseStatus: 'all',
             courseGrade: '-1',
             recommend: 0,
+            networkOver: false
         }
     }
 
@@ -65,7 +66,7 @@ class SeeMoreContent extends React.Component {
 
             if (res.msg === '调用成功' && res.success) {
                 if (this.state.page === res.pager.pageCount) {
-                    this.setState({hasMoreClass: false})
+                    this.setState({hasMoreClass: false, networkOver: true})
                 }
                 if (flag) {
                     this.setState({courseList: res.response, page: this.state.page + 1, isLoadingMore: false})
@@ -181,6 +182,7 @@ class SeeMoreContent extends React.Component {
                     <ClassList
                         listType='3'
                         courseList={this.state.courseList}
+                        networkOver={this.state.networkOver}
                     />
                     <LoadMore ref='LoadMore' isLoadingMore={this.state.isLoadingMore}
                               hasMoreClass={this.state.hasMoreClass}

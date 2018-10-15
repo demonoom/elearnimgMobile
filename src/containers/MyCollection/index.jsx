@@ -1,7 +1,7 @@
 import React from 'react'
 import './style.less'
 import {CSSTransition} from 'react-transition-group'
-import {Toast, PullToRefresh} from 'antd-mobile'
+import {Toast, PullToRefresh, Icon} from 'antd-mobile'
 import PublicHeader from '../../components/PublicHeader'
 import {getMyCollectCourseListV3} from '../../../src/fetch/my-collection/my-collection'
 import ClassBox from '../../components/ClassBox'
@@ -20,6 +20,7 @@ class MyCollection extends React.Component {
             isLoadingMore: true,
             hasMoreClass: true,
             refreshing: false,
+            networkOver: false,
         }
         props.cacheLifecycles.didCache(this.componentDidCache)
         props.cacheLifecycles.didRecover(this.componentDidRecover)
@@ -98,6 +99,7 @@ class MyCollection extends React.Component {
          */
         getMyCollectCourseListV3(id, page).then((res) => {
             if (res.msg === '调用成功' && res.success) {
+                this.setState({networkOver: true})
                 if (flag) {
                     this.setState({
                         page,
@@ -173,12 +175,12 @@ class MyCollection extends React.Component {
                                 myCollectionContent.length ? <ClassBox
                                     classroomContent={myCollectionContent}
                                     typeGuoLv={false}
-                                /> : <div style={{textAlign: "center", paddingTop: '1rem'}}>
+                                /> : this.state.networkOver ? <div style={{textAlign: "center", paddingTop: '1rem'}}>
                                     <img src={none_img} alt=""/>
-                                    <div style={{marginTop:'.2rem', fontSize:'.15rem', color:'#2A3350'}}>还没有内容哦</div>
-                                </div>
+                                    <div style={{marginTop: '.2rem', fontSize: '.15rem', color: '#2A3350'}}>还没有内容哦</div>
+                                </div> : <Icon type='loading'/>
                             }
-                            <div  style={myCollectionContent.length ? {display:'block'}:{display:'none'}} >
+                            <div style={myCollectionContent.length ? {display: 'block'} : {display: 'none'}}>
                                 <LoadMore ref='LoadMore' isLoadingMore={this.state.isLoadingMore}
                                           hasMoreClass={this.state.hasMoreClass}
                                           loadMoreFn={this.loadMoreDate.bind(this)}/>
