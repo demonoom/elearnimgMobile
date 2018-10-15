@@ -174,7 +174,7 @@ class MyCollection extends React.Component {
                                 myCollectionContent.length ? <ClassBox
                                     classroomContent={myCollectionContent}
                                     typeGuoLv={false}
-                                /> : <div style={{height: '80vh', textAlign: "center", paddingTop: '1rem'}}>
+                                /> : <div style={{textAlign: "center", paddingTop: '1rem'}}>
                                     <img src={none_img} alt=""/>
                                     <div style={{marginTop:'.2rem', fontSize:'.15rem', color:'#2A3350'}}>还没有内容哦</div>
                                 </div>
