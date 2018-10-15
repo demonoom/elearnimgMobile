@@ -174,9 +174,9 @@ class MyCollection extends React.Component {
                                 myCollectionContent.length ? <ClassBox
                                     classroomContent={myCollectionContent}
                                     typeGuoLv={false}
-                                /> : <div style={{height: '100vh', textAlign: "center", paddingTop: '1.7rem'}}>
+                                /> : <div style={{height: '100vh', textAlign: "center", paddingTop: '1rem'}}>
                                     <img src={none_img} alt=""/>
-                                    <div>还没有内容哦</div>
+                                    <div style={{marginTop:'.2rem', fontSize:'.15rem', color:'#2A3350'}}>还没有内容哦</div>
                                 </div>
                             }
                             <LoadMore ref='LoadMore' isLoadingMore={this.state.isLoadingMore}
