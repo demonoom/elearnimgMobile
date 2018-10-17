@@ -102,7 +102,7 @@ class CourseTab extends React.Component {
         if (localStorage.getItem("userId") == null) {
             var data = {
                 method: 'goLoginPage',
-                col:'white'
+                col: 'white'
             };
 
             window.Bridge.callHandler(data, function (res) {
@@ -137,13 +137,12 @@ class CourseTab extends React.Component {
      */
     courseOnPlay = (obj) => {
 
-
         var _this = this;
 
         if (localStorage.getItem("userId") == null) {
             var data = {
                 method: 'goLoginPage',
-                col:'white'
+                col: 'white'
             };
 
             window.Bridge.callHandler(data, function (res) {
@@ -159,17 +158,32 @@ class CourseTab extends React.Component {
             return
         }
 
-        var datas = {
-            method: 'openElearningClass',
-            vid: obj.virtual_classId,
-            videoName: obj.name,
-            videoStatus: obj.videoStatus,
-            antUid: obj.user.antUid
-        };
+        if (obj.videoStatus === '3') {
+            var url = 'http://jiaoxue.maaee.com:8093/#/cloundSchoolDetail?vid=' + obj.virtual_classId + '&userId=' + obj.user.antUid + '&type=' + obj.videoStatus + '&name=' + obj.name
 
-        window.Bridge.callHandler(datas, null, function (error) {
-            Toast.info(error, 4)
-        });
+            var dataa = {
+                method: 'openNewPage',
+                url: url
+            }
+
+            window.Bridge.callHandler(dataa, null, function (error) {
+                window.location.href = url;
+            });
+
+        } else if (obj.videoStatus === '2') {
+            var datas = {
+                method: 'openElearningClass',
+                vid: obj.virtual_classId,
+                videoName: obj.name,
+                videoStatus: obj.videoStatus,
+                antUid: obj.user.antUid
+            };
+
+            window.Bridge.callHandler(datas, null, function (error) {
+                Toast.info(error, 4)
+            });
+        }
+
     }
 
     /**
@@ -181,7 +195,7 @@ class CourseTab extends React.Component {
         if (localStorage.getItem("userId") == null) {
             var data = {
                 method: 'goLoginPage',
-                col:'white'
+                col: 'white'
             };
 
             window.Bridge.callHandler(data, function (res) {
@@ -280,7 +294,7 @@ class CourseTab extends React.Component {
                                     return <div className='teach_item my_flex' key={i}>
                                         <NavLink to={`/teacher/${v.colUid}`}><img src={v.avatar + SMALL_IMG}
                                                                                   onError={this.avatarOnError}
-                                                                                 alt=""/></NavLink>
+                                                                                  alt=""/></NavLink>
                                         <div className='right'>
                                             <div className='userName title_color text_hidden'>{v.userName}</div>
                                             <div
