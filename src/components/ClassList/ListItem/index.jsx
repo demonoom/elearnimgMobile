@@ -48,11 +48,16 @@ class ListItem extends React.Component {
                     </div>
                     <div className='timeCont'
                          style={{display: listType !== '1' ? '' : arr.indexOf('2') === -1 ? '' : 'none'}}>
-                        <span style={{display: listType === '1' ? arr.indexOf('2') === -1 ? '' : 'none' : 'none'}}>
+                        <span
+                            style={{display: listType === '1' ? itemObj.courseStatus === '3' ? 'none' : arr.indexOf('2') === -1 ? '' : 'none' : 'none'}}>
                              开课时间：
                             {
-                                FormatTime.formatTime(itemObj.startTime)
+                                FormatTime.getLastLivTime(itemObj)
                             }
+                        </span>
+                        <span
+                            style={{display: listType === '1' ? itemObj.courseStatus === '3' ? '' : 'none' : 'none'}}>
+                             直播结束
                         </span>
                         <span style={{display: listType === '1' ? 'none' : ''}}>
 

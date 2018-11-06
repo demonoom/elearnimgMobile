@@ -16,7 +16,6 @@ class Detil extends React.Component {
         this.state = {
             show: false,
             courseObj: false,     //课程对象
-            truelyHeight: '',
             collectionStar: false,
             commentFlag: false
         }
@@ -54,7 +53,7 @@ class Detil extends React.Component {
      */
     componentDidRecover = () => {
         this.changeTitleCol('white');
-        this.refs.detil.parentNode.style.height = `${this.state.truelyHeight}px`
+        this.refs.detil.parentNode.style.height = `${window.innerHeight}px`
         this.findCourseByCourseId()
     }
 
@@ -78,11 +77,6 @@ class Detil extends React.Component {
                 this.setState({courseObj: res.response, collectionStar: res.response.collect})
             } else {
                 Toast.fail(res.msg, 2)
-            }
-        }).then(() => {
-            if (this.refs.detil !== null) {
-                var truelyHeight = this.refs.detil.parentNode.offsetHeight
-                this.setState({truelyHeight})
             }
         })
     }

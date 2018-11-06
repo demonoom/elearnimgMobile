@@ -44,6 +44,9 @@ export default {
         var da = new Date(parseInt(nS, 10));
         var hour = da.getHours() + ":";
         var minutes = da.getMinutes();
+        if (minutes < 10) {
+            minutes = "0" + minutes;
+        }
         var dateStr = hour + minutes;
         return dateStr;
     },
@@ -82,6 +85,23 @@ export default {
             num = '0' + num
         }
         return num
+    },
+
+    /**
+     * 获取最近的直播时间
+     * @param obj
+     * @returns {*|string}
+     */
+    getLastLivTime: function (obj) {
+        var time = new Date().getTime()
+        var arr = obj.videos.filter((v) => {
+            return v.videoStatus === '1' && v.liveTime > time
+        })
+        if (arr.length !== 0) {
+            return this.formatTime(arr.sort((a, b) => {
+                return a - b
+            })[0].liveTime)
+        }
     }
 }
 
