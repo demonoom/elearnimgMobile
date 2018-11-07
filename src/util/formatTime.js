@@ -102,6 +102,17 @@ export default {
                 return a - b
             })[0].liveTime)
         }
+    },
+
+    getLastLivTime2: function (obj) {
+        var arr = obj.videos.filter((v) => {
+            return v.videoStatus === '1'
+        })
+        if (arr.length !== 0) {
+            return this.formatTime(arr.sort((a, b) => {
+                return a - b
+            })[0].liveTime)
+        }
     }
 }
 
