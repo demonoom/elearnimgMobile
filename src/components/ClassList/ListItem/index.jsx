@@ -52,7 +52,7 @@ class ListItem extends React.Component {
                             style={{display: listType === '1' ? itemObj.courseStatus === '3' ? 'none' : arr.indexOf('2') === -1 ? '' : 'none' : 'none'}}>
                              开课时间：
                             {
-                                FormatTime.getLastLivTime(itemObj)
+                                FormatTime.getLastLivTime(itemObj) || FormatTime.formatTime(itemObj.startTime)
                             }
                         </span>
                         <span
