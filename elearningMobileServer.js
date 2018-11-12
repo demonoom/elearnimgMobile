@@ -1,4 +1,3 @@
-
 var url = require('url');
 var cookieParser = require('cookie-parser')
 var express = require('express');
@@ -13,7 +12,7 @@ var path = require('path');
 
 var argv = minimist(process.argv.slice(2), {
     default: {
-        as_uri: debug?"http://localhost:9443/":'https://localhost:9443/'
+        as_uri: debug ? "http://localhost:8200/" : 'https://localhost:8200/'
     }
 });
 
@@ -39,28 +38,21 @@ app.use(sessionHandler);
 
 var asUrl = url.parse(argv.as_uri);
 var port = asUrl.port;
-if(debug){
+if (debug) {
     http.createServer(app).listen(port, function () {
-        console.log('Open ' + url.format(asUrl) );
+        console.log('Open ' + url.format(asUrl));
     });
-}else{
+} else {
     https.createServer(options, app).listen(port, function () {
-        console.log('Open ' + url.format(asUrl) );
+        console.log('Open ' + url.format(asUrl));
     });
 }
 
 
-//app.use(express.static(path.join(__dirname, 'build')));
-
-
 app.get('/home', function (req, res) {
-
-    console.log(req.path);
     res.sendFile(path.join(__dirname, 'build', "index.html"));
 });
 
 app.get('/*', function (req, res) {
-
-    console.log(req.path);
     res.sendFile(path.join(__dirname, 'build', req.path));
 });
