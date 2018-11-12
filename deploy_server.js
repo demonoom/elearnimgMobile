@@ -50,4 +50,17 @@ if(debug){
 }
 
 
-app.use(express.static(path.join(__dirname, 'build')));
+//app.use(express.static(path.join(__dirname, 'build')));
+
+
+app.get('/home', function (req, res) {
+
+    console.log(req.path);
+    res.sendFile(path.join(__dirname, 'build', "index.html"));
+});
+
+app.get('/*', function (req, res) {
+
+    console.log(req.path);
+    res.sendFile(path.join(__dirname, 'build', req.path));
+});
