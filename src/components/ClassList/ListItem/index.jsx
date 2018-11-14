@@ -73,8 +73,9 @@ class ListItem extends React.Component {
                         </span>
                         <span style={{display: listType === '2' ? 'none' : listType === '1' ? 'none' : ''}}>
                             {
-                                itemObj.money === '0.00' ? <span className='free'>免费</span> :
-                                    <span className='price'><span>¥</span>itemObj.money</span>
+                                Number(itemObj.money) > 0 ?
+                                    <span className='price'><span>¥</span>itemObj.money</span> :
+                                    <span className='free'>免费</span>
                             }
                         </span>
                     </div>

@@ -189,7 +189,7 @@ class PlaceOrder extends React.Component {
 
                             </div>
                             <div className="payWay whiteBg"
-                                 style={{display: courseObj.money === '0.00' ? "none" : 'block'}}>
+                                 style={{display: Number(courseObj.money) > 0 ? 'block' : 'none'}}>
                                 <div className="payTitle">
                                     支付方式
                                 </div>
@@ -198,11 +198,11 @@ class PlaceOrder extends React.Component {
                         </div>
                         <div className='balance_content_bottom'>
                             <div className='balance_content_bottom_left'
-                                 style={{display: courseObj.money === '0.00' ? "none" : 'block'}}>
+                                 style={{display: Number(courseObj.money) > 0 ? 'block' : 'none'}}>
                                 需支付：<span className='price'><span>¥ </span>{courseObj.money}</span>
                             </div>
                             <div onClick={this.pay} className='balance_content_bottom_right'
-                                 style={{width: courseObj.money === '0.00' ? "100%" : ''}}>{this.props.match.params.type === '1' ? '确认报名' : '确认支付'}</div>
+                                 style={{width: Number(courseObj.money) > 0 ? "" : '100%'}}>{this.props.match.params.type === '1' ? '确认报名' : '确认支付'}</div>
                         </div>
                     </div>
 

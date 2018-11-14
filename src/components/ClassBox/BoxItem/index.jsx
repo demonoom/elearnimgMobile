@@ -55,9 +55,10 @@ class BoxItem extends React.Component {
                             <div className="textBottom my_flex">
                                 <img src={data.users[0].avatar} alt="" onError={this.avatarOnError}/>
                                 <span className='text_color text_hidden'>{data.users[0].userName}</span>
-                                {data.money === '0.00' ?
-                                    <span className='free'>免费</span> :
-                                    <span className='price text_hidden'><span>¥ </span>{data.money}</span>}
+                                {Number(data.money) > 0 ?
+                                    <span className='price text_hidden'><span>¥ </span>{data.money}</span> :
+                                    <span className='free'>免费</span>
+                                }
                             </div>
                         </div>
 
