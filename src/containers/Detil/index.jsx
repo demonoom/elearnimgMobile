@@ -141,7 +141,8 @@ class Detil extends React.Component {
             return
         }
 
-        const type = this.state.courseObj.money === '0.00' ? 1 : 2
+        // const type = this.state.courseObj.money === '0.00' ? 1 : 2
+        const type = Number(this.state.courseObj.money) > 0 ? 2 : 1
 
         this.props.history.push(`/placeorder/${type}/${this.state.courseObj.id}`)
 
@@ -256,19 +257,21 @@ class Detil extends React.Component {
                     <div className='detil_content_bottom'
                          style={{display: this.state.courseObj.buyed ? 'none' : ''}}>
                         <div className='detil_content_bottom_left'>
-                            {this.state.courseObj.money === '0.00' ?
-                                <span className='free'>免费</span> :
-                                <span className='price'><span>¥ </span>{this.state.courseObj.money}</span>}
-                            <span
+                            {/*{this.state.courseObj.money === '0.00' ?*/}
+                            {Number(this.state.courseObj.money) > 0 ?
+                                <span className='price'><span>¥ </span>{this.state.courseObj.money}</span>:
+                                <span className='free'>免费</span>
+                            }
+                                <span
                                 className='personBuy text_color'>{this.state.courseObj ? this.state.courseObj.buyUids.length : 0}人购买</span>
-                        </div>
-                        <div onClick={this.buyCourse}
-                             className='detil_content_bottom_right'>{this.state.courseObj.money === '0.00' ? '立即报名' : '立即购买'}</div>
-                    </div>
-                </div>
-            </CSSTransition>
-        )
-    }
-}
+                                </div>
+                                <div onClick={this.buyCourse}
+                                className='detil_content_bottom_right'>{Number(this.state.courseObj.money) > 0 ? '立即购买' : '立即报名'}</div>
+                                </div>
+                                </div>
+                                </CSSTransition>
+                                )
+                                }
+                            }
 
-export default Detil
+                            export default Detil
