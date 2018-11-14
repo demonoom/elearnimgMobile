@@ -10,7 +10,13 @@ class ClassList extends React.Component {
     }
 
     render() {
-        const courseList = this.props.courseList
+        var courseList;
+        //直播课返回null前端过滤处理逻辑,11.14
+        if (this.props.courseList != null) {
+            courseList = this.props.courseList.filter((v) => {
+                return v != null
+            })
+        }
         return (
             <div id='classList'
                  style={!courseList ? {textAlign: 'center', paddingTop: '.15rem'} : {marginTop: '.1rem'}}>
