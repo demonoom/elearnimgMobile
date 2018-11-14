@@ -89,11 +89,11 @@ class Home extends React.Component {
     }
 
     /**
-     * 轮播图被点击返回的数据obj
-     * @param obj
+     * 接受轮播图被点击
+     * 做出响应
      */
-    categoryOnClick = (obj) => {
-        return
+    sliderOnClick = (slider) => {
+        this.props.history.push(slider);
     }
 
     /**
@@ -147,7 +147,7 @@ class Home extends React.Component {
                     >
                         <Category
                             categoryArr={this.state.categoryArr}
-                            categoryOnClick={this.categoryOnClick}
+                            sliderOnClick={this.sliderOnClick}
                         />
 
                         <h4 className='title_color same_title' style={{textAlign: 'center'}}>实景课宣传片</h4>
