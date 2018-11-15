@@ -37,13 +37,32 @@ class Category extends React.Component {
      */
     initClick = () => {
         var _this = this
+        //针对低版本浏览器不兼容Array.from及Array.isArray做出的处理,发现nabi平板依然无法兼容,采用下面简单的写法
+        /*if (!Array.from) {
+            Array.from = function (iterable) {
+                // IE(包括IE11)没有这个方法,用[].slice.call(new Uint8Array..代替
+                return [].slice.call(new Uint8Array(iterable));
+            }
+        }
+        if (!Array.isArray) {
+            Array.isArray = function (arg) {
+                return Object.prototype.toString.call(arg) === '[object Array]';
+            };
+        }
         let banners = Array.from(document.getElementsByClassName('bannerImg'));
         if (!Array.isArray(banners)) return;
         banners.forEach((item) => {
             item.addEventListener('click', function () {
                 _this.props.sliderOnClick(this.getAttribute('link'))
             })
-        })
+        })*/
+
+        let banners = document.querySelectorAll('.bannerImg')
+        for (var i = 0; i < banners.length; i++) {
+            banners[i].addEventListener('click', function () {
+                _this.props.sliderOnClick(this.getAttribute('link'))
+            })
+        }
     }
 
     render() {
