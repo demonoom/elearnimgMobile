@@ -107,6 +107,9 @@ class CourseTab extends React.Component {
 
             window.Bridge.callHandler(data, function (res) {
                 localStorage.setItem("userId", JSON.parse(res).colUid)
+                if (!!JSON.parse(res).antUid) {
+                    localStorage.setItem("antUid", JSON.parse(res).antUid)
+                }
                 _this.props.loginSuccess()
             }, function (error) {
                 Toast.info(error, 4)
@@ -147,6 +150,9 @@ class CourseTab extends React.Component {
 
             window.Bridge.callHandler(data, function (res) {
                 localStorage.setItem("userId", JSON.parse(res).colUid)
+                if (!!JSON.parse(res).antUid) {
+                    localStorage.setItem("antUid", JSON.parse(res).antUid)
+                }
                 _this.props.loginSuccess()
             }, function (error) {
                 Toast.info(error, 4)
@@ -200,6 +206,9 @@ class CourseTab extends React.Component {
 
             window.Bridge.callHandler(data, function (res) {
                 localStorage.setItem("userId", JSON.parse(res).colUid)
+                if (!!JSON.parse(res).antUid) {
+                    localStorage.setItem("antUid", JSON.parse(res).antUid)
+                }
                 _this.props.loginSuccess()
             }, function (error) {
                 Toast.info(error, 4)

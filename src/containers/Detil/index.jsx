@@ -95,6 +95,9 @@ class Detil extends React.Component {
 
             window.Bridge.callHandler(data, function (res) {
                 localStorage.setItem("userId", JSON.parse(res).colUid)
+                if (!!JSON.parse(res).antUid) {
+                    localStorage.setItem("antUid", JSON.parse(res).antUid)
+                }
                 _this.findCourseByCourseId()
             }, function (error) {
                 Toast.info(error, 4)
@@ -138,6 +141,9 @@ class Detil extends React.Component {
 
             window.Bridge.callHandler(data, function (res) {
                 localStorage.setItem("userId", JSON.parse(res).colUid)
+                if (!!JSON.parse(res).antUid) {
+                    localStorage.setItem("antUid", JSON.parse(res).antUid)
+                }
                 _this.findCourseByCourseId()
             }, function (error) {
                 Toast.info(error, 4)
