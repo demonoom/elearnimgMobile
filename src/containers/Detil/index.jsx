@@ -5,7 +5,7 @@ import {Toast, Icon} from 'antd-mobile'
 import DetilHeader from '../../components/DetilHeader'
 import CourseTab from './subpage/CourseTab'
 import {findCourseByCourseId, addCollection, updateCollection} from '../../../src/fetch/detil/detil'
-import {LARGE_IMG} from '../../util/const'
+import {LARGE_IMG, LIVE_MANAGER_ARRAY, YICHANG_DIANJUN_LIVE_ARRAY} from '../../util/const'
 import Comment from '../../components/Comment'
 import {addEvaluate} from '../../../src/fetch/comment/comment'
 import defaultImg from '../../static/img/error.png'
@@ -74,7 +74,11 @@ class Detil extends React.Component {
          */
         findCourseByCourseId(this.props.match.params.id, localStorage.getItem("userId") || '').then((res) => {
             if (res.msg === '调用成功' && res.success) {
-                this.setState({courseObj: res.response, collectionStar: res.response.collect})
+                var courseObj = res.response
+                if (LIVE_MANAGER_ARRAY.indexOf(Number(localStorage.getItem('antUid'))) !== -1 || YICHANG_DIANJUN_LIVE_ARRAY.indexOf(Number(localStorage.getItem('antUid'))) !== -1) {
+                    courseObj.buyed = true
+                }
+                this.setState({courseObj, collectionStar: courseObj.collect})
             } else {
                 Toast.fail(res.msg, 2)
             }

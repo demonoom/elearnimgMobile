@@ -49,7 +49,8 @@ class App extends Component {
     componentDidMount() {
         //模拟登录
         this.props.userInfoActions.login({userId: '500001020'})
-        // localStorage.setItem("userId", "500020251")
+        // localStorage.setItem("antUid", 23993)
+        // localStorage.setItem("userId", "500001051")
         // localStorage.setItem("userId", "500001014")
         // localStorage.setItem("version", this.refs.switch.context.router.route.location.pathname.split('/')[2])
     }
@@ -74,6 +75,9 @@ class App extends Component {
 
             window.Bridge.callHandler(data, function (res) {
                 localStorage.setItem("userId", JSON.parse(res).colUid)
+                if (!!JSON.parse(res).antUid) {
+                    localStorage.setItem("antUid", JSON.parse(res).antUid)
+                }
                 _this.refs.switch.context.router.history.push(word)
                 _this.setState({navWord: word})
             }, function (error) {
