@@ -426,15 +426,17 @@ input {
 }
 
 .swiper-pagination-fraction {
-    bottom: 5px !important;
+    bottom: -15px !important;
     color: white;
-    line-height: 20px;
     background: rgba(0, 0, 0, 0.2);
-    width: 60px !important;
+    width: 120px !important;
     left: 50% !important;
     margin-left: -30px;
-    border-radius: 15px;
-
+    border-radius: 30px;
+    line-height: 40px;
+    font-size: 24px;
+    transform: scale(0.5)!important;
+    transform-origin: 0% 0%;
 }
 
 .icon-sousuo1 {
