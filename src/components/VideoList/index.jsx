@@ -24,6 +24,7 @@ class VideoList extends React.Component {
                 res.forEach((item) => {
                     videoList.push(
                         <li key={item.id} className='videoLi'>
+                            <div className="mask"></div>
                             <img src={item.image + LARGE_IMG} alt=""/>
                             <i className='iconfont icon-bofang' onClick={this.liOnClick.bind(this, item)}></i>
                         </li>
