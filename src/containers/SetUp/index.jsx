@@ -58,6 +58,14 @@ class SetUp extends React.Component {
      * 退出
      */
     quitOnClick = () => {
+        var dataCol = {
+            method: 'userQuit',
+        };
+
+        window.Bridge.callHandler(dataCol, null, function (error) {
+            // Toast.info(error, 4)
+        });
+
         localStorage.removeItem("userId");
         localStorage.removeItem("antUid");
         window.history.go(-1)
