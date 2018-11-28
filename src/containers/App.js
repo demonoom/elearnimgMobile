@@ -76,10 +76,12 @@ class App extends Component {
             window.Bridge.callHandler(data, function (res) {
                 localStorage.setItem("userId", JSON.parse(res).colUid)
                 if (!!JSON.parse(res).antUid) {
+                    //这个判断用于是小蚂蚁账号登录的
                     localStorage.setItem("antUid", JSON.parse(res).antUid)
                 }
                 _this.refs.switch.context.router.history.push(word)
                 _this.setState({navWord: word})
+                _this.forcedReturn(res)
             }, function (error) {
                 Toast.info(error, 4)
             });
@@ -96,6 +98,27 @@ class App extends Component {
                 navClickFlag = false
             }, 400)
         }
+    }
+
+    /**
+     * 强制退出
+     */
+    forcedReturn = (res) => {
+        var _this = this;
+        var data = {
+            method: 'forcedReturn',
+            data: res
+        };
+        window.Bridge.callHandler(data, function (res) {
+            Toast.info('您的账号在别处登录,您已被强制下线!', 3)
+            localStorage.removeItem("userId");
+            localStorage.removeItem("antUid");
+            setTimeout(function () {
+                _this.quit()
+            }, 3000)
+        }, function (error) {
+            Toast.info(error, 4)
+        });
     }
 
     render() {

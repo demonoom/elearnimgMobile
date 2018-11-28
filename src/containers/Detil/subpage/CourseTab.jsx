@@ -111,6 +111,7 @@ class CourseTab extends React.Component {
                     localStorage.setItem("antUid", JSON.parse(res).antUid)
                 }
                 _this.props.loginSuccess()
+                _this.forcedReturn(res)
             }, function (error) {
                 Toast.info(error, 4)
             });
@@ -154,6 +155,7 @@ class CourseTab extends React.Component {
                     localStorage.setItem("antUid", JSON.parse(res).antUid)
                 }
                 _this.props.loginSuccess()
+                _this.forcedReturn(res)
             }, function (error) {
                 Toast.info(error, 4)
             });
@@ -210,6 +212,7 @@ class CourseTab extends React.Component {
                     localStorage.setItem("antUid", JSON.parse(res).antUid)
                 }
                 _this.props.loginSuccess()
+                _this.forcedReturn(res)
             }, function (error) {
                 Toast.info(error, 4)
             });
@@ -223,6 +226,26 @@ class CourseTab extends React.Component {
         this.props.setCommentFlag(true)
 
 
+    }
+
+    /**
+     * 强制退出
+     */
+    forcedReturn = (res) => {
+        var data = {
+            method: 'forcedReturn',
+            data: res
+        };
+        window.Bridge.callHandler(data, function (res) {
+            Toast.info('您的账号在别处登录,您已被强制下线!', 3)
+            localStorage.removeItem("userId");
+            localStorage.removeItem("antUid");
+            setTimeout(function () {
+                window.__quit__()
+            }, 3000)
+        }, function (error) {
+            Toast.info(error, 4)
+        });
     }
 
     avatarOnError = (e) => {
