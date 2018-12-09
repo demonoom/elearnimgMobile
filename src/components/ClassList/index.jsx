@@ -15,7 +15,10 @@ class ClassList extends React.Component {
         if (this.props.courseList != null) {
             courseList = this.props.courseList.filter((v) => {
                 return v != null
+            }).filter((e) => {
+                return e.videos != null
             })
+            console.log(courseList);
         }
         return (
             <div id='classList'
