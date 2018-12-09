@@ -12,13 +12,13 @@ class ClassList extends React.Component {
     render() {
         var courseList;
         //直播课返回null前端过滤处理逻辑,11.14
+        //videos为空过滤处理,12.9
         if (this.props.courseList != null) {
             courseList = this.props.courseList.filter((v) => {
                 return v != null
             }).filter((e) => {
                 return e.videos != null
             })
-            console.log(courseList);
         }
         return (
             <div id='classList'
