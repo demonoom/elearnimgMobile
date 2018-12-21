@@ -22,6 +22,9 @@ import SeeMoreLiving from '../containers/SeeMoreLiving'
 import Teacher from '../containers/Teacher'
 import BindPhoneNum from '../containers/BindPhoneNum'
 import {Toast} from 'antd-mobile'
+// import VConsole from 'vconsole/dist/vconsole.min.js'
+
+// let vConsole = new VConsole()
 
 let navClickFlag = false
 let timeout
@@ -51,7 +54,7 @@ class App extends Component {
         this.props.userInfoActions.login({userId: '500001020'})
         // localStorage.setItem("antUid", 23993)
         // localStorage.setItem("userId", "500001051")
-        // localStorage.setItem("userId", "500001014")
+        // localStorage.setItem("userId", "500001326")
         // localStorage.setItem("version", this.refs.switch.context.router.route.location.pathname.split('/')[2])
     }
 

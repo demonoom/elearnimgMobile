@@ -1,4 +1,4 @@
-import {post} from '../post'
+import {ajax} from '../post'
 
 /**
  * 新版搜索
@@ -12,7 +12,7 @@ import {post} from '../post'
  * @returns {*}
  */
 export function getCourseListV3(pageNo, courseType, courseSubject, courseStatus, courseSort, courseGrade, searchKeyWords) {
-    const result = post({
+    const result = ajax({
         "method": 'getCourseListV3',
         "pageNo": pageNo,
         "courseType": courseType,
@@ -24,6 +24,8 @@ export function getCourseListV3(pageNo, courseType, courseSubject, courseStatus,
         "courseGrade": courseGrade,
         "courseOrder": 'desc',
         "searchKeyWords": searchKeyWords,
+    }).then(res => {
+        return res
     })
 
     return result
