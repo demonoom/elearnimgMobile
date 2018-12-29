@@ -225,7 +225,7 @@ class Detil extends React.Component {
                 window.__quit__()
             }, 3000)
         }, function (error) {
-            Toast.info(error, 4)
+            // Toast.info(error, 4)
         });
     }
 

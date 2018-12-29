@@ -120,7 +120,7 @@ class App extends Component {
                 _this.quit()
             }, 3000)
         }, function (error) {
-            Toast.info(error, 4)
+            // Toast.info(error, 4)
         });
     }
 
