@@ -94,6 +94,7 @@ class Detil extends React.Component {
             };
 
             window.Bridge.callHandler(data, function (res) {
+                localStorage.setItem("schoolId", JSON.parse(res).schoolId)
                 localStorage.setItem("userId", JSON.parse(res).colUid)
                 if (!!JSON.parse(res).antUid) {
                     localStorage.setItem("antUid", JSON.parse(res).antUid)
@@ -141,6 +142,7 @@ class Detil extends React.Component {
             };
 
             window.Bridge.callHandler(data, function (res) {
+                localStorage.setItem("schoolId", JSON.parse(res).schoolId)
                 localStorage.setItem("userId", JSON.parse(res).colUid)
                 if (!!JSON.parse(res).antUid) {
                     localStorage.setItem("antUid", JSON.parse(res).antUid)
@@ -221,6 +223,7 @@ class Detil extends React.Component {
             Toast.info('您的账号在别处登录,您已被强制下线!', 3)
             localStorage.removeItem("userId");
             localStorage.removeItem("antUid");
+            localStorage.removeItem("schoolId");
             setTimeout(function () {
                 window.__quit__()
             }, 3000)

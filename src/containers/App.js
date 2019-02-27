@@ -78,6 +78,7 @@ class App extends Component {
 
             window.Bridge.callHandler(data, function (res) {
                 localStorage.setItem("userId", JSON.parse(res).colUid)
+                localStorage.setItem("schoolId", JSON.parse(res).schoolId)
                 if (!!JSON.parse(res).antUid) {
                     //这个判断用于是小蚂蚁账号登录的
                     localStorage.setItem("antUid", JSON.parse(res).antUid)
@@ -116,6 +117,7 @@ class App extends Component {
             Toast.info('您的账号在别处登录,您已被强制下线!', 3)
             localStorage.removeItem("userId");
             localStorage.removeItem("antUid");
+            localStorage.removeItem("schoolId");
             setTimeout(function () {
                 _this.quit()
             }, 3000)

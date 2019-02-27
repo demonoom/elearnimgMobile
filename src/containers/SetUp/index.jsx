@@ -67,6 +67,7 @@ class SetUp extends React.Component {
         });
 
         localStorage.removeItem("userId");
+        localStorage.removeItem("schoolId");
         localStorage.removeItem("antUid");
         window.history.go(-1)
         Toast.success('退出成功', 1)

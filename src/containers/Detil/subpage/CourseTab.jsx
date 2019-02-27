@@ -107,6 +107,7 @@ class CourseTab extends React.Component {
 
             window.Bridge.callHandler(data, function (res) {
                 localStorage.setItem("userId", JSON.parse(res).colUid)
+                localStorage.setItem("schoolId", JSON.parse(res).schoolId)
                 if (!!JSON.parse(res).antUid) {
                     localStorage.setItem("antUid", JSON.parse(res).antUid)
                 }
@@ -150,6 +151,7 @@ class CourseTab extends React.Component {
             };
 
             window.Bridge.callHandler(data, function (res) {
+                localStorage.setItem("schoolId", JSON.parse(res).schoolId)
                 localStorage.setItem("userId", JSON.parse(res).colUid)
                 if (!!JSON.parse(res).antUid) {
                     localStorage.setItem("antUid", JSON.parse(res).antUid)
@@ -164,6 +166,16 @@ class CourseTab extends React.Component {
         if (!this.props.courseObj.buyed) {
             Toast.info('您还没有购买!', 2)
             return
+        }
+
+        if (!!this.props.courseObj.limitSchoolIds) {
+            if (this.props.courseObj.limitSchoolIds.length != 0) {
+                if (this.props.courseObj.limitSchoolIds.indexOf(Number(localStorage.getItem('schoolId'))) == -1) {
+                    //有学校限制
+                    Toast.info('只允许本校学生观看!', 2);
+                    return
+                }
+            }
         }
 
         if (obj.videoStatus === '3') {
@@ -207,6 +219,7 @@ class CourseTab extends React.Component {
             };
 
             window.Bridge.callHandler(data, function (res) {
+                localStorage.setItem("schoolId", JSON.parse(res).schoolId)
                 localStorage.setItem("userId", JSON.parse(res).colUid)
                 if (!!JSON.parse(res).antUid) {
                     localStorage.setItem("antUid", JSON.parse(res).antUid)
@@ -240,6 +253,8 @@ class CourseTab extends React.Component {
             Toast.info('您的账号在别处登录,您已被强制下线!', 3)
             localStorage.removeItem("userId");
             localStorage.removeItem("antUid");
+            localStorage.removeItem("schoolId");
+
             setTimeout(function () {
                 window.__quit__()
             }, 3000)
@@ -291,7 +306,7 @@ class CourseTab extends React.Component {
                                                 {
 
 
-                                                    ( courseObj.isSeries === '3' || courseObj.isSeries === '4') ?
+                                                    (courseObj.isSeries === '3' || courseObj.isSeries === '4') ?
                                                         <span className='status icon_playBack'
                                                               onClick={this.courseWeiOnPlay.bind(this, v)}></span> : v.videoStatus === '1' ?
                                                         <span className='status text_color'>未开课</span> :
