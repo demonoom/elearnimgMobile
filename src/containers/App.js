@@ -23,6 +23,7 @@ import Teacher from '../containers/Teacher'
 import BindPhoneNum from '../containers/BindPhoneNum'
 import {Toast} from 'antd-mobile'
 // import VConsole from 'vconsole/dist/vconsole.min.js'
+import {findUserById} from '../fetch/user/user'
 
 // let vConsole = new VConsole()
 
@@ -52,7 +53,7 @@ class App extends Component {
     componentDidMount() {
         //模拟登录
         this.props.userInfoActions.login({userId: '500001020'})
-        // localStorage.setItem("antUid", 23993)
+        localStorage.setItem("schoolId", '10')
         // localStorage.setItem("userId", "500001051")
         // localStorage.setItem("userId", "500001326")
         // localStorage.setItem("version", this.refs.switch.context.router.route.location.pathname.split('/')[2])
@@ -78,7 +79,14 @@ class App extends Component {
 
             window.Bridge.callHandler(data, function (res) {
                 localStorage.setItem("userId", JSON.parse(res).colUid)
-                localStorage.setItem("schoolId", JSON.parse(res).schoolId)
+                findUserById(JSON.parse(res).colUid).then((res) => {
+                    if (res.msg === '调用成功' && res.success) {
+                        console.log(res.response.schoolId);
+                        localStorage.setItem("schoolId", res.response.schoolId)
+                    } else {
+                        Toast.fail(res.msg, 2)
+                    }
+                })
                 if (!!JSON.parse(res).antUid) {
                     //这个判断用于是小蚂蚁账号登录的
                     localStorage.setItem("antUid", JSON.parse(res).antUid)

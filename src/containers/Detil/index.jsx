@@ -9,6 +9,7 @@ import {LARGE_IMG, LIVE_MANAGER_ARRAY, YICHANG_DIANJUN_LIVE_ARRAY} from '../../u
 import Comment from '../../components/Comment'
 import {addEvaluate} from '../../../src/fetch/comment/comment'
 import defaultImg from '../../static/img/error.png'
+import {findUserById} from '../../fetch/user/user'
 
 class Detil extends React.Component {
     constructor(props, context) {
@@ -94,7 +95,14 @@ class Detil extends React.Component {
             };
 
             window.Bridge.callHandler(data, function (res) {
-                localStorage.setItem("schoolId", JSON.parse(res).schoolId)
+                findUserById(JSON.parse(res).colUid).then((res) => {
+                    if (res.msg === '调用成功' && res.success) {
+                        console.log(res.response.schoolId);
+                        localStorage.setItem("schoolId", res.response.schoolId)
+                    } else {
+                        Toast.fail(res.msg, 2)
+                    }
+                })
                 localStorage.setItem("userId", JSON.parse(res).colUid)
                 if (!!JSON.parse(res).antUid) {
                     localStorage.setItem("antUid", JSON.parse(res).antUid)
@@ -142,7 +150,14 @@ class Detil extends React.Component {
             };
 
             window.Bridge.callHandler(data, function (res) {
-                localStorage.setItem("schoolId", JSON.parse(res).schoolId)
+                findUserById(JSON.parse(res).colUid).then((res) => {
+                    if (res.msg === '调用成功' && res.success) {
+                        console.log(res.response.schoolId);
+                        localStorage.setItem("schoolId", res.response.schoolId)
+                    } else {
+                        Toast.fail(res.msg, 2)
+                    }
+                })
                 localStorage.setItem("userId", JSON.parse(res).colUid)
                 if (!!JSON.parse(res).antUid) {
                     localStorage.setItem("antUid", JSON.parse(res).antUid)

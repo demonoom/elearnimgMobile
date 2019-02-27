@@ -8,6 +8,7 @@ import CommentList from '../../../components/CommentList'
 import LoadMore from '../../../components/LoadMore'
 import {NavLink} from "react-router-dom"
 import avatarImg from '../../../static/img/adver-error.png'
+import {findUserById} from '../../../fetch/user/user'
 
 var loadMore;
 
@@ -106,8 +107,14 @@ class CourseTab extends React.Component {
             };
 
             window.Bridge.callHandler(data, function (res) {
+                findUserById(JSON.parse(res).colUid).then((res) => {
+                    if (res.msg === '调用成功' && res.success) {
+                        localStorage.setItem("schoolId", res.response.schoolId)
+                    } else {
+                        Toast.fail(res.msg, 2)
+                    }
+                })
                 localStorage.setItem("userId", JSON.parse(res).colUid)
-                localStorage.setItem("schoolId", JSON.parse(res).schoolId)
                 if (!!JSON.parse(res).antUid) {
                     localStorage.setItem("antUid", JSON.parse(res).antUid)
                 }
@@ -151,7 +158,14 @@ class CourseTab extends React.Component {
             };
 
             window.Bridge.callHandler(data, function (res) {
-                localStorage.setItem("schoolId", JSON.parse(res).schoolId)
+                findUserById(JSON.parse(res).colUid).then((res) => {
+                    if (res.msg === '调用成功' && res.success) {
+                        console.log(res.response.schoolId);
+                        localStorage.setItem("schoolId", res.response.schoolId)
+                    } else {
+                        Toast.fail(res.msg, 2)
+                    }
+                })
                 localStorage.setItem("userId", JSON.parse(res).colUid)
                 if (!!JSON.parse(res).antUid) {
                     localStorage.setItem("antUid", JSON.parse(res).antUid)
@@ -219,7 +233,14 @@ class CourseTab extends React.Component {
             };
 
             window.Bridge.callHandler(data, function (res) {
-                localStorage.setItem("schoolId", JSON.parse(res).schoolId)
+                findUserById(JSON.parse(res).colUid).then((res) => {
+                    if (res.msg === '调用成功' && res.success) {
+                        console.log(res.response.schoolId);
+                        localStorage.setItem("schoolId", res.response.schoolId)
+                    } else {
+                        Toast.fail(res.msg, 2)
+                    }
+                })
                 localStorage.setItem("userId", JSON.parse(res).colUid)
                 if (!!JSON.parse(res).antUid) {
                     localStorage.setItem("antUid", JSON.parse(res).antUid)
