@@ -183,8 +183,8 @@ class CourseTab extends React.Component {
         }
 
         if (!!this.props.courseObj.limitSchoolIds) {
-            if (this.props.courseObj.limitSchoolIds.length != 0) {
-                if (this.props.courseObj.limitSchoolIds.indexOf(Number(localStorage.getItem('schoolId'))) == -1) {
+            if (this.props.courseObj.limitSchoolIds.length !== 0) {
+                if (this.props.courseObj.limitSchoolIds.indexOf(Number(localStorage.getItem('schoolId'))) === -1) {
                     //有学校限制
                     Toast.info('只允许本校学生观看!', 2);
                     return

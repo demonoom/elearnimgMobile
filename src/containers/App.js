@@ -53,7 +53,7 @@ class App extends Component {
     componentDidMount() {
         //模拟登录
         this.props.userInfoActions.login({userId: '500001020'})
-        localStorage.setItem("schoolId", '10')
+        // localStorage.setItem("schoolId", '10')
         // localStorage.setItem("userId", "500001051")
         // localStorage.setItem("userId", "500001326")
         // localStorage.setItem("version", this.refs.switch.context.router.route.location.pathname.split('/')[2])
