@@ -120,6 +120,16 @@ class Detil extends React.Component {
             return
         }
 
+        if (!!this.state.courseObj.limitSchoolIds) {
+            if (this.state.courseObj.limitSchoolIds.length !== 0) {
+                if (this.state.courseObj.limitSchoolIds.indexOf(Number(localStorage.getItem('schoolId'))) === -1) {
+                    //有学校限制
+                    Toast.info('只允许本校学生观看!', 2);
+                    return
+                }
+            }
+        }
+
         var datas = {
             method: 'openElearningClass',
             vid: this.state.courseObj.videos[0].virtual_classId,
